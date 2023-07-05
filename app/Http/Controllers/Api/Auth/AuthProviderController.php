@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\{CompanyResource, UserResources};
 use App\Models\Company;
 use App\Models\User;
-use App\Services\AuthService;
+use App\Services\Api\AuthService;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -34,5 +34,9 @@ class Invitation extends Model
         return isset($this->attributes['image']) ? get_file($this->attributes['image']) : "";
     }
 
+    public function invitees(){
+        return $this->hasMany(Invitee::class);
+    }
+
 
 }
