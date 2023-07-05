@@ -20,7 +20,7 @@ class CreateInvitationsTable extends Migration
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('title');
+            $table->json('title');
             $table->text('image')->nullable();
             $table->enum('has_barcode',[0,1])->default(0);
             $table->string('barcode',255)->nullable();
@@ -32,6 +32,7 @@ class CreateInvitationsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('status' ,[0,1])->default(0);
+            $table->integer('step' )->default(1);
             $table->timestamps();
         });
     }
