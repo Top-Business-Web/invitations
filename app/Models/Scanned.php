@@ -11,7 +11,6 @@ class Scanned extends Model
     protected $fillable=[
         'invitation_id',
         'invitee_id',
-
     ];
 
 }
