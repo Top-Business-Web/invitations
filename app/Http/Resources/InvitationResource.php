@@ -29,6 +29,7 @@ class InvitationResource extends JsonResource
             'user_id'=>$this->user_id,
             'status'=>$this->status,
             'step'=>$this->step,
+            'invitees'=>$this->invitees,
         ];
     }
 }

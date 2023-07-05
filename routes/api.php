@@ -1,6 +1,7 @@
 <?php
 
 //use App\Http\Controllers\Api\Auth\Provider\AuthController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\GeneralController;
 
@@ -9,6 +10,8 @@ use App\Http\Controllers\Api\Auth\CodeCheckController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\InvitationController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
@@ -36,22 +39,15 @@ Route::group(['prefix' => 'provider/auth'],function (){
     Route::get('profile-by-phone',[AuthProviderController::class, 'profileWithPhone']);
 //    Route::post('insert-token',[NotificationController::class, 'insert_token']);
 });
-Route::group(['prefix' => 'provider/categories'],function (){
-    Route::get('list', [CategoryController::class, 'index']);
-    Route::post('store', [CategoryController::class, 'store']);
-    Route::get('find/{id}', [CategoryController::class, 'find']);
-    Route::post('update/{id}', [CategoryController::class, 'update']);
-    Route::post('delete/{id}', [CategoryController::class, 'destroy']);
-});
 
-Route::group(['prefix' => 'services'],function (){
-    Route::post('store', [ServiceController::class, 'store']);
-    Route::post('add-to-favourites', [FavouriteController::class, 'post_favourite']);
-    Route::get('get-favourites', [FavouriteController::class, 'get_favourites']);
+
+Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
+    Route::get('home', [HomeController::class, 'index']);
+
+    Route::post('store', [InvitationController::class, 'store']);
 
 });
 
-Route::get('providers/list', [ProviderController::class, 'index']);
 Route::get('cities', [GeneralController::class, 'cities']);
 Route::get('sliders', [GeneralController::class, 'sliders']);
 Route::get('translation_types', [GeneralController::class, 'translation_types']);
@@ -61,6 +57,8 @@ Orion::resource('products-api', ProductsController::class);
 
 Route::group([ 'middleware' => 'api','namespace' => 'Api'], function () {
     Route::get('setting',[SettingController::class, 'index']);
+    Route::POST('contact-us',[ContactController::class, 'store']);
+
     Route::get('/paytap/store',[PaytapsPaymentController::class,'store'])->name('paytap');
     Route::get('/callback_paytabs',[PaytapsPaymentController::class,'callback_paytabs']);
     Route::post('/return_paytabs',[PaytapsPaymentController::class,'return_paytabs']);

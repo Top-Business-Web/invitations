@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services\Api\Client;
+namespace App\Services\Api;
 
 use App\Http\Resources\Client\ProvidersResource;
+use App\Http\Resources\InvitationResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SliderResource;;
@@ -21,7 +22,7 @@ class HomeService
 {
     use DefaultImage,GeneralTrait;
     public function index(){
-        $invitations = Invitation::where(['role_id'=>1])->get();
+        $invitations = Invitation::where(['user_id'=> auth()->id()])->get();
         return helperJson(InvitationResource::collection($invitations), '',200);
     }
 
@@ -56,30 +57,6 @@ class HomeService
         return helperJson(ProvidersResource::collection($providers), '',200);
     }
 
-    // add rate to Provider
-    public function add_rate($request){
-        $rules = [
-            'provider_id' => 'required|exists:users,id',
-            'value' => 'required',
-            'comment' => 'nullable',
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return helperJson(null, $validator->errors(), 422);
-        }
-        $user = Auth::guard('api')->user();
-        $inputs = request()->all();
-        $inputs['user_id'] = $user->id;
-        $rate = Rate::where(['user_id'=>$user->id,'provider_id'=>$inputs['provider_id']]);
-        if($rate->count()){
-            $rate = $rate->first();
-            $rate->value = $inputs['value'];
-            $rate->comment = $inputs['comment'];
-            $rate->save();
-        }else {
-            $rate = Rate::create($inputs);
-        }
-        return helperJson($rate, 'تم التقيم بنجاح');
-    }
+
 
 }

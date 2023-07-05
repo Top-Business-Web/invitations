@@ -18,7 +18,7 @@ class InvitationController extends Controller
         $this->invitationService = $invitationService;
     }
 
-    public function index(Request $request){
-        return $this->invitationService->index($request);
+    public function store(Request $request){
+        return $this->invitationService->store($request);
     }
 }
