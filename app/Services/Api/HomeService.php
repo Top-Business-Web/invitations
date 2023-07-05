@@ -8,10 +8,7 @@ use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SliderResource;;
 
 
-use App\Models\Product;
-use App\Models\Rate;
-use App\Models\Service;
-use App\Models\Slider;
+use App\Models\Invitation;
 use App\Models\User;
 use App\Traits\DefaultImage;
 use App\Traits\GeneralTrait;
@@ -24,8 +21,8 @@ class HomeService
 {
     use DefaultImage,GeneralTrait;
     public function index(){
-        $providers = User::where(['role_id'=>1])->get();
-        return helperJson(ProvidersResource::collection($providers), '',200);
+        $invitations = Invitation::where(['role_id'=>1])->get();
+        return helperJson(InvitationResource::collection($invitations), '',200);
     }
 
     public function categories(){
