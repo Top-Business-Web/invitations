@@ -3,19 +3,13 @@
 //use App\Http\Controllers\Api\Auth\Provider\AuthController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\GeneralController;
-use App\Http\Controllers\Api\ProductsController;
 
-use App\Http\Controllers\Api\Provider\Auth\AuthProviderController;
-use App\Http\Controllers\Api\Provider\Auth\CodeCheckController;
-use App\Http\Controllers\Api\Provider\Auth\ForgotPasswordController;
-use App\Http\Controllers\Api\Provider\Auth\ResetPasswordController;
-use App\Http\Controllers\Api\Provider\CategoryController;
-use App\Http\Controllers\Api\Provider\OrderController;
-use App\Http\Controllers\Api\Provider\ProductController;
-use App\Http\Controllers\Api\Provider\SearchController;
-use App\Http\Controllers\Api\Provider\ServiceController;
+use App\Http\Controllers\Api\Auth\AuthProviderController;
+use App\Http\Controllers\Api\Auth\CodeCheckController;
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
+
 use App\Http\Controllers\Api\SettingController;
-use App\Http\Controllers\Api\PaytapsPaymentController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
 
