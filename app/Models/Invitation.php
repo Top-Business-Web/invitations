@@ -38,5 +38,48 @@ class Invitation extends Model
         return $this->hasMany(Invitee::class);
     }
 
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
+
+    public function scanned(){
+        return $this->hasMany(Scanned::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 2
+     */
+    public function confirmed(){
+        return $this->hasMany(Invitee::class)->where(['status'=> 2]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 3
+     */
+    public function apologized(){
+        return $this->hasMany(Invitee::class)->where(['status'=> 3]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 1
+     */
+    public function waiting(){
+        return $this->hasMany(Invitee::class)->where(['status'=> 1]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 4
+     */
+    public function not_sent(){
+        return $this->hasMany(Invitee::class)->where(['status'=> 4]);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 5
+     */
+    public function failed(){
+        return $this->hasMany(Invitee::class)->where(['status'=> 5]);
+    }
+
 
 }

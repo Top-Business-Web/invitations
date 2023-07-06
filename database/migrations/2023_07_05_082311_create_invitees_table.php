@@ -25,7 +25,7 @@ class CreateInviteesTable extends Migration
             $table->integer('invitees_number')->default(1);
 
             $table->foreign('invitation_id')->references('id')->on('invitations')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('status')->default(1)->comment('1 => الانتظار, 2=> مأكد, 3=> تم الاعتذار ,4 =>لم يتم الارسال,5 =>فشل');
+            $table->integer('status')->default(1)->comment('1 -> الانتظار , 2-> مأكد, 3-> تم الاعتذار ,4 -> لم يتم الارسال,5 -> فشل');
             $table->timestamps();
         });
     }

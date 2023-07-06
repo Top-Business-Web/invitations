@@ -22,8 +22,8 @@ class CreateInvitationsTable extends Migration
             $table->date('date');
             $table->json('title');
             $table->text('image')->nullable();
-            $table->enum('has_barcode',[0,1])->default(0);
-            $table->string('barcode',255)->nullable();
+            $table->enum('has_qrcode',[0,1])->default(0);
+            $table->string('qrcode',255)->nullable();
             $table->enum('send_date' ,[0,1])->default(0);
             $table->string('address')->nullable();
             $table->string('longitude')->nullable();
