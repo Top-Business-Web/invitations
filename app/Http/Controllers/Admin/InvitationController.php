@@ -40,6 +40,7 @@ class InvitationController extends Controller
             return Datatables::of($invitations)
                 ->addColumn('action', function ($invitations) {
                     return '
+                    <a class="btn btn-pill btn-success text-white"><i class="fa fa-check"></i></a>
                             <button type="button" data-id="' . $invitations->id . '" class="btn btn-pill btn-info-light editBtn"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $invitations->id . '" data-title="' . $invitations->title . '">
@@ -60,7 +61,7 @@ class InvitationController extends Controller
 
                 })
                 ->addColumn('invitees', function ($invitations) {
-                    return  $invitations->invitees->count() ;
+                    return  $invitations->invitees->count();
                 })
                 ->escapeColumns([])
                 ->make(true);

@@ -20,7 +20,7 @@ class UserController extends Controller
             return Datatables::of($user)
                 ->addColumn('action', function ($user) {
                     return '
-                            <a href="'. route('invitationsUsers', $user->id) .'" class="btn btn-pill btn-info-light"><i class="fa fa-edit"></i></a>
+                            <a href="'. route('invitationsUsers', $user->id) .'" class="btn btn-pill btn-info-light"><i class="fa fa-address-book"></i></a>
                             <button type="button" data-id="' . $user->id . '" class="btn btn-pill btn-success-light editBtn"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $user->id . '" data-title="' . $user->name . '">
