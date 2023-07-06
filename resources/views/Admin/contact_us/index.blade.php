@@ -90,20 +90,16 @@
                 name: 'name'
             },
             {
-                data: 'subject',
-                name: 'subject'
-            },
-            {
                 data: 'phone',
                 name: 'phone'
             },
             {
-                data: 'message',
-                name: 'message'
+                data: 'subject',
+                name: 'subject'
             },
             {
-                data: 'created_at',
-                name: 'created_at'
+                data: 'message',
+                name: 'message'
             },
             {
                 data: 'action',
