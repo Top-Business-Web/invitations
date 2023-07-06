@@ -66,7 +66,7 @@ class InvitationController extends Controller
                 ->escapeColumns([])
                 ->make(true);
         } else {
-            return view('admin.invitations.index');
+            return view('Admin.invitations.index');
         }
     }
 
