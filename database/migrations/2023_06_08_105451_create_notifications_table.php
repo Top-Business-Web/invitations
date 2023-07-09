@@ -22,8 +22,10 @@ class CreateNotificationsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->unsignedBigInteger('invitation_id')->nullable();
+            $table->unsignedBigInteger('invitee_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->longText('image')->nullable();
+            $table->enum('type',['note','message'])->default('note')->comment('note =>notification , message=> message');
             $table->foreign('invitation_id')->references('id')->on('invitations')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
