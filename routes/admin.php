@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderAdminController;
 use App\Http\Controllers\Admin\TranslationTypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\InviteeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/updateapp', function()
@@ -88,6 +89,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
     ###################### Invitation #############################
     Route::resource('Invitations',InvitationController::class);
     Route::post('/update-status/', [InvitationController::class, 'updateStatus'])->name('updateStatus');
+
+    ###################### invitees #############################
+    Route::resource('invitees',InviteeController::class);
 
 
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');

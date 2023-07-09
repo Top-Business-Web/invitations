@@ -20,7 +20,7 @@ class CreateInvitationsTable extends Migration
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->json('title');
+            $table->string('title');
             $table->text('image')->nullable();
             $table->enum('has_qrcode',[0,1])->default(0);
             $table->string('qrcode',255)->nullable();

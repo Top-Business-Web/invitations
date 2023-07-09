@@ -7,6 +7,7 @@ use App\Http\Requests\StoreInvitationRequest;
 use App\Http\Requests\UpdateInvitationRequest;
 use Yajra\DataTables\DataTables;
 use App\Models\Invitation;
+use App\Models\Invitee;
 use Illuminate\Http\Request;
 
 class InvitationController extends Controller

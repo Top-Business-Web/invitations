@@ -38,6 +38,12 @@
                 <span class="side-menu__label">المستخدمين</span>
             </a>
         </li>
+        <li class="slide">
+            <a class="side-menu__item" href="{{route('invitees.index')}}">
+                <i class="fe fe-user-minus side-menu__icon"></i>
+                <span class="side-menu__label">جميع المدعوين</span>
+            </a>
+        </li>
 
 {{--        <li class="slide">--}}
 {{--            <a class="side-menu__item" data-toggle="slide" href="#">--}}
