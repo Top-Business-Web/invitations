@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/updateapp', function()
 {
+    \Artisan::call('cache:clear');
+    \Artisan::call('key:generate');
+    \Artisan::call('jwt:secret');
+    \Artisan::call('config:clear');
     \Artisan::call('optimize:clear');
 
 //    return dd(exec('php artisan route:clear')); // if you're not planning to access it through a route.
