@@ -96,53 +96,58 @@
                         </button>
                     </div>
                     <div class="modal-body" id="modal-body">
-                        <form id="addForm" class="addForm" method="POST" enctype="multipart/form-data"
-                            action="{{ route('Invitations.create') }}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="image" class="form-control-label">الصورة</label>
-                                        <input type="file" class="dropify" name="image"
-                                            accept="image/png, image/gif, image/jpeg,image/jpg" />
-                                        <span class="form-text text-danger text-center">مسموح بالصيغ الاتية png, gif, jpeg,
-                                            jpg</span>
+                            <form id="addFormSendMessage" class="addFormSendMessage" method="POST" enctype="multipart/form-data"
+                                action="{{ route('sendMessageToUser') }}">
+                                @csrf
+                                <input type="hidden" name="invitee_id" id="invitee_id">
+                                <input type="hidden" name="invitation_id" id="invitation_id">
+                                <input type="hidden" name="user_id" id="user_id">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="image" class="form-control-label">الصورة</label>
+                                            <input type="file" id="image" class="dropify" name="image"
+                                                accept="image/png, image/gif, image/jpeg,image/jpg" />
+                                            <span class="form-text text-danger text-center">مسموح بالصيغ الاتية png, gif,
+                                                jpeg,
+                                                jpg</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="image" class="form-control-label">عنوان</label>
-                                        <input type="text" class="form-control" name="title" />
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="title" class="form-control-label">عنوان</label>
+                                            <input type="text" id="title" class="form-control" name="title" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="check" class="form-control-label">ارسال مع كتابة اسم المدعو في الرسالة</label>
-                                        <input type="checkbox" class="form-control" name="title" />
-                                        <span class="form-text text-danger text-center">مثال: السيد اسامة</span>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="check" class="form-control-label">ارسال مع كتابة اسم المدعو في
+                                                الرسالة</label>
+                                            <input type="checkbox" id="checked" class="form-control" name="status" />
+                                            <span class="form-text text-danger text-center">مثال: السيد اسامة</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="image" class="form-control-label">وصف</label>
-                                        <textarea name="description" class="form-control" id="description" rows="8"></textarea>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="body" class="form-control-label">وصف</label>
+                                            <textarea name="body" id="description" class="form-control" id="body" rows="8"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                                <button type="submit" class="btn btn-primary" id="addButton">اضافة</button>
-                            </div>
-                        </form>
-                        <script>
-                            $('.dropify').dropify()
-                        </script>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                    <button type="submit" class="btn btn-primary" id="addButton">اضافة</button>
+                                </div>
+                            </form>
+                            <script>
+                                $('.dropify').dropify()
+                            </script>
 
                     </div>
                 </div>
@@ -189,10 +194,60 @@
 
         function sendMessage(element) {
             var inviteeId = element.getAttribute('data-id');
+            var invitationId = element.getAttribute('data-invitations');
+            var userId = element.getAttribute('data-user-id');
             var csrfToken = '{{ csrf_token() }}';
+            $('#invitee_id').val(inviteeId);
+            $('#invitation_id').val(invitationId);
+            $('#user_id').val(userId);
             $('#sendMessageUser').modal('show');
-
-
         }
+
+        $(document).on('submit', 'Form#addFormSendMessage', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var url = $('#addFormSendMessage').attr('action');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                beforeSend: function() {
+                    $('#addButton').html('<span class="spinner-border spinner-border-sm mr-2" ' +
+                        ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr(
+                        'disabled', true);
+                },
+                success: function(data) {
+                    if (data.status == 200) {
+                        $('#dataTable').DataTable().ajax.reload();
+                        toastr.success('تم ارسال الرسالة بنجاح');
+                    } else if (data.status == 405) {
+                        toastr.error(data.mymessage);
+                    } else
+                        toastr.error('هناك خطأ ما ..');
+                    $('#addButton').html(`اضافة`).attr('disabled', false);
+                    $('#sendMessageUser').modal('hide')
+                },
+                error: function(data) {
+                    if (data.status === 500) {
+                        toastr.error('هناك خطأ ما ..');
+                    } else if (data.status === 422) {
+                        var errors = $.parseJSON(data.responseText);
+                        $.each(errors, function(key, value) {
+                            if ($.isPlainObject(value)) {
+                                $.each(value, function(key, value) {
+                                    toastr.error(value, 'خطأ');
+                                });
+                            }
+                        });
+                    } else
+                        toastr.error('هناك خطأ ما ..');
+                    $('#addButton').html(`اضافة`).attr('disabled', false);
+                }, //end error method
+
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
     </script>
 @endsection
