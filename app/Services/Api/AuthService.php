@@ -109,7 +109,7 @@ class AuthService
     }//end fun
 
     public function update_profile($request){
-        $user = Auth()->user();
+        $user = auth()->user();
         $validator = Validator::make($request->all(), [
 //            'phone'      => 'required|unique:users,phone,'.$user->id,
 //            'password'   => 'nullable',
@@ -135,21 +135,16 @@ class AuthService
             return $this->returnValidationError($code, $validator,400);
         }
 
-        $data = $request->except(['phone']);
+        $data = $request->all();
 
         if($request->hasFile('image')){
             $data['image'] = $this->uploadFiles('users', $request->file('image'));
         }
-
-//        if($request->has('password')
-//            && $request->password != null){
-//            $data['password'] = Hash::make($request->password);
-//        }else{
-//            unset($data['password']);
-//        }
-
-
-        $user->update($data);
+        $user = User::find($user->id);
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->save();
         $token = JWTAuth::fromUser($user);
         $user->token = $token;
 
