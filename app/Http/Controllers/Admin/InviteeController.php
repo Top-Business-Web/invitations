@@ -18,6 +18,9 @@ class InviteeController extends Controller
         if ($request->ajax()) {
             $invitees = Invitee::latest()->get();
             return Datatables::of($invitees)
+                ->addColumn('checkbox', function ($invitees) {
+                    return '<input type="checkbox" id="manual_entry_' . $invitees->id . '" class="manual_entry_cb" value="' . $invitees->id . '" />';
+                })->rawColumns(['action', 'checkbox'])
                 ->addColumn('action', function ($invitees) {
                     return '
                     <a class="sendMessage btn btn-pill btn-success text-white" data-id="' . $invitees->id . '" data-invitations="' . $invitees->invitation_id . '" data-user-id="' . $invitees->invitation->user_id . '" onclick="sendMessage(this)">ارسال رسالة</a>

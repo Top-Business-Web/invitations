@@ -102,8 +102,8 @@
                 name: 'image'
             },
             {
-                data: 'barcode',
-                name: 'barcode'
+                data: 'qrcode',
+                name: 'qrcode'
             },
             {
                 data: 'address',
