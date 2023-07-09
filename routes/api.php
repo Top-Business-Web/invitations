@@ -1,6 +1,7 @@
 <?php
 
 //use App\Http\Controllers\Api\Auth\Provider\AuthController;
+use App\Http\Controllers\Api\Auth\AuthScannerController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\GeneralController;
@@ -39,6 +40,8 @@ Route::group(['prefix' => 'provider/auth'],function (){
     Route::get('profile-by-phone',[AuthProviderController::class, 'profileWithPhone']);
 //    Route::post('insert-token',[NotificationController::class, 'insert_token']);
 });
+
+Route::post('scanner/auth/login',[AuthScannerController::class, 'login']);
 
 
 Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
