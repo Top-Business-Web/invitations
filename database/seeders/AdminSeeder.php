@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\User;
 use Faker\Factory;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminSeeder extends Seeder
 {
@@ -18,15 +19,33 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-           'name' => 'Osama arafa',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('123456'),
-        ]);
-        Admin::create([
-           'name' => 'Abdullah Alhumsi',
-            'email' => 'abdo@abdo.com',
-            'password' => bcrypt('123456'),
-        ]);
+        $imagePath = 'assets/uploads/users/70511688644149.png';
+        $data = [
+            [
+                'name' => 'Osama arafa',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('1234'),
+                'image' => $imagePath,
+            ],
+            [
+                'name' => 'Abdullah alhumsi',
+                'email' => 'admin1@admin.com',
+                'password' => bcrypt('1234'),
+                'image' => $imagePath,
+            ],
+            [
+                'name' => 'abdullah eldapour',
+                'email' => 'admin2@admin.com',
+                'password' => bcrypt('1234'),
+                'image' => $imagePath,
+            ],
+            [
+                'name' => 'eslam mohammed',
+                'email' => 'admin3@admin.com',
+                'password' => bcrypt('1234'),
+                'image' => $imagePath,
+            ],
+        ];
+        DB::table('admins')->insert($data);
     }
 }
