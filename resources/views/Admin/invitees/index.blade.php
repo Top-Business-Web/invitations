@@ -27,7 +27,6 @@
                             <thead>
                                 <tr class="fw-bolder text-muted bg-light">
                                     <th class="min-w-25px">#</th>
-                                    <th class="min-w-50px">رقم الدعوة</th>
                                     <th class="min-w-50px">الاسم</th>
                                     <th class="min-w-50px">هاتف</th>
                                     <th class="min-w-50px rounded-end">العمليات</th>
@@ -96,59 +95,55 @@
                         </button>
                     </div>
                     <div class="modal-body" id="modal-body">
-                            <form id="addFormSendMessage" class="addFormSendMessage" method="POST" enctype="multipart/form-data"
-                                action="{{ route('sendMessageToUser') }}">
-                                @csrf
-                                <input type="hidden" name="invitee_id" id="invitee_id">
-                                <input type="hidden" name="invitation_id" id="invitation_id">
-                                <input type="hidden" name="user_id" id="user_id">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="image" class="form-control-label">الصورة</label>
-                                            <input type="file" id="image" class="dropify" name="image"
-                                                accept="image/png, image/gif, image/jpeg,image/jpg" />
-                                            <span class="form-text text-danger text-center">مسموح بالصيغ الاتية png, gif,
-                                                jpeg,
-                                                jpg</span>
-                                        </div>
+                        <form id="addFormSendMessage" class="addFormSendMessage" method="POST"
+                            enctype="multipart/form-data" action="{{ route('sendMessageToUser') }}">
+                            @csrf
+                            <input type="hidden" name="invitee_id" id="invitee_id">
+                            <input type="hidden" name="invitation_id" id="invitation_id">
+                            <input type="hidden" name="user_id" id="user_id">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="image" class="form-control-label">الصورة</label>
+                                        <input type="file" id="image" class="dropify" name="image"
+                                            accept="image/png, image/gif, image/jpeg,image/jpg" />
+                                        <span class="form-text text-danger text-center">مسموح بالصيغ الاتية png, gif,
+                                            jpeg,
+                                            jpg</span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="title" class="form-control-label">عنوان</label>
-                                            <input type="text" id="title" class="form-control" name="title" />
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="title" class="form-control-label">عنوان</label>
+                                        <input type="text" id="title" class="form-control" name="title" />
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="check" class="form-control-label">ارسال مع كتابة اسم المدعو في
-                                                الرسالة</label>
-                                            <input type="checkbox" id="checked" class="form-control" name="status" />
-                                            <span class="form-text text-danger text-center">مثال: السيد اسامة</span>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="check" class="form-control-label">ارسال مع كتابة اسم المدعو في
+                                            الرسالة</label>
+                                        <input type="checkbox" id="checked" class="form-control" name="status" />
+                                        <span class="form-text text-danger text-center">مثال: السيد اسامة</span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="body" class="form-control-label">وصف</label>
-                                            <textarea name="body" id="description" class="form-control" id="body" rows="8"></textarea>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="body" class="form-control-label">وصف</label>
+                                        <textarea name="body" id="description" class="form-control" id="body" rows="8"></textarea>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                                    <button type="submit" class="btn btn-primary" id="addButton">اضافة</button>
-                                </div>
-                            </form>
-                            <script>
-                                $('.dropify').dropify()
-                            </script>
-
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                <button type="submit" class="btn btn-primary" id="addButton">اضافة</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -159,13 +154,10 @@
 @endsection
 @section('ajaxCalls')
     <script>
+        $('.dropify').dropify()
         var columns = [{
                 data: 'id',
                 name: 'id'
-            },
-            {
-                data: 'invitation_id',
-                name: 'invitation_id'
             },
             {
                 data: 'name',

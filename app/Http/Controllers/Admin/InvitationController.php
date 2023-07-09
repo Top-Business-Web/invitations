@@ -21,7 +21,6 @@ class InvitationController extends Controller
                 ->addColumn('action', function ($invitations) {
                     return '
                     <a class="activeInvitation btn btn-pill ' . ($invitations->status == 1 ? "btn-success" : "btn-danger") . ' text-white" data-id="' . $invitations->id . '" onclick="activeInvitation(this)">' . ($invitations->status == 1 ? "مفعل" : "غير مفعل") . '</a>
-                            <button type="button" data-id="' . $invitations->id . '" class="btn btn-pill btn-info-light editBtn"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $invitations->id . '" data-title="' . $invitations->title . '">
                                     <i class="fas fa-trash"></i>
@@ -31,7 +30,7 @@ class InvitationController extends Controller
                 ->editColumn('image', function ($invitations) {
                     if ($invitations->image != null) {
                         return '
-                    <img alt="image" class="avatar avatar-md rounded-circle" src="' . asset("users/" . $invitations->image) . '">
+                    <img alt="image" class="avatar avatar-md rounded-circle" src="' . asset($invitations->image) . '">
                     ';
                     } else {
                         return '
