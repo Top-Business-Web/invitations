@@ -43,7 +43,7 @@ class InvitationService
                 }
             }
             if($request->step > 2){
-               $invitees =  Invitee::where(['invitation_id',$invitation->id]);
+               $invitees =  Invitee::where(['invitation_id'=>$invitation->id]);
                 foreach ($invitees as $invitee){
                     Invitee::where(['phone' => $invitee->phone,'invitation_id' => $invitation->id])->update(
                         [
@@ -68,7 +68,7 @@ class InvitationService
             }
             $invitation = $invitation->update($inputs);
             if($request->step > 1){
-                Invitee::where(['invitation_id',$id])->delete();
+                Invitee::where(['invitation_id'=>$id])->delete();
                 foreach ($inputs['invitees'] as $invitee){
                     Invitee::create(
                         [
@@ -82,7 +82,7 @@ class InvitationService
                 }
             }
             if($request->step > 2){
-                $invitees =  Invitee::where(['invitation_id',$invitation->id]);
+                $invitees =  Invitee::where(['invitation_id'=>$invitation->id]);
                 foreach ($invitees as $invitee){
                     Invitee::where(['phone' => $invitee->phone,'invitation_id' => $invitation->id])->update(
                         [
