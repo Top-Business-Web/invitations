@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderAdminController;
 use App\Http\Controllers\Admin\TranslationTypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\InviteeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/updateapp', function()
@@ -56,6 +58,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
     #### Admins ####
     Route::resource('users',UserController::class);
     Route::POST('delete_user',[UserController::class,'delete'])->name('usersDelete');
+    Route::get('invitations_users/{id}', [InvitationController::class, 'showInvitationsUsers'])->name('invitationsUsers');
 
 
 
@@ -63,7 +66,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
     Route::resource('services',ServiceController::class);
     Route::post('services.delete',[ServiceController::class,'delete'])->name('services.delete');
     Route::get('category_services/{id}',[ServiceController::class,'categoryServices'])->name('category.services');
-    Route::post('service-activation',[ServiceController::class,'serviceActivation'])->name('serviceActivation');
+    Route::post('service-activation/{id}',[ServiceController::class,'serviceActivation'])->name('serviceActivation');
 
     ################### Setting ###################
     Route::resource('settings',SettingController::class);
@@ -82,6 +85,16 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
 
     ###################### Products #############################
     Route::resource('products',ProductController::class);
+
+    ###################### Invitation #############################
+    Route::resource('Invitations',InvitationController::class);
+    Route::post('/update-status/', [InvitationController::class, 'updateStatus'])->name('updateStatus');
+
+    ###################### invitees #############################
+    Route::resource('invitees',InviteeController::class);
+    Route::post('/send-message-all-user/', [InviteeController::class, 'sendMessageToAllUser'])->name('sendMessageToAllUser');
+    Route::post('/send-message-user/', [InviteeController::class, 'sendMessageToUser'])->name('sendMessageToUser');
+
 
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');

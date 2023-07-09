@@ -24,9 +24,9 @@ class Invitation extends Model
         'status',
     ];
 
-    protected $casts = [
-        'title' => 'array'
-    ];
+    // protected $casts = [
+    //     'title' => 'array'
+    // ];
 
     ##  Mutators and Accessors
     public function getImageAttribute()

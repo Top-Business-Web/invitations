@@ -28,12 +28,10 @@
                             <thead>
                             <tr class="fw-bolder text-muted bg-light">
                                 <th>#</th>
-                                <th>الصورة</th>
                                 <th>اسم المسخدم</th>
                                 <th>الايميل</th>
-{{--                                <th>الرصيد</th>--}}
-                                <th>نوع المستخدم</th>
-{{--                                <th>التقيم</th>--}}
+                                <th>الهاتف</th>
+                                <th>الدعوات</th>
                                 <th class="rounded-end">العمليات</th>
                             </tr>
                             </thead>
@@ -69,9 +67,6 @@
         </div>
         <!-- MODAL CLOSED -->
 
-
-
-
         <!-- Edit MODAL -->
         <div class="modal fade bd-example-modal-lg" id="editOrCreate" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -98,12 +93,10 @@
     <script>
         var columns = [
             {data: 'id', name: 'id'},
-            {data: 'image', name: 'image'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
-            // {data: 'balance', name: 'balance'},
-            {data: 'user_type', name: 'user_type'},
-            // {data: 'rate', name: 'rate'},
+            {data: 'phone', name: 'phone'},
+            {data: 'invitations', name: 'invitations'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
         showData('{{route('users.index')}}', columns);
@@ -114,8 +107,6 @@
         // Add Using Ajax
         showAddModal('{{route('users.create')}}');
         addScript();
-
-
 
         // Edit Using Ajax
         showEditModal('{{route('users.edit',':id')}}');
