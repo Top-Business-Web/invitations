@@ -92,6 +92,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
 
     ###################### invitees #############################
     Route::resource('invitees',InviteeController::class);
+    Route::post('/send-message-all-user/', [InviteeController::class, 'sendMessageToAllUser'])->name('sendMessageToAllUser');
+    Route::post('/send-message-user/', [InviteeController::class, 'sendMessageToUser'])->name('sendMessageToUser');
 
 
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');

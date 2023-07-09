@@ -11,9 +11,11 @@ class Notification extends Model
     protected $fillable=[
         'title',
         'body',
+        'invitee_id',
         'invitation_id',
         'user_id',
         'image',
+        'type',
     ];
 
 }
