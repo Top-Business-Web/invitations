@@ -100,7 +100,12 @@ class InvitationService
     public function destroy($id){
         try {
             Invitee::where(['invitation_id'=>$id])->delete();
-            $invitation = Invitation::find($id)->delete();
+
+            $invitation = Invitation::find($id);
+            if(!$invitation){
+                return helperJson([], 'invitation not found',  402);
+            }
+            $invitation->delete();
 
 
             return helperJson([], 'deleted Successfully',  Response::HTTP_OK);
