@@ -99,7 +99,7 @@ class InvitationService
 
     public function destroy($id){
         try {
-            Invitee::where(['invitation_id',$id])->delete();
+            Invitee::where(['invitation_id'=>$id])->delete();
             $invitation = Invitation::find($id)->delete();
 
 
