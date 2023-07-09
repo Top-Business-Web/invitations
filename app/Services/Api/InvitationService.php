@@ -66,7 +66,7 @@ class InvitationService
             if ($request->has('image') && $request->image != null) {
                 $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
             }
-            $invitation = $invitation->update($inputs);
+            $invitation_updated = $invitation->update($inputs);
             if($request->step > 1){
                 Invitee::where(['invitation_id'=>$id])->delete();
                 foreach ($inputs['invitees'] as $invitee){
