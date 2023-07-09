@@ -57,4 +57,55 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function update($request,$id){
+        try {
+            $inputs = $request->all();
+            $invitation = Invitation::find($id);
+
+            if ($request->has('image') && $request->image != null) {
+                $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
+            }
+            $invitation = $invitation->update($inputs);
+            if($request->step > 1){
+                Invitee::where(['invitation_id',$id])->delete();
+                foreach ($inputs['invitees'] as $invitee){
+                    Invitee::create(
+                        [
+                            'invitation_id'=> $invitation->id,
+                            'name'=>$invitee['name'],
+                            'phone'=>$invitee['phone'],
+                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                            'status' => 1,
+                        ]
+                    );
+                }
+            }
+            if($request->step > 2){
+                $invitees =  Invitee::where(['invitation_id',$invitation->id]);
+                foreach ($invitees as $invitee){
+                    Invitee::where(['phone' => $invitee->phone,'invitation_id' => $invitation->id])->update(
+                        [
+                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                        ]
+                    );
+                }
+            }
+            return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function destroy($id){
+        try {
+            Invitee::where(['invitation_id',$id])->delete();
+            $invitation = Invitation::find($id)->delete();
+
+
+            return helperJson([], 'deleted Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
