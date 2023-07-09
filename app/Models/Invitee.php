@@ -15,7 +15,11 @@ class Invitee extends Model
         'phone',
         'invitees_number',
         'status',
-
     ];
+
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class, 'invitation_id', 'id');
+    }
 
 }
