@@ -22,7 +22,7 @@ Route::get('/updateapp', function()
 {
     \Artisan::call('optimize:clear');
 
-    return dd(exec('php artisan route:clear')); // if you're not planning to access it through a route.
+//    return dd(exec('php artisan route:clear')); // if you're not planning to access it through a route.
     echo 'composer dump-autoload complete';
 });
 
