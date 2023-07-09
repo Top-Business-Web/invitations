@@ -25,7 +25,7 @@ class HomeService
         $search_key = request()->search_key;
 
         $invitations = Invitation::where(['user_id'=> auth()->id()])->when($search_key,function ($query) use ($search_key) {
-            $query->where('name', 'LIKE', '%'.$search_key.'%');
+            $query->where('title', 'LIKE', '%'.$search_key.'%');
         })->get();
         return helperJson(InvitationResource::collection($invitations), '',200);
     }
