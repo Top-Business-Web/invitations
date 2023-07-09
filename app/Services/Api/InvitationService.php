@@ -4,8 +4,11 @@
 namespace App\Services\Api;
 
 
+use App\Http\Resources\InvitationResource;
 use App\Models\Invitation;
 use App\Models\Invitee;
+use App\Models\Message;
+use App\Models\Scanned;
 use App\Traits\PhotoTrait;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -112,5 +115,31 @@ class InvitationService
         }catch(Exception $e){
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function allInvitees($id){
+
+        $invitees = Invitee::where(['invitation_id'=> $id])->get();
+        return helperJson($invitees, '',200);
+    }
+
+    public function scannedInvitees($id){
+
+        $scanned = Scanned::where(['invitation_id'=> $id])->pluck('invitee_id');
+        $invitees = Scanned::where(['invitation_id'=> $id])->whereIn('invitee_id',$scanned)->get();
+        return helperJson($invitees, '',200);
+    }
+
+
+    public function messages($id){
+        $invitees = Invitee::where(['invitation_id'=> $id])->get();
+
+        $messages = $invitees->map(function ($item) use ($id) {
+            $item->messages = Message::where(['invitation_id'=> $id,'invitee_id' => $item->id])->get();
+
+            return $item;
+        });
+
+        return helperJson($messages, '',200);
     }
 }

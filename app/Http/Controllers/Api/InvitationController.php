@@ -29,4 +29,17 @@ class InvitationController extends Controller
     public function destroy($id){
         return $this->invitationService->destroy($id);
     }
+
+    public function allInvitees($id){
+        return $this->invitationService->destroy($id);
+    }
+
+    public function scannedInvitees($id){
+        return $this->invitationService->destroy($id);
+    }
+
+    public function messages($id){
+        return $this->invitationService->destroy($id);
+    }
+
 }
