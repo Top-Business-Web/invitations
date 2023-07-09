@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Invitee;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class InviteeSeeder extends Seeder
 {
@@ -14,26 +15,36 @@ class InviteeSeeder extends Seeder
      */
     public function run()
     {
-        Invitee::create([
-            'invitation_id' => '1',
-            'name' => 'Abdullah alhumsi',
-            'phone' => '01099614948',
-            'invitees_number' => '24',
-            'status' => '2',
-        ]);
-        Invitee::create([
-            'invitation_id' => '2',
-            'name' => 'osama arafa',
-            'phone' => '01099614948',
-            'invitees_number' => '22',
-            'status' => '3',
-        ]);
-        Invitee::create([
-            'invitation_id' => '2',
-            'name' => 'abdullah eladapour',
-            'phone' => '01099614948',
-            'invitees_number' => '29',
-            'status' => '1',
-        ]);
+        $data = [
+            [
+                'invitation_id' => '2',
+                'name' => 'abdullah eladapour',
+                'phone' => '01099614948',
+                'invitees_number' => '29',
+                'status' => '1',
+            ],
+            [
+                'invitation_id' => '1',
+                'name' => 'osama arafa',
+                'phone' => '01099614948',
+                'invitees_number' => '22',
+                'status' => '3',
+            ],
+            [
+                'invitation_id' => '3',
+                'name' => 'Abdullah alhumsi',
+                'phone' => '01099614948',
+                'invitees_number' => '24',
+                'status' => '2',
+            ],
+            [
+                'invitation_id' => '1',
+                'name' => 'eslam mohammed',
+                'phone' => '01099614948',
+                'invitees_number' => '24',
+                'status' => '2',
+            ],
+        ];
+        DB::table('invitees')->insert($data);
     }
 }
