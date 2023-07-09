@@ -21,4 +21,12 @@ class InvitationController extends Controller
     public function store(Request $request){
         return $this->invitationService->store($request);
     }
+
+    public function update(Request $request,$id){
+        return $this->invitationService->update($request,$id);
+    }
+
+    public function destroy($id){
+        return $this->invitationService->destroy($id);
+    }
 }

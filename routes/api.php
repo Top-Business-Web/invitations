@@ -48,12 +48,13 @@ Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
     Route::get('home', [HomeController::class, 'index']);
 
     Route::post('store', [InvitationController::class, 'store']);
+    Route::post('update/{id}', [InvitationController::class, 'update']);
+    Route::get('delete/{id}', [InvitationController::class, 'destroy']);
 
 });
 
 Route::get('cities', [GeneralController::class, 'cities']);
-Route::get('sliders', [GeneralController::class, 'sliders']);
-Route::get('translation_types', [GeneralController::class, 'translation_types']);
+//Route::get('sliders', [GeneralController::class, 'sliders']);
 
 Orion::resource('products-api', ProductsController::class);
 
@@ -61,10 +62,10 @@ Orion::resource('products-api', ProductsController::class);
 Route::group([ 'middleware' => 'api','namespace' => 'Api'], function () {
     Route::get('setting',[SettingController::class, 'index']);
     Route::POST('contact-us',[ContactController::class, 'store']);
-
-    Route::get('/paytap/store',[PaytapsPaymentController::class,'store'])->name('paytap');
-    Route::get('/callback_paytabs',[PaytapsPaymentController::class,'callback_paytabs']);
-    Route::post('/return_paytabs',[PaytapsPaymentController::class,'return_paytabs']);
+//
+//    Route::get('/paytap/store',[PaytapsPaymentController::class,'store'])->name('paytap');
+//    Route::get('/callback_paytabs',[PaytapsPaymentController::class,'callback_paytabs']);
+//    Route::post('/return_paytabs',[PaytapsPaymentController::class,'return_paytabs']);
     Route::get('/search', [SearchController::class, 'index']);
 });
 
