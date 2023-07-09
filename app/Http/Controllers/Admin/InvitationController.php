@@ -11,28 +11,7 @@ use Illuminate\Http\Request;
 
 class InvitationController extends Controller
 {
-    // public function index(request $request)
-    // {
-    //     if ($request->ajax()) {
-    //         $invitations = Invitation::get();
-    //         return Datatables::of($invitations)
-    //             ->addColumn('action', function ($invitations) {
-    //                 return '
-    //                         <button type="button" data-id="' . $invitations->id . '" class="btn btn-pill btn-info-light editBtn"><i class="fa fa-edit"></i></button>
-    //                         <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
-    //                                 data-id="' . $invitations->id . '" data-title="' . $invitations->title . '">
-    //                                 <i class="fas fa-trash"></i>
-    //                         </button>
-    //                    ';
-    //             })
-    //             ->escapeColumns([])
-    //             ->make(true);
-    //     } else {
-    //         return view('admin.invitations.index');
-    //     }
-    // }
-
-    public function invitationsUsers(request $request, $id)
+    public function showInvitationsUsers(request $request, $id)
     {
         if ($request->ajax()) {
             $invitations = Invitation::query()
@@ -40,7 +19,7 @@ class InvitationController extends Controller
             return Datatables::of($invitations)
                 ->addColumn('action', function ($invitations) {
                     return '
-                    <a class="btn btn-pill btn-success text-white"><i class="fa fa-check"></i></a>
+                    <a class="activeInvitation btn btn-pill ' . ($invitations->status == 1 ? "btn-success" : "btn-danger") . ' text-white" data-id="' . $invitations->id . '" onclick="activeInvitation(this)">' . ($invitations->status == 1 ? "مفعل" : "غير مفعل") . '</a>
                             <button type="button" data-id="' . $invitations->id . '" class="btn btn-pill btn-info-light editBtn"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $invitations->id . '" data-title="' . $invitations->title . '">
@@ -58,7 +37,6 @@ class InvitationController extends Controller
                     <img alt="image" class="avatar avatar-md rounded-circle" src="' . asset("uploads/users/default/avatar2.jfif") . '">
                     ';
                     }
-
                 })
                 ->addColumn('invitees', function ($invitations) {
                     return  $invitations->invitees->count();
@@ -69,6 +47,22 @@ class InvitationController extends Controller
             return view('Admin.invitations.index');
         }
     }
+
+    public function updateStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $invitationStatus = Invitation::find($id);
+        if ($invitationStatus->status == "0") {
+            $invitationStatus->status = "1";
+        } elseif ($invitationStatus->status == "1") {
+            $invitationStatus->status = "0";
+        }
+
+        $invitationStatus->save();
+
+        return response()->json(['status' => 'success', 'newStatus' => $invitationStatus->status]);
+    }
+
 
     public function create()
     {

@@ -31,6 +31,7 @@
                                 <th>اسم المسخدم</th>
                                 <th>الايميل</th>
                                 <th>الهاتف</th>
+                                <th>الدعوات</th>
                                 <th class="rounded-end">العمليات</th>
                             </tr>
                             </thead>
@@ -95,6 +96,7 @@
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},
+            {data: 'invitations', name: 'invitations'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
         showData('{{route('users.index')}}', columns);

@@ -4,7 +4,7 @@
     {{ $setting->title ?? '' }} | الدعوات
 @endsection
 @section('page_name')
-        الدعوات
+    الدعوات
 @endsection
 @section('content')
     <div class="row">
@@ -63,7 +63,8 @@
         <!-- MODAL CLOSED -->
 
         <!-- Create Or Edit Modal -->
-        <div class="modal fade bd-example-modal-lg" id="editOrCreate" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="editOrCreate" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -132,5 +133,39 @@
         // Add Using Ajax
         showEditModal('{{ route('Invitations.edit', ':id') }}');
         editScript();
+
+        function activeInvitation(element) {
+            var id = element.getAttribute('data-id');
+            var csrfToken = '{{ csrf_token() }}';
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('updateStatus') }}',
+                data: {
+                    id: id
+                },
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        if (response.newStatus === "1") {
+                            toastr.success('تم تفعيل الدعوة بنجاح');
+                        } else {
+                            toastr.success('تم إلغاء تفعيل الدعوة بنجاح');
+                        }
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        toastr.error('لم يتم تفعيل الدعوة بنجاح');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    toastr.error('هناك خطأ ما');
+                }
+            });
+        }
     </script>
 @endsection

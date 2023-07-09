@@ -51,7 +51,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
     #### Admins ####
     Route::resource('users',UserController::class);
     Route::POST('delete_user',[UserController::class,'delete'])->name('usersDelete');
-    Route::get('invitations_users/{id}', [InvitationController::class, 'invitationsUsers'])->name('invitationsUsers');
+    Route::get('invitations_users/{id}', [InvitationController::class, 'showInvitationsUsers'])->name('invitationsUsers');
 
 
 
@@ -81,6 +81,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function (){
 
     ###################### Invitation #############################
     Route::resource('Invitations',InvitationController::class);
+    Route::post('/update-status/', [InvitationController::class, 'updateStatus'])->name('updateStatus');
+
 
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');
     Route::get('category_products/{id}',[ProductController::class,'categoryProducts'])->name('category.products');
