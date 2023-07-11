@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     ###################### Invitation #############################
     Route::resource('Invitations', InvitationController::class);
     Route::post('/update-status/', [InvitationController::class, 'updateStatus'])->name('updateStatus');
+    
 
     ###################### invitees #############################
     Route::resource('invitees', InviteeController::class);

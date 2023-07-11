@@ -98,6 +98,7 @@
                         <form id="addFormSendMessage" class="addFormSendMessage" method="POST"
                             enctype="multipart/form-data" action="{{ route('sendMessageToUser') }}">
                             @csrf
+                            @method('POST')
                             <input type="hidden" name="invitee_id" id="invitee_id">
                             <input type="hidden" name="invitation_id" id="invitation_id">
                             <input type="hidden" name="user_id" id="user_id">

@@ -24,25 +24,25 @@ class AdminSeeder extends Seeder
             [
                 'name' => 'Osama arafa',
                 'email' => 'admin@admin.com',
-                'password' => bcrypt('1234'),
+                'password' => bcrypt('123456'),
                 'image' => $imagePath,
             ],
             [
                 'name' => 'Abdullah alhumsi',
                 'email' => 'admin1@admin.com',
-                'password' => bcrypt('1234'),
+                'password' => bcrypt('123456'),
                 'image' => $imagePath,
             ],
             [
                 'name' => 'abdullah eldapour',
                 'email' => 'admin2@admin.com',
-                'password' => bcrypt('1234'),
+                'password' => bcrypt('123456'),
                 'image' => $imagePath,
             ],
             [
                 'name' => 'eslam mohammed',
                 'email' => 'admin3@admin.com',
-                'password' => bcrypt('1234'),
+                'password' => bcrypt('123456'),
                 'image' => $imagePath,
             ],
         ];
