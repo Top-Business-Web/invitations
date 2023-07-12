@@ -11,11 +11,15 @@ class Notification extends Model
     protected $fillable=[
         'title',
         'body',
-        'invitee_id',
         'invitation_id',
         'user_id',
         'image',
         'type',
+    ];
+
+
+    protected $casts = [
+        'user_id' => 'json',
     ];
 
     ##  Mutators and Accessors
@@ -23,5 +27,6 @@ class Notification extends Model
     {
         return isset($this->attributes['image']) ? get_file($this->attributes['image']) : "";
     }
+
 
 }

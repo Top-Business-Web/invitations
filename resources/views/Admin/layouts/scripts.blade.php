@@ -6,6 +6,9 @@
 <!-- JQUERY JS -->
 <script src="{{asset('assets/admin')}}/assets/js/jquery-3.4.1.min.js"></script>
 
+<link href="{{ asset('assets/admin/css/select2.min.css') }}" rel="stylesheet"/>
+<script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
+
 <!-- DATATABLE JS -->
 <script src="{{asset('assets/admin')}}/assets/plugins/datatable/jquery.dataTables.min.js"></script>
 <script src="{{asset('assets/admin')}}/assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
