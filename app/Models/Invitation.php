@@ -28,6 +28,11 @@ class Invitation extends Model
     //     'title' => 'array'
     // ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     ##  Mutators and Accessors
     public function getImageAttribute()
     {

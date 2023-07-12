@@ -35,13 +35,28 @@ class InviteeController extends Controller
 
     public function create()
     {
-        return view('admin.invitees.parts.create');
+        $invitees = Invitee::get();
+        return view('admin.invitees.parts.create', compact('invitees'));
     }
 
 
     public function sendMessageToAllUser(Request $request)
     {
-        dd($request->all());
+        $inputs = $request->all();
+        if ($request->has('image')) {
+            $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/notification');
+        }
+        if($request->allUsers)
+        {
+            $invitees = Invitee::pluck('id');
+            $inputs['user_id'] = $invitees;
+        }
+        $inputs['type'] = 'note';
+        if (Notification::create($inputs)) {
+            return response()->json(['status' => 200]);
+        } else {
+            return response()->json(['status' => 405]);
+        }
     }
     public function sendMessageToUser(Request $request)
     {
@@ -49,7 +64,7 @@ class InviteeController extends Controller
         if ($request->has('image')) {
             $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/notification');
         }
-        $inputs['type'] = 'message';
+        $inputs['type'] = 'note';
         if (Notification::create($inputs)) {
             return response()->json(['status' => 200]);
         } else {

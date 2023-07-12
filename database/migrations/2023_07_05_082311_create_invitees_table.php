@@ -20,7 +20,6 @@ class CreateInviteesTable extends Migration
         Schema::create('invitees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('invitation_id')->nullable();
-            $table->unsignedBigInteger('invitee_id')->nullable();
             $table->string('name');
             $table->text('phone');
             $table->integer('invitees_number')->default(1);

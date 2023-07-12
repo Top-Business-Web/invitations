@@ -180,10 +180,61 @@
         destroyScript('{{ route('invitees.destroy', ':id') }}');
         // Add Using Ajax
         showAddModal('{{ route('invitees.create') }}');
-        addScript();
+        //addScript();
         // Add Using Ajax
         showEditModal('{{ route('invitees.edit', ':id') }}');
         editScript();
+
+        $(document).on('submit', 'Form#addForm', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var url = $('#addForm').attr('action');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                beforeSend: function () {
+                    $('#addButton').html('<span class="spinner-border spinner-border-sm mr-2" ' +
+                        ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr('disabled', true);
+                },
+                success: function (data) {
+                    if (data.status == 200) {
+                        $('#dataTable').DataTable().ajax.reload();
+                        toastr.success('تم ارسال الرسالة بنجاح');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    } else if(data.status == 405){
+                        toastr.error(data.mymessage);
+                    }
+                    else
+                        toastr.error('هناك خطأ ما ..');
+                    $('#addButton').html(`اضافة`).attr('disabled', false);
+                    $('#editOrCreate').modal('hide')
+                },
+                error: function (data) {
+                    if (data.status === 500) {
+                        toastr.error('هناك خطأ ما ..');
+                    } else if (data.status === 422) {
+                        var errors = $.parseJSON(data.responseText);
+                        $.each(errors, function (key, value) {
+                            if ($.isPlainObject(value)) {
+                                $.each(value, function (key, value) {
+                                    toastr.error(value, 'خطأ');
+                                });
+                            }
+                        });
+                    } else
+                        toastr.error('هناك خطأ ما ..');
+                    $('#addButton').html(`اضافة`).attr('disabled', false);
+                },//end error method
+
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
 
         function sendMessage(element) {
             var inviteeId = element.getAttribute('data-id');
