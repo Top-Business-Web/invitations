@@ -23,8 +23,10 @@ class HomeController extends Controller
         return $this->homeService->index($request);
     }
 
-    public function packages(){
-        return $this->homeService->packages();
+
+
+    public function notifications(){
+        return $this->homeService->notifications();
     }
 
     public function search(Request $request){

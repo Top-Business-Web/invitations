@@ -4,12 +4,14 @@ namespace App\Services\Api;
 
 use App\Http\Resources\Client\ProvidersResource;
 use App\Http\Resources\InvitationResource;
+use App\Http\Resources\NotificationResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SliderResource;;
 
 
 use App\Models\Invitation;
+use App\Models\Notification;
 use App\Models\User;
 use App\Traits\DefaultImage;
 use App\Traits\GeneralTrait;
@@ -37,10 +39,9 @@ class HomeService
     }
 
 
-    public function services($category_id){
+    public function notifications(){
 
-        $services = Service::where(['category_id'=>$category_id,'status'=> 1])->whereDate('expired_at', '>', Carbon::now())->with('provider')->get();
-        $data = ServiceResource::collection($services);
+        $data['notifications'] = NotificationResource::collection(Notification::whereJsonContains('user_id', auth()->id())->get());
         return helperJson($data, '');
     }
 

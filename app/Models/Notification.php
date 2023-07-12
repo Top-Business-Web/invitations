@@ -18,4 +18,10 @@ class Notification extends Model
         'type',
     ];
 
+    ##  Mutators and Accessors
+    public function getImageAttribute()
+    {
+        return isset($this->attributes['image']) ? get_file($this->attributes['image']) : "";
+    }
+
 }
