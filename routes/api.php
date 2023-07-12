@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
 });
 
 Route::get('cities', [GeneralController::class, 'cities']);
-//Route::get('sliders', [GeneralController::class, 'sliders']);
+Route::get('notifications', [HomeController::class, 'notifications']);
 
 Orion::resource('products-api', ProductsController::class);
 
