@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h3>دعواتى</h3>
-            <a href="add-invite.html" class="text-decoration-none main-btn1">انشاء دعوة</a>
+            <a href="{{ route('addInvites') }}" class="text-decoration-none main-btn1">انشاء دعوة</a>
         </div>
         <div class="row mt-5">
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -38,7 +38,7 @@
             <div class="collapse" id="collapseExample">
                 <div class="row mt-4">
                     <div class="col-lg-3 col-12 mb-2">
-                        <img src="photo/blog2.jpg" alt="no-image" class="image-details">
+                        <img src="{{ asset('assets/front') }}/photo/blog2.jpg" alt="no-image" class="image-details">
                     </div>
                     <div class="col-lg-7 col-12">
                         <div class="d-flex mb-2">
@@ -212,7 +212,7 @@
                         </button>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <a class="text-decoration-none" href="scan.html">
+                        <a class="text-decoration-none" href="{{ route('scans') }}">
                             <button type="button" class="btn-link">
                                 <i class="fa-solid fa-qrcode fa-lg ms-2"></i>
                                 ادارة المسح الضوئى
