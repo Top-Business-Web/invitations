@@ -16,7 +16,7 @@
                       </div>
                 </form>
                 <div class="d-flex justify-content-center mb-2 mt-4">
-                  <a href="invite.html" class="text-decoration-none">
+                  <a href="{{ route('invites') }}" class="text-decoration-none">
                     <button class="btn-submit" type="submit">تسجيل الدخول</button>
                   </a>
                 </div>

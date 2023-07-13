@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-12">
                             <div class="image-card mb-3">
-                                <img src="photo/blog2.jpg" alt="no-image">
+                                <img src="{{ asset('assets/front') }}/photo/blog2.jpg" alt="no-image">
                             </div>
                             <h5>المكرم محمد</h5>
                             <p>يتشرف بدعوتكم لحضور عيد ميلا</p>
