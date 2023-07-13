@@ -36,7 +36,7 @@ class InviteeController extends Controller
     public function create()
     {
         $invitees = Invitee::get();
-        return view('admin.invitees.parts.create', compact('invitees'));
+        return view('Admin.invitees.parts.create', compact('invitees'));
     }
 
 
