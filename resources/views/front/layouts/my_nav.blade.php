@@ -9,17 +9,17 @@
     <div class="collapse navbar-collapse bg-white" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="invite.html">دعواتى</a>
+              <a class="nav-link active" aria-current="page" href="{{ route('invites') }}">دعواتى</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="contact.html">جهات الاتصال</a>
+              <a class="nav-link" aria-current="page" href="{{ route('contact') }}">جهات الاتصال</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                  حسابى
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="profile.html">ملفى الشخصى</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile') }}">ملفى الشخصى</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="sign-in.html">تسجيل خروج</a></li>
               </ul>

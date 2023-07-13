@@ -41,4 +41,34 @@ class HomeController extends Controller
     {
         return view('front.add_invite.add_invite');
     }
+
+    public function addGuest()
+    {
+        return view('front.add_guest.add-guest');
+    }
+
+    public function contact()
+    {
+        return view('front.contacts.contact');
+    }
+
+    public function profile()
+    {
+        return view('front.profile.profile');
+    }
+
+    public function reminder()
+    {
+        return view('front.reminder.reminder');
+    }
+
+    public function showExcel()
+    {
+        return view('front.show_excel.show_excel');
+    }
+
+    public function scans()
+    {
+        return view('front.scans.scan');
+    }
 }

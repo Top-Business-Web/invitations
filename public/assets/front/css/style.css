@@ -347,7 +347,8 @@ select:focus{
 .whatsapp:hover{
     color: #4aae20;
 }
-.hand-invite{
+.hand-invite,
+.single-table{
     display: none;
 }
 
@@ -399,6 +400,7 @@ select:focus{
     padding: 5px;
     margin-bottom: 10px;
     transition: all 0.5s ease;
+    cursor: pointer;
 }
 .details-number:hover{
     background-color: var(--dark-green-color);

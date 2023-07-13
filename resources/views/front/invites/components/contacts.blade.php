@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h3>دعواتى</h3>
-            <a href="{{ route('addInvites') }}" class="text-decoration-none main-btn1">انشاء دعوة</a>
+            <a href="add-invite.html" class="text-decoration-none main-btn1">انشاء دعوة</a>
         </div>
         <div class="row mt-5">
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -11,14 +11,15 @@
                     <option value="1">الاسم</option>
                     <option value="2">التاريخ</option>
                     <option value="3">الحالة</option>
-                  </select>
+                </select>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <input class="form-control" type="search" placeholder="بحث">
             </div>
         </div>
         <div class="card-invite mt-2">
-            <button class="btn-faq d-flex justify-content-between align-items-center w-100" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn-faq d-flex justify-content-between align-items-center w-100" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="row" style="width: 50%;">
                     <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
                         <h5>عيد ميلاد</h5>
@@ -31,7 +32,7 @@
                     </div>
                 </div>
                 <div class="faq-icon" id="icon1">
-                  <i class="fa-solid fa-angle-down"></i>
+                    <i class="fa-solid fa-angle-down"></i>
                 </div>
             </button>
             <div class="collapse" id="collapseExample">
@@ -73,7 +74,7 @@
                     <h6 class="mb-2">حالات جهات الاتصال</h6>
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="details-number text-center">
+                            <div class="details-number text-center btn-hand" data-content=".single-table">
                                 <p class="mb-0">1</p>
                                 <p class="mb-0">الممسوحة ضوئيا</p>
                             </div>
@@ -105,7 +106,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="details-number text-center">
                                 <p class="mb-0">1</p>
-                                <p class="mb-0">  فشل</p>
+                                <p class="mb-0"> فشل</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -147,13 +148,13 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="details-number bg-color1 text-center">
                                 <p class="mb-0">1</p>
-                                <p class="mb-0">  قرأ</p>
+                                <p class="mb-0"> قرأ</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="details-number bg-color1 text-center">
                                 <p class="mb-0">1</p>
-                                <p class="mb-0">  فشل</p>
+                                <p class="mb-0"> فشل</p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +184,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="details-number bg-color2 text-center">
                                 <p class="mb-0">1</p>
-                                <p class="mb-0">  قرأ</p>
+                                <p class="mb-0"> قرأ</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -197,66 +198,92 @@
 
                 <div class="row mt-4">
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <button type="button" class="btn-link btn-link-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn-link btn-link-bg" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
                             <i class="fa-brands fa-whatsapp fa-lg ms-2"></i>
                             ارسال الدعوات عبر الواتساب
-                          </button>
+                        </button>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <button type="button" class="btn-link" data-bs-toggle="modal" data-bs-target="#exampleModalQr">
+                        <button type="button" class="btn-link" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalQr">
                             <i class="fa-solid fa-rotate-right fa-lg ms-2"></i>
-                            ارسال رموز QR التى لم يتم تسليمها  
-                          </button>
+                            ارسال رموز QR التى لم يتم تسليمها
+                        </button>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <a class="text-decoration-none" href="scan.html">
                             <button type="button" class="btn-link">
                                 <i class="fa-solid fa-qrcode fa-lg ms-2"></i>
-                               ادارة المسح الضوئى 
-                              </button>
+                                ادارة المسح الضوئى
+                            </button>
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <button type="button" class="btn-link btn-hand" data-content=".hand-invite">
                             <i class="fa-solid fa-envelope fa-lg ms-2"></i>
-                           ارسال الدعوات يدويا 
-                          </button>
+                            ارسال الدعوات يدويا
+                        </button>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <a class="text-decoration-none" href="reminder.html">
                             <button type="button" class="btn-link">
                                 <i class="fa-solid fa-bell fa-lg ms-2"></i>
-                               ارسال تذكير  
-                              </button>
+                                ارسال تذكير
+                            </button>
                         </a>
                     </div>
 
-                    <div class="col-12 mt-5 hand-invite">
-                        <div class="scroll">
-                            <table class="table table-striped border">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">الاسم</th>
-                                    <th scope="col">البريد الالكترونى</th>
-                                    <th scope="col">الحالة</th>
-                                    <th scope="col">الارسال يدوى</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td scope="row">1</td>
-                                    <td>AYA</td>
-                                    <td>-</td>
-                                    <td>فشل</td>
-                                    <td>
-                                        <a href="https://wa.me/920033007" target="_blank" class="whatsapp">
-                                            <i class="fa-brands fa-whatsapp fs-3"></i>
-                                          </a>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                    <div class="col-12 mt-5">
+                        <div class="content-list">
+                            <div class="scroll hand-invite">
+                                <table class="table table-striped border">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">البريد الالكترونى</th>
+                                            <th scope="col">الحالة</th>
+                                            <th scope="col">الارسال يدوى</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">1</td>
+                                            <td>AYA</td>
+                                            <td>-</td>
+                                            <td>فشل</td>
+                                            <td>
+                                                <a href="https://wa.me/920033007" target="_blank" class="whatsapp">
+                                                    <i class="fa-brands fa-whatsapp fs-3"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="scroll single-table">
+                                <table class="table table-striped border">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">البريد الالكترونى</th>
+                                            <th scope="col">الهاتف</th>
+                                            <th scope="col"> الحالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">1</td>
+                                            <td>AYA</td>
+                                            <td>-</td>
+                                            <td>01050405809</td>
+                                            <td>ممسوح ضوئيا</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,4 +291,4 @@
             </div>
         </div>
     </div>
-  </div>
+</div>

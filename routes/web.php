@@ -41,3 +41,9 @@ Route::get('index', [HomeController::class, 'index'])->name('index');
 // Invite 
 Route::get('invites', [HomeController::class, 'showInvites'])->name('invites');
 Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+Route::get('scans', [HomeController::class, 'scans'])->name('scans');

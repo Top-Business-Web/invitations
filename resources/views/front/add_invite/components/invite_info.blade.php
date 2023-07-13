@@ -69,7 +69,7 @@
                             data-bs-target="#exampleModal">
                             ضيوف الاستيراد
                         </button>
-                        <a href="add-guest.html" class="text-decoration-none">
+                        <a href="{{ route('addGuest') }}" class="text-decoration-none">
                             <button type="button" class="main-btn1 guest-btn">اضافة ضيف</button>
                         </a>
                     </div>
