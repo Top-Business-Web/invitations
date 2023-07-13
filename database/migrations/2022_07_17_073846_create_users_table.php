@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name',255)->nullable();
             $table->string('email',255)->nullable();
             $table->string('phone',255)->nullable();
+            $table->integer('points');
             $table->string('address',255)->nullable();
-
             $table->string('password',255);
 //            $table->integer('role_id')->comment('1 => provider, 2 => scaner')->default(2);
             $table->integer('status')->comment('0 => un active, 1 => active')->default(1);

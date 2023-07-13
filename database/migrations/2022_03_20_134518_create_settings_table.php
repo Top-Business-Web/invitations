@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('logo')->nullable();
+            $table->string('phone')->nullable();
             $table->longText('terms')->nullable();
             $table->longText('privacy')->nullable();
             $table->text('facebook')->nullable();
