@@ -114,8 +114,8 @@
                 name: 'latitude'
             },
             {
-                data: 'invitees',
-                name: 'invitees'
+                data: 'invitees_number',
+                name: 'invitees_number'
             },
             {
                 data: 'action',

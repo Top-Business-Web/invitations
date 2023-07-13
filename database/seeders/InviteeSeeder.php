@@ -19,6 +19,7 @@ class InviteeSeeder extends Seeder
             [
                 'invitation_id' => '2',
                 'name' => 'abdullah eladapour',
+                'email' => 'admin@admin.com',
                 'phone' => '01099614948',
                 'invitees_number' => '29',
                 'status' => '1',
@@ -26,6 +27,7 @@ class InviteeSeeder extends Seeder
             [
                 'invitation_id' => '1',
                 'name' => 'osama arafa',
+                'email' => 'admin1@admin.com',
                 'phone' => '01099614948',
                 'invitees_number' => '22',
                 'status' => '3',
@@ -33,6 +35,7 @@ class InviteeSeeder extends Seeder
             [
                 'invitation_id' => '3',
                 'name' => 'Abdullah alhumsi',
+                'email' => 'admin2@admin.com',
                 'phone' => '01099614948',
                 'invitees_number' => '24',
                 'status' => '2',
@@ -40,6 +43,7 @@ class InviteeSeeder extends Seeder
             [
                 'invitation_id' => '1',
                 'name' => 'eslam mohammed',
+                'email' => 'admin3@admin.com',
                 'phone' => '01099614948',
                 'invitees_number' => '24',
                 'status' => '2',

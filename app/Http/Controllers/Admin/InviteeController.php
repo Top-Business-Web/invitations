@@ -13,10 +13,12 @@ class InviteeController extends Controller
 {
 
     use PhotoTrait;
-    public function index(request $request)
+    public function showInvitees(request $request, $id)
     {
         if ($request->ajax()) {
-            $invitees = Invitee::latest()->get();
+            $invitees = Invitee::query()
+            ->where('invitation_id', $id)
+            ->get();
             return Datatables::of($invitees)
                 ->addColumn('checkbox', function ($invitees) {
                     return '<input type="checkbox" id="manual_entry_' . $invitees->id . '" class="manual_entry_cb" value="' . $invitees->id . '" />';

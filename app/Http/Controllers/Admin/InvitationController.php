@@ -20,7 +20,6 @@ class InvitationController extends Controller
             return Datatables::of($invitations)
                 ->addColumn('action', function ($invitations) {
                     return '
-                    <a class="activeInvitation btn btn-pill ' . ($invitations->status == 1 ? "btn-success" : "btn-danger") . ' text-white" data-id="' . $invitations->id . '" onclick="activeInvitation(this)">' . ($invitations->status == 1 ? "مفعل" : "غير مفعل") . '</a>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $invitations->id . '" data-title="' . $invitations->title . '">
                                     <i class="fas fa-trash"></i>
@@ -38,8 +37,8 @@ class InvitationController extends Controller
                     ';
                     }
                 })
-                ->addColumn('invitees', function ($invitations) {
-                    return  $invitations->invitees->count();
+                ->editColumn('invitees_number', function ($invitations) {
+                    return  '<td><a href="'. route('showInvitees', $invitations->id) .'" class="btn btn-success text-white">'. $invitations->invitees->count() .'</a></td>';
                 })
                 ->escapeColumns([])
                 ->make(true);
