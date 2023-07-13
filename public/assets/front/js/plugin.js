@@ -31,6 +31,8 @@ $(function (){
     });
 
     $('.btn-hand').on('click', function (){ 
+
+        $('.content-list > div').hide();  
     
         $($(this).data('content')).fadeIn();
 
