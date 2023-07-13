@@ -66,7 +66,7 @@ class InvitationController extends Controller
 
     public function create()
     {
-        return view('admin.invitations.parts.create');
+        return view('Admin.invitations.parts.create');
     }
 
 
@@ -83,7 +83,7 @@ class InvitationController extends Controller
 
     public function edit(Invitation $invitation)
     {
-        return view('admin.Invitations.parts.edit', compact('invitation'));
+        return view('Admin.Invitations.parts.edit', compact('invitation'));
     }
 
 
