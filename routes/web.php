@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Front\AuthController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\InviteController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -17,16 +19,29 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-//Route::group(
-//    [
-//        'prefix' => LaravelLocalization::setLocale(),
-//        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-//    ], function () {
+Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('invites', [HomeController::class, 'showInvites'])->name('invites');
+    Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+    Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+    Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+    Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+    Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+    Route::get('scans', [HomeController::class, 'scans'])->name('scans');
+    Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
+});
 
 Route::get('/', function () {
-    return redirect('admin/login');
+    return redirect('/');
 });
-//});
+
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('login', [AuthController::class, 'index'])->name('user');
+    Route::POST('login', [AuthController::class, 'login'])->name('user.login');
+});
+
+Route::post('register', [AuthController::class, 'register'])->name('user.register');
 
 // sign
 Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
@@ -36,10 +51,10 @@ Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('
 Route::get('verification', [HomeController::class, 'verification'])->name('verification');
 
 // index
-Route::get('index', [HomeController::class, 'index'])->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Invite 
-Route::get('invites', [HomeController::class, 'showInvites'])->name('invites');
+Route::get('invites', [InviteController::class, 'index'])->name('invites');
 Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
 Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');

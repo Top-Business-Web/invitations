@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('invitees', InviteeController::class);
     Route::post('/send-message-all-user/', [InviteeController::class, 'sendMessageToAllUser'])->name('sendMessageToAllUser');
     Route::post('/send-message-user/', [InviteeController::class, 'sendMessageToUser'])->name('sendMessageToUser');
-    Route::get('/show-invitees/{id}', [InviteeController::class, 'showInvitees'])->name('showInvitees');
+    Route::get('show-users-invite/{id}', [InviteeController::class, 'showInvitees'])->name('showInvitees');
 
 
     #### Auth ####

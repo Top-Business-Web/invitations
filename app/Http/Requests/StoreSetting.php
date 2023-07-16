@@ -26,16 +26,16 @@ class StoreSetting extends FormRequest
     {
         return [
             'title'          => 'required',
-            'logo'          => 'nullable',
+            'logo'          => 'nullable|mimes:png',
+            'phone'          => 'required|min:11',
             'terms'        => 'required',
             'privacy'        => 'required',
-            'facebook'          => 'required',
-            'youtube'          => 'required',
-            'linkedin'          => 'required',
-            'instagram'          => 'required',
-            'twitter'          => 'required',
-            'whatsapp'          => 'required',
-
+            'facebook'          => 'required|url',
+            'youtube'          => 'required|url',
+            'linkedin'          => 'required|url',
+            'instagram'          => 'required|url',
+            'twitter'          => 'required|url',
+            'whatsapp'          => 'required|url',
         ];
     }
 }

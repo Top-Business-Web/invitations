@@ -21,7 +21,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="{{ route('profile') }}">ملفى الشخصى</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="sign-in.html">تسجيل خروج</a></li>
+                <li><a class="dropdown-item" href="{{ route('user.logout') }}">تسجيل خروج</a></li>
               </ul>
             </li>
       </ul>

@@ -14,6 +14,7 @@ class Setting extends Model
     protected $fillable=[
         'title',
         'logo',
+        'phone',
         'terms',
         'privacy',
         'facebook',
