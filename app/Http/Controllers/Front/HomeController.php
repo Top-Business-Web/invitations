@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,11 +14,17 @@ class HomeController extends Controller
     }
     public function signIn()
     {
+        if (Auth::check()) {
+            return redirect('/invites');
+        }
         return view('front.sign.sign_in.sign-in');
     }
 
     public function signUp()
     {
+        if (Auth::check()) {
+            return redirect('/invites');
+        }
         return view('front.sign.sign_up.sign-up');
     }
 

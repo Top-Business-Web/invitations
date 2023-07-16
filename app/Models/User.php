@@ -10,14 +10,19 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory;
+
+    protected $guard = 'user';
     protected $fillable=[
         'name',
         'email',
         'phone',
+        'points',
         'address',
         'password',
         'status',
         'image',
+        'gauth_id',
+        'gauth_type'
     ];
 
 
