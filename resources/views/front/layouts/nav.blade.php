@@ -25,7 +25,7 @@
                     <a class="nav-link" aria-current="page" href="#contact">تواصل معنا</a>
                 </li>
             </ul>    
-                <a href="{{ route('signIn') }}" class="text-decoration-none btn-login"></a>
+                <a href="{{ route('signIn') }}" class="text-decoration-none btn-login">تسجيل دخول</a>
             <div class="dropdown" style="z-index: 100000;">
                 <button class="btn-language dropdown-toggle text-black" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
