@@ -30,7 +30,10 @@ return array(
     'App\\Http\\Controllers\\Api\\InvitationController' => $baseDir . '/app/Http/Controllers/Api/InvitationController.php',
     'App\\Http\\Controllers\\Api\\SettingController' => $baseDir . '/app/Http/Controllers/Api/SettingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
+=======
     'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
+>>>>>>> 230c43075fa3450ac61d40148d73becf793ebc66
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Helper\\GlobalSelection' => $baseDir . '/app/Http/Helper/GlobalSelection.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
@@ -66,6 +69,7 @@ return array(
     'App\\Mail\\SendCodeResetPassword' => $baseDir . '/app/Mail/SendCodeResetPassword.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\City' => $baseDir . '/app/Models/City.php',
+    'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\ContactUs' => $baseDir . '/app/Models/ContactUs.php',
     'App\\Models\\FirebaseToken' => $baseDir . '/app/Models/FirebaseToken.php',
     'App\\Models\\Invitation' => $baseDir . '/app/Models/Invitation.php',

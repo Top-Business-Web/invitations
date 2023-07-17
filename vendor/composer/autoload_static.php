@@ -807,7 +807,10 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Http\\Controllers\\Api\\InvitationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/InvitationController.php',
         'App\\Http\\Controllers\\Api\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SettingController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
+=======
         'App\\Http\\Controllers\\Front\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/AuthController.php',
+>>>>>>> 230c43075fa3450ac61d40148d73becf793ebc66
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Helper\\GlobalSelection' => __DIR__ . '/../..' . '/app/Http/Helper/GlobalSelection.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -843,6 +846,7 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Mail\\SendCodeResetPassword' => __DIR__ . '/../..' . '/app/Mail/SendCodeResetPassword.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\ContactUs' => __DIR__ . '/../..' . '/app/Models/ContactUs.php',
         'App\\Models\\FirebaseToken' => __DIR__ . '/../..' . '/app/Models/FirebaseToken.php',
         'App\\Models\\Invitation' => __DIR__ . '/../..' . '/app/Models/Invitation.php',

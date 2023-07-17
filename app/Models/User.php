@@ -40,6 +40,10 @@ class User extends Authenticatable implements JWTSubject
         return isset($this->attributes['image']) ? get_file($this->attributes['image']) : "";
     }
 
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 
 
     public function getJWTIdentifier()
