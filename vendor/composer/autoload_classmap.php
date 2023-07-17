@@ -30,6 +30,10 @@ return array(
     'App\\Http\\Controllers\\Api\\InvitationController' => $baseDir . '/app/Http/Controllers/Api/InvitationController.php',
     'App\\Http\\Controllers\\Api\\SettingController' => $baseDir . '/app/Http/Controllers/Api/SettingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
+=======
+    'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
+>>>>>>> 230c43075fa3450ac61d40148d73becf793ebc66
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Helper\\GlobalSelection' => $baseDir . '/app/Http/Helper/GlobalSelection.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

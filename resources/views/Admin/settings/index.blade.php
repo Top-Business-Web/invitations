@@ -33,10 +33,16 @@
                     </div>
                     <h1 class="card-title">قائمة الاعدادات العامة : </h1>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="facebook_link">العنوان :</label>
                                 <input type="text" name="title" value="{{ $settings->title }}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">هاتف :</label>
+                                <input type="text" name="phone" value="{{ $settings->phone }}" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -45,7 +51,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="facebook_link">فيسبوك :</label>
-                                <input type="url" name="facebook" value="{{ $settings->facebook }}"
+                                <input type="text" name="facebook" value="{{ $settings->facebook }}"
                                     class="form-control" />
                             </div>
                         </div>
