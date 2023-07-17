@@ -175,7 +175,7 @@
                 searchable: false
             },
         ]
-        showData('{{ route('showInvitees', request()->segment(3))) }}', columns);
+        showData('{{ route('showInvitees', request()->segment(3)) }}', columns);
         // Delete Using Ajax
         destroyScript('{{ route('invitees.destroy', ':id') }}');
         // Add Using Ajax

@@ -13,4 +13,13 @@ class Scanned extends Model
         'invitee_id',
     ];
 
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class);
+    }
+
+    public function invitee(){
+        return $this->belongsTo(Invitee::class);
+    }
+
 }
