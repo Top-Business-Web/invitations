@@ -3,7 +3,7 @@
 @include('front.layouts.head')
 
 <body>
-    @include('front.layouts.my_nav')
+    @include('front.layouts.nav')
 
     <!-- invite Info -->
     @include('front.add_invite.components.invite_info')

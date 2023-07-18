@@ -5,6 +5,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\InviteController;
+use App\Http\Controllers\Front\ReminderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -20,14 +21,16 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(['middleware' => ['auth:web']], function () {
-    Route::get('invites', [HomeController::class, 'showInvites'])->name('invites');
+    Route::get('invites', [InviteController::class, 'index'])->name('invites');
+    Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
+    Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
+    Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
     Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-    Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+    Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
-    Route::get('scans', [HomeController::class, 'scans'])->name('scans');
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
 });
 
@@ -54,11 +57,12 @@ Route::get('verification', [HomeController::class, 'verification'])->name('verif
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Invite 
-Route::get('invites', [InviteController::class, 'index'])->name('invites');
-Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
-Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
-Route::get('contact', [HomeController::class, 'contact'])->name('contact');
-Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
-Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
-Route::get('scans', [HomeController::class, 'scans'])->name('scans');
+// Route::get('invites', [InviteController::class, 'index'])->name('invites');
+// Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
+// Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+// Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+// Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+// Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+// Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+// Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+// Route::get('scans', [HomeController::class, 'scans'])->name('scans');
