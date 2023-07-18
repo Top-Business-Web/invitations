@@ -17,15 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AdminSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(ContactUsSeeder::class);
-        $this->call(UserSeeder::class);
         $this->call(InvitationSeeder::class);
         $this->call(InviteeSeeder::class);
         $this->call(NotificationSeeder::class);
         $this->call(MessageSeeder::class);
-        $this->call(MessageSeeder::class);
         $this->call(ScannedSeeder::class);
+        $this->call(StatusSeeder::class);
+        $this->call(ContactSeeder::class);
 
 
     }

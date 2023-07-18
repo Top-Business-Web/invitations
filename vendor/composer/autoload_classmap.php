@@ -31,7 +31,10 @@ return array(
     'App\\Http\\Controllers\\Api\\SettingController' => $baseDir . '/app/Http/Controllers/Api/SettingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
+<<<<<<< HEAD
+=======
     'App\\Http\\Controllers\\Front\\ContactsController' => $baseDir . '/app/Http/Controllers/Front/ContactsController.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Controllers\\Front\\InviteController' => $baseDir . '/app/Http/Controllers/Front/InviteController.php',
     'App\\Http\\Helper\\GlobalSelection' => $baseDir . '/app/Http/Helper/GlobalSelection.php',
@@ -79,7 +82,11 @@ return array(
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Scanned' => $baseDir . '/app/Models/Scanned.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
+<<<<<<< HEAD
+    'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
+=======
     'App\\Models\\TranslationLanguage' => $baseDir . '/app/Models/TranslationLanguage.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -429,6 +436,7 @@ return array(
     'Darryldecode\\Cart\\Validators\\Validator' => $vendorDir . '/darryldecode/cart/src/Darryldecode/Cart/Validators/Validator.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\AdminSeeder' => $baseDir . '/database/seeders/AdminSeeder.php',
+    'Database\\Seeders\\ContactTest' => $baseDir . '/database/seeders/ContactTest.php',
     'Database\\Seeders\\ContactUsSeeder' => $baseDir . '/database/seeders/ContactUsSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\InvitationSeeder' => $baseDir . '/database/seeders/InvitationSeeder.php',
@@ -437,6 +445,7 @@ return array(
     'Database\\Seeders\\NotificationSeeder' => $baseDir . '/database/seeders/NotificationSeeder.php',
     'Database\\Seeders\\ScannedSeeder' => $baseDir . '/database/seeders/ScannedSeeder.php',
     'Database\\Seeders\\SettingSeeder' => $baseDir . '/database/seeders/SettingSeeder.php',
+    'Database\\Seeders\\StatusSeeder' => $baseDir . '/database/seeders/StatusSeeder.php',
     'Database\\Seeders\\UserSeeder' => $baseDir . '/database/seeders/UserSeeder.php',
     'DebugBar\\Bridge\\CacheCacheCollector' => $vendorDir . '/maximebf/debugbar/src/DebugBar/Bridge/CacheCacheCollector.php',
     'DebugBar\\Bridge\\DoctrineCollector' => $vendorDir . '/maximebf/debugbar/src/DebugBar/Bridge/DoctrineCollector.php',
@@ -8577,6 +8586,7 @@ return array(
     'Symfony\\Polyfill\\Php80\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/PhpToken.php',
     'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',
     'Tests\\Feature\\LoginTest' => $baseDir . '/tests/Feature/LoginTest.php',
+    'Tests\\Feature\\StatusTest' => $baseDir . '/tests/Feature/StatusTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',
