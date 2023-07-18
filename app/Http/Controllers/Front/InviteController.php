@@ -49,7 +49,6 @@ class InviteController extends Controller
     public function showUserScanned($id)
     {
         $scannedUsers = Scanned::where('invitation_id', $id)->groupBy('invitee_id')->select('invitee_id', DB::raw('count(*) as totalCount'))->get();
-        // dd($scannedUsers);
         return view('front.scans.scan', compact('scannedUsers'));
     }
 }

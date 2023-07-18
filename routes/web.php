@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\ContactsController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Front\AuthController;
@@ -22,15 +23,33 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::get('invites', [InviteController::class, 'index'])->name('invites');
+<<<<<<< HEAD
     Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
     Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+=======
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
     Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
-    Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+    /**
+     * contacts controller
+     */
+    Route::get('contact', [ContactsController::class, 'index'])->name('contact');
+    Route::get('contacts/show_excel', [ContactsController::class, 'showExcel'])->name('contacts.showExcel');
+
+    Route::post('contacts/import', [ContactsController::class, 'import'])->name('contacts.import');
+
+    /**
+     *  end contacts controller
+     */
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+<<<<<<< HEAD
     Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+=======
+    Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+    Route::get('scans', [HomeController::class, 'scans'])->name('scans');
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
 });
 
@@ -56,6 +75,7 @@ Route::get('verification', [HomeController::class, 'verification'])->name('verif
 // index
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+<<<<<<< HEAD
 // Invite 
 // Route::get('invites', [InviteController::class, 'index'])->name('invites');
 // Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
@@ -66,3 +86,5 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 // Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
 // Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
 // Route::get('scans', [HomeController::class, 'scans'])->name('scans');
+=======
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197

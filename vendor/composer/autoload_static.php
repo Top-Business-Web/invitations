@@ -808,6 +808,10 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Http\\Controllers\\Api\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SettingController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Front\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/AuthController.php',
+<<<<<<< HEAD
+=======
+        'App\\Http\\Controllers\\Front\\ContactsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ContactsController.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\InviteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InviteController.php',
         'App\\Http\\Helper\\GlobalSelection' => __DIR__ . '/../..' . '/app/Http/Helper/GlobalSelection.php',
@@ -841,6 +845,7 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Http\\Resources\\NotificationResource' => __DIR__ . '/../..' . '/app/Http/Resources/NotificationResource.php',
         'App\\Http\\Resources\\SettingResource' => __DIR__ . '/../..' . '/app/Http/Resources/SettingResource.php',
         'App\\Http\\Resources\\UserResources' => __DIR__ . '/../..' . '/app/Http/Resources/UserResources.php',
+        'App\\Imports\\ContactsImport' => __DIR__ . '/../..' . '/app/Imports/ContactsImport.php',
         'App\\Mail\\SendCodeResetPassword' => __DIR__ . '/../..' . '/app/Mail/SendCodeResetPassword.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
@@ -854,7 +859,11 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Models\\ResetCodePassword' => __DIR__ . '/../..' . '/app/Models/ResetCodePassword.php',
         'App\\Models\\Scanned' => __DIR__ . '/../..' . '/app/Models/Scanned.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
+<<<<<<< HEAD
         'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
+=======
+        'App\\Models\\TranslationLanguage' => __DIR__ . '/../..' . '/app/Models/TranslationLanguage.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

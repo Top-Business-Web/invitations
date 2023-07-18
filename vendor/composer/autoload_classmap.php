@@ -31,6 +31,10 @@ return array(
     'App\\Http\\Controllers\\Api\\SettingController' => $baseDir . '/app/Http/Controllers/Api/SettingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
+<<<<<<< HEAD
+=======
+    'App\\Http\\Controllers\\Front\\ContactsController' => $baseDir . '/app/Http/Controllers/Front/ContactsController.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Controllers\\Front\\InviteController' => $baseDir . '/app/Http/Controllers/Front/InviteController.php',
     'App\\Http\\Helper\\GlobalSelection' => $baseDir . '/app/Http/Helper/GlobalSelection.php',
@@ -64,6 +68,7 @@ return array(
     'App\\Http\\Resources\\NotificationResource' => $baseDir . '/app/Http/Resources/NotificationResource.php',
     'App\\Http\\Resources\\SettingResource' => $baseDir . '/app/Http/Resources/SettingResource.php',
     'App\\Http\\Resources\\UserResources' => $baseDir . '/app/Http/Resources/UserResources.php',
+    'App\\Imports\\ContactsImport' => $baseDir . '/app/Imports/ContactsImport.php',
     'App\\Mail\\SendCodeResetPassword' => $baseDir . '/app/Mail/SendCodeResetPassword.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\City' => $baseDir . '/app/Models/City.php',
@@ -77,7 +82,11 @@ return array(
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Scanned' => $baseDir . '/app/Models/Scanned.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
+<<<<<<< HEAD
     'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
+=======
+    'App\\Models\\TranslationLanguage' => $baseDir . '/app/Models/TranslationLanguage.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
