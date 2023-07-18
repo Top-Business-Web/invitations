@@ -6,7 +6,7 @@
                 <button type="button" class="main-btn1 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     اضافة جهة الاتصال
                 </button>
-                <a href="{{ route('showExcel') }}" class="text-decoration-none">
+                <a href="{{ route('contacts.showExcel') }}" class="text-decoration-none">
                     <button type="button" class="main-btn1 bg-color">استيراد</button>
                 </a>
             </div>

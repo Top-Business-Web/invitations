@@ -188,6 +188,8 @@ return [
         Darryldecode\Cart\CartServiceProvider::class,
         Paytabscom\Laravel_paytabs\PaypageServiceProvider::class,
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -248,6 +250,9 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];
