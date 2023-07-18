@@ -61,6 +61,7 @@
     57 => 'Buglinjo\\LaravelWebp\\WebpServiceProvider',
     58 => 'Darryldecode\\Cart\\CartServiceProvider',
     59 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
+    60 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
   ),
   'eager' => 
   array (
@@ -107,6 +108,7 @@
     40 => 'Buglinjo\\LaravelWebp\\WebpServiceProvider',
     41 => 'Darryldecode\\Cart\\CartServiceProvider',
     42 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
+    43 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
   ),
   'deferred' => 
   array (
