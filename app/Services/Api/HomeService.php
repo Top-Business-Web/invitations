@@ -10,6 +10,7 @@ use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SliderResource;;
 
 
+use App\Models\Contact;
 use App\Models\Invitation;
 use App\Models\Notification;
 use App\Models\User;
@@ -32,8 +33,8 @@ class HomeService
         return helperJson(InvitationResource::collection($invitations), '',200);
     }
 
-    public function categories(){
-        $data = Category::select('id','name','image')->get();
+    public function contacts(){
+        $data = Contact::select('id','name','phone','email','user_id')->where('user_id', Auth()->id())->get();
 
         return helperJson($data, '');
     }

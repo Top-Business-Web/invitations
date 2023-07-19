@@ -87,8 +87,7 @@
     </div>
 
     @include('front.layouts.scripts')
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://someothersite.com/external.js"></script>
@@ -96,7 +95,6 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
 
-    @include('Admin/layouts/myAjaxHelper')
     <script>
         var columns = [
             {data: 'id', name: 'id'},

@@ -36,10 +36,9 @@ class InviteController extends Controller
     public function sendInviteByWhatsapp(Request $request)
     {
         $invitation_id = $request->id;
-        $changeStatus = Invitation::where('id', $invitation_id)->value('status');
+        $changeStatus = Invitation::where('id', (int)$invitation_id)->update(['status' => "1"]);
 
-        if ($changeStatus == '0') {
-            $changeStatus = '1';
+        if ($changeStatus) {
             return response()->json(['status' => 200]);
         } else {
             return response()->json(['status' => 405]);
