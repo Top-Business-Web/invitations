@@ -34,7 +34,7 @@ class HomeController extends Controller
     }
 
 
-    public function add_rate(Request $request){
-        return $this->homeService->add_rate($request);
+    public function contacts(Request $request){
+        return $this->homeService->contacts($request);
     }
 }

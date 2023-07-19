@@ -3,15 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-<<<<<<< HEAD
-        'reference' => 'e78cddd16f83c3f4d62236379a38def911c4d197',
-=======
-<<<<<<< HEAD
-        'reference' => 'ec0e8b6905c61558ec20f95a6e975a590d0850a2',
-=======
-        'reference' => '7f1ea5a68675ad6867500095022d43a7f809de3d',
->>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
->>>>>>> f44ca366f41f4582dcd142c5b422925feadcd107
+        'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -594,15 +586,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-<<<<<<< HEAD
-            'reference' => 'e78cddd16f83c3f4d62236379a38def911c4d197',
-=======
-<<<<<<< HEAD
-            'reference' => 'ec0e8b6905c61558ec20f95a6e975a590d0850a2',
-=======
-            'reference' => '7f1ea5a68675ad6867500095022d43a7f809de3d',
->>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
->>>>>>> f44ca366f41f4582dcd142c5b422925feadcd107
+            'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -780,9 +764,9 @@
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
-            'pretty_version' => '1.6.2',
-            'version' => '1.6.2.0',
-            'reference' => '13a7fa2642c76c58fa2806ef7f565344c817a191',
+            'pretty_version' => '1.6.3',
+            'version' => '1.6.3.0',
+            'reference' => 'b1be135c1ba7632f0248e07ee5e6e412576a309d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),

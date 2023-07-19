@@ -9,18 +9,17 @@ use Illuminate\Http\Request;
 use App\Imports\ContactsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class ContactsController extends Controller
 {
-    public function index_()
-    {
-        $data['contacts'] = Contact::where(['user_id' =>auth()->id()])->get();
 
-        return view('front.contacts.contact',$data);
-    }
 
 
     public function index(request $request)
     {
+        toastr(__('site.contacts_added_successfully'));
+        toastr()->success('Data saved successfully!', 'Success');
+
         $data['contacts'] = Contact::where(['user_id' =>auth()->id()])->get();
 
         if($request->ajax()) {
@@ -109,13 +108,11 @@ class ContactsController extends Controller
 
     public function import(Request $request)
     {
-//        $file = $request->file('_file');
-//
-//        Excel::import(new YourImportClass, $file);
-
         Excel::import(new ContactsImport, $request->file);
         toastr(__('site.contacts_added_successfully'));
+        toastr()->success('Data has been saved successfully!');
 
+//        return response(['message'=>__('site.contacts_added_successfully'),'status'=>200],200);
         return redirect('/contact')->with('success', 'All good!');
     }
 }
