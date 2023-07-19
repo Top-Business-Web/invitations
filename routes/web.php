@@ -34,7 +34,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     /**
      * contacts controller
      */
-    Route::get('contact', [ContactsController::class, 'index'])->name('contact');
+    Route::resource('contact', ContactsController::class);
+//    Route::get('contact', [ContactsController::class, 'index'])->name('contact');
     Route::get('contacts/show_excel', [ContactsController::class, 'showExcel'])->name('contacts.showExcel');
 
     Route::post('contacts/import', [ContactsController::class, 'import'])->name('contacts.import');

@@ -83,10 +83,13 @@ return array(
     'App\\Models\\Scanned' => $baseDir . '/app/Models/Scanned.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
 =======
     'App\\Models\\TranslationLanguage' => $baseDir . '/app/Models/TranslationLanguage.php',
 >>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
+>>>>>>> f44ca366f41f4582dcd142c5b422925feadcd107
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

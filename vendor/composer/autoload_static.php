@@ -860,10 +860,13 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Models\\Scanned' => __DIR__ . '/../..' . '/app/Models/Scanned.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
 =======
         'App\\Models\\TranslationLanguage' => __DIR__ . '/../..' . '/app/Models/TranslationLanguage.php',
 >>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
+>>>>>>> f44ca366f41f4582dcd142c5b422925feadcd107
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

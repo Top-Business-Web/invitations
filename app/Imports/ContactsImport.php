@@ -21,4 +21,9 @@ class ContactsImport implements ToModel
             'user_id' => \Auth::id(),
         ]);
     }
+
+    public function headingRow(): int
+    {
+        return 2;
+    }
 }
