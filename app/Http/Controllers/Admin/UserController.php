@@ -21,6 +21,7 @@ class UserController extends Controller
                 ->addColumn('action', function ($user) {
                     return '
                             <button type="button" data-id="' . $user->id . '" class="btn btn-pill btn-success-light editBtn"><i class="fa fa-edit"></i></button>
+                            <button type="button" data-id="' . $user->id . '" class="btn btn-pill btn-success-light editUser" title="اضافة رصيد نفاط"><i class="fa fa-hand-point-up"></i></button>
                             <button class="btn btn-pill btn-danger-light" data-toggle="modal" data-target="#delete_modal"
                                     data-id="' . $user->id . '" data-title="' . $user->name . '">
                                     <i class="fas fa-trash"></i>
@@ -45,11 +46,26 @@ class UserController extends Controller
             return view('Admin/user/index');
         }
     }
+
     public function edit(User $user)
     {
         return view('Admin.user.parts.edit', compact('user'));
     }
 
+    public function update_point_form($id)
+    {
+        $user = User::find($id);
+        return view('Admin.user.parts.add_points', compact('user'));
+    }
+
+
+    public function update_points(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        User::where('id', $user->id)->increment('points',$request->invitations_number);
+        return response()->json(['status' => 200]);
+    }
     public function update(Request $request, $id)
     {
         $user = User::find($id);
