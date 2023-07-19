@@ -15,5 +15,8 @@ return [
 
     'required' => 'هذا الحقل مطلوب',
     'error' => 'هناك خطأ ما',
+    'contacts_added_successfully' => "تم اضافة جهات الاتصال بنجاح",
+    'sZeroRecords'=>'لا يوجد بيانات',
+
 
 ];

@@ -40,7 +40,7 @@
 
         </div>
 
-        <a href="{{ route('contact') }}" class="text-decoration-none main-btn1" style="width: 190px;">العودة الى جهات
+        <a href="{{ route('contact.index') }}" class="text-decoration-none main-btn1" style="width: 190px;">العودة الى جهات
             الاتصال</a>
 
     </div>
@@ -57,7 +57,7 @@
                   @csrf
                     <div class="col-12">
                         <label class="form-label">ملف جهات الاتصال </label>
-                        <input type="file" class="form-control" required>
+                        <input type="file" name="file" class="form-control" required>
                     </div>
                 <div class="d-flex justify-content-center mb-2 mt-5">
                     <button class="btn-login" type="submit" style="border: none;"> حفظ</button>

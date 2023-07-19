@@ -15,5 +15,8 @@ return [
 
     'required' => 'Field Required',
     'error' => 'sorry invalid',
+    'contacts_added_successfully' => "Contacts added successfully",
+    'sZeroRecords'=>' No Results found',
+
 
 ];

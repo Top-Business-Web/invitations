@@ -79,7 +79,6 @@ return array(
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Scanned' => $baseDir . '/app/Models/Scanned.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
-    'App\\Models\\TranslationLanguage' => $baseDir . '/app/Models/TranslationLanguage.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
