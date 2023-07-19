@@ -5,6 +5,7 @@ namespace App\Services\Api;
 
 
 use App\Http\Resources\InvitationResource;
+use App\Models\Contact;
 use App\Models\Invitation;
 use App\Models\Invitee;
 use App\Models\Message;
@@ -34,6 +35,15 @@ class InvitationService
             $invitation = Invitation::create($inputs);
             if($request->step > 1){
                 foreach ($inputs['invitees'] as $invitee){
+                    if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
+                        Contact::create(
+                            [
+                                'user_id'=> Auth()->id(),
+                                'name'=>$invitee['name'],
+                                'phone'=>$invitee['phone'],
+                            ]
+                        );
+                    }
                     Invitee::create(
                             [
                             'invitation_id'=> $invitation->id,

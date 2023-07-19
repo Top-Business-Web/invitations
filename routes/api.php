@@ -3,7 +3,6 @@
 //use App\Http\Controllers\Api\Auth\Provider\AuthController;
 use App\Http\Controllers\Api\Auth\AuthScannerController;
 use App\Http\Controllers\Api\ContactController;
-use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\GeneralController;
 
 use App\Http\Controllers\Api\Auth\AuthProviderController;
