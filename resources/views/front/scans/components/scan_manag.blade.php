@@ -18,24 +18,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>AYA</td>
-                            <td>01050687420</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>AYA</td>
-                            <td>01050687420</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>AYA</td>
-                            <td>01050687420</td>
-                            <td>5</td>
-                        </tr>
+                        @foreach ($scannedUsers as $scannedUser)
+                            <tr>
+                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td>{{ $scannedUser->invitee->name }}</td>
+                                <td>{{ $scannedUser->invitee->phone }}</td>
+                                <td>{{ $scannedUser->totalCount }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

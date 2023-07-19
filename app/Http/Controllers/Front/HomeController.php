@@ -61,10 +61,6 @@ class HomeController extends Controller
         return view('front.profile.profile');
     }
 
-    public function reminder()
-    {
-        return view('front.reminder.reminder');
-    }
 
 
 

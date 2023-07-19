@@ -14,14 +14,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </td>
-                            <td>AYA</td>
-                            <td>aya@gmail.com</td>
-                            <td>لا يوجد رد</td>
-                        </tr>
+                        @foreach ($users_invitees_reminder as $user_invitee_reminder)
+                            <tr>
+                                <td scope="row">{{ $user_invitee_reminder->id }}</td>
+                                <td><input class="form-check-input" type="checkbox" value=""
+                                        id="flexCheckDefault">
+                                </td>
+                                <td>{{ $user_invitee_reminder->name }}</td>
+                                <td>{{ $user_invitee_reminder->email }}</td>
+                                <td>{{ $statuses[$user_invitee_reminder->status] }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -3,7 +3,7 @@
 @include('front.layouts.head')
 
 <body>
-    @include('front.layouts.my_nav')
+    @include('front.layouts.nav')
 
     @include('front.invites.components.contacts')
 
@@ -14,7 +14,7 @@
     @include('front.invites.components.qr_code')
 
     @include('front.layouts.scripts')
-
+    
 </body>
 
 </html>

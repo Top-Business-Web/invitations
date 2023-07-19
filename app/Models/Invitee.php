@@ -17,6 +17,8 @@ class Invitee extends Model
         'status',
     ];
 
+
+
     public function invitation()
     {
         return $this->belongsTo(Invitation::class, 'invitation_id', 'id');

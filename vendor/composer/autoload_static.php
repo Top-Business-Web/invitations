@@ -808,7 +808,10 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Http\\Controllers\\Api\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SettingController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Front\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/AuthController.php',
+<<<<<<< HEAD
+=======
         'App\\Http\\Controllers\\Front\\ContactsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ContactsController.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\InviteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InviteController.php',
         'App\\Http\\Helper\\GlobalSelection' => __DIR__ . '/../..' . '/app/Http/Helper/GlobalSelection.php',
@@ -856,6 +859,14 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'App\\Models\\ResetCodePassword' => __DIR__ . '/../..' . '/app/Models/ResetCodePassword.php',
         'App\\Models\\Scanned' => __DIR__ . '/../..' . '/app/Models/Scanned.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
+=======
+        'App\\Models\\TranslationLanguage' => __DIR__ . '/../..' . '/app/Models/TranslationLanguage.php',
+>>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
+>>>>>>> f44ca366f41f4582dcd142c5b422925feadcd107
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -1205,6 +1216,7 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'Darryldecode\\Cart\\Validators\\Validator' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Validators/Validator.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\AdminSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminSeeder.php',
+        'Database\\Seeders\\ContactTest' => __DIR__ . '/../..' . '/database/seeders/ContactTest.php',
         'Database\\Seeders\\ContactUsSeeder' => __DIR__ . '/../..' . '/database/seeders/ContactUsSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\InvitationSeeder' => __DIR__ . '/../..' . '/database/seeders/InvitationSeeder.php',
@@ -1213,6 +1225,7 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'Database\\Seeders\\NotificationSeeder' => __DIR__ . '/../..' . '/database/seeders/NotificationSeeder.php',
         'Database\\Seeders\\ScannedSeeder' => __DIR__ . '/../..' . '/database/seeders/ScannedSeeder.php',
         'Database\\Seeders\\SettingSeeder' => __DIR__ . '/../..' . '/database/seeders/SettingSeeder.php',
+        'Database\\Seeders\\StatusSeeder' => __DIR__ . '/../..' . '/database/seeders/StatusSeeder.php',
         'Database\\Seeders\\UserSeeder' => __DIR__ . '/../..' . '/database/seeders/UserSeeder.php',
         'DebugBar\\Bridge\\CacheCacheCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/CacheCacheCollector.php',
         'DebugBar\\Bridge\\DoctrineCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/DoctrineCollector.php',
@@ -9353,6 +9366,7 @@ class ComposerStaticInitebadef4a2fe32872459d1dcc93c1fe4b
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\LoginTest' => __DIR__ . '/../..' . '/tests/Feature/LoginTest.php',
+        'Tests\\Feature\\StatusTest' => __DIR__ . '/../..' . '/tests/Feature/StatusTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',

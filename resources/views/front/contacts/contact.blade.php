@@ -7,7 +7,7 @@
     }
 </style>
 <body>
-    @include('front.layouts.my_nav')
+    @include('front.layouts.nav')
 
     <div class="section pt-5 pb-5">
         <div class="container">

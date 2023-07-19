@@ -82,9 +82,39 @@ class Invitation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany if status = 5
      */
+
     public function failed(){
         return $this->hasMany(Invitee::class)->where(['status'=> 5]);
     }
 
+    public function not_sent_whatsapp(){
+        return $this->hasMany(Status::class)->where(['status'=> 1, 'type' => 'whatsapp']);
+    }
 
+    public function received_whatsapp(){
+        return $this->hasMany(Status::class)->where(['status'=> 2, 'type' => 'whatsapp']);
+    }
+
+    public function readIt_whatsapp(){
+        return $this->hasMany(Status::class)->where(['status'=> 3, 'type' => 'whatsapp']);
+    }
+
+    public function faild_whatsapp(){
+        return $this->hasMany(Status::class)->where(['status'=> 4, 'type' => 'whatsapp']);
+    }
+    public function not_received_qr(){
+        return $this->hasMany(Status::class)->where(['status'=> 1, 'type' => 'qr_code']);
+    }
+
+    public function received_qr(){
+        return $this->hasMany(Status::class)->where(['status'=> 2, 'type' => 'qr_code']);
+    }
+
+    public function read_it_qr(){
+        return $this->hasMany(Status::class)->where(['status'=> 3, 'type' => 'qr_code']);
+    }
+
+    public function faild_qr(){
+        return $this->hasMany(Status::class)->where(['status'=> 4, 'type' => 'qr_code']);
+    }
 }
