@@ -13,8 +13,6 @@ use Maatwebsite\Excel\Facades\Excel;
 class ContactsController extends Controller
 {
 
-
-
     public function index(request $request)
     {
         toastr(__('site.contacts_added_successfully'));
