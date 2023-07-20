@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="p-2">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" id="dismiss_modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h5 class="text-center mt-3 mb-3 color2">ارسال الدعوات اليا عبر الواتساب</h5>
@@ -51,7 +51,9 @@
                 })
                 .then(function(response) {
                     if (response.status == "200") {
-                        toastr.success('hi')
+                        toastr.success('تم ارسال الدعوات بنجاح');
+                        $("#dismiss_modal")[0].click();
+                        location.reload();
                     } else {
                         throw new Error('Request failed');
                     }

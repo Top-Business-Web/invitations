@@ -367,7 +367,6 @@
             $('#invitationTitle').text(invitationTitle);
         });
 
-        // function delete invitation
         $('#deleteButton').on('click', function() {
             var invitationId = $('#invitationId').text();
             fetch('/delete-invitation/' + invitationId, {

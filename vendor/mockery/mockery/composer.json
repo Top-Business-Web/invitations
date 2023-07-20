@@ -51,7 +51,10 @@
     "require-dev": {
         "phpunit/phpunit": "^8.5 || ^9.3",
         "psalm/plugin-phpunit": "^0.18.4",
+<<<<<<< HEAD
         "symplify/easy-coding-standard": "^11.5.0",
+=======
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
         "vimeo/psalm": "^5.13.1"
     },
     "conflict": {
@@ -59,11 +62,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Mockery\\": "library/Mockery"
+            "Mockery\\": "src/Mockery"
         },
         "files": [
+<<<<<<< HEAD
           "library/helpers.php",
           "library/Mockery.php"
+=======
+            "src/helpers.php",
+            "src/Mockery.php"
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
         ]
     },
     "autoload-dev": {
@@ -86,6 +94,7 @@
     "scripts": {
         "check": [
             "@composer validate",
+<<<<<<< HEAD
             "@ecs",
             "@test"
         ],
@@ -96,6 +105,11 @@
         ],
         "ecs:check": "ecs check --clear-cache || true",
         "ecs:fix": "ecs check --clear-cache --fix",
+=======
+            "@test"
+        ],
+        "docs": "vendor/bin/phpdoc -d src -t docs/api",
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
         "phpunit": "vendor/bin/phpunit --colors=always --testdox --stop-on-failure",
         "phpunit:coverage": "vendor/bin/phpunit --colors=always --testdox --stop-on-failure --coverage-clover=coverage.xml",
         "psalm": [

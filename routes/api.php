@@ -3,7 +3,6 @@
 //use App\Http\Controllers\Api\Auth\Provider\AuthController;
 use App\Http\Controllers\Api\Auth\AuthScannerController;
 use App\Http\Controllers\Api\ContactController;
-use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\GeneralController;
 
 use App\Http\Controllers\Api\Auth\AuthProviderController;
@@ -54,6 +53,7 @@ Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
     Route::get('all-invitees/{id}', [InvitationController::class, 'allInvitees']);
     Route::get('scanned-invitees/{id}', [InvitationController::class, 'scannedInvitees']);
     Route::get('invitees/messages/{id}', [InvitationController::class, 'messages']);
+    Route::get('contacts', [HomeController::class, 'contacts']);
 
 });
 

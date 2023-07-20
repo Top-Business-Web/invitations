@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
     Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
     Route::post('/search-invitations', [InviteController::class, 'search'])->name('search.invitations');
@@ -36,7 +40,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     /**
      * contacts controller
      */
-    Route::get('contact', [ContactsController::class, 'index'])->name('contact');
+    Route::resource('contact', ContactsController::class);
+//    Route::get('contact', [ContactsController::class, 'index'])->name('contact');
     Route::get('contacts/show_excel', [ContactsController::class, 'showExcel'])->name('contacts.showExcel');
 
     Route::post('contacts/import', [ContactsController::class, 'import'])->name('contacts.import');
@@ -45,6 +50,14 @@ Route::group(['middleware' => ['auth:web']], function () {
      *  end contacts controller
      */
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+<<<<<<< HEAD
+=======
+
+    Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
+    Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+
+    Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
     Route::get('scans', [HomeController::class, 'scans'])->name('scans');
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
 });
