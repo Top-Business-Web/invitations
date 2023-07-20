@@ -42,7 +42,7 @@ class HomeService
 
     public function notifications(){
 
-        $data['notifications'] = NotificationResource::collection(Notification::whereJsonContains('user_id', auth()->id())->get());
+        $data = NotificationResource::collection(Notification::whereJsonContains('user_id', auth()->id())->get());
         return helperJson($data, '');
     }
 

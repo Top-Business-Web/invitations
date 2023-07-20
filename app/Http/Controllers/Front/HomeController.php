@@ -51,6 +51,7 @@ class HomeController extends Controller
 
     public function addGuest()
     {
+
         return view('front.add_guest.add-guest');
     }
 
