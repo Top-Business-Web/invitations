@@ -38,7 +38,7 @@ class InvitationController extends Controller
                     }
                 })
                 ->editColumn('invitees_number', function ($invitations) {
-                    return  '<td><a href="'. route('showInvitees', $invitations->id) .'" class="btn btn-success text-white">'. $invitations->invitees->count() .'</a></td>';
+                    return  '<td><a href="' . route('showInvitees', $invitations->id) . '" class="btn btn-success text-white">' . $invitations->invitees->count() . '</a></td>';
                 })
                 ->escapeColumns([])
                 ->make(true);
@@ -96,10 +96,18 @@ class InvitationController extends Controller
     }
 
 
-    public function destroy(Request $request)
+    public function deleteInvitation($id)
     {
-        $Invitations = Invitation::where('id', $request->id)->firstOrFail();
-        $Invitations->delete();
-        return response(['message' => 'تم الحذف بنجاح', 'status' => 200], 200);
+        try {
+            // Find the invitation by ID
+            $invitation = Invitation::findOrFail($id);
+
+            // Delete the invitation
+            $invitation->delete();
+
+            return response()->json(['status' => 200]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => 'Invitation not found'], 404);
+        }
     }
 }

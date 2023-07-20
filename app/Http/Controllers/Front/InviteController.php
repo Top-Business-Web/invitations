@@ -14,17 +14,31 @@ class InviteController extends Controller
 {
     public function index()
     {
-        $invitations = Invitation::query()->get();
+        $invitations = Invitation::query()->where('user_id', auth()->user()->id)->get();
         $scanneds = Scanned::get()->count();
-        $invitees = Invitee::get();
-        $statuses = [
-            1 => 'انتظار',
-            2 => 'مأكد',
-            3 => 'تم الاعتذار',
-            4 => 'لم يتم الارسال',
-            5 => 'فشل'
-        ];
-        return view('front.invites.invite', compact('invitations', 'scanneds', 'invitees', 'statuses'));
+        $manualSend =
+            $statuses = [
+                1 => 'انتظار',
+                2 => 'مأكد',
+                3 => 'تم الاعتذار',
+                4 => 'لم يتم الارسال',
+                5 => 'فشل'
+            ];
+        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses'));
+    }
+
+    public function search(Request $request)
+    {
+        $searchValue = $request->input('searchValue');
+
+        // Perform the search query on the database based on name, address, and date columns
+        $invitations = Invitation::where('title', 'like', '%' . $searchValue . '%')
+            ->orWhere('address', 'like', '%' . $searchValue . '%')
+            ->orWhere('id', 'like', '%' . $searchValue . '%')
+            ->orWhere('date', 'like', '%' . $searchValue . '%')
+            ->get();
+
+        return response()->json($invitations);
     }
 
     public function edit()
@@ -50,5 +64,16 @@ class InviteController extends Controller
     {
         $scannedUsers = Scanned::where('invitation_id', $id)->groupBy('invitee_id')->select('invitee_id', DB::raw('count(*) as totalCount'))->get();
         return view('front.scans.scan', compact('scannedUsers'));
+    }
+
+    public function delete($id)
+    {
+        try {
+            $invitation = Invitation::findOrFail($id);
+            $invitation->delete();
+            return response()->json(['status' => 200]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to delete invitation. Please try again.']);
+        }
     }
 }

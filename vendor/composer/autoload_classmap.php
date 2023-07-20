@@ -10,6 +10,7 @@ return array(
     'A6digital\\Image\\DefaultProfileImageServiceProvider' => $vendorDir . '/a6digital/laravel-default-profile-image/src/A6digital/Image/DefaultProfileImageServiceProvider.php',
     'A6digital\\Image\\Facades\\DefaultProfileImage' => $vendorDir . '/a6digital/laravel-default-profile-image/src/A6digital/Image/Facades/DefaultProfileImage.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Enums\\InviteeStatusEnum' => $baseDir . '/app/Enums/InviteeStatusEnum.php',
     'App\\Events\\NewMessage' => $baseDir . '/app/Events/NewMessage.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
@@ -31,12 +32,10 @@ return array(
     'App\\Http\\Controllers\\Api\\SettingController' => $baseDir . '/app/Http/Controllers/Api/SettingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
-<<<<<<< HEAD
-=======
     'App\\Http\\Controllers\\Front\\ContactsController' => $baseDir . '/app/Http/Controllers/Front/ContactsController.php',
->>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Controllers\\Front\\InviteController' => $baseDir . '/app/Http/Controllers/Front/InviteController.php',
+    'App\\Http\\Controllers\\Front\\ReminderController' => $baseDir . '/app/Http/Controllers/Front/ReminderController.php',
     'App\\Http\\Helper\\GlobalSelection' => $baseDir . '/app/Http/Helper/GlobalSelection.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\AuthJWTMiddleware' => $baseDir . '/app/Http/Middleware/AuthJWTMiddleware.php',
@@ -82,11 +81,7 @@ return array(
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Scanned' => $baseDir . '/app/Models/Scanned.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
-<<<<<<< HEAD
     'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
-=======
-    'App\\Models\\TranslationLanguage' => $baseDir . '/app/Models/TranslationLanguage.php',
->>>>>>> e78cddd16f83c3f4d62236379a38def911c4d197
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -436,7 +431,7 @@ return array(
     'Darryldecode\\Cart\\Validators\\Validator' => $vendorDir . '/darryldecode/cart/src/Darryldecode/Cart/Validators/Validator.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\AdminSeeder' => $baseDir . '/database/seeders/AdminSeeder.php',
-    'Database\\Seeders\\ContactTest' => $baseDir . '/database/seeders/ContactTest.php',
+    'Database\\Seeders\\ContactSeeder' => $baseDir . '/database/seeders/ContactSeeder.php',
     'Database\\Seeders\\ContactUsSeeder' => $baseDir . '/database/seeders/ContactUsSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\InvitationSeeder' => $baseDir . '/database/seeders/InvitationSeeder.php',
