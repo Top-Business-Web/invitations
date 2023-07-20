@@ -3,6 +3,7 @@
 @include('front.layouts.head')
 
 <body>
+    @toastr_css
     @include('front.layouts.nav')
 
     @include('front.invites.components.contacts')
@@ -14,7 +15,9 @@
     @include('front.invites.components.qr_code')
 
     @include('front.layouts.scripts')
-    
+
+    @toastr_js
+    @toastr_render
 </body>
 
 </html>
