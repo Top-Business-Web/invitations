@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\ContactsController;
+use App\Http\Controllers\Front\InvitationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Front\AuthController;
@@ -29,6 +30,12 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
     Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+
+
+    //add invitations
+    Route::post('add-invitation-by-client', [InvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
+
+
     /**
      * contacts controller
      */

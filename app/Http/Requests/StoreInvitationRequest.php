@@ -11,9 +11,9 @@ class StoreInvitationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,15 @@ class StoreInvitationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+
+            'date' => 'required',
+            'title' => 'required',
+            'image' => 'nullable',
+            'sur_name' => 'required|in:mr/mis,honored',
+            'address' => 'required',
         ];
     }
 }

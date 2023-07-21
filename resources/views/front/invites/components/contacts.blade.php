@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h3>دعواتى</h3>
-            <a href="add-invite.html" class="text-decoration-none main-btn1">انشاء دعوة</a>
+            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">انشاء دعوة</a>
         </div>
         <div class="row mt-5">
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -41,6 +41,7 @@
                     <div class="row mt-4">
                         <div class="col-lg-3 col-12 mb-2">
                             <img src="{{ asset($invitation->image) }}" alt="no-image" class="image-details">
+
                         </div>
                         <div class="col-lg-7 col-12">
                             <div class="d-flex mb-2">
