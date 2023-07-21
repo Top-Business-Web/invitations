@@ -12,6 +12,11 @@ class HomeController extends Controller
     {
         return view('front.index.index');
     }
+
+    public function notfound()
+    {
+        return view('front.not_found.not_found');
+    }
     public function signIn()
     {
         if (Auth::check()) {
@@ -51,6 +56,7 @@ class HomeController extends Controller
 
     public function addGuest()
     {
+
         return view('front.add_guest.add-guest');
     }
 

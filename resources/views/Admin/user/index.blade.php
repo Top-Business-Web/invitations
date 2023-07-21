@@ -111,6 +111,21 @@
         // Edit Using Ajax
         showEditModal('{{route('users.edit',':id')}}');
         editScript();
+
+
+        function showEditModal(routeOfEdit){
+            $(document).on('click', '.editUser', function () {
+                var id = $(this).data('id')
+                var url = '{{route('users.update_point_form',':id')}}';
+                url = url.replace(':id', id)
+                $('#modal-body').html(loader)
+                $('#editOrCreate').modal('show')
+
+                setTimeout(function () {
+                    $('#modal-body').load(url)
+                }, 500)
+            })
+        }
     </script>
 @endsection
 

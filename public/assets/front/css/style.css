@@ -274,6 +274,17 @@ select:focus{
     background-size: cover;
     background-position: 100% 100%;
 }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Optionally, you can set a maximum width for the container */
+    max-width: 100%;
+    /* Optionally, you can set a maximum height for the container */
+    max-height: 500px;
+}
+
 .image-client img{
     width: 100px !important;
     height: 100px;

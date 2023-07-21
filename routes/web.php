@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\Front\ContactsController;
 use App\Http\Controllers\Front\InvitationController;
 use Illuminate\Support\Facades\Route;
@@ -25,17 +26,27 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['middleware' => ['auth:web']], function () {
     Route::get('invites', [InviteController::class, 'index'])->name('invites');
     Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
+    Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+    Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
+    Route::post('/search-invitations', [InviteController::class, 'search'])->name('search.invitations');
     Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+<<<<<<< HEAD
 
 
     //add invitations
     Route::post('add-invitation-by-client', [InvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
 
 
+=======
+    Route::get('notfound', [HomeController::class, 'notfound'])->name('notfound');
+>>>>>>> c632385be796cf2a55361ae0b3af62adca452878
     /**
      * contacts controller
      */
@@ -49,11 +60,14 @@ Route::group(['middleware' => ['auth:web']], function () {
      *  end contacts controller
      */
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+<<<<<<< HEAD
+=======
 
     Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
 
     Route::get('reminder', [HomeController::class, 'reminder'])->name('reminder');
+>>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
     Route::get('scans', [HomeController::class, 'scans'])->name('scans');
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
 });

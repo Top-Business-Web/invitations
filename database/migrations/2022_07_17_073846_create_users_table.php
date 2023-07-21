@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name',255)->nullable();
             $table->string('email',255)->nullable();
             $table->string('phone',255)->nullable();
-            $table->integer('points');
+            $table->integer('points')->default(1);
             $table->string('address',255)->nullable();
             $table->string('password',255);
 //            $table->integer('role_id')->comment('1 => provider, 2 => scaner')->default(2);

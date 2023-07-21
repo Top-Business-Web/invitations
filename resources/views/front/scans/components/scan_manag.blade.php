@@ -18,14 +18,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($scannedUsers as $scannedUser)
+                        @if ($scannedUsers->isEmpty())
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $scannedUser->invitee->name }}</td>
-                                <td>{{ $scannedUser->invitee->phone }}</td>
-                                <td>{{ $scannedUser->totalCount }}</td>
+                                <td colspan="5" class="text-center">لا يوجد معلومات
+                                </td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($scannedUsers as $scannedUser)
+                                <tr>
+                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <td>{{ $scannedUser->invitee->name }}</td>
+                                    <td>{{ $scannedUser->invitee->phone }}</td>
+                                    <td>{{ $scannedUser->totalCount }}</td>
+                                </tr>
+                            @endforeach
+                            @endif
                     </tbody>
                 </table>
             </div>
