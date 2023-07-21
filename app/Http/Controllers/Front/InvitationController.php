@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class InvitationController extends Controller
 {
 
+    //add invitations
     public function addInvitationByClient(StoreInvitationRequest $request)
     {
         try {
