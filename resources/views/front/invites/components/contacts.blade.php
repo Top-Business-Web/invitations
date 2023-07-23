@@ -3,11 +3,11 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h3>دعواتى</h3>
-<<<<<<< HEAD
+
             <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">انشاء دعوة</a>
-=======
-            <a href="{{ route('addInvites') }}" class="text-decoration-none main-btn1">انشاء دعوة</a>
->>>>>>> c632385be796cf2a55361ae0b3af62adca452878
+
+{{--            <a href="{{ route('addInvites') }}" class="text-decoration-none main-btn1">انشاء دعوة</a>--}}
+
         </div>
         <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -22,7 +22,7 @@
                 <input class="form-control" type="search" placeholder="بحث" id="searchInput">
             </div>
         </div>
-<<<<<<< HEAD
+
         @foreach ($invitations as $invitation)
             <div class="card-invite mt-2">
                 <button class="btn-faq d-flex justify-content-between align-items-center w-100"
@@ -53,7 +53,7 @@
                             <div class="d-flex mb-2">
                                 <div class="color2 ms-2"><i class="fa-solid fa-location-dot"></i></div>
                                 <div>{{ $invitation->address }}</div>
-=======
+
         @if ($invitations->isEmpty())
             @include('front.not_found.not_found')
         @else
@@ -65,7 +65,7 @@
                         <div class="row" style="width: 50%;">
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
                                 <h5>{{ $invitation->title }}</h5>
->>>>>>> c632385be796cf2a55361ae0b3af62adca452878
+
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center">
                                 <p class="btn-active">{{ $invitation->status == '1' ? 'مؤكد' : 'غير مؤكد' }} </p>
@@ -431,3 +431,5 @@
         });
     });
 </script>
+
+@endforeach

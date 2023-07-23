@@ -3,15 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-<<<<<<< HEAD
-        'reference' => '5e3c94f693349d36da643fe3f4856fd96efafe62',
-=======
-<<<<<<< HEAD
-        'reference' => 'f44ca366f41f4582dcd142c5b422925feadcd107',
-=======
-        'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
->>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
->>>>>>> c632385be796cf2a55361ae0b3af62adca452878
+        'reference' => '67b4ab54afc2af3411c4c9f173ebb7d207369e06',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -594,15 +586,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-<<<<<<< HEAD
-            'reference' => '5e3c94f693349d36da643fe3f4856fd96efafe62',
-=======
-<<<<<<< HEAD
-            'reference' => 'f44ca366f41f4582dcd142c5b422925feadcd107',
-=======
-            'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
->>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
->>>>>>> c632385be796cf2a55361ae0b3af62adca452878
+            'reference' => '67b4ab54afc2af3411c4c9f173ebb7d207369e06',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -780,15 +764,9 @@
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
-<<<<<<< HEAD
-            'pretty_version' => '1.6.4',
-            'version' => '1.6.4.0',
-            'reference' => 'd1413755e26fe56a63455f7753221c86cbb88f66',
-=======
-            'pretty_version' => '1.6.3',
-            'version' => '1.6.3.0',
-            'reference' => 'b1be135c1ba7632f0248e07ee5e6e412576a309d',
->>>>>>> 2148e3662198f3b7dc0b5ae546fd20705717f57c
+            'pretty_version' => '1.6.2',
+            'version' => '1.6.2.0',
+            'reference' => '13a7fa2642c76c58fa2806ef7f565344c817a191',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),
@@ -1076,8 +1054,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0',
+                0 => '1.0|2.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
