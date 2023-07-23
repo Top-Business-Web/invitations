@@ -41,6 +41,11 @@ class InviteController extends Controller
         return response()->json($invitations);
     }
 
+    public function editInvitation($id)
+    {
+        $invites = Invitation::where('id', $id)->first();
+        return view('front.invites.components.edit_invitation', compact('invites'));
+    }
     public function edit()
     {
         $invites = Invitation::query()->get();
