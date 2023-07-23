@@ -110,6 +110,7 @@
     // Add By Ajax
     $(document).on('submit','Form#addForm',function(e) {
         e.preventDefault();
+
         let url = $('#addForm').attr('action');
         let datePicker = $("#datepicker").val();
         let title = $("#title").val();
