@@ -12,26 +12,25 @@ class InvitationController extends Controller
 {
 
     //add invitations
-    public function addInvitationByClient(StoreInvitationRequest $request)
+    public function addInvitationByClient(StoreInvitationRequest $request): JsonResponse
     {
         try {
 
-            return $request->all();
+//            return $request->all();
             if ($image = $request->file('image')) {
-                $destinationPath = 'uploads/invitations/';
+                $destinationPath = 'assets/uploads/invitations';
                 $imagePath = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imagePath);
                 $request['image'] = "$imagePath";
             }
 
            $addInvitation = Invitation::create([
-               'date' => $request->date,
+               'date' => Carbon::parse($request->date)->format('Y-m-d'),
                'title' => $request->title,
-               'image' => $imagePath,
+               'image' => $imagePath ?? null,
                'has_qrcode' => $request->has_qrcode != null ? 1 : 0,
                'qrcode' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-               'send_date' => Carbon::now()->format('Y-m-d'),
-               'address' => $request->searchMapInput,
+               'address' => $request->address,
                'longitude' => $request->longitude,
                'latitude' => $request->latitude,
                'password' => mt_rand(11111111,99999999),
