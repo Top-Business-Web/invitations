@@ -4,7 +4,8 @@
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
 
-        'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
+        'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
+     
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -588,7 +589,7 @@
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
 
-            'reference' => '91bb503091ad728e9f2f9736048ba3ff2cf24067',
+            'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
 
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
@@ -772,6 +773,8 @@
             'version' => '1.6.4.0',
             'reference' => 'd1413755e26fe56a63455f7753221c86cbb88f66',
 
+
+        
             'type' => 'library',
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),
@@ -1059,8 +1062,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

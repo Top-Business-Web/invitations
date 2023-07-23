@@ -13,13 +13,13 @@ class InvitationController extends Controller
 {
 
     use PhotoTrait;
+
     //add invitations
-    public function addInvitationByClient(StoreInvitationRequest $request): JsonResponse
+    public function addInvitationByClient(StoreInvitationRequest $request)
     {
-//        dd($request->all());
         try {
 
-//            return $request->all();
+
             if ($image = $request->has('image')) {
 //                $destinationPath = 'assets/uploads/invitations';
 //                $imagePath = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -27,10 +27,11 @@ class InvitationController extends Controller
                 $imagePath = $this->saveImage($request->file('image'),'assets/uploads/invitations','invitation');
             }
 
+
            $addInvitation = Invitation::create([
                'date' => Carbon::parse($request->date)->format('Y-m-d'),
                'title' => $request->title,
-               'image' => $imagePath ?? null,
+               'image' => $imagePath,
                'has_qrcode' => $request->has_qrcode != null ? 1 : 0,
                'qrcode' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
                'address' => $request->address,
@@ -39,6 +40,7 @@ class InvitationController extends Controller
                'password' => mt_rand(11111111,99999999),
                'user_id' => Auth::id(),
            ]);
+
 
             if($addInvitation->save()){
 
