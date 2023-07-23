@@ -19,6 +19,7 @@
 
     <form id="addForm" class="addForm" method="POST" enctype="multipart/form-data" action="{{route('addInvitationByClient')}}" >
 
+        @csrf
         <div class="form-outer">
             <div class="form">
 
@@ -30,11 +31,11 @@
 
                         <div class="col-md-4 col-12">
                             <label class="form-label">تاريخ المناسبة</label>
-                            <input type="text" class="form-control" id="datepicker">
+                            <input type="text" name="date" class="form-control" id="datepicker">
                         </div>
                         <div class="col-md-4 col-12">
                             <label class="form-label">اسم المناسبة</label>
-                            <input type="text" class="form-control" id="title">
+                            <input type="text" name="title" class="form-control" id="title">
                         </div>
 
                         <div class="col-md-4 col-12">
@@ -47,13 +48,16 @@
 
                         <div class="col-md-12 col-12">
                             <label class="form-label">موقع المناسبة</label>
-                            <input name="searchMapInput" id="searchMapInput"  type="text" class="form-control mapControls">
+                            <input
+                                name="address"
+{{--                                name="searchMapInput"--}}
+                                id="searchMapInput"  type="text" class="form-control mapControls">
                             <div id="map"></div>
 
                             <div style="display: none"  id="geoData">
-                                <input style="border: 1px solid #ccc"  type="text"  id="location-snap">
-                                <input style="border: 1px solid #ccc"  type="text"  id="lng-span">
-                                <input style="border: 1px solid #ccc"  type="text"  id="lat-span">
+                                <input style="border: 1px solid #ccc" name="address" type="text"  id="location-snap">
+                                <input style="border: 1px solid #ccc" name="longitude" type="text"  id="lng-span">
+                                <input style="border: 1px solid #ccc" name="latitude" type="text"  id="lat-span">
                             </div>
 
                         </div>
@@ -61,7 +65,8 @@
 
 
                         <div class="col-12 mb-2">
-                            <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                            <input type="hidden" name="has_qrcode" value="0">
+                            <input class="form-check-input"  name="has_qrcode" value="1" type="checkbox"
                                 id="flexRadioDefault1">
                             <label class="form-check-label fw-bold" for="flexRadioDefault1">
                                 اظهار كود الدخول
