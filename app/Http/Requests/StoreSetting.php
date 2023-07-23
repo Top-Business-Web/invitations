@@ -27,7 +27,9 @@ class StoreSetting extends FormRequest
         return [
             'title'          => 'required',
             'logo'          => 'nullable|mimes:png',
-            'phone'          => 'required|min:11',
+            'email'          => 'nullable',
+            'address'          => 'nullable',
+            'phone'          => 'required',
             'terms'        => 'required',
             'privacy'        => 'required',
             'facebook'          => 'required|url',

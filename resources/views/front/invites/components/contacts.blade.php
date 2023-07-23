@@ -7,7 +7,7 @@
         </div>
         <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" id="sortSelect">
                     <option selected>ترتيب حسب</option>
                     <option value="1">الاسم</option>
                     <option value="2">التاريخ</option>
@@ -22,7 +22,7 @@
             @include('front.not_found.not_found')
         @else
             @foreach ($invitations as $invitation)
-                <div class="card-invite mt-2" id="invitationTable">
+                <div class="card-invite mt-2" id="dataContainer">
                     <button class="btn-faq d-flex justify-content-between align-items-center w-100"
                         data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $invitation->id }}"
                         aria-expanded="false" aria-controls="collapseExample">
@@ -66,15 +66,14 @@
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
                                 <div class="edit">
-                                    <button type="button" data-id="$admins->id"
-                                        class="btn btn-primary editBtn fa-solid fa-pen-to-square"></button>
+                                    <a href="{{ route('editInvitation', $invitation->id) }}" class="btn btn-primary fa-solid fa-pen-to-square"></a>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6">
-                                <div class="edit">
+                                <div class="delete">
                                     <button type="button" class="btn btn-primary fa-solid fa-trash-can"
                                         data-toggle="modal" data-target="#exampleModal"
-                                        data-invitation_id="{{ $invitation->id }}"
+                                        data-invitation-id="{{ $invitation->id }}"
                                         data-invitation-title="{{ $invitation->title }}"></button>
                                 </div>
                             </div>
@@ -355,16 +354,16 @@
 @include('Admin/layouts/myAjaxHelper')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
     // function to get invitation id and title 
     $(document).ready(function() {
         $('#exampleModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
-            var invitationId = button.data('invitation_id');
+            var invitationId = button.data('invitation-id');
             var invitationTitle = button.data('invitation-title');
 
             $('#invitationId').text(invitationId);
             $('#invitationTitle').text(invitationTitle);
+            console.log(invitationTitle);
         });
 
         $('#deleteButton').on('click', function() {
@@ -379,11 +378,12 @@
                 })
                 .then(response => {
                     if (response.status === 200) {
+                        toastr.success('تم الحذف');
                         setTimeout(() => {
-                            toastr.success('تم الحذف');
                             location.reload();
                         }, 2000);
                     } else {
+                        alert(invitationId)
                         alert('Failed to delete invitation. Please try again.');
                     }
                 })

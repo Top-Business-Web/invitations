@@ -46,8 +46,8 @@
 @else
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img class="image-logo" src="{{ asset('assets/front') }}/photo/logo2.png" alt="no logo">
+      <a class="navbar-brand" href="{{ route('index') }}">
+        <img class="image-logo" src="{{ asset($setting->logo) }}" alt="no logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

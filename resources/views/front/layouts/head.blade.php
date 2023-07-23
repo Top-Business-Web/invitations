@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="{{ asset('assets/front') }}/css/dropify.min.css">
+
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/owl.theme.default.min.css">

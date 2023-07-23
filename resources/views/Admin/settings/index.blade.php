@@ -46,6 +46,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="facebook_link">الايميل :</label>
+                                <input type="text" name="email" value="{{ $settings->email }}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">مكان :</label>
+                                <input type="text" name="address" value="{{ $settings->address }}" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
                     <h1 class="card-title" style="font: bold">قائمة السوشيال ميديا : </h1>
                     <div class="row">
                         <div class="col-md-4">
