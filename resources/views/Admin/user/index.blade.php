@@ -113,7 +113,7 @@
         editScript();
 
 
-        function showEditModal(routeOfEdit){
+        // function showEditModal(routeOfEdit){
             $(document).on('click', '.editUser', function () {
                 var id = $(this).data('id')
                 var url = '{{route('users.update_point_form',':id')}}';
@@ -125,7 +125,7 @@
                     $('#modal-body').load(url)
                 }, 500)
             })
-        }
+        // }
     </script>
 @endsection
 

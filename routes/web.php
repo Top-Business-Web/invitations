@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\Front\ContactsController;
+use App\Http\Controllers\Front\InvitationController as AddInvitationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Front\AuthController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
     Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+
     Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
     Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
     Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
@@ -57,7 +59,16 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
     Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+
+
+
+    //add invitations
+    Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
+
+
+
     Route::get('notfound', [HomeController::class, 'notfound'])->name('notfound');
+
     /**
      * contacts controller
      */
@@ -71,8 +82,8 @@ Route::group(['middleware' => ['auth:web']], function () {
      */
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 
-    Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
 
+    Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
     Route::get('scans', [HomeController::class, 'scans'])->name('scans');
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
 });

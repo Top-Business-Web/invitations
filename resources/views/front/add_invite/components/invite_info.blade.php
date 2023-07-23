@@ -17,28 +17,49 @@
             </div>
         </div>
 
+    <form id="addForm" class="addForm" method="POST" enctype="multipart/form-data" action="{{route('addInvitationByClient')}}" >
+
         <div class="form-outer">
             <div class="form">
+
                 <div class="page slidePage">
                     <div class="">
-                        <input name="image" type="file" class="dropify" data-default-file="">
+                        <input name="image" id="image" type="file" class="dropify" data-default-file="">
                     </div>
                     <div class="row g-3">
-                        <div class="col-md-6 col-12">
+
+                        <div class="col-md-4 col-12">
                             <label class="form-label">تاريخ المناسبة</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" id="datepicker">
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-4 col-12">
                             <label class="form-label">اسم المناسبة</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" id="title">
                         </div>
-                        <div class="col-md-6 col-12">
+
+                        <div class="col-md-4 col-12">
+                            <label class="form-label">اختر اللقب</label>
+                            <select name="sur_name" id="sur_name" class="form-control">
+                                <option value="mr/mis">mr/mis</option>
+                                <option value="honored">honored</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 col-12">
                             <label class="form-label">موقع المناسبة</label>
-                            <input type="text" class="form-control" required>
+                            <input name="searchMapInput" id="searchMapInput"  type="text" class="form-control mapControls">
+                            <div id="map"></div>
+
+                            <div style="display: none"  id="geoData">
+                                <input style="border: 1px solid #ccc"  type="text"  id="location-snap">
+                                <input style="border: 1px solid #ccc"  type="text"  id="lng-span">
+                                <input style="border: 1px solid #ccc"  type="text"  id="lat-span">
+                            </div>
+
                         </div>
-                        <div class="col-md-6 col-12 mt-0 mt-md-5">
-                            <a href="#" class="location">اختر الموقع من الخريطة</a>
-                        </div>
+
+
+
                         <div class="col-12 mb-2">
                             <input class="form-check-input" type="checkbox" name="flexRadioDefault"
                                 id="flexRadioDefault1">
@@ -52,10 +73,14 @@
                         <div class="col-lg-8 col-12 d-flex mt-4 justify-content-end">
                             <a href="invite.html" class="text-decoration-none btn-login"
                                 style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
-                            <button class="next-btn main-btn1">حفظ ومتابعة</button>
+
+{{--                            <button type="submit"  id="addButton" class="next-btn main-btn1">حفظ ومتابعة</button>--}}
+                            <button type="submit"  id="addButton" class="main-btn1">حفظ ومتابعة</button>
                         </div>
                     </div>
                 </div>
+                {{-- end first step--}}
+
 
                 <div class="page">
                     <h5 class="mb-3">تحديث الضيوف الاضافين</h5>
@@ -157,5 +182,8 @@
                 </div>
             </div>
         </div>
+    </form>
+
+
     </div>
 </div>

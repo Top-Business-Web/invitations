@@ -24,7 +24,6 @@ class AuthenticateSession
     public function __construct(AuthFactory $auth)
     {
         $this->auth = $auth;
-        dd($this->guard);
     }
 
     /**
