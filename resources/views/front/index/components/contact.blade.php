@@ -10,21 +10,21 @@
           <div class="card-contact p-4">
               <div class="icon-contact"><i class="fa-solid fa-location-dot"></i></div>
               <h4 class="mt-3 mb-3">العنوان</h4>
-              <p class="color2">مصر</p>
+              <p class="color2">{{ $setting->address }}</p>
           </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
           <div class="card-contact p-4">
               <div class="icon-contact"><i class="fa-regular fa-envelope-open"></i></div>
               <h4 class="mt-3 mb-3">الايميل</h4>
-              <a href="mailto: info@yourmail.com" class="text-decoration-none color2">info@yourmail.com</a>
+              <a href="mailto: {{ $setting->email }}" class="text-decoration-none color2">{{ $setting->email }}</a>
           </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
           <div class="card-contact p-4">
               <div class="icon-contact"><i class="fa-solid fa-phone"></i></div>
               <h4 class="mt-3 mb-3">رقم التواصل</h4>
-              <a href="https://wa.me/920033007" class="text-decoration-none color2" target="_blank">920033007</a>
+              <a href="https://wa.me/{{ $setting->phone }}" class="text-decoration-none color2" target="_blank">{{ $setting->phone }}</a>
           </div>
       </div>
   </div>

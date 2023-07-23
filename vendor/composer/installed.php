@@ -3,7 +3,9 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+
         'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
+     
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -586,7 +588,9 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+
             'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
+
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -764,9 +768,13 @@
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
+
             'pretty_version' => '1.6.4',
             'version' => '1.6.4.0',
             'reference' => 'd1413755e26fe56a63455f7753221c86cbb88f66',
+
+
+        
             'type' => 'library',
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),

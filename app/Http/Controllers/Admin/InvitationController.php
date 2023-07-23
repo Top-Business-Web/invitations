@@ -95,6 +95,43 @@ class InvitationController extends Controller
         }
     }
 
+    public function sort(Request $request)
+    {
+        $sortBy = $request->input('sort_by');
+
+        // Your sorting logic based on the selected option
+        switch ($sortBy) {
+            case '1':
+                $data = Invitation::orderBy('title')->get();
+                break;
+            case '2':
+                $data = Invitation::orderBy('date')->get();
+                break;
+            case '3':
+                $data = Invitation::orderBy('status')->get();
+                break;
+            default:
+                // Default sorting logic when no valid option is selected
+                $data = Invitation::all();
+        }
+
+        // Load the view with the sorted data and return the HTML
+        return view('front.invites.components.contacts')->with('data', $data);
+    }
+
+    public function search(Request $request)
+{
+    $searchValue = $request->input('searchValue');
+
+    // Perform the search query on the database based on name, address, and date columns
+    $invitations = Invitation::where('title', 'like', '%' . $searchValue . '%')
+        ->orWhere('address', 'like', '%' . $searchValue . '%')
+        ->orWhere('date', 'like', '%' . $searchValue . '%')
+        ->get();
+
+    return response()->json($invitations);
+}
+
 
     public function deleteInvitation($id)
     {
