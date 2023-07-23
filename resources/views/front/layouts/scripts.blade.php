@@ -116,23 +116,26 @@
         let latitude = $("#lat-span").val();
         let longitude = $("#lng-span").val();
         let has_qrcode = $("#flexRadioDefault1").val();
+        var formData = new FormData(this);
 
         $.ajax({
 
             url: url,
             type: 'POST',
             enctype : 'multipart/form-data',
-            data: {
-                "_token" : "{{csrf_token()}}",
-                "date" : datePicker,
-                "title": title,
-                "image" : image,
-                "sur_name": sur_name,
-                "address" : address,
-                "longitude": longitude,
-                "latitude": latitude,
-                "has_qrcode": has_qrcode,
-            },
+            data: formData
+            {{--    {--}}
+            {{--    "_token" : "{{csrf_token()}}",--}}
+            {{--    "date" : datePicker,--}}
+            {{--    "title": title,--}}
+            {{--    "image" : image,--}}
+            {{--    "sur_name": sur_name,--}}
+            {{--    "address" : address,--}}
+            {{--    "longitude": longitude,--}}
+            {{--    "latitude": latitude,--}}
+            {{--    "has_qrcode": has_qrcode,--}}
+            {{--}--}}
+            ,
             beforeSend: function () {
                 $('#addButton').html('<span class="spinner-border spinner-border-sm mr-2" ' +
                     ' ></span> <span style="margin-left: 4px;">working</span>').attr('disabled', true);
@@ -164,6 +167,9 @@
                     toastr.error('there in an error');
                 $('#addButton').html(`حفظ ومتابعة`).attr('disabled', false);
             },//end error method
+            cache: false,
+            contentType: false,
+            processData: false
 
         });
     });
