@@ -47,12 +47,13 @@
 
                         <div class="col-md-12 col-12">
                             <label class="form-label">موقع المناسبة</label>
-                            <input id="searchMapInput"  type="text" class="form-control mapControls">
+                            <input name="searchMapInput" id="searchMapInput"  type="text" class="form-control mapControls">
                             <div id="map"></div>
 
-                            <div style="display: none" id="geoData">
-                                <input type="text"  id="longitude">
-                                <input type="text"  id="latitude">
+                            <div style="display: none"  id="geoData">
+                                <input style="border: 1px solid #ccc"  type="text"  id="location-snap">
+                                <input style="border: 1px solid #ccc"  type="text"  id="lng-span">
+                                <input style="border: 1px solid #ccc"  type="text"  id="lat-span">
                             </div>
 
                         </div>
@@ -73,7 +74,8 @@
                             <a href="invite.html" class="text-decoration-none btn-login"
                                 style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
 
-                            <button type="submit"  id="addButton" class="next-btn main-btn1">حفظ ومتابعة</button>
+{{--                            <button type="submit"  id="addButton" class="next-btn main-btn1">حفظ ومتابعة</button>--}}
+                            <button type="submit"  id="addButton" class="main-btn1">حفظ ومتابعة</button>
                         </div>
                     </div>
                 </div>

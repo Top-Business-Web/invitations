@@ -98,8 +98,8 @@
 
             /* Location details */
             document.getElementById('location-snap').value = place.formatted_address;
-            document.getElementById('latitude').value = place.geometry.location.lat();
-            document.getElementById('longitude').value = place.geometry.location.lng();
+            document.getElementById('lat-span').value = place.geometry.location.lat();
+            document.getElementById('lng-span').value = place.geometry.location.lng();
 
 
         });
@@ -116,14 +116,15 @@
         let image = $("#image").val();
         let sur_name = $("#sur_name").val();
         let address = $("#searchMapInput").val();
-        let latitude = $("#latitude").val();
-        let longitude = $("#longitude").val();
+        let latitude = $("#lat-span").val();
+        let longitude = $("#lng-span").val();
         let has_qrcode = $("#flexRadioDefault1").val();
 
         $.ajax({
 
             url: url,
             type: 'POST',
+            enctype : 'multipart/form-data',
             data: {
                 "_token" : "{{csrf_token()}}",
                 "date" : datePicker,

@@ -8,8 +8,6 @@ use App\Http\Resources\NotificationResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SliderResource;;
-
-
 use App\Models\Contact;
 use App\Models\Invitation;
 use App\Models\Notification;
@@ -24,12 +22,17 @@ use Illuminate\Support\Facades\Validator;
 class HomeService
 {
     use DefaultImage,GeneralTrait;
+
     public function index(){
+
         $search_key = request()->search_key;
 
-        $invitations = Invitation::where(['user_id'=> auth()->id()])->when($search_key,function ($query) use ($search_key) {
-            $query->where('title', 'LIKE', '%'.$search_key.'%');
+        $invitations = Invitation::where(['user_id'=> Auth::guard('api')->id()])
+            ->when($search_key,function ($query) use ($search_key) {
+            $query->where('title', 'LIKE', '%' . $search_key .'%');
         })->get();
+
+
         return helperJson(InvitationResource::collection($invitations), '',200);
     }
 
