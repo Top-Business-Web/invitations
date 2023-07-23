@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvitationRequest;
 use App\Models\Invitation;
+use App\Traits\PhotoTrait;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +13,13 @@ use Illuminate\Support\Facades\Auth;
 class InvitationController extends Controller
 {
 
+    use PhotoTrait;
+
     //add invitations
-    public function addInvitationByClient(StoreInvitationRequest $request): JsonResponse
+    public function addInvitationByClient(StoreInvitationRequest $request)
     {
         try {
+
 
             //            return $request->all();
             if ($image = $request->file('image')) {
@@ -39,6 +43,7 @@ class InvitationController extends Controller
             ]);
 
             if ($addInvitation->save()) {
+
 
                 return response()->json(['status' => 200]);
             } else {
