@@ -74,4 +74,5 @@ Route::group([ 'middleware' => 'api','namespace' => 'Api'], function () {
 });
 
 
+//end route api
 
