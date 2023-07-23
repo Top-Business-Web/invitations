@@ -105,7 +105,7 @@
 
 <script>
     // Add By Ajax
-    $(document).on('submit','Form#addForm',function(e) {
+    $(document).on('submit','Form#Form',function(e) {
         e.preventDefault();
 
         let url = $('#addForm').attr('action');
@@ -174,6 +174,41 @@
 
         });
     });
+
+    $(document).ready(function() {
+        // Submit the form using AJAX
+        $("#editForm").submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the form data
+            var formData = new FormData(this);
+            var lng = $("#lng-span").val();
+            var lat = $("#lat-span").val();
+            formData.append("longitude", lng);
+            formData.append("latitude", lat);
+
+            // Send the AJAX request to update the invitation
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false, // important
+                contentType: false, // important
+                success: function(response) {
+                    if (response.status == 200) {
+                        toastr.success('تم تحديث الدعوه بنجاح');
+                        
+                    }
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error response
+                    console.error(error);
+                }
+            });
+        });
+    });
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK34ZyoH4758BkVP05-GxKP0dSmBi4yTo&libraries=places&callback=initMap" async defer></script>
 @include('Admin/layouts/myAjaxHelper')
