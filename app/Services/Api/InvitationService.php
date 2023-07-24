@@ -29,6 +29,7 @@ class InvitationService
             $inputs['status'] = ($inputs['as_draft']) ? 0 :1;
             $inputs['password'] = mt_rand(11111111,99999999);
             $inputs['qrcode'] = \Ramsey\Uuid\Uuid::uuid4()->toString();
+            $inputs['lang'] = $request->lang;
             if ($request->has('image') && $request->image != null) {
                 $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
             }
