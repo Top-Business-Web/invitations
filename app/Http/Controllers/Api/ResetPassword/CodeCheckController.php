@@ -1,25 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api\ResetPassword;
 
 use App\Http\Controllers\Controller;
 use App\Models\ResetCodePassword;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use function helperJson;
-use function now;
-use function response;
 
-class CodeCheckController extends Controller
-{
+class CodeCheckController extends Controller{
+
     public function __invoke(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $request->validate([
             'code' => 'required|string|exists:reset_code_passwords',
         ]);
-        if($validator->fails()) {
-            return helperJson(null, $validator->errors(), 422);
-        }
 
         // find the code
         $passwordReset = ResetCodePassword::firstWhere('code', $request->code);
@@ -27,12 +20,14 @@ class CodeCheckController extends Controller
         // check if it does not expired: the time is one hour
         if ($passwordReset->created_at > now()->addHour()) {
             $passwordReset->delete();
-            return response(['message' => trans('passwords.code_is_expire')], 422);
+            return response(['message' => 'code is expire'], 422);
         }
 
         return response([
             'code' => $passwordReset->code,
-            'message' => trans('passwords.code_is_valid')
+            'message' => "Success code and now try to go the reset password page"
         ], 200);
+
     }
+
 }

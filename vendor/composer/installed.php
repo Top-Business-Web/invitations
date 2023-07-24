@@ -3,7 +3,11 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+<<<<<<< HEAD
+        'reference' => '61de4acfeb97c4d1e62d73cd1fedccda37eff0ba',
+=======
         'reference' => 'aee7e4e717f5560c5f55b1dba2511edfabf56abc',
+>>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -586,7 +590,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
+            'reference' => '61de4acfeb97c4d1e62d73cd1fedccda37eff0ba',
+=======
             'reference' => 'aee7e4e717f5560c5f55b1dba2511edfabf56abc',
+>>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1054,8 +1062,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0',
+                0 => '1.0|2.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
