@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
+class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -252,11 +252,11 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
         ),
         'Whoops\\' => 
         array (
@@ -456,8 +456,8 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -810,6 +810,7 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Front\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/AuthController.php',
         'App\\Http\\Controllers\\Front\\ContactsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ContactsController.php',
+        'App\\Http\\Controllers\\Front\\GoogleLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/GoogleLoginController.php',
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\InviteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InviteController.php',
         'App\\Http\\Controllers\\Front\\ReminderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ReminderController.php',
@@ -6117,8 +6118,26 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
         'Mockery\\Exception\\RuntimeException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/RuntimeException.php',
         'Mockery\\Expectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Expectation.php',
         'Mockery\\ExpectationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ExpectationDirector.php',
+        'Mockery\\ExpectationInterface' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ExpectationInterface.php',
+        'Mockery\\ExpectsHigherOrderMessage' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ExpectsHigherOrderMessage.php',
+        'Mockery\\Generator\\CachingGenerator' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/CachingGenerator.php',
+        'Mockery\\Generator\\DefinedTargetClass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/DefinedTargetClass.php',
         'Mockery\\Generator\\Generator' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/Generator.php',
+        'Mockery\\Generator\\Method' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/Method.php',
+        'Mockery\\Generator\\MockConfiguration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/MockConfiguration.php',
+        'Mockery\\Generator\\MockConfigurationBuilder' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/MockConfigurationBuilder.php',
+        'Mockery\\Generator\\MockDefinition' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/MockDefinition.php',
+        'Mockery\\Generator\\MockNameBuilder' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/MockNameBuilder.php',
+        'Mockery\\Generator\\Parameter' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/Parameter.php',
         'Mockery\\Generator\\StringManipulationGenerator' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulationGenerator.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\AvoidMethodClashPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/AvoidMethodClashPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\CallTypeHintPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/CallTypeHintPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\ClassAttributesPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassAttributesPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\ClassNamePass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassNamePass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\ClassPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\ConstantsPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ConstantsPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\InstanceMockPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/InstanceMockPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\InterfacePass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/InterfacePass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\MagicMethodTypeHintsPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/MagicMethodTypeHintsPass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\MethodDefinitionPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/MethodDefinitionPass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\Pass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/Pass.php',
@@ -6151,7 +6170,18 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
         'Mockery\\Matcher\\MustBe' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/MustBe.php',
         'Mockery\\Matcher\\NoArgs' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/NoArgs.php',
         'Mockery\\Matcher\\Not' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/Not.php',
+        'Mockery\\Matcher\\NotAnyOf' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/NotAnyOf.php',
+        'Mockery\\Matcher\\Pattern' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/Pattern.php',
+        'Mockery\\Matcher\\Subset' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/Subset.php',
+        'Mockery\\Matcher\\Type' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/Type.php',
         'Mockery\\MethodCall' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/MethodCall.php',
+        'Mockery\\Mock' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Mock.php',
+        'Mockery\\MockInterface' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/MockInterface.php',
+        'Mockery\\QuickDefinitionsConfiguration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/QuickDefinitionsConfiguration.php',
+        'Mockery\\ReceivedMethodCalls' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ReceivedMethodCalls.php',
+        'Mockery\\Reflector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Reflector.php',
+        'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
+        'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
@@ -9566,10 +9596,10 @@ class ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9f45cf0541f36cd311dc9607aad2f0db::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$classMap;
 
         }, null, ClassLoader::class);
     }
