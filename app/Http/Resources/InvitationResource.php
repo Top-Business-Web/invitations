@@ -49,5 +49,3 @@ class InvitationResource extends JsonResource
         ];
     }
 }
-
-//Add List
