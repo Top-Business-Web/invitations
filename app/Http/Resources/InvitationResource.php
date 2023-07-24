@@ -15,6 +15,7 @@ class InvitationResource extends JsonResource
     public function toArray($request)
     {
         return [
+
             'id'=>$this->id,
             'date'=>$this->date,
             'title'=>$this->title,
@@ -30,6 +31,13 @@ class InvitationResource extends JsonResource
             'status'=>$this->status,
             'step'=>$this->step,
             'invitees'=>$this->invitees,
+            'all_messages' => $this->messages,
+            'all_confirmed'=>$this->confirmed,
+            'all_scanned'=>$this->scanned,
+            'all_waiting'=>$this->waiting,
+            'all_apologized'=>$this->apologized,
+            'all_failed'=>$this->failed,
+            'all_not_sent'=>$this->not_sent,
             'messages'=>$this->messages->count(),
             'invitees_count'=>$this->invitees->count(),
             'scanned'=>$this->scanned->count(),
@@ -40,6 +48,6 @@ class InvitationResource extends JsonResource
             'failed'=>$this->failed->count(),
         ];
     }
-
-    //Add list of object (7 array of object)
 }
+
+//Add List
