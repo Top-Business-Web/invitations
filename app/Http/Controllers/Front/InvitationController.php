@@ -45,7 +45,7 @@ class InvitationController extends Controller
 
             if($addInvitation->save()){
 
-                return response()->json(['status' => 200]);
+                return response()->json(['status' => 200,'id'=>$addInvitation->id]);
             }else{
                 return response()->json(['status' => 405]);
             }
@@ -54,8 +54,19 @@ class InvitationController extends Controller
 
             return response()->json(['error' => $exception->getMessage(),'code' => 500]);
         }
-    }
+    } // end add invitation
 
+    public function InvitationStepTwo(Request $request,$id)
+    {
+        $invitation = Invitation::findOrFail($id);
+        return view('front.add_invite.components.invite_excel',compact('invitation'));
+
+    } // end InvitationStepTwo
+
+    public function addInvitationStepTwo(Request $request)
+    {
+
+    }
 
 
 

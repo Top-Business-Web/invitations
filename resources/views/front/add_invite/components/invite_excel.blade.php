@@ -1,51 +1,266 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="p-2">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+@include('front.layouts.head')
+
+<body>
+@include('front.layouts.nav')
+<div class="section pt-5 pb-5">
+    <div class="container">
+        <div class="progress-line mb-5">
+            <div class="step">
+                <p>معلومات الدعوة</p>
+                <div class="bullet">
+                    <span>1</span>
                 </div>
-                <div class="modal-body">
-                    <h5 class="mb-3">استيراد جهات الاتصال من ملف اكسيل</h5>
-                    <p>1- احفظ الملف على صيغة اكسيل</p>
-                    <p>2- نسق بيانات الاتصال على هذا الشكل</p>
+                <div class="check"><i class="fa-solid fa-check"></i></div>
+            </div>
+            <div class="step">
+                <p>ارسال الدعوة</p>
+                <div class="bullet">
+                    <span>2</span>
+                </div>
+                <div class="check"><i class="fa-solid fa-check"></i></div>
+            </div>
+        </div>
+
+        <div class="form-outer">
+            <div class="form">
+                <div class="page slidePage">
+                    <div class="">
+                        <input name="image" type="file" class="dropify" data-default-file="">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">تاريخ المناسبة</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">اسم المناسبة</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">موقع المناسبة</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 col-12 mt-0 mt-md-5">
+                            <a href="#" class="location">اختر الموقع من الخريطة</a>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                                اظهار كود الدخول
+                            </label>
+                        </div>
+                        <div class="col-lg-4 col-12 mb-3 mt-4">
+                            <a href="invite.html" class="text-decoration-none btn-login"> عودة</a>
+                        </div>
+                        <div class="col-lg-8 col-12 d-flex mt-4 justify-content-end">
+                            <a href="invite.html" class="text-decoration-none btn-login" style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
+                            <button class="next-btn main-btn1">حفظ ومتابعة</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <h5 class="mb-3">تحديث الضيوف الاضافين</h5>
+                    <div class="incr-decr-number mb-4">
+                        <input type="button" value="+" class="inc">
+                        <input type="text" value="0" class="input-field">
+                        <input type="button" value="-" class="dec">
+                    </div>
+                    <div class="d-flex justify-content-center mb-5">
+                        <button type="button" class="main-btn1 bg-color" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            ضيوف الاستيراد
+                        </button>
+                        <a href="add-guest.html" class="text-decoration-none">
+                            <button type="button" class="main-btn1 guest-btn">اضافة ضيف</button>
+                        </a>
+                    </div>
                     <div class="scroll">
-                        <table class="table table-striped border">
+                        <table class="table border">
                             <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">الاسم</th>
-                                    <th scope="col">البريد الالكترونى</th>
-                                    <th scope="col">الهاتف</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">الاسم</th>
+                                <th scope="col">البريد الالكترونى</th>
+                                <th scope="col">المرافقين</th>
+                                <th scope="col"></th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">1</td>
-                                    <td>AYA</td>
-                                    <td>-</td>
-                                    <td>01050489206</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">2</td>
-                                    <td>AYA</td>
-                                    <td>aya@gmail.com</td>
-                                    <td>01050489206</td>
-                                </tr>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>AYA</td>
+                                <td>-</td>
+                                <td>
+                                    <div class="incr-decr-number">
+                                        <input type="button" value="+" class="inc">
+                                        <input type="text" value="0" class="input-field">
+                                        <input type="button" value="-" class="dec">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <button type="button" class="edit-table delete-table">
+                                            <i class="fa-solid fa-trash-can fa-lg"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">2</td>
+                                <td>AYA</td>
+                                <td>-</td>
+                                <td>
+                                    <div class="incr-decr-number">
+                                        <input type="button" value="+" class="inc">
+                                        <input type="text" value="0" class="input-field">
+                                        <input type="button" value="-" class="dec">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <button type="button" class="edit-table delete-table">
+                                            <i class="fa-solid fa-trash-can fa-lg"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
-                    <form action="{{route('contacts.import')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-12">
-                            <label class="form-label">ملف جهات الاتصال </label>
-                            <input type="file" name="file" class="form-control" required>
+
+                    <h5 class="mt-4 mb-4">معاينة</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <div class="image-card mb-3">
+                                <img src="photo/blog2.jpg" alt="no-image">
+                            </div>
+                            <h5>المكرم محمد</h5>
+                            <p>يتشرف بدعوتكم لحضور عيد ميلا</p>
+                            <div class="d-flex mb-2">
+                                <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>
+                                <button class="main-btn1" style="background-color: #C7C7C7;"> اعتذار</button>
+                            </div>
+                            <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">موقع المناسبة</button>
                         </div>
-                        <div class="d-flex justify-content-center mb-2 mt-4">
-                            <button class="btn-login" type="submit" style="border: none;">رفع الملف</button>
+                        <div class="col-lg-8 col-12"></div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button class="main-btn1 mt-4 mb-4" style="background-color: #C7C7C7;" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                تحرير القالب
+                            </button>
                         </div>
-                    </form>
+                        <div class="col-lg-4 col-12 mb-3 mt-4">
+                            <button class="prev1-btn btn-login" style="border: none;">عودة</button>
+                        </div>
+                        <div class="col-lg-8 col-12 d-flex mt-4 justify-content-end">
+                            <a href="invite.html" class="text-decoration-none btn-login" style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
+                            <button class="next1-btn main-btn1">حفظ ومتابعة</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mb-3">استيراد جهات الاتصال من ملف اكسيل</h5>
+                <p>1- احفظ الملف على صيغة اكسيل</p>
+                <p>2- نسق بيانات الاتصال على هذا الشكل</p>
+                <div class="scroll">
+                    <table class="table table-striped border">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">البريد الالكترونى</th>
+                            <th scope="col">الهاتف</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>AYA</td>
+                            <td>-</td>
+                            <td>01050489206</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>
+                            <td>AYA</td>
+                            <td>aya@gmail.com</td>
+                            <td>01050489206</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center mb-2 mt-4">
+                    <button class="btn-login" type="submit" style="border: none;">رفع الملف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="validationCustom04" class="form-label">اللغة</label>
+                        <select class="form-select" id="validationCustom04" required>
+                            <option selected disabled value="">حدد الغة</option>
+                            <option>عربى</option>
+                            <option>انجليزى</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">اسم المناسبة</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <h5 class="mt-4 mb-4">معاينة</h5>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="image-card mb-3">
+                            <img src="photo/blog2.jpg" alt="no-image">
+                        </div>
+                        <h5>المكرم محمد</h5>
+                        <p>يتشرف بدعوتكم لحضور عيد ميلا</p>
+                        <div class="d-flex mb-2">
+                            <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>
+                            <button class="main-btn1" style="background-color: #C7C7C7;"> اعتذار</button>
+                        </div>
+                        <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">موقع المناسبة</button>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mb-2 mt-5">
+                    <button class="btn-login" type="submit" style="border: none;"> حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@include('front.layouts.scripts')
+
+<script>
+    $('.dropify').dropify();
+</script>
+
+</body>
+
+</html>
