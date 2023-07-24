@@ -3,9 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-
-        'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
-     
+        'reference' => '9530e60683f8322f9bd84aa966237781237b4b36',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -18,15 +16,6 @@
             'reference' => '92f46d2f72100959e549b50ba1bc34270dc47d98',
             'type' => 'laravel-library',
             'install_path' => __DIR__ . '/../a6digital/laravel-default-profile-image',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'asm89/stack-cors' => array(
-            'pretty_version' => 'v2.1.1',
-            'version' => '2.1.1.0',
-            'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../asm89/stack-cors',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -151,9 +140,9 @@
             'dev_requirement' => false,
         ),
         'doctrine/dbal' => array(
-            'pretty_version' => '3.6.4',
-            'version' => '3.6.4.0',
-            'reference' => '19f0dec95edd6a3c3c5ff1d188ea94c6b7fc903f',
+            'pretty_version' => '3.6.5',
+            'version' => '3.6.5.0',
+            'reference' => '96d5a70fd91efdcec81fc46316efc5bf3da17ddf',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/dbal',
             'aliases' => array(),
@@ -267,33 +256,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'facebook/graph-sdk' => array(
-            'pretty_version' => '5.7.0',
-            'version' => '5.7.0.0',
-            'reference' => '2d8250638b33d73e7a87add65f47fabf91f8ad9b',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../facebook/graph-sdk',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'facebook/php-business-sdk' => array(
-            'pretty_version' => '14.0.0',
-            'version' => '14.0.0.0',
-            'reference' => '6bf9444b97be16feaf24e593d6403357577de257',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../facebook/php-business-sdk',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'facebook/php-sdk-v4' => array(
-            'pretty_version' => '5.7.0',
-            'version' => '5.7.0.0',
-            'reference' => '2d8250638b33d73e7a87add65f47fabf91f8ad9b',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../facebook/php-sdk-v4',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.23.0',
             'version' => '1.23.0.0',
@@ -320,15 +282,6 @@
             'install_path' => __DIR__ . '/../filp/whoops',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'fruitcake/laravel-cors' => array(
-            'pretty_version' => 'v2.2.0',
-            'version' => '2.2.0.0',
-            'reference' => '783a74f5e3431d7b9805be8afb60fd0a8f743534',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.1.1',
@@ -588,9 +541,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-
-            'reference' => 'ec77f70d200ac324348495f0b30ad26295622489',
-
+            'reference' => '9530e60683f8322f9bd84aa966237781237b4b36',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -647,15 +598,6 @@
             'reference' => '64ddfdcaeeb8d332bd98bef442bef81e39c3910b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravelcollective/html',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'lcobucci/jwt' => array(
-            'pretty_version' => '3.3.3',
-            'version' => '3.3.3.0',
-            'reference' => 'c1123697f6a2ec29162b82f170dd4a491f524773',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../lcobucci/jwt',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -768,13 +710,9 @@
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
-
             'pretty_version' => '1.6.4',
             'version' => '1.6.4.0',
             'reference' => 'd1413755e26fe56a63455f7753221c86cbb88f66',
-
-
-        
             'type' => 'library',
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),
@@ -803,15 +741,6 @@
             'install_path' => __DIR__ . '/../myclabs/deep-copy',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'namshi/jose' => array(
-            'pretty_version' => '7.2.3',
-            'version' => '7.2.3.0',
-            'reference' => '89a24d7eb3040e285dd5925fcad992378b82bcff',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../namshi/jose',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
             'pretty_version' => '2.68.1',
@@ -1525,15 +1454,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'symfony/polyfill-php56' => array(
-            'pretty_version' => 'v1.20.0',
-            'version' => '1.20.0.0',
-            'reference' => '54b8cd7e6c1643d78d011f3be89f3ef1f9f4c675',
-            'type' => 'metapackage',
-            'install_path' => NULL,
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'symfony/polyfill-php72' => array(
             'pretty_version' => 'v1.27.0',
             'version' => '1.27.0.0',
@@ -1672,15 +1592,6 @@
             'reference' => 'c42125b83a4fa63b187fdf29f9c93cb7733da30c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../tijsverkoyen/css-to-inline-styles',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'tymon/jwt-auth' => array(
-            'pretty_version' => '1.0.2',
-            'version' => '1.0.2.0',
-            'reference' => 'e588cb719539366c0e2f6017f975379cb73e9680',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../tymon/jwt-auth',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -1,4 +1,5 @@
 @toastr_css
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="content d-flex align-items-center pt-5 pb-5">
     <div class="container">
         <div class="row">
