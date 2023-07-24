@@ -1,4 +1,5 @@
 @toastr_css
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="content d-flex align-items-center pt-5 pb-5">
     <div class="container">
         <div class="row">
@@ -34,7 +35,7 @@
                 <span class="text-black-50 d-inline-block ms-2 me-2">او</span>
                 <span class="test"></span>
                 <div class="mt-3 text-center">
-                    <a href="#" class="text-decoration-none icon-google">
+                    <a href="{{ route('login.google-redirect') }}" class="text-decoration-none icon-google">
                         <img src="{{ asset('assets/front') }}/photo/google.svg">
                         سجل الدخول باستخدام جوجل
                     </a>

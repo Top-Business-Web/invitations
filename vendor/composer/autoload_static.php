@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
+<<<<<<< HEAD
 class ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3
+=======
+class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
+>>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -810,6 +814,7 @@ class ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Front\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/AuthController.php',
         'App\\Http\\Controllers\\Front\\ContactsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ContactsController.php',
+        'App\\Http\\Controllers\\Front\\GoogleLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/GoogleLoginController.php',
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\InvitationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InvitationController.php',
         'App\\Http\\Controllers\\Front\\InviteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InviteController.php',
@@ -9592,10 +9597,17 @@ class ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$classMap;
+=======
+            $loader->prefixLengthsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$classMap;
+>>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
 
         }, null, ClassLoader::class);
     }

@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Front\\AuthController' => $baseDir . '/app/Http/Controllers/Front/AuthController.php',
     'App\\Http\\Controllers\\Front\\ContactsController' => $baseDir . '/app/Http/Controllers/Front/ContactsController.php',
+    'App\\Http\\Controllers\\Front\\GoogleLoginController' => $baseDir . '/app/Http/Controllers/Front/GoogleLoginController.php',
     'App\\Http\\Controllers\\Front\\HomeController' => $baseDir . '/app/Http/Controllers/Front/HomeController.php',
     'App\\Http\\Controllers\\Front\\InvitationController' => $baseDir . '/app/Http/Controllers/Front/InvitationController.php',
     'App\\Http\\Controllers\\Front\\InviteController' => $baseDir . '/app/Http/Controllers/Front/InviteController.php',

@@ -26,13 +26,12 @@ use Orion\Facades\Orion;
 */
 
 Route::group(['prefix' => 'provider/auth'],function (){
-//    Route::post('password/email',  ForgotPasswordController::class);
-//    Route::post('password/code/check', CodeCheckController::class);
-//    Route::post('password/reset', ResetPasswordController::class);
 
     Route::post('forget-password',  ForgotPasswordController::class);
     Route::post('check-code', CodeCheckController::class);
     Route::post('password-reset', ResetPasswordController::class);
+
+
     Route::post('login',[AuthProviderController::class, 'login']);
     Route::POST('register',[AuthProviderController::class, 'register']);
     Route::POST('update-profile',[AuthProviderController::class, 'update_profile']);

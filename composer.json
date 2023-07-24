@@ -12,6 +12,7 @@
         "buglinjo/laravel-webp": "^2.3",
         "convertio/convertio-php": "^0.4.0",
         "darryldecode/cart": "^4.2",
+        "doctrine/dbal": "^3.6",
         "facebook/graph-sdk": "^5.7",
         "facebook/php-business-sdk": "^14.0",
         "facebook/php-sdk-v4": "^5.7",

@@ -27,7 +27,7 @@ class StoreInvitationRequest extends FormRequest
 
             'date' => 'required',
             'title' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable',
             'sur_name' => 'required|in:mr/mis,honored',
             'address' => 'required',
         ];
