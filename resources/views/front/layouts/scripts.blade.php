@@ -143,6 +143,11 @@
             success: function (data) {
                 if (data.status == 200) {
                     toastr.success('تم اضافه الدعوه بنجاح');
+                    setTimeout((f) => {
+                        var url = '{{ route("InvitationStepTwo", ":id") }}';
+                        url = url.replace(':id', data.id);
+                       location.href = url;
+                    },2000)
                 }
                 else
                     toastr.error('There is an error');
