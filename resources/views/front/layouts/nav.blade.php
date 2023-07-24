@@ -26,11 +26,7 @@
                         <a class="nav-link" aria-current="page" href="#contact">تواصل معنا</a>
                     </li>
                 </ul>
-                @if (auth()->user() == 1)
-                
-                @else
                     <a href="{{ route('signIn') }}" class="text-decoration-none btn-login">تسجيل دخول</a>
-                @endif
                 <div class="dropdown" style="z-index: 100000;">
                     <button class="btn-language dropdown-toggle text-black" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
