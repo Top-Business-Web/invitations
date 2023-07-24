@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\InviteController;
 use App\Http\Controllers\Front\ReminderController;
+use App\Http\Controllers\Front\GoogleLoginController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -43,6 +44,10 @@ Route::group(['prefix' => 'user'], function () {
  * End Sign In
  */
 
+ // Login Google Controller
+ Route::get('/login/google', [GoogleLoginController::class, 'redirect'])->name('login.google-redirect');
+ Route::get('/login/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google-callback');
+
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::get('invites', [InviteController::class, 'index'])->name('invites');
@@ -65,7 +70,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     //add invitations
     Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
     Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');
-    
+
 
 
 
@@ -88,6 +93,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
     Route::get('scans', [HomeController::class, 'scans'])->name('scans');
     Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
+
+    
 });
 
 Route::get('/', function () {
