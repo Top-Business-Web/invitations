@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\InviteController;
 use App\Http\Controllers\Front\ReminderController;
 use App\Http\Controllers\Front\GoogleLoginController;
+use App\Http\Controllers\Front\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -89,7 +90,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     /**
      *  end contacts controller
      */
-    Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'getProfileUserData'])->name('getProfileUserData');
+    Route::post('/update-profile',  [ProfileController::class, 'update'])->name('update_profile');
+
 
 
     Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');

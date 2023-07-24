@@ -62,14 +62,6 @@ class HomeController extends Controller
 
 
 
-    public function profile()
-    {
-        return view('front.profile.profile');
-    }
-
-
-
-
     public function scans()
     {
         return view('front.scans.scan');
