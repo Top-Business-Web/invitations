@@ -1,4 +1,4 @@
-<script src="{{asset('assets/admin')}}/assets/js/jquery-3.4.1.min.js"></script>
+<script src="{{ asset('assets/admin') }}/assets/js/jquery-3.4.1.min.js"></script>
 @toastr_js
 @toastr_render
 <script>
@@ -9,62 +9,73 @@
         lbl.style.transform = "translateY(-45px)";
     }
 
-    $("form#LoginFormUser").submit(function (e) {
+    $("form#LoginFormUser").submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         var url = $('#LoginFormUser').attr('action');
+
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: url,
             type: 'POST',
             data: formData,
-            beforeSend: function () {
+            beforeSend: function() {
                 $('#loginButtonUser').html('<span class="spinner-border spinner-border-sm mr-2" ' +
-                    ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr('disabled', true);
+                    ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr(
+                    'disabled', true);
 
             },
-            complete: function () {
+            complete: function() {
 
 
             },
-            success: function (data) {
+            success: function(data) {
                 if (data == 200) {
                     toastr.success('مرحبا بعودتك');
-                    window.setTimeout(function () {
+                    window.setTimeout(function() {
                         window.location.href = '/invites';
                     }, 1000);
                 } else {
                     toastr.error('بيانات دخول خاطئة');
-                    $('#loginButton').html(`<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`).attr('disabled', false);
+                    $('#loginButton').html(
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        ).attr('disabled', false);
                 }
 
             },
-            error: function (data) {
+            error: function(data) {
                 if (data.status === 500) {
-                    $('#loginButton').html(`<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`).attr('disabled', false);
+                    $('#loginButton').html(
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        ).attr('disabled', false);
                     toastr.error('هناك خطأ ما');
                 } else if (data.status === 422) {
-                    $('#loginButton').html(`<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`).attr('disabled', false);
+                    $('#loginButton').html(
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        ).attr('disabled', false);
                     var errors = $.parseJSON(data.responseText);
-                    $.each(errors, function (key, value) {
+                    $.each(errors, function(key, value) {
                         if ($.isPlainObject(value)) {
-                            $.each(value, function (key, value) {
+                            $.each(value, function(key, value) {
                                 toastr.error(value);
                             });
 
-                        } else {
-                        }
+                        } else {}
                     });
                 } else {
-                    $('#loginButton').html(`<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`).attr('disabled', false);
+                    $('#loginButton').html(
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        ).attr('disabled', false);
 
                     toastr.error('هناك خطأ ما ...');
                 }
-            },//end error method
+            }, //end error method
 
             cache: false,
             contentType: false,
             processData: false
         });
     });
-
 </script>
