@@ -40,4 +40,6 @@ class InvitationResource extends JsonResource
             'failed'=>$this->failed->count(),
         ];
     }
+
+    //Add list of object (7 array of object)
 }
