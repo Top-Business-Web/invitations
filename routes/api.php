@@ -4,14 +4,12 @@
 use App\Http\Controllers\Api\Auth\AuthScannerController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\GeneralController;
-
 use App\Http\Controllers\Api\Auth\AuthProviderController;
-use App\Http\Controllers\Api\Auth\CodeCheckController;
-use App\Http\Controllers\Api\Auth\ForgotPasswordController;
-use App\Http\Controllers\Api\Auth\ResetPasswordController;
-
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\InvitationController;
+use App\Http\Controllers\Api\ResetPassword\CodeCheckController;
+use App\Http\Controllers\Api\ResetPassword\ForgotPasswordController;
+use App\Http\Controllers\Api\ResetPassword\ResetPasswordController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
@@ -28,9 +26,13 @@ use Orion\Facades\Orion;
 */
 
 Route::group(['prefix' => 'provider/auth'],function (){
-    Route::post('password/email',  ForgotPasswordController::class);
-    Route::post('password/code/check', CodeCheckController::class);
-    Route::post('password/reset', ResetPasswordController::class);
+//    Route::post('password/email',  ForgotPasswordController::class);
+//    Route::post('password/code/check', CodeCheckController::class);
+//    Route::post('password/reset', ResetPasswordController::class);
+
+    Route::post('forget-password',  ForgotPasswordController::class);
+    Route::post('check-code', CodeCheckController::class);
+    Route::post('password-reset', ResetPasswordController::class);
     Route::post('login',[AuthProviderController::class, 'login']);
     Route::POST('register',[AuthProviderController::class, 'register']);
     Route::POST('update-profile',[AuthProviderController::class, 'update_profile']);

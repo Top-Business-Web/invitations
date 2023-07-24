@@ -7,15 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendCodeResetPassword extends Mailable implements ShouldQueue
-{
+class SendCodeResetPassword extends Mailable implements ShouldQueue{
+
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public $code;
 
     public function __construct($code)

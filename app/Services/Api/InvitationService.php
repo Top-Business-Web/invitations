@@ -1,9 +1,6 @@
 <?php
 
-
 namespace App\Services\Api;
-
-
 use App\Http\Resources\InvitationResource;
 use App\Models\Contact;
 use App\Models\Invitation;
