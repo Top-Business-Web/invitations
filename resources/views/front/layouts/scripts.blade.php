@@ -111,7 +111,8 @@
         let url = $('#addForm').attr('action');
         let datePicker = $("#datepicker").val();
         let title = $("#title").val();
-        let image = $("#image").val();
+        //let image = $("#image").val();
+        let image = document.getElementById("image").files[0].name; // new eldapour edition
         let sur_name = $("#sur_name").val();
         let address = $("#searchMapInput").val();
         let latitude = $("#lat-span").val();

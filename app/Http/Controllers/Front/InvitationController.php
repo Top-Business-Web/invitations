@@ -4,62 +4,36 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvitationRequest;
 use App\Models\Invitation;
+use App\Traits\PhotoTrait;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
 {
-
-
-    //add invitations
-    public function addInvitationByClient(StoreInvitationRequest $request)
+    use PhotoTrait;
+   //add invitations
+    public function addInvitationByClient(Request $request)
     {
         try {
+            $request->validate([
+                'date' => 'required',
+            'title' => 'required',
+            'image' => 'required',
+            'sur_name' => 'required|in:mr/mis,honored',
+            'address' => 'required',
+            ]);
 
-//            return $request->all();
-//            if ($image = $request->file('image')) {
-//                $destinationPath = 'assets/uploads/invitations';
-//                $imagePath = date('YmdHis') . "." . $image->getClientOriginalExtension();
-//                $image->move($destinationPath, $imagePath);
-//                $request['image'] = "$imagePath";
-//            }
-
-            /*
-
-              $image = $request->file('image');
-
-            // Generate a unique name for the file
-            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Save the file to the public disk
-            $image->storeAs('public/assets/uploads/invitations', $filename);
-             */
-
-//           $addInvitation = Invitation::create([
-//               'date' => Carbon::parse($request->date)->format('Y-m-d'),
-//               'title' => $request->title,
-//               'image' => $imagePath,
-//               'has_qrcode' => $request->has_qrcode != null ? 1 : 0,
-//               'qrcode' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-//               'address' => $request->address,
-//               'longitude' => $request->longitude,
-//               'latitude' => $request->latitude,
-//               'password' => mt_rand(11111111,99999999),
-//               'user_id' => Auth::id(),
-//           ]);
-
-
-
-            $image = $request->file('image');
-            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('assets/uploads/invitations', $filename);
-            $path = 'assets/uploads/invitations/' . $filename;
+            $image = null;
+            if($request->iimage){
+                $image = $request->file('image');
+                $image = $this->saveImage($image,'assets/uploads/invitations','photo');
+            }
 
             $addInvitation = new Invitation();
             $addInvitation->date = Carbon::parse($request->date)->format('Y-m-d');
             $addInvitation->title = $request->title;
-            $addInvitation->image =  $path;
+            $addInvitation->image =  $image;
             $addInvitation->has_qrcode = $request->has_qrcode != null ? 1 : 0;
             $addInvitation->qrcode = \Ramsey\Uuid\Uuid::uuid4()->toString();
             $addInvitation->address = $request->address;
@@ -81,6 +55,7 @@ class InvitationController extends Controller
             return response()->json(['error' => $exception->getMessage(),'code' => 500]);
         }
     }
+
 
 
 
