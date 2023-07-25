@@ -28,7 +28,7 @@ class UserResources extends JsonResource
                 'balance'=>$this->points,
                 'city'=> @$this->city->{"name_".accept_language()},
             ],
-            'access_token'=>'Bearer '.$this->token??'',
+            'access_token'=>'Bearer '.$this->token ??'',
             'token_type'=>'bearer'
         ];
     }

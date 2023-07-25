@@ -25,6 +25,7 @@ class Invitation extends Model
         'password',
         'user_id',
         'status',
+        'step',
     ];
 
     // protected $casts = [
