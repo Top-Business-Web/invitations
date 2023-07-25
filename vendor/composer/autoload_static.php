@@ -4,11 +4,7 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
 class ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3
-=======
-class ComposerStaticInit2db3f78e776619695989ef66b3427dbb
->>>>>>> 790bf12bb367d847ec2dd342a47433ee034842ad
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -256,11 +252,11 @@ class ComposerStaticInit2db3f78e776619695989ef66b3427dbb
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (
@@ -460,8 +456,8 @@ class ComposerStaticInit2db3f78e776619695989ef66b3427dbb
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -834,6 +830,7 @@ class ComposerStaticInit2db3f78e776619695989ef66b3427dbb
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\FavouriteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FavouriteRequest.php',
+        'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Http\\Requests\\StoreAbout' => __DIR__ . '/../..' . '/app/Http/Requests/StoreAbout.php',
         'App\\Http\\Requests\\StoreAdmin' => __DIR__ . '/../..' . '/app/Http/Requests/StoreAdmin.php',
         'App\\Http\\Requests\\StoreClient' => __DIR__ . '/../..' . '/app/Http/Requests/StoreClient.php',
@@ -9602,17 +9599,10 @@ class ComposerStaticInit2db3f78e776619695989ef66b3427dbb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$classMap;
-=======
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2db3f78e776619695989ef66b3427dbb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2db3f78e776619695989ef66b3427dbb::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2db3f78e776619695989ef66b3427dbb::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2db3f78e776619695989ef66b3427dbb::$classMap;
->>>>>>> 790bf12bb367d847ec2dd342a47433ee034842ad
 
         }, null, ClassLoader::class);
     }
