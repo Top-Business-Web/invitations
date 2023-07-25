@@ -181,7 +181,7 @@ class InvitationService
             $inputs = $request->all();
 
 
-            $invitation = Invitation::find($inputs->invitation_id);
+            $invitation = Invitation::find($inputs['invitation_id']);
 
             foreach ($inputs['invitees'] as $invitee){
                 if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
