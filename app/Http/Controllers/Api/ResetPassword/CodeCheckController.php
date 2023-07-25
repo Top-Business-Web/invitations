@@ -24,10 +24,10 @@ class CodeCheckController extends Controller{
         }
 
         return response([
-            'code' => $passwordReset->code,
+            'verify_code' => $passwordReset->code,
+            'code' =>200,
             'message' => "Success code and now try to go the reset password page"
         ], 200);
-
     }
 
 }
