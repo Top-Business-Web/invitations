@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
 
     Route::post('store', [InvitationController::class, 'store']);
     Route::post('sendReminder', [InvitationController::class, 'sendReminder']);
+    Route::post('addInvitees', [InvitationController::class, 'addInvitees']);
     Route::post('update/{id}', [InvitationController::class, 'update']);
     Route::get('delete/{id}', [InvitationController::class, 'destroy']);
 

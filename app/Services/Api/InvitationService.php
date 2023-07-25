@@ -176,4 +176,39 @@ class InvitationService
         }
     }
 
+    public function addInvitees($request){
+        try {
+            $inputs = $request->all();
+
+
+            $invitation = Invitation::find($inputs->invitation_id);
+
+            foreach ($inputs['invitees'] as $invitee){
+                if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
+                    Contact::create(
+                        [
+                            'user_id'=> Auth()->id(),
+                            'name'=>$invitee['name'],
+                            'phone'=>$invitee['phone'],
+                        ]
+                    );
+                }
+                Invitee::create(
+                    [
+                        'invitation_id'=> $invitation->id,
+                        'name'=>$invitee['name'],
+                        'phone'=>$invitee['phone'],
+                        'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                        'status' => 1,
+                    ]
+                );
+            }
+
+            return helperJson(new InvitationResource($invitation), 'Sent Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
