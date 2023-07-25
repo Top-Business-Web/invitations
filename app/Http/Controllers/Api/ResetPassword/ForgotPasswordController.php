@@ -34,4 +34,4 @@ class ForgotPasswordController extends Controller{
     }
 
 }
-//Resolve conflict ------------------------------------------------------
+
