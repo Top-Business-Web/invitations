@@ -13,6 +13,7 @@ class Invitee extends Model
         'invitation_id',
         'name',
         'phone',
+        'email',
         'invitees_number',
         'status',
     ];
