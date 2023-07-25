@@ -25,10 +25,9 @@ class GoogleLoginController extends Controller
             $finduser = User::where('google_id', $user->id)->first();
 
             if ($finduser) {
-
-                Auth::login($finduser);
-
-                return redirect()->intended('/');
+                toastr()->success('تم تسجيل الدخول بواسطة Google');
+                Auth::login($finduser);           
+                return redirect()->intended('/invites');
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
@@ -39,7 +38,7 @@ class GoogleLoginController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect()->intended('/');
+                return redirect()->intended('/invites');
             }
         } catch (Exception $e) {
             dd($e->getMessage());

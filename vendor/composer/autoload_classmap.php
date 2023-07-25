@@ -53,6 +53,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\FavouriteRequest' => $baseDir . '/app/Http/Requests/FavouriteRequest.php',
+    'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
     'App\\Http\\Requests\\StoreAbout' => $baseDir . '/app/Http/Requests/StoreAbout.php',
     'App\\Http\\Requests\\StoreAdmin' => $baseDir . '/app/Http/Requests/StoreAdmin.php',
     'App\\Http\\Requests\\StoreClient' => $baseDir . '/app/Http/Requests/StoreClient.php',
