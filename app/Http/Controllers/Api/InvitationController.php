@@ -46,4 +46,8 @@ class InvitationController extends Controller
         return $this->invitationService->sendReminder($request);
     }
 
+    public function addInvitees(Request $request){
+        return $this->invitationService->addInvitees($request);
+    }
+
 }
