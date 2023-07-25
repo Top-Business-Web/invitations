@@ -63,6 +63,16 @@ class InvitationService
                     );
                 }
             }
+            $one_invitation =  Invitation::find($invitation->id);
+
+            if($request->step > 3){
+                $one_invitation->lang = $request->lang;
+                $one_invitation->save();
+            }
+            if($request->step > 4){
+                $one_invitation->status = 1;
+                $one_invitation->save();
+            }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
         }catch(Exception $e){
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
