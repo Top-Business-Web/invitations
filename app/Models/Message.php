@@ -10,6 +10,7 @@ class Message extends Model
     use HasFactory;
     protected $fillable=[
         'invitation_id',
+        'invitee_id',
         'title',
         'message',
     ];

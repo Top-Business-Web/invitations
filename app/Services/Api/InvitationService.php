@@ -160,4 +160,20 @@ class InvitationService
 
         return helperJson($messages, '',200);
     }
+
+    public function sendReminder($request){
+        try {
+                $inputs = $request->all();
+
+//                $invitees =  Invitee::where(['invitation_id'=>$inputs->invitation_id]);
+                foreach ($inputs['invitees'] as $invitee){
+                  //add code for watts app logic to send message
+                }
+
+            return helperJson('', 'Sent Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

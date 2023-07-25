@@ -17,26 +17,31 @@ class MessageSeeder extends Seeder
             $data = [
                 [
                     'invitation_id' => '1',
+                    'invitee_id' => '1',
                     'title' => 'دعوة خطوبة',
                     'message' => 'الرجاء عدم اصحاب الاطفال',
                 ],
                 [
                     'invitation_id' => '2',
+                    'invitee_id' => '2',
                     'title' => 'دعوة زفاف',
                     'message' => 'الرجاء عدم اصحاب الاطفال',
                 ],
                 [
                     'invitation_id' => '3',
+                    'invitee_id' => '2',
                     'title' => 'دعوة تخرج',
                     'message' => 'الرجاء عدم اصحاب الاطفال',
                 ],
                 [
                     'invitation_id' => '1',
+                    'invitee_id' => '1',
                     'title' => 'دعوة عزاء',
                     'message' => 'الرجاء عدم اصحاب الاطفال',
                 ],
                 [
                     'invitation_id' => '2',
+                    'invitee_id' => '2',
                     'title' => 'دعوة تكريم',
                     'message' => 'الرجاء عدم اصحاب الاطفال',
                 ],
