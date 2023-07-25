@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
         return [
             "name" => "required",
             'email' => 'required|unique:users,email,' . auth()->user()->id,
-            "address" => "required",
+            "address" => "nullable",
             "phone" => "required|min:11",
         ];
     }
@@ -37,7 +37,6 @@ class ProfileUpdateRequest extends FormRequest
             "name.required" => " الاسم مطلوب",
             'email.required' => 'الايميل مطلوب',
             'email.unique' => 'الايميل موجود',
-            "address.required" => "المكان مطلوب",
             "phone.required" => "الهاتف مطلوب",
             "phone.min" => "يجب ان يكون 11 رقم على الاقل",
         ];
