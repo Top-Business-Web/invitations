@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -15,16 +16,11 @@ class ProfileController extends Controller
         return view('front.profile.profile', compact('profile'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'address' => 'required|string',
-            'phone' => 'required|string',
-        ]);
+        $validatedData = $request->validated();
 
-        $userProfile = User::where('id', auth()->user()->id)->first();
+        $userProfile = User::find(auth()->user()->id);
 
         if (!$userProfile) {
             return response()->json(['status' => 405]);

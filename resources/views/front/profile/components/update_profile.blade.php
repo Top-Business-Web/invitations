@@ -10,7 +10,8 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <label class="form-label"> البريد الالكترونى</label>
-                        <input type="text" value="{{ $profile->email }}" name="email" class="form-control" required>
+                        <input type="text" value="{{ $profile->email }}" name="email" class="form-control"
+                            required>
                     </div>
                     <div class="col-md-6 col-12">
                         <label class="form-label"> المكان</label>
@@ -18,7 +19,8 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <label class="form-label"> الهاتف</label>
-                        <input type="text" value="{{ $profile->phone }}" name="phone" class="form-control" required>
+                        <input type="text" value="{{ $profile->phone }}" name="phone" class="form-control"
+                            required>
                     </div>
                     <div class="col-12">
                         <span class="text-black-50">تسجيل مع google</span>
@@ -39,30 +41,40 @@
 <script>
     $(document).ready(function() {
         $("#profileForm").on("click", "#updateProfile", function(e) {
-            e.preventDefault(); 
+            e.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
                 url: $('#profileForm').attr('action'),
-                method : 'post',
+                method: 'post',
                 data: {
-                    _token : "{{csrf_token()}}",
-                    'name' : $('input[name="name"]').val(),
-                    'email' : $('input[name="email"]').val(),
-                    'phone' : $('input[name="phone"]').val(),
-                    'address' : $('input[name="address"]').val(),
- 
+                    _token: "{{ csrf_token() }}",
+                    'name': $('input[name="name"]').val(),
+                    'email': $('input[name="email"]').val(),
+                    'phone': $('input[name="phone"]').val(),
+                    'address': $('input[name="address"]').val(),
+
                 },
                 success: function(response) {
-                    if(response.status === 200){
+                    if (response.status === 200) {
                         toastr.success('تم تحديث الملف الشخصي بنجاح');
                         setTimeout(() => {
-                           location.reload(); 
+                            location.reload();
                         }, 2000);
                     }
                 },
                 error: function(xhr) {
-                    toastr.success('هناك خطأ ما');
+                    if (xhr.status === 422) {
+                        var errors = xhr.responseJSON.errors;
+                        for (var key in errors) {
+                            if (errors.hasOwnProperty(key)) {
+                                var errorMessages = errors[key].join('<br>');
+                                toastr.error(errorMessages);
+                            }
+                        }
+                    } else {
+                        toastr.error('An error occurred. Please try again later.');
+                    }
                 }
             });
         });

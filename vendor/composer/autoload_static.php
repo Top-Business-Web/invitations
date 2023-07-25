@@ -4,11 +4,7 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
 class ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3
-=======
-class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
->>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -818,6 +814,7 @@ class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\InvitationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InvitationController.php',
         'App\\Http\\Controllers\\Front\\InviteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/InviteController.php',
+        'App\\Http\\Controllers\\Front\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ProfileController.php',
         'App\\Http\\Controllers\\Front\\ReminderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ReminderController.php',
         'App\\Http\\Helper\\GlobalSelection' => __DIR__ . '/../..' . '/app/Http/Helper/GlobalSelection.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -8045,6 +8042,7 @@ class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
         'Ramsey\\Collection\\Queue' => __DIR__ . '/..' . '/ramsey/collection/src/Queue.php',
         'Ramsey\\Collection\\QueueInterface' => __DIR__ . '/..' . '/ramsey/collection/src/QueueInterface.php',
         'Ramsey\\Collection\\Set' => __DIR__ . '/..' . '/ramsey/collection/src/Set.php',
+        'Ramsey\\Collection\\Sort' => __DIR__ . '/..' . '/ramsey/collection/src/Sort.php',
         'Ramsey\\Collection\\Tool\\TypeTrait' => __DIR__ . '/..' . '/ramsey/collection/src/Tool/TypeTrait.php',
         'Ramsey\\Collection\\Tool\\ValueExtractorTrait' => __DIR__ . '/..' . '/ramsey/collection/src/Tool/ValueExtractorTrait.php',
         'Ramsey\\Collection\\Tool\\ValueToStringTrait' => __DIR__ . '/..' . '/ramsey/collection/src/Tool/ValueToStringTrait.php',
@@ -9568,6 +9566,7 @@ class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
         'Yoeunes\\Toastr\\Toastr' => __DIR__ . '/..' . '/yoeunes/toastr/src/Toastr.php',
         'Yoeunes\\Toastr\\ToastrServiceProvider' => __DIR__ . '/..' . '/yoeunes/toastr/src/ToastrServiceProvider.php',
         'ZipStream\\CentralDirectoryFileHeader' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/CentralDirectoryFileHeader.php',
+        'ZipStream\\CompressionMethod' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/CompressionMethod.php',
         'ZipStream\\DataDescriptor' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/DataDescriptor.php',
         'ZipStream\\EndOfCentralDirectory' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/EndOfCentralDirectory.php',
         'ZipStream\\Exception' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception.php',
@@ -9583,8 +9582,10 @@ class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
         'ZipStream\\File' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/File.php',
         'ZipStream\\GeneralPurposeBitFlag' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/GeneralPurposeBitFlag.php',
         'ZipStream\\LocalFileHeader' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/LocalFileHeader.php',
+        'ZipStream\\OperationMode' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/OperationMode.php',
         'ZipStream\\PackField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/PackField.php',
         'ZipStream\\Time' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Time.php',
+        'ZipStream\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Version.php',
         'ZipStream\\Zip64\\DataDescriptor' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/DataDescriptor.php',
         'ZipStream\\Zip64\\EndOfCentralDirectory' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/EndOfCentralDirectory.php',
         'ZipStream\\Zip64\\EndOfCentralDirectoryLocator' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/EndOfCentralDirectoryLocator.php',
@@ -9597,17 +9598,10 @@ class ComposerStaticInit211f1942e0a8ca67fd95e16632683664
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0ea87b391f0d05f4289f74cd917f6de3::$classMap;
-=======
-            $loader->prefixLengthsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit211f1942e0a8ca67fd95e16632683664::$classMap;
->>>>>>> 731377fcf6c05d29d3fab51c54c0b5fa8a0cbafb
 
         }, null, ClassLoader::class);
     }
