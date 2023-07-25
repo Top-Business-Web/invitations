@@ -34,7 +34,7 @@ class GoogleLoginController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
-                    'password' => 'dummypass' // you can change auto generate password here and send it via email but you need to add checking that the user need to change the password for security reasons
+                    'password' => 'dummypass123' // you can change auto generate password here and send it via email but you need to add checking that the user need to change the password for security reasons
                 ]);
 
                 Auth::login($newUser);
