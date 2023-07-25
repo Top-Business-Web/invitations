@@ -48,6 +48,7 @@ class AuthProviderController extends Controller
         return $this->authService->register($request);
     }//end fun
 
+
     public function update_profile(request $request){
         return $this->authService->update_profile($request);
     }//end fun
@@ -155,4 +156,14 @@ class AuthProviderController extends Controller
         return $this->authService->profileWithPhone($request);
 
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function loginWithGoogle(Request $request)
+    {
+        return $this->authService->loginWithgoogle($request);
+    }//end fun
+
 }//end class

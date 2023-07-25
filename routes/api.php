@@ -34,6 +34,7 @@ Route::group(['prefix' => 'provider/auth'],function (){
 
     Route::post('login',[AuthProviderController::class, 'login']);
     Route::POST('register',[AuthProviderController::class, 'register']);
+    Route::POST('login-with-google',[AuthProviderController::class, 'loginWithGoogle']);
     Route::POST('update-profile',[AuthProviderController::class, 'update_profile']);
     Route::POST('delete-account',[AuthProviderController::class, 'deleteAccount']);
     Route::get('my-profile',[AuthProviderController::class, 'me']);
