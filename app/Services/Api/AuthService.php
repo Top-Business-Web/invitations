@@ -223,7 +223,7 @@ class AuthService
         $data = $request->validate($rules);
 
         $data['password'] = Hash::make('dummypass123');
-        $user = User::where(['email'=>$data->email]);
+        $user = User::where(['email'=>$data['email']]);
         if($user->count() > 0){
             $user = $user->first();
         }else{
