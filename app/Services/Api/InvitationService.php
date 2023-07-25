@@ -193,6 +193,7 @@ class InvitationService
                         ]
                     );
                 }
+
                 Invitee::create(
                     [
                         'invitation_id'=> $invitation->id,
