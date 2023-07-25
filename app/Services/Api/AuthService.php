@@ -69,6 +69,7 @@ class AuthService
             'name' => 'required|min:2|max:191',
             'email' => 'nullable|unique:users,email',
             'location' => 'nullable',
+            'with_google' => 'nullable',
             'password' => 'required|min:6',
         ];
         $validator = Validator::make($request->all(), $rules, [
@@ -94,7 +95,12 @@ class AuthService
             $data['image'] = $this->uploadFiles('users', $request->file('image'));
         }
 
-        $data['password'] = Hash::make('123456');
+        if($data['with_google']){
+            $data['password'] = Hash::make('dummypass123');
+        }else{
+            $data['password'] = Hash::make($data['password']);
+        }
+
         $user = User::create($data);
 
 
