@@ -70,7 +70,7 @@ class InvitationService
                 $one_invitation->save();
             }
             if($request->step > 4){
-                $one_invitation->status = 1;
+                $one_invitation->status = "1";
                 $one_invitation->save();
             }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
