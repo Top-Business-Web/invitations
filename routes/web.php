@@ -64,13 +64,15 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
 
 
-            Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
-            Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
-            Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
-            Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
+    //add invitation
+    Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+    Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
+    Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
+    Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
 
 
-            Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+    Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+
 
 
 
