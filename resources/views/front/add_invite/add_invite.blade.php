@@ -254,7 +254,7 @@
                             <img src="" class="imagePreview" alt="no-image">
                         </div>
                         <h5>{{ auth()->user()->name }}</h5>
-                        <p>يتشرف بدعوتكم لحضور عيد ميلا</p>
+                        <p> يتشرف بدعوتكم لحضور <span class="titlePreview"></span></p>
                         <div class="d-flex mb-2">
                             <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>
                             <button class="main-btn1" style="background-color: #C7C7C7;"> اعتذار</button>

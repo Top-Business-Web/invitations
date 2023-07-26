@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
-                                <button class="btn btn-primary fa-solid fa-pen-to-square"
+                                <button type="button" class="btn btn-primary fa-solid fa-pen-to-square"
                                         id="editBtnInvite" data-id="{{ $invitation->id }}">
                                 </button>
                             </div>

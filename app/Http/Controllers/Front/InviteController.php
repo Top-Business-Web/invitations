@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Contact;
 use App\Models\Invitee;
 use App\Models\Scanned;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -39,17 +41,6 @@ class InviteController extends Controller
             ->get();
 
         return response()->json($invitations);
-    }
-
-    public function editInvitation($id)
-    {
-        $invites = Invitation::where('id', $id)->first();
-        return view('front.add_invite.edit_invite', compact('invites'));
-    }
-    public function edit()
-    {
-        $invites = Invitation::query()->get();
-        return view('front.invites.invite', compact('invites'));
     }
 
     public function sendInviteByWhatsapp(Request $request)
