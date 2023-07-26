@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,8 @@ class HomeController extends Controller
     }
     public function addInvites()
     {
-        return view('front.add_invite.add_invite');
+        $contacts = Contact::where('user_id',Auth::user()->id)->get();
+        return view('front.add_invite.add_invite',compact('contacts'));
     }
 
     public function addGuest()

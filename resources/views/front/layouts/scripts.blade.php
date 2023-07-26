@@ -18,7 +18,7 @@
 <!-- Include toastr CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         toastr.options = {
             "closeButton": true,
             "progressBar": true,
@@ -35,9 +35,9 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script>
-    $( function() {
-        $( "#datepicker").datepicker();
-    } );
+    $(function () {
+        $("#datepicker").datepicker();
+    });
 </script>
 
 
@@ -59,7 +59,7 @@
             anchorPoint: new google.maps.Point(0, -29)
         });
 
-        autocomplete.addListener('place_changed', function() {
+        autocomplete.addListener('place_changed', function () {
             infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
@@ -104,76 +104,164 @@
 </script>
 
 <script>
-    // Add By Ajax
-    $(document).on('submit','Form#addForm',function(e) {
-        e.preventDefault();
 
-        let url = $('#addForm').attr('action');
-        let datePicker = $("#datepicker").val();
-        let title = $("#title").val();
-        //let image = $("#image").val();
-        let image = document.getElementById("image").files[0].name; // new eldapour edition
-        let sur_name = $("#sur_name").val();
-        let address = $("#searchMapInput").val();
-        let latitude = $("#lat-span").val();
-        let longitude = $("#lng-span").val();
-        let has_qrcode = $("#flexRadioDefault1").val();
+    $(document).ready(function() {
+        // Function to check all input fields and enable/disable the button accordingly
+        function toggleButtonState() {
+            var allFieldsFilled = true;
 
-        $.ajax({
-
-            url: url,
-            type: 'POST',
-            enctype : 'multipart/form-data',
-            data: {
-                "_token" : "{{csrf_token()}}",
-                "date" : datePicker,
-                "title": title,
-                "image" : image,
-                "sur_name": sur_name,
-                "address" : address,
-                "longitude": longitude,
-                "latitude": latitude,
-                "has_qrcode": has_qrcode,
-            },
-            beforeSend: function () {
-                $('#addButton').html('<span class="spinner-border spinner-border-sm mr-2" ' +
-                    ' ></span> <span style="margin-left: 4px;">working</span>').attr('disabled', true);
-            },
-
-            success: function (data) {
-                if (data.status == 200) {
-                    toastr.success('تم اضافه الدعوه بنجاح');
-                    setTimeout((f) => {
-                        var url = '{{ route("InvitationStepTwo", ":id") }}';
-                        url = url.replace(':id', data.id);
-                       location.href = url;
-                    },2000)
+            $('.input-field').each(function() {
+                if ($(this).val().trim() === '') {
+                    allFieldsFilled = false;
+                    return false; // Exit the loop early if any field is empty
                 }
-                else
-                    toastr.error('There is an error');
-                $('#addButton').html(`حفظ ومتابعة`).attr('disabled', false);
-            },
+            });
+            $('#step1Btn').prop('disabled', !allFieldsFilled);
+        }
 
-            error: function (data) {
-                if (data.status === 500) {
-                    toastr.error('There is an error');
-                } else if (data.status === 422) {
+        // Check the input fields on page load
+        toggleButtonState();
 
-                    var errors = $.parseJSON(data.responseText);
-                    $.each(errors, function (key, value) {
-                        if ($.isPlainObject(value)) {
-                            $.each(value, function (key, value){
-                                toastr.error(value, key);
-                            });
-                        }
-                    });
-                } else
-                    toastr.error('there in an error');
-                $('#addButton').html(`حفظ ومتابعة`).attr('disabled', false);
-            },//end error method
-
+        // Check the input fields when typing in any of them
+        $('.input-field').on('input', function() {
+            toggleButtonState();
         });
     });
+
+    // start step 1
+    $(document).on('click', '#step1Btn', function () {
+
+        var datePicker = $("#datepicker").val();
+        var title = $("#title").val();
+        var image = $('#image')[0].files[0]; // new eldapour edition
+        var sur_name = $("#sur_name").val();
+        var address = $("#searchMapInput").val();
+        var latitude = $("#lat-span").val();
+        var longitude = $("#lng-span").val();
+        var has_qrcode = $("#flexRadioDefault1").val();
+        $("#invition_title").text(title);
+        // first step value declare
+
+        localStorage.setItem('datePicker', datePicker);
+        localStorage.setItem('title', title);
+        localStorage.setItem('image', image);
+        localStorage.setItem('sur_name', sur_name);
+        localStorage.setItem('address', address);
+        localStorage.setItem('latitude', latitude);
+        localStorage.setItem('longitude', longitude);
+        localStorage.setItem('has_qrcode', has_qrcode);
+    }); // end step 1
+
+    //  start step 2
+    $(document).on('click', '#step2Btn', function () {
+
+        var url = '{{ route('addInvitationByClient') }}';
+        var invitees_phone = $('.invitees_phone');
+        var invitees_name = $('.invitees_name');
+        var invitees_email = $('.invitees_email');
+        var invitees_number = $('.invitees_number');
+
+        let phone_list = [];
+        let name_list = [];
+        let email_list = [];
+        let number_list = [];
+
+        invitees_phone.each(function () {
+            phone_list.push($(this).val());
+        });
+        invitees_name.each(function () {
+            name_list.push($(this).val());
+        });
+        invitees_email.each(function () {
+            email_list.push($(this).val());
+        });
+        invitees_number.each(function () {
+            number_list.push($(this).val());
+        });
+        // first step value declare
+        var datePicker = localStorage.getItem('datePicker');
+        var title = localStorage.getItem('title');
+        var image = localStorage.getItem('image');
+        var sur_name = localStorage.getItem('sur_name');
+        var address = localStorage.getItem('address');
+        var latitude = localStorage.getItem('latitude');
+        var longitude = localStorage.getItem('longitude');
+        var has_qrcode = localStorage.getItem('has_qrcode');
+
+        var contactArray = name_list.map((value, index) => {
+            return {
+                'name': value,
+                'email': email_list[index],
+                'phone': phone_list[index],
+                'number': number_list[index]
+            };
+        });
+
+        console.log({
+            'url': url,
+            'datePicker': datePicker,
+            'title': title,
+            'image': image,
+            'sur_name': sur_name,
+            'address': address,
+            'latitude': latitude,
+            'longitude': longitude,
+            'has_qrcode': has_qrcode,
+            'contactArray': contactArray
+        })
+
+        var imageFile = $('#image')[0].files[0];
+
+        var formData = new FormData();
+        formData.append('image', imageFile);
+        formData.append('datePicker', datePicker);
+        formData.append('title', title);
+        formData.append('sur_name', sur_name);
+        formData.append('address', address);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('has_qrcode', has_qrcode);
+
+        for (var i = 0; i < contactArray.length; i++) {
+            formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
+            formData.append('contactArray[' + i + '][email]', contactArray[i]['email']);
+            formData.append('contactArray[' + i + '][phone]', contactArray[i]['phone']);
+            formData.append('contactArray[' + i + '][number]', contactArray[i]['number']);
+        }
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            url: url,
+            data : formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show loading spinner or do something before sending the request
+            },
+            success: function (data) {
+                // Handle the successful response from the server
+               toastr.success('تم انشاء الدعوة بنجاح');
+               setTimeout(function (){
+                   location.href = '{{ route('invites') }}';
+               })
+            },
+            error: function (error) {
+                // Handle errors in the request
+                toastr.error('هناك خطا ما حاول في وقت لاحق');
+            },
+            complete: function () {
+                // Do something after the request is completed, regardless of success or error
+            }
+        })
+
+    });    // end step 2
+
+
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK34ZyoH4758BkVP05-GxKP0dSmBi4yTo&libraries=places&callback=initMap" async defer></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK34ZyoH4758BkVP05-GxKP0dSmBi4yTo&libraries=places&callback=initMap"
+    async defer></script>
 @include('Admin/layouts/myAjaxHelper')

@@ -26,8 +26,8 @@
             @foreach ($invitations as $invitation)
                 <div class="card-invite mt-2" id="dataContainer">
                     <button class="btn-faq d-flex justify-content-between align-items-center w-100"
-                        data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $invitation->id }}"
-                        aria-expanded="false" aria-controls="collapseExample">
+                            data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $invitation->id }}"
+                            aria-expanded="false" aria-controls="collapseExample">
                         <div class="row" style="width: 50%;">
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
                                 <h5>{{ $invitation->title }}</h5>
@@ -68,16 +68,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
-                                <div class="edit">
-                                    <a href="{{ route('editInvitation', $invitation->id) }}" class="btn btn-primary fa-solid fa-pen-to-square"></a>
-                                </div>
+                                <button class="btn btn-primary fa-solid fa-pen-to-square"
+                                        id="editBtnInvite" data-id="{{ $invitation->id }}">
+                                </button>
                             </div>
                             <div class="col-lg-1 col-6">
                                 <div class="delete">
                                     <button type="button" class="btn btn-primary fa-solid fa-trash-can"
-                                        data-toggle="modal" data-target="#exampleModal"
-                                        data-invitation-id="{{ $invitation->id }}"
-                                        data-invitation-title="{{ $invitation->title }}"></button>
+                                            data-toggle="modal" data-target="#exampleModal"
+                                            data-invitation-id="{{ $invitation->id }}"
+                                            data-invitation-title="{{ $invitation->title }}"></button>
                                 </div>
                             </div>
                         </div>
@@ -193,20 +193,20 @@
                         <div class="row mt-4">
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link btn-link-bg" data-bs-toggle="modal"
-                                    data-bs-id="{{ $invitation->id }}" data-bs-target="#modalWhatsApp">
+                                        data-bs-id="{{ $invitation->id }}" data-bs-target="#modalWhatsApp">
                                     <i class="fa-brands fa-whatsapp fa-lg ms-2"></i> ارسال الدعوات عبر الواتساب
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalQr">
+                                        data-bs-target="#exampleModalQr">
                                     <i class="fa-solid fa-rotate-right fa-lg ms-2"></i>
                                     ارسال رموز QR التى لم يتم تسليمها
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <a class="text-decoration-none"
-                                    href="{{ route('showUserScanned', $invitation->id) }}">
+                                   href="{{ route('showUserScanned', $invitation->id) }}">
                                     <button type="button" class="btn-link">
                                         <i class="fa-solid fa-qrcode fa-lg ms-2"></i>
                                         ادارة المسح الضوئى
@@ -233,74 +233,74 @@
                                     <div class="scroll hand-invite">
                                         <table class="table table-striped border">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">الاسم</th>
-                                                    <th scope="col">البريد الالكترونى</th>
-                                                    <th scope="col">الحالة</th>
-                                                    <th scope="col">الارسال يدوى</th>
-                                                </tr>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">الاسم</th>
+                                                <th scope="col">البريد الالكترونى</th>
+                                                <th scope="col">الحالة</th>
+                                                <th scope="col">الارسال يدوى</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                <table>
-                                                    <thead>
-                                                        <!-- Table header content... -->
-                                                    </thead>
-                                                    <tbody>
-                                                        @if ($invitation->failed->isEmpty())
-                                                            <tr>
-                                                                <td colspan="5" class="text-center">لا يوجد معلومات
-                                                                </td>
-                                                            </tr>
-                                                        @else
-                                                            @foreach ($invitation->failed as $userFailed)
-                                                                <tr>
-                                                                    <td scope="row">{{ $userFailed->id }}</td>
-                                                                    <td>{{ $userFailed->name }}</td>
-                                                                    <td>{{ $userFailed->email }}</td>
-                                                                    <td>{{ $statuses[$userFailed->status] }}</td>
-                                                                    <td>
-                                                                        <a href="https://wa.me/920033007"
-                                                                            target="_blank" class="whatsapp">
-                                                                            <i class="fa-brands fa-whatsapp fs-3"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        @endif
-                                                    </tbody>
-                                                </table>
+                                            <table>
+                                                <thead>
+                                                <!-- Table header content... -->
+                                                </thead>
+                                                <tbody>
+                                                @if ($invitation->failed->isEmpty())
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">لا يوجد معلومات
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    @foreach ($invitation->failed as $userFailed)
+                                                        <tr>
+                                                            <td scope="row">{{ $userFailed->id }}</td>
+                                                            <td>{{ $userFailed->name }}</td>
+                                                            <td>{{ $userFailed->email }}</td>
+                                                            <td>{{ $statuses[$userFailed->status] }}</td>
+                                                            <td>
+                                                                <a href="https://wa.me/920033007"
+                                                                   target="_blank" class="whatsapp">
+                                                                    <i class="fa-brands fa-whatsapp fs-3"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                                </tbody>
+                                            </table>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="scroll single-table">
                                         <table class="table table-striped border">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">الاسم</th>
-                                                    <th scope="col">البريد الالكترونى</th>
-                                                    <th scope="col">الهاتف</th>
-                                                    <th scope="col"> الحالة</th>
-                                                </tr>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">الاسم</th>
+                                                <th scope="col">البريد الالكترونى</th>
+                                                <th scope="col">الهاتف</th>
+                                                <th scope="col"> الحالة</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($invitation->scanned->isEmpty())
+                                            @if ($invitation->scanned->isEmpty())
+                                                <tr>
+                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                @foreach ($invitation->scanned as $userScanned)
                                                     <tr>
-                                                        <td colspan="5" class="text-center">لا يوجد معلومات
-                                                        </td>
+                                                        <td scope="row">{{ $userScanned->invitee->id }}</td>
+                                                        <td>{{ $userScanned->invitee->name }}</td>
+                                                        <td>{{ $userScanned->invitee->email }}</td>
+                                                        <td>{{ $userScanned->invitee->phone }}</td>
+                                                        <td>{{ $statuses[$userScanned->invitee->status] }}</td>
                                                     </tr>
-                                                @else
-                                                    @foreach ($invitation->scanned as $userScanned)
-                                                        <tr>
-                                                            <td scope="row">{{ $userScanned->invitee->id }}</td>
-                                                            <td>{{ $userScanned->invitee->name }}</td>
-                                                            <td>{{ $userScanned->invitee->email }}</td>
-                                                            <td>{{ $userScanned->invitee->phone }}</td>
-                                                            <td>{{ $statuses[$userScanned->invitee->status] }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
+                                                @endforeach
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -317,7 +317,7 @@
 <!-- Modal Edit Invite  -->
 
 <div class="modal fade bd-example-modal-lg" id="editInvite" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -357,9 +357,17 @@
 @include('Admin/layouts/myAjaxHelper')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // function to get invitation id and title 
-    $(document).ready(function() {
-        $('#exampleModal').on('show.bs.modal', function(event) {
+
+    $('#editBtnInvite').on('click', function () {
+        let id = $(this).data('id');
+        let url = "{{ route('editInvitation',':id') }}";
+        url = url.replace(':id', id);
+        location.href = url;
+    })
+
+    // function to get invitation id and title
+    $(document).ready(function () {
+        $('#exampleModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var invitationId = button.data('invitation-id');
             var invitationTitle = button.data('invitation-title');
@@ -369,16 +377,16 @@
             console.log(invitationTitle);
         });
 
-        $('#deleteButton').on('click', function() {
+        $('#deleteButton').on('click', function () {
             var invitationId = $('#invitationId').text();
             fetch('/delete-invitation/' + invitationId, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                            .getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                        .getAttribute('content'),
+                    'Content-Type': 'application/json'
+                }
+            })
                 .then(response => {
                     if (response.status === 200) {
                         toastr.success('تم الحذف');

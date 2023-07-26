@@ -29,5 +29,5 @@ class ProfileController extends Controller
         $userProfile->update($validatedData);
 
         return response()->json(['status' => 200]);
-    }
+    } // end update
 }
