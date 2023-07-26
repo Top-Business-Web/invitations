@@ -44,7 +44,7 @@ class InviteController extends Controller
     public function editInvitation($id)
     {
         $invites = Invitation::where('id', $id)->first();
-        return view('front.invites.components.edit_invitation', compact('invites'));
+        return view('front.add_invite.edit_invite', compact('invites'));
     }
     public function edit()
     {
