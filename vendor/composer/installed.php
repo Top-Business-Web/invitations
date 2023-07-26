@@ -3,9 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-
-        'reference' => '2b20dbdd0d69d845f2aae245c6f7a3ebbea74e05',
-
+        'reference' => 'b6461e13e69864d809a5635f14329e5b6bfc8744',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -588,9 +586,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-
-            'reference' => '2b20dbdd0d69d845f2aae245c6f7a3ebbea74e05',
-
+            'reference' => 'b6461e13e69864d809a5635f14329e5b6bfc8744',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1567,9 +1563,9 @@
             'dev_requirement' => false,
         ),
         'symfony/psr-http-message-bridge' => array(
-            'pretty_version' => 'v2.3.0',
-            'version' => '2.3.0.0',
-            'reference' => '3c62b814477165dbf07c9c18ddb413ccdadaa93c',
+            'pretty_version' => 'v2.3.1',
+            'version' => '2.3.1.0',
+            'reference' => '581ca6067eb62640de5ff08ee1ba6850a0ee472e',
             'type' => 'symfony-bridge',
             'install_path' => __DIR__ . '/../symfony/psr-http-message-bridge',
             'aliases' => array(),
