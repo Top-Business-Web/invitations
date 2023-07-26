@@ -7,7 +7,11 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/front') }}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/front') }}/css/style.css">
+    @if (app()->getLocale() == 'ar')
+        <link rel="stylesheet" href="{{ asset('assets/front') }}/css/style.css">
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/front') }}/css/ltr.css">
+    @endif
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
