@@ -117,7 +117,9 @@ Route::group(
         Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
         Route::get('verification', [HomeController::class, 'verification'])->name('verification');
 
+
         // index
         Route::get('/', [HomeController::class, 'index'])->name('index');
     }
 );
+
