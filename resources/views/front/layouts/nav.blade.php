@@ -26,7 +26,13 @@
                         <a class="nav-link" aria-current="page" href="#contact">تواصل معنا</a>
                     </li>
                 </ul>
+                <!-- Check if the user is NOT logged in (guest) -->
+                @guest
                     <a href="{{ route('signIn') }}" class="text-decoration-none btn-login">تسجيل دخول</a>
+                    @else
+                    <a href="{{ route('invites') }}" class="text-decoration-none btn-login">{{ auth()->user()->name }}</a>
+                @endguest
+
                 <div class="dropdown" style="z-index: 100000;">
                     <button class="btn-language dropdown-toggle text-black" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
