@@ -71,6 +71,30 @@ return [
     // Path: Resource/Views/Front/index/components/Contact
     "follow_us" => "Follow us",
 
+    // Path: Resource/Views/Front/Sign/Sign_in/Content
+    "welcome_back" => "Welcome back",
+    "e_mail" => "E-mail",
+    "password" => "Password",
+    "forgot_your_password" => "Forgot your password ?",
+    "sign_in" => "Sign In",
+    "Dont_have_an_account_with_us?" => "Don't have an account with us?",
+
+    // Path: Resource/Views/Front/Sign/Sign_Up/Content
+    "create_an_account" => "Create an account",
+    "sign_in_with_google" => "Sign in with Google",
+    "already_have_an_account?" => "Already have an account?",
+    "or" => "OR",
+
+    // Path: Resource/Views/Front/Sign/Forget_Password/Content
+    "please_enter_your" => "Please enter your mobile number to retrieve your password",
+    "send" => "Send",
+
+    // Path: Resource/Views/Front/Sign/New_Password/Content
+    "enter_a_new_password" => "Enter a new password",
+    "confirm_password" => "Confirm password",
+    "confirm" => "Confirm",
+
+
 
 
 
