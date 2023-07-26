@@ -15,7 +15,7 @@ class InvitationSeeder extends Seeder
      */
     public function run()
     {
-        $imagePath = 'assets/uploads/users/70511688644149.png';
+        $imagePath = 'assets/front/photo/blog2.jpg';
         $data = [
             [
                 'date' => '2023-12-05',
