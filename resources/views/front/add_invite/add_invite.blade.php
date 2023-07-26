@@ -78,7 +78,8 @@
                             <a href="{{ route('invites') }}" class="text-decoration-none btn-login"> عودة</a>
                         </div>
                         <div class="col-lg-8 col-12 d-flex mt-4 justify-content-end">
-                            <a href="{{ route('invites') }}" class="text-decoration-none btn-login"
+                            <a href="#" class="text-decoration-none btn-login"
+                               id="addDraftInvite"
                                style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
                             <button type="button" id="step1Btn" class="next-btn main-btn1 step1Btn">حفظ ومتابعة</button>
                         </div>
@@ -146,7 +147,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-12">
                             <div class="image-card mb-3">
-                                <img src="{{ asset('assets/front') }}/photo/blog2.jpg" alt="no-image">
+                                <img class="imagePreview" alt="no-image">
                             </div>
                             <h5 id="user_name">{{ auth()->user()->name }}</h5>
                             <p>يتشرف بدعوتكم لحضور <span id="invition_title"></span></p>
@@ -243,16 +244,16 @@
                     </div>
                     <div class="col-12">
                         <label class="form-label">اسم المناسبة</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control titlePreview" required>
                     </div>
                 </div>
                 <h5 class="mt-4 mb-4">معاينة</h5>
                 <div class="row">
                     <div class="col-12">
                         <div class="image-card mb-3">
-                            <img src="photo/blog2.jpg" alt="no-image">
+                            <img src="" class="imagePreview" alt="no-image">
                         </div>
-                        <h5>المكرم محمد</h5>
+                        <h5>{{ auth()->user()->name }}</h5>
                         <p>يتشرف بدعوتكم لحضور عيد ميلا</p>
                         <div class="d-flex mb-2">
                             <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>

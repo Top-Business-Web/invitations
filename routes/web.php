@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     //add invitations
     Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
+    Route::post('addDraft', [AddInvitationController::class, 'addDraft'])->name('addDraft');
     Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class,'InvitationStepTwo'])->name('InvitationStepTwo');
     Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class,'addInvitationStepTwo'])->name('addInvitationStepTwo');
     Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');

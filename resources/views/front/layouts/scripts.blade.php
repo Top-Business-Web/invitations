@@ -105,6 +105,7 @@
 
 <script>
 
+    // validate input
     $(document).ready(function() {
         // Function to check all input fields and enable/disable the button accordingly
         function toggleButtonState() {
@@ -128,7 +129,9 @@
         });
     });
 
+    // ----------------------------------------------------------------
     // start step 1
+    // ----------------------------------------------------------------
     $(document).on('click', '#step1Btn', function () {
 
         var datePicker = $("#datepicker").val();
@@ -150,9 +153,30 @@
         localStorage.setItem('latitude', latitude);
         localStorage.setItem('longitude', longitude);
         localStorage.setItem('has_qrcode', has_qrcode);
-    }); // end step 1
 
+        $('.titlePreview').val(title);
+
+    });
+    // ----------------------------------------------------------------
+    // end step 1
+    // ----------------------------------------------------------------
+
+
+    // show image
+    $(document).ready(function() {
+        // When a file is selected using the input field
+        $("#image").change(function() {
+            var file = this.files[0];
+            if (file) {
+                var imageURL = URL.createObjectURL(file);
+                $(".imagePreview").attr("src", imageURL);
+            }
+        });
+    });
+
+    // ----------------------------------------------------------------
     //  start step 2
+    // ----------------------------------------------------------------
     $(document).on('click', '#step2Btn', function () {
 
         var url = '{{ route('addInvitationByClient') }}';
@@ -221,6 +245,7 @@
         formData.append('latitude', latitude);
         formData.append('longitude', longitude);
         formData.append('has_qrcode', has_qrcode);
+        formData.append('status', 1);
 
         for (var i = 0; i < contactArray.length; i++) {
             formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
@@ -257,7 +282,72 @@
             }
         })
 
-    });    // end step 2
+    });
+    // ----------------------------------------------------------------
+    // end step 2
+    // ----------------------------------------------------------------
+
+
+
+    // ----------------------------------------------------------------
+    // start draft
+    // ----------------------------------------------------------------
+    $(document).on('click', '#addDraftInvite', function () {
+
+        var url = '{{ route('addDraft') }}'
+        var datePicker = $("#datepicker").val();
+        var title = $("#title").val();
+        var imageFile = $('#image')[0].files[0]; // new edition image file
+        var sur_name = $("#sur_name").val();
+        var address = $("#searchMapInput").val();
+        var latitude = $("#lat-span").val();
+        var longitude = $("#lng-span").val();
+        var has_qrcode = $("#flexRadioDefault1").val();
+
+        // declare in data source
+        var formData = new FormData();
+        formData.append('datePicker', datePicker);
+        formData.append('title', title);
+        formData.append('image', imageFile);
+        formData.append('sur_name', sur_name);
+        formData.append('address', address);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('has_qrcode', has_qrcode);
+        formData.append('status', 0);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            url: url,
+            data : formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show loading spinner or do something before sending the request
+            },
+            success: function (data) {
+                // Handle the successful response from the server
+                toastr.success('تم انشاء الدعوة بنجاح كمسودة');
+                setTimeout(function (){
+                    location.href = '{{ route('invites') }}';
+                })
+            },
+            error: function (error) {
+                // Handle errors in the request
+                toastr.error('هناك خطا ما حاول في وقت لاحق');
+            },
+            complete: function () {
+                // Do something after the request is completed, regardless of success or error
+            }
+        })
+
+    });
+    // ----------------------------------------------------------------
+    // end draft
+    // ----------------------------------------------------------------
 
 
 </script>

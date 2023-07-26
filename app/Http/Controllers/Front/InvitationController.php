@@ -20,40 +20,38 @@ class InvitationController extends Controller
     {
         try {
             $image = $request->image;
-            if($request->has('image')){
+            if ($request->has('image')) {
                 $image = $request->file('image');
-                $image = $this->saveImage($image,'assets/uploads/invitations','photo');
+                $image = $this->saveImage($image, 'assets/uploads/invitations', 'photo');
             }
 
-            $addInvitation = Invitation::create([
-                'date' => Carbon::parse($request->datePicker)->format('Y-m-d'),
-                'title' => $request->title,
-                'image' => $image,
-                'has_qrcode' => $request->has_qrcode != null ? 1 : 0,
-                'qrcode' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-                'send_date' => 1,
-                'address' => $request->address,
-                'longitude' => $request->longitude,
-                'latitude' => $request->latitude,
-                'password' => mt_rand(11111111, 99999999),
-                'user_id' => Auth::id(),
-            ]);
+            $addInvitation = new Invitation();
+            $addInvitation->date = Carbon::parse($request->datePicker)->format('Y-m-d');
+            $addInvitation->title = $request->title;
+            $addInvitation->image = $image;
+            $addInvitation->has_qrcode = $request->has_qrcode != null ? 1 : 0;
+            $addInvitation->qrcode = \Ramsey\Uuid\Uuid::uuid4()->toString();
+            $addInvitation->send_date = 1;
+            $addInvitation->address = $request->address;
+            $addInvitation->longitude = $request->longitude;
+            $addInvitation->latitude = $request->latitude;
+            $addInvitation->status = $request->status;
+            $addInvitation->password = mt_rand(11111111, 99999999);
+            $addInvitation->user_id = Auth::id();
 
+            $addInvitation->save();
 
-            if ($addInvitation) {
+            if ($addInvitation->save()) {
 
                 for ($i = 0; $i < count($request->contactArray); $i++) {
-                    $invitee = Invitee::create([
-						'invitation_id' => $addInvitation->id,
-						'name'  => $request->contactArray[$i]['email'],
-						'email'  => $request->contactArray[$i]['email'],
-						'phone'  => $request->contactArray[$i]['phone'],
-						'invitees_number'  => $request->contactArray[$i]['number'],
+                    Invitee::create([
+                        'invitation_id' => $addInvitation->id,
+                        'name' => $request->contactArray[$i]['email'],
+                        'email' => $request->contactArray[$i]['email'],
+                        'phone' => $request->contactArray[$i]['phone'],
+                        'invitees_number' => $request->contactArray[$i]['number'],
                     ]);
                 }
-            }
-
-            if ($invitee) {
 
                 return response()->json(['status' => 200]);
             } else {
@@ -73,10 +71,42 @@ class InvitationController extends Controller
 
     } // end InvitationStepTwo
 
-    public function addInvitationStepTwo(Request $request)
+    public function addDraft(Request $request)
     {
+        try {
+            $image = $request->image;
+            if ($request->has('image')) {
+                $image = $request->file('image');
+                $image = $this->saveImage($image, 'assets/uploads/invitations', 'photo');
+            }
 
-    }
+            $addInvitation = new Invitation();
+            $addInvitation->date = Carbon::parse($request->datePicker)->format('Y-m-d');
+            $addInvitation->title = $request->title;
+            $addInvitation->image = $image;
+            $addInvitation->has_qrcode = $request->has_qrcode != null ? 1 : 0;
+            $addInvitation->qrcode = \Ramsey\Uuid\Uuid::uuid4()->toString();
+            $addInvitation->send_date = 1;
+            $addInvitation->address = $request->address;
+            $addInvitation->longitude = $request->longitude;
+            $addInvitation->latitude = $request->latitude;
+            $addInvitation->status = $request->status;
+            $addInvitation->password = mt_rand(11111111, 99999999);
+            $addInvitation->user_id = Auth::id();
+
+            $addInvitation->save();
+
+            if ($addInvitation->save()) {
+                return response()->json(['status' => 200]);
+            } else {
+                return response()->json(['status' => 405]);
+            }
+
+        } catch (\Exception $exception) {
+
+            return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
+        }
+    } // end add draft
 
 
 }
