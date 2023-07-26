@@ -36,14 +36,23 @@
                 <div class="dropdown" style="z-index: 100000;">
                     <button class="btn-language dropdown-toggle text-black" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/front') }}/photo/english.png">
-                        english
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            @if (app()->getLocale() === $localeCode)
+                                <img src="{{ asset('assets/front') }}/photo/{{ $localeCode }}.png">
+                                {{ $properties['native'] }}
+                            @endif
+                        @endforeach
                     </button>
                     <ul class="dropdown-menu text-end" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item btn-language btn-color" href="#">
-                                <img src="{{ asset('assets/front') }}/photo/arabic.png" class="ms-2">
-                                arabic
-                            </a></li>
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a class="dropdown-item btn-language btn-color"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    <img src="{{ asset('assets/front') }}/photo/{{ $localeCode }}.png">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

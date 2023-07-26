@@ -23,7 +23,7 @@
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "mcamara/laravel-localization": "^1.7",
+        "mcamara/laravel-localization": "^1.8",
         "paytabscom/laravel_paytabs": "^1.4",
         "pusher/pusher-php-server": "~3.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
