@@ -9,7 +9,7 @@
             </div>
             <div>
                 <div class="link-social">
-                    <p class="text-white text-center">تابعنا</p>
+                    <p class="text-white text-center">{{ __('site.follow_us') }}</p>
                     <a class="text-decoration-none" href="{{ $setting->facebook }}">
                         <i class="fa-brands fa-facebook-f me-3"></i>
                     </a>

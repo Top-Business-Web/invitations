@@ -105,12 +105,13 @@
 
 <script>
 
-    $(document).ready(function() {
+    // validate input
+    $(document).ready(function () {
         // Function to check all input fields and enable/disable the button accordingly
         function toggleButtonState() {
             var allFieldsFilled = true;
 
-            $('.input-field').each(function() {
+            $('.input-field').each(function () {
                 if ($(this).val().trim() === '') {
                     allFieldsFilled = false;
                     return false; // Exit the loop early if any field is empty
@@ -123,12 +124,32 @@
         toggleButtonState();
 
         // Check the input fields when typing in any of them
-        $('.input-field').on('input', function() {
+        $('.input-field').on('input', function () {
             toggleButtonState();
         });
     });
 
-    // start step 1
+    // show image
+    $(document).ready(function () {
+        // When a file is selected using the input field
+        $("#image").change(function () {
+            var file = this.files[0];
+            if (file) {
+                var imageURL = URL.createObjectURL(file);
+                $(".imagePreview").attr("src", imageURL);
+            }
+        });
+    });
+
+
+
+    // ----------------------------------------------------------------
+    // start add
+    // ----------------------------------------------------------------
+
+    // ----------------------
+    // start step 1 add
+    // ----------------------
     $(document).on('click', '#step1Btn', function () {
 
         var datePicker = $("#datepicker").val();
@@ -140,6 +161,7 @@
         var longitude = $("#lng-span").val();
         var has_qrcode = $("#flexRadioDefault1").val();
         $("#invition_title").text(title);
+        $(".titlePreview").text(title);
         // first step value declare
 
         localStorage.setItem('datePicker', datePicker);
@@ -150,9 +172,17 @@
         localStorage.setItem('latitude', latitude);
         localStorage.setItem('longitude', longitude);
         localStorage.setItem('has_qrcode', has_qrcode);
-    }); // end step 1
 
-    //  start step 2
+        $('.titlePreview').val(title);
+
+    });
+    // ----------------------
+    // end step 1 add
+    // ----------------------
+
+    // ----------------------
+    //  start step 2 add
+    // ----------------------
     $(document).on('click', '#step2Btn', function () {
 
         var url = '{{ route('addInvitationByClient') }}';
@@ -221,6 +251,7 @@
         formData.append('latitude', latitude);
         formData.append('longitude', longitude);
         formData.append('has_qrcode', has_qrcode);
+        formData.append('status', 1);
 
         for (var i = 0; i < contactArray.length; i++) {
             formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
@@ -235,7 +266,7 @@
             },
             type: 'POST',
             url: url,
-            data : formData,
+            data: formData,
             processData: false,
             contentType: false,
             beforeSend: function () {
@@ -243,10 +274,10 @@
             },
             success: function (data) {
                 // Handle the successful response from the server
-               toastr.success('تم انشاء الدعوة بنجاح');
-               setTimeout(function (){
-                   location.href = '{{ route('invites') }}';
-               })
+                toastr.success('تم انشاء الدعوة بنجاح');
+                setTimeout(function () {
+                    location.href = '{{ route('invites') }}';
+                })
             },
             error: function (error) {
                 // Handle errors in the request
@@ -257,7 +288,250 @@
             }
         })
 
-    });    // end step 2
+    });
+    // ----------------------
+    // end step 2 add
+    // ----------------------
+
+    // ----------------------------------------------------------------
+    // end add
+    // ----------------------------------------------------------------
+
+
+
+
+    // ----------------------------------------------------------------
+    // start draft
+    // ----------------------------------------------------------------
+    $(document).on('click', '#addDraftInvite', function () {
+
+        var url = '{{ route('addDraft') }}'
+        var datePicker = $("#datepicker").val();
+        var title = $("#title").val();
+        var imageFile = $('#image')[0].files[0]; // new edition image file
+        var sur_name = $("#sur_name").val();
+        var address = $("#searchMapInput").val();
+        var latitude = $("#lat-span").val();
+        var longitude = $("#lng-span").val();
+        var has_qrcode = $("#flexRadioDefault1").val();
+        var id = $('input[name="id"]').val();
+
+        // declare in data source
+        var formData = new FormData();
+        formData.append('datePicker', datePicker);
+        formData.append('title', title);
+        formData.append('image', imageFile);
+        formData.append('sur_name', sur_name);
+        formData.append('address', address);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('has_qrcode', has_qrcode);
+        formData.append('status', 0);
+        formData.append('id', id);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show loading spinner or do something before sending the request
+            },
+            success: function (data) {
+                // Handle the successful response from the server
+                toastr.success('تم انشاء الدعوة بنجاح كمسودة');
+                setTimeout(function () {
+                    location.href = '{{ route('invites') }}';
+                })
+            },
+            error: function (error) {
+                // Handle errors in the request
+                toastr.error('هناك خطا ما حاول في وقت لاحق');
+            },
+            complete: function () {
+                // Do something after the request is completed, regardless of success or error
+            }
+        })
+
+    });
+    // ----------------------------------------------------------------
+    // end draft
+    // ----------------------------------------------------------------
+
+
+
+
+    // ----------------------------------------------------------------
+    // start edit
+    // ----------------------------------------------------------------
+
+    // editBtnInvite
+    $(document).on('click', '#editBtnInvite', function () {
+        let id = $(this).data('id');
+        let url = "{{ route('editInvitation',':id')  }}";
+        url = url.replace(':id', id);
+        window.location.href = url;
+    })
+
+
+    // ----------------------
+    // start step 1 edit
+    // ----------------------
+    $(document).on('click', '#step1BtnEdit', function () {
+
+        var datePicker = $("#datepicker").val();
+        var id = $('input[name="id"]').val();
+        var title = $("#title").val();
+        var image = $('#image')[0].files[0]; // new eldapour edition
+        var sur_name = $("#sur_name").val();
+        var address = $("#searchMapInput").val();
+        var latitude = $("#lat-span").val();
+        var longitude = $("#lng-span").val();
+        var has_qrcode = $("#flexRadioDefault1").val();
+        $("#invition_title").text(title);
+        $(".titlePreview").text(title);
+        // first step value declare
+
+        localStorage.setItem('datePicker', datePicker);
+        localStorage.setItem('title', title);
+        localStorage.setItem('image', image);
+        localStorage.setItem('sur_name', sur_name);
+        localStorage.setItem('address', address);
+        localStorage.setItem('latitude', latitude);
+        localStorage.setItem('longitude', longitude);
+        localStorage.setItem('has_qrcode', has_qrcode);
+        localStorage.setItem('id', id);
+
+        $('.titlePreview').val(title);
+
+    });
+    // ----------------------
+    // end step 1 edit
+    // ----------------------
+
+    // ----------------------
+    //  start step 2 edit
+    // ----------------------
+    $(document).on('click', '#step2BtnEdit', function () {
+
+        var url = '{{ route('editInvitationByClient') }}';
+        var invitees_phone = $('.invitees_phone');
+        var invitees_name = $('.invitees_name');
+        var invitees_email = $('.invitees_email');
+        var invitees_number = $('.invitees_number');
+
+        let phone_list = [];
+        let name_list = [];
+        let email_list = [];
+        let number_list = [];
+
+        invitees_phone.each(function () {
+            phone_list.push($(this).val());
+        });
+        invitees_name.each(function () {
+            name_list.push($(this).val());
+        });
+        invitees_email.each(function () {
+            email_list.push($(this).val());
+        });
+        invitees_number.each(function () {
+            number_list.push($(this).val());
+        });
+        // first step value declare
+        var datePicker = localStorage.getItem('datePicker');
+        var title = localStorage.getItem('title');
+        var image = localStorage.getItem('image');
+        var sur_name = localStorage.getItem('sur_name');
+        var address = localStorage.getItem('address');
+        var latitude = localStorage.getItem('latitude');
+        var longitude = localStorage.getItem('longitude');
+        var has_qrcode = localStorage.getItem('has_qrcode');
+        var id = localStorage.getItem('id');
+
+        var contactArray = name_list.map((value, index) => {
+            return {
+                'name': value,
+                'email': email_list[index],
+                'phone': phone_list[index],
+                'number': number_list[index]
+            };
+        });
+
+        console.log({
+            'url': url,
+            'datePicker': datePicker,
+            'title': title,
+            'image': image,
+            'sur_name': sur_name,
+            'address': address,
+            'latitude': latitude,
+            'longitude': longitude,
+            'has_qrcode': has_qrcode,
+            'contactArray': contactArray
+        })
+
+        var imageFile = $('#image')[0].files[0];
+
+        var formData = new FormData();
+        formData.append('image', imageFile);
+        formData.append('datePicker', datePicker);
+        formData.append('title', title);
+        formData.append('sur_name', sur_name);
+        formData.append('address', address);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('has_qrcode', has_qrcode);
+        formData.append('status', 1);
+        formData.append('id', id);
+
+        for (var i = 0; i < contactArray.length; i++) {
+            formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
+            formData.append('contactArray[' + i + '][email]', contactArray[i]['email']);
+            formData.append('contactArray[' + i + '][phone]', contactArray[i]['phone']);
+            formData.append('contactArray[' + i + '][number]', contactArray[i]['number']);
+        }
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show loading spinner or do something before sending the request
+            },
+            success: function (data) {
+                // Handle the successful response from the server
+                toastr.success('تم تعديل الدعوة بنجاح');
+                setTimeout(function () {
+                    location.href = '{{ route('invites') }}';
+                })
+            },
+            error: function (error) {
+                // Handle errors in the request
+                toastr.error('هناك خطا ما حاول في وقت لاحق');
+            },
+            complete: function () {
+                // Do something after the request is completed, regardless of success or error
+            }
+        })
+
+    });
+    // ----------------------
+    // end step 2 edit
+    // ----------------------
+
+
+    // ----------------------------------------------------------------
+    // end edit
+    // ----------------------------------------------------------------
 
 
 </script>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @method static findOrFail($id)
+ * @method static findOrFail(mixed $id)
  */
 class Invitation extends Model
 {

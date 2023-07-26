@@ -10,7 +10,15 @@ const bullet = document.querySelectorAll(".step .bullet");
 let current = 1;
 
 firstNextBtn.addEventListener("click", function(){
-    slidePage.style.marginRight = "-25%";             
+
+    // show in english
+
+    // slidePage.style.marginLeft = "-25%"; 
+
+    // show  in ar
+
+    slidePage.style.marginRight = "-25%"; 
+
     bullet[current - 1].classList.add("active");      
     progressText[current - 1].classList.add("active"); 
     progressCheck[current - 1].classList.add("active"); 
@@ -25,7 +33,15 @@ secNextBtn.addEventListener("click", function(){
 });
 
 prevBtn1.addEventListener("click", function(){
+
+    // show in english
+
+    // slidePage.style.marginLeft = "0%";
+
+    // show  in ar
+
     slidePage.style.marginRight = "0%";
+    
     bullet[current - 2].classList.remove("active");
     progressText[current - 2].classList.remove("active");
     progressCheck[current - 2].classList.remove("active");
