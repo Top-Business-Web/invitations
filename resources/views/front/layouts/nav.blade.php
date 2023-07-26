@@ -67,7 +67,7 @@
                             حسابى
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">ملفى الشخصى</a></li>
+                            <li><a class="dropdown-item" href="{{ route('getProfileUserData') }}">ملفى الشخصى</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

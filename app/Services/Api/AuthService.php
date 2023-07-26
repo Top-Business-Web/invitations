@@ -94,7 +94,7 @@ class AuthService
             $data['image'] = $this->uploadFiles('users', $request->file('image'));
         }
 
-        $data['password'] = Hash::make('123456');
+        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
 
 
@@ -200,4 +200,43 @@ class AuthService
 
        return helperJson(new UserResources($user), '');
     }
+
+    public function loginWithgoogle($request)
+    {
+        $rules = [
+            'name' => 'nullable|min:2|max:191',
+            'email' => 'nullable',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $errors = collect($validator->errors())->flatten(1)[0];
+            if (is_numeric($errors)) {
+                $errors_arr = [
+                    409 => 'Failed,phone number already exists',
+                    410 => 'Failed,email already exists',
+                ];
+                $code = (int)collect($validator->errors())->flatten(1)[0];
+                return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
+            }
+            return helperJson(null, $validator->errors(), 422);
+        }
+        $data = $request->validate($rules);
+
+        $data['password'] = Hash::make('dummypass123');
+        $user = User::where(['email'=>$data['email']]);
+        if($user->count() > 0){
+            $user = $user->first();
+        }else{
+            $user = User::create($data);
+        }
+
+        if ($user) {
+            if (!$token = JWTAuth::fromUser($user)) {
+                return helperJson(null, 'there is no user', 430);
+            }
+        }
+        $user->token = $token;
+
+        return helperJson(new UserResources($user), 'register successfully');
+    }//end fun
 }

@@ -63,6 +63,16 @@ class InvitationService
                     );
                 }
             }
+            $one_invitation =  Invitation::find($invitation->id);
+
+            if($request->step > 3){
+                $one_invitation->lang = $request->lang;
+                $one_invitation->save();
+            }
+            if($request->step > 4){
+                $one_invitation->status = "1";
+                $one_invitation->save();
+            }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
         }catch(Exception $e){
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -150,4 +160,56 @@ class InvitationService
 
         return helperJson($messages, '',200);
     }
+
+    public function sendReminder($request){
+        try {
+                $inputs = $request->all();
+
+//                $invitees =  Invitee::where(['invitation_id'=>$inputs->invitation_id]);
+                foreach ($inputs['invitees'] as $invitee){
+                  //add code for watts app logic to send message
+                }
+
+            return helperJson('', 'Sent Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function addInvitees($request){
+        try {
+            $inputs = $request->all();
+
+
+            $invitation = Invitation::find($inputs['invitation_id']);
+
+            foreach ($inputs['invitees'] as $invitee){
+                if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
+                    Contact::create(
+                        [
+                            'user_id'=> Auth()->id(),
+                            'name'=>$invitee['name'],
+                            'phone'=>$invitee['phone'],
+                        ]
+                    );
+                }
+
+                Invitee::create(
+                    [
+                        'invitation_id'=> $invitation->id,
+                        'name'=>$invitee['name'],
+                        'phone'=>$invitee['phone'],
+                        'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                        'status' => 1,
+                    ]
+                );
+            }
+
+            return helperJson(new InvitationResource($invitation), 'Sent Successfully',  Response::HTTP_OK);
+        }catch(Exception $e){
+            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

@@ -24,17 +24,11 @@ class UserResources extends JsonResource
                 'watts'=> $this->phone_code.$this->phone,
                 'image'=>$this->image,
                 'address'=>$this->address,
-                'provider_type'=>$this->provider_type,
-                'translation_type_id'=>$this->translation_type_id,
                 'about_me'=>$this->about_me,
-                'experience'=>$this->experience,
-                'previous_experience'=>$this->previous_experience,
-                'certificate_image'=>$this->certificate_image,
-                'location_image'=>$this->location_image,
-                'commercial_register_image'=>$this->commercial_register_image,
+                'balance'=>$this->points,
                 'city'=> @$this->city->{"name_".accept_language()},
             ],
-            'access_token'=>'Bearer '.$this->token??'',
+            'access_token'=>'Bearer '.$this->token ??'',
             'token_type'=>'bearer'
         ];
     }

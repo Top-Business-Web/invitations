@@ -34,6 +34,7 @@ Route::group(['prefix' => 'provider/auth'],function (){
 
     Route::post('login',[AuthProviderController::class, 'login']);
     Route::POST('register',[AuthProviderController::class, 'register']);
+    Route::POST('login-with-google',[AuthProviderController::class, 'loginWithGoogle']);
     Route::POST('update-profile',[AuthProviderController::class, 'update_profile']);
     Route::POST('delete-account',[AuthProviderController::class, 'deleteAccount']);
     Route::get('my-profile',[AuthProviderController::class, 'me']);
@@ -48,6 +49,8 @@ Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
     Route::get('home', [HomeController::class, 'index']);
 
     Route::post('store', [InvitationController::class, 'store']);
+    Route::post('sendReminder', [InvitationController::class, 'sendReminder']);
+    Route::post('addInvitees', [InvitationController::class, 'addInvitees']);
     Route::post('update/{id}', [InvitationController::class, 'update']);
     Route::get('delete/{id}', [InvitationController::class, 'destroy']);
 
@@ -75,5 +78,5 @@ Route::group([ 'middleware' => 'api','namespace' => 'Api'], function () {
 });
 
 
-//end route api
+//end route api -------------------------------------
 

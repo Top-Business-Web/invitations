@@ -42,4 +42,12 @@ class InvitationController extends Controller
         return $this->invitationService->messages($id);
     }
 
+    public function sendReminder(Request $request){
+        return $this->invitationService->sendReminder($request);
+    }
+
+    public function addInvitees(Request $request){
+        return $this->invitationService->addInvitees($request);
+    }
+
 }
