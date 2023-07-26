@@ -115,3 +115,4 @@ Route::get('verification', [HomeController::class, 'verification'])->name('verif
 
 // index
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
