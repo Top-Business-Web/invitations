@@ -56,13 +56,13 @@ Route::group(
         Route::get('/login/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google-callback');
 
 
-        Route::group(['middleware' => ['auth:web']], function () {
-            Route::get('invites', [InviteController::class, 'index'])->name('invites');
-            Route::get('edit_invitation/{id}', [InviteController::class, 'editInvitation'])->name('editInvitation');
-            Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
-            Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
-            Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
-            Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('invites', [InviteController::class, 'index'])->name('invites');
+    Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
+    Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
+    Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
+    Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
+
 
             Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
             Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
@@ -74,11 +74,16 @@ Route::group(
 
 
 
-            //add invitations
-            Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
-            Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class, 'InvitationStepTwo'])->name('InvitationStepTwo');
-            Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class, 'addInvitationStepTwo'])->name('addInvitationStepTwo');
-            Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');
+
+    //add invitations
+    Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
+    Route::post('addDraft', [AddInvitationController::class, 'addDraft'])->name('addDraft');
+    Route::get('edit_invitation/{id}', [AddInvitationController::class, 'editInvitation'])->name('editInvitation');
+    Route::post('editInvitationByClient', [AddInvitationController::class, 'editInvitationByClient'])->name('editInvitationByClient');
+    Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class,'InvitationStepTwo'])->name('InvitationStepTwo');
+    Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class,'addInvitationStepTwo'])->name('addInvitationStepTwo');
+    Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');
+
 
 
 
