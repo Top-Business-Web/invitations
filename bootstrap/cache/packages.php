@@ -1,237 +1,237 @@
 <?php return array (
-  'barryvdh/laravel-debugbar' =>
+  'barryvdh/laravel-debugbar' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Barryvdh\\Debugbar\\ServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
     ),
   ),
-  'beyondcode/laravel-websockets' =>
+  'beyondcode/laravel-websockets' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'BeyondCode\\LaravelWebSockets\\WebSocketsServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'WebSocketRouter' => 'BeyondCode\\LaravelWebSockets\\Facades\\WebSocketRouter',
     ),
   ),
-  'buglinjo/laravel-webp' =>
+  'buglinjo/laravel-webp' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Buglinjo\\LaravelWebp\\WebpServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Webp' => 'Buglinjo\\LaravelWebp\\Webp',
     ),
   ),
-  'darryldecode/cart' =>
+  'darryldecode/cart' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Darryldecode\\Cart\\CartServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Cart' => 'Darryldecode\\Cart\\Facades\\CartFacade',
     ),
   ),
-  'facade/ignition' =>
+  'facade/ignition' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Facade\\Ignition\\IgnitionServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
-  'fruitcake/laravel-cors' =>
+  'fruitcake/laravel-cors' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
-  'intervention/image' =>
+  'intervention/image' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Intervention\\Image\\ImageServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'laravel/sail' =>
+  'laravel/sail' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Sail\\SailServiceProvider',
     ),
   ),
-  'laravel/sanctum' =>
+  'laravel/sanctum' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     ),
   ),
-  'laravel/socialite' =>
+  'laravel/socialite' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Socialite\\SocialiteServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
     ),
   ),
-  'laravel/tinker' =>
+  'laravel/tinker' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'laravelcollective/html' =>
+  'laravelcollective/html' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Collective\\Html\\HtmlServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Form' => 'Collective\\Html\\FormFacade',
       'Html' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
-  'maatwebsite/excel' =>
+  'maatwebsite/excel' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
-  'mcamara/laravel-localization' =>
+  'mcamara/laravel-localization' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'LaravelLocalization' => 'Mcamara\\LaravelLocalization\\Facades\\LaravelLocalization',
     ),
   ),
-  'nesbot/carbon' =>
+  'nesbot/carbon' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
-  'nunomaduro/collision' =>
+  'nunomaduro/collision' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'simplesoftwareio/simple-qrcode' =>
+  'simplesoftwareio/simple-qrcode' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
     ),
   ),
-  'tailflow/laravel-orion' =>
+  'tailflow/laravel-orion' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Orion\\OrionServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Orion' => 'Orion\\Facades\\Orion',
     ),
   ),
-  'tymon/jwt-auth' =>
+  'tymon/jwt-auth' => 
   array (
-    'aliases' =>
+    'aliases' => 
     array (
       'JWTAuth' => 'Tymon\\JWTAuth\\Facades\\JWTAuth',
       'JWTFactory' => 'Tymon\\JWTAuth\\Facades\\JWTFactory',
     ),
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     ),
   ),
-  'yajra/laravel-datatables-buttons' =>
+  'yajra/laravel-datatables-buttons' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yajra\\DataTables\\ButtonsServiceProvider',
     ),
   ),
-  'yajra/laravel-datatables-editor' =>
+  'yajra/laravel-datatables-editor' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yajra\\DataTables\\EditorServiceProvider',
     ),
   ),
-  'yajra/laravel-datatables-fractal' =>
+  'yajra/laravel-datatables-fractal' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yajra\\DataTables\\FractalServiceProvider',
     ),
   ),
-  'yajra/laravel-datatables-html' =>
+  'yajra/laravel-datatables-html' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yajra\\DataTables\\HtmlServiceProvider',
     ),
   ),
-  'yajra/laravel-datatables-oracle' =>
+  'yajra/laravel-datatables-oracle' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
     ),
   ),
-  'yoeunes/toastr' =>
+  'yoeunes/toastr' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Yoeunes\\Toastr\\ToastrServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Toastr' => 'Yoeunes\\Toastr\\Facades\\Toastr',
     ),

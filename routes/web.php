@@ -24,30 +24,36 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-/**
- * Start Register
- */
-Route::post('register', [AuthController::class, 'register'])->name('user.register');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
+        /**
+         * Start Register
+         */
+        Route::post('register', [AuthController::class, 'register'])->name('user.register');
 
-/**
- * End Register
- */
-/**
- * Start Sign In
- */
+        /**
+         * End Register
+         */
+        /**
+         * Start Sign In
+         */
 
-Route::group(['prefix' => 'user'], function () {
-    Route::get('login', [AuthController::class, 'index'])->name('user');
-    Route::POST('login', [AuthController::class, 'login'])->name('user.login');
-});
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('login', [AuthController::class, 'index'])->name('user');
+            Route::POST('login', [AuthController::class, 'login'])->name('user.login');
+        });
 
-/**
- * End Sign In
- */
+        /**
+         * End Sign In
+         */
 
- // Login Google Controller
- Route::get('/login/google', [GoogleLoginController::class, 'redirect'])->name('login.google-redirect');
- Route::get('/login/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google-callback');
+        // Login Google Controller
+        Route::get('/login/google', [GoogleLoginController::class, 'redirect'])->name('login.google-redirect');
+        Route::get('/login/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google-callback');
 
 
 Route::group(['middleware' => ['auth:web']], function () {
@@ -57,13 +63,15 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
     Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
 
-    Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
-    Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
-    Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
-    Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
+
+            Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
+            Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
+            Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
+            Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
 
 
-    Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+            Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
+
 
 
 
@@ -79,41 +87,44 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
 
-    Route::get('notfound', [HomeController::class, 'notfound'])->name('notfound');
 
-    /**
-     * contacts controller
-     */
-    Route::resource('contact', ContactsController::class);
-    Route::get('contacts/show_excel', [ContactsController::class, 'showExcel'])->name('contacts.showExcel');
+            Route::get('notfound', [HomeController::class, 'notfound'])->name('notfound');
 
-    Route::post('contacts/import', [ContactsController::class, 'import'])->name('contacts.import');
+            /**
+             * contacts controller
+             */
+            Route::resource('contact', ContactsController::class);
+            Route::get('contacts/show_excel', [ContactsController::class, 'showExcel'])->name('contacts.showExcel');
 
-    /**
-     *  end contacts controller
-     */
-    Route::get('profile', [ProfileController::class, 'getProfileUserData'])->name('getProfileUserData');
-    Route::post('/update-profile',  [ProfileController::class, 'update'])->name('update_profile');
+            Route::post('contacts/import', [ContactsController::class, 'import'])->name('contacts.import');
 
-
-
-    Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
-    Route::get('scans', [HomeController::class, 'scans'])->name('scans');
-    Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
+            /**
+             *  end contacts controller
+             */
+            Route::get('profile', [ProfileController::class, 'getProfileUserData'])->name('getProfileUserData');
+            Route::post('/update-profile',  [ProfileController::class, 'update'])->name('update_profile');
 
 
-});
 
-Route::get('/', function () {
-    return redirect('/');
-});
+            Route::get('show_excel', [HomeController::class, 'showExcel'])->name('showExcel');
+            Route::get('scans', [HomeController::class, 'scans'])->name('scans');
+            Route::get('Userlogout', [AuthController::class, 'logout'])->name('user.logout');
+        });
 
-// sign
-Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
-Route::get('sign_up', [HomeController::class, 'signUp'])->name('signUp');
-Route::get('new_password', [HomeController::class, 'newPassword'])->name('newPassword');
-Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
-Route::get('verification', [HomeController::class, 'verification'])->name('verification');
+        Route::get('/', function () {
+            return redirect('/');
+        });
 
-// index
-Route::get('/', [HomeController::class, 'index'])->name('index');
+        // sign
+        Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
+        Route::get('sign_up', [HomeController::class, 'signUp'])->name('signUp');
+        Route::get('new_password', [HomeController::class, 'newPassword'])->name('newPassword');
+        Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
+        Route::get('verification', [HomeController::class, 'verification'])->name('verification');
+
+
+        // index
+        Route::get('/', [HomeController::class, 'index'])->name('index');
+    }
+);
+

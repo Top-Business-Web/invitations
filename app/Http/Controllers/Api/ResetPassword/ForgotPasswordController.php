@@ -20,7 +20,6 @@ class ForgotPasswordController extends Controller{
         ResetCodePassword::query()->where('email', $request->email)
             ->delete();
 
-
         // Generate random code
         $data['code'] = mt_rand(100000, 999999);
 
