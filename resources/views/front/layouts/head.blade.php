@@ -50,5 +50,13 @@
         #searchMapInput:focus {
             border-color: #4d90fe;
         }
+
+       .single-table,.confirmed,.apologized,.waiting,.failed,.not-send,.not-sent-whatsapp,.received-whatsapp,.readIt-whatsapp,.faild-whatsapp,
+       .not-received-qr,.received-qr,.read-it-qr,.faild-qr{
+
+           display: none;
+       }
+
+
     </style>
 </head>

@@ -91,6 +91,10 @@ class Invitation extends Model
         return $this->hasMany(Invitee::class)->where(['status'=> 5]);
     }
 
+
+    //start relation of whatsapp code
+
+
     public function not_sent_whatsapp(){
         return $this->hasMany(Status::class)->where(['status'=> 1, 'type' => 'whatsapp']);
     }
@@ -106,6 +110,9 @@ class Invitation extends Model
     public function faild_whatsapp(){
         return $this->hasMany(Status::class)->where(['status'=> 4, 'type' => 'whatsapp']);
     }
+
+
+    //start status of qrcode relation
     public function not_received_qr(){
         return $this->hasMany(Status::class)->where(['status'=> 1, 'type' => 'qr_code']);
     }

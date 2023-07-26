@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
 
+
     //add invitations
     Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
     Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class,'InvitationStepTwo'])->name('InvitationStepTwo');
