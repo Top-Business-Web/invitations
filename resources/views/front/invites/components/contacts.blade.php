@@ -2,22 +2,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
         <div class="d-flex justify-content-between">
-            <h3>دعواتى</h3>
+            <h3>{{ __('site.my_invitations') }}</h3>
 
-            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">انشاء دعوة</a>
+            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">{{ __('site.create_an_invitation') }}</a>
 
         </div>
         <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <select class="form-select" aria-label="Default select example" id="sortSelect">
-                    <option selected>ترتيب حسب</option>
-                    <option value="1">الاسم</option>
-                    <option value="2">التاريخ</option>
-                    <option value="3">الحالة</option>
+                    <option selected>{{ __('site.sort_by') }}</option>
+                    <option value="1">{{ __('site.the_name') }}</option>
+                    <option value="2">{{ __('site.the_date') }}</option>
+                    <option value="3">{{ __('site.the_status') }}</option>
                 </select>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <input class="form-control" type="search" placeholder="بحث" id="searchInput">
+                <input class="form-control" type="search" placeholder="{{ __('site.search') }}" id="searchInput">
             </div>
         </div>
         @if ($invitations->isEmpty())
@@ -38,7 +38,7 @@
                                 <p
                                     style="{{ $invitation->status == 0 ? 'background-color : #E9EAEB;color: black;' : '' }}"
                                     class="btn-active">
-                                    {{ $invitation->status == 1 ? 'مؤكد' : 'غير مؤكد' }}
+                                    {{ $invitation->status == 1 ?  __('site.confirmed')  :  __('site.un_confirmed') }} 
                                 </p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
@@ -69,7 +69,7 @@
                                 </div>
                                 <p>{{ $invitation->password }}</p>
                                 <div style="margin-top: 35px;">
-                                    <a href="#" class="text-decoration-none btn-login">حمل التطبيق</a>
+                                    <a href="#" class="text-decoration-none btn-login">{{ __('SITE.download_the_app') }}</a>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
@@ -88,36 +88,36 @@
                         </div>
 
                         <div class="mt-5">
-                            <h6 class="mb-2">حالات جهات الاتصال</h6>
+                            <h6 class="mb-2">{{ __('site.contact_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".single-table">
                                         <p class="mb-0">{{ @$invitation->scanned->count() }}</p>
-                                        <p class="mb-0">الممسوحة ضوئيا</p>
+                                        <p class="mb-0">{{ __('site.scanned') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center">
                                         <p class="mb-0">{{ @$invitation->confirmed->count() }}</p>
-                                        <p class="mb-0"> تأكيد</p>
+                                        <p class="mb-0">{{ __('site.confirm') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center">
                                         <p class="mb-0">{{ @$invitation->apologized->count() }}</p>
-                                        <p class="mb-0"> اعتذار</p>
+                                        <p class="mb-0">{{ __('site.apology') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center">
                                         <p class="mb-0">1</p>
-                                        <p class="mb-0"> زار الصفحة</p>
+                                        <p class="mb-0">{{ __('site.visited_the_page') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center">
                                         <p class="mb-0">{{ @$invitation->waiting->count() }}</p>
-                                        <p class="mb-0"> لايوجد رد</p>
+                                        <p class="mb-0"></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
