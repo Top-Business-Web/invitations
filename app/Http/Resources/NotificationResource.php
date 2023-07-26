@@ -16,8 +16,8 @@ class NotificationResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'title'=>$this->date,
-            'body'=>$this->title,
+            'title'=>$this->title,
+            'body'=>$this->body,
             'image'=>$this->image,
         ];
     }
