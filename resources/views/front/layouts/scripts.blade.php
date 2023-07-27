@@ -339,7 +339,7 @@
             processData: false,
             contentType: false,
             beforeSend: function () {
-                // Show loading spinner or do something before sending the request
+                // Show loading spinner or do something before sending the request dddddd
             },
             success: function (data) {
                 // Handle the successful response from the server

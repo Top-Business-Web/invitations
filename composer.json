@@ -22,12 +22,12 @@
         "maatwebsite/excel": "^3.1",
         "mcamara/laravel-localization": "^1.8",
         "paytabscom/laravel_paytabs": "^1.4",
-        "pusher/pusher-php-server": "~3.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "tailflow/laravel-orion": "^2.19",
         "tymon/jwt-auth": "^1.0",
         "yajra/laravel-datatables": "^1.5",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^1.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
