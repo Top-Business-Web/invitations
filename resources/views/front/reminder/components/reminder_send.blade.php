@@ -1,16 +1,16 @@
 <div class="section pt-5 pb-5">
     <div class="container">
         <div class="pt-5 pb-5 ps-3 pe-3 bg-white">
-            <h3 class="mb-5">تذكير الدعوة</h3>
+            <h3 class="mb-5">{{ __('site.call_reminder') }}</h3>
             <div class="scroll">
                 <table class="table table-striped border">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">تحديد</th>
-                            <th scope="col"> الاسم</th>
-                            <th scope="col">البريد الالكترونى</th>
-                            <th scope="col">الحالة</th>
+                            <th scope="col">{{ __('site.to_set') }}</th>
+                            <th scope="col">{{ __('site.the_name') }}</th>
+                            <th scope="col">{{ __('site.email') }}</th>
+                            <th scope="col">{{ __('site.the_status') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="d-flex justify-content-center mt-4">
-                <button type="button" class="btn-login" style="border: none;">ارسال</button>
+                <button type="button" class="btn-login" style="border: none;">{{ __('site.send') }}</button>
             </div>
         </div>
     </div>
