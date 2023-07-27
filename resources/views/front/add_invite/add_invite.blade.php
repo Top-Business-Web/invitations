@@ -76,13 +76,15 @@
                                 </label>
                             </div>
                             <div class="col-lg-4 col-12 mb-3 mt-4">
-                                <a href="{{ route('invites') }}" class="text-decoration-none btn-login">{{ __('site.back') }}</a>
+                                <a href="{{ route('invites') }}"
+                                    class="text-decoration-none btn-login">{{ __('site.back') }}</a>
                             </div>
                             <div class="col-lg-8 col-12 d-flex mt-4 justify-content-end">
                                 <a href="#" class="text-decoration-none btn-login" id="addDraftInvite"
                                     style="background-color: #C7C7C7;">{{ __('site.save_to_drafts') }}</a>
-                                <button type="button" id="step1Btn" class="next-btn main-btn1 step1Btn">{{ __('site.save_and_continue') }}
-                                    </button>
+                                <button type="button" id="step1Btn"
+                                    class="next-btn main-btn1 step1Btn">{{ __('site.save_and_continue') }}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -99,10 +101,10 @@
                         <div class="d-flex justify-content-center mb-5">
                             <a href="{{ route('contacts.showExcel') }}" style="text-decoration: none"
                                 class="main-btn1 bg-color">
-                                استيراد ضيوف
+                                {{ __('site.import_guests') }}
                             </a>
                             <a href="{{ route('contact.index') }}" class="text-decoration-none">
-                                <button type="button" class="main-btn1 guest-btn">اضافة ضيف</button>
+                                <button type="button" class="main-btn1 guest-btn">{{ __('site.add_guest') }}</button>
                             </a>
                         </div>
                         <div class="scroll">
@@ -110,9 +112,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">الاسم</th>
-                                        <th scope="col">البريد الالكترونى</th>
-                                        <th scope="col">المرافقين</th>
+                                        <th scope="col">{{ __('site.the_name') }}</th>
+                                        <th scope="col">{{ __('site.email') }}</th>
+                                        <th scope="col">{{ __('site.escorts') }}</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -149,33 +151,37 @@
                             </table>
                         </div>
 
-                        <h5 class="mt-4 mb-4">معاينة</h5>
+                        <h5 class="mt-4 mb-4">{{ __('site.preview') }}</h5>
                         <div class="row">
                             <div class="col-lg-4 col-12">
                                 <div class="image-card mb-3">
                                     <img class="imagePreview" alt="no-image">
                                 </div>
                                 <h5 id="user_name">{{ auth()->user()->name }}</h5>
-                                <p>يتشرف بدعوتكم لحضور <span id="invition_title"></span></p>
+                                <p>{{ __('site.honored_to_invite_you_to_attend') }}<span id="invition_title"></span>
+                                </p>
                                 <div class="d-flex mb-2">
-                                    <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>
-                                    <button class="main-btn1" style="background-color: #C7C7C7;"> اعتذار</button>
+                                    <button class="main-btn1"
+                                        style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
+                                    <button class="main-btn1"
+                                        style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
                                 </div>
-                                <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">موقع
-                                    المناسبة
+                                <button class="main-btn1"
+                                    style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}
                                 </button>
                             </div>
                             <div class="col-lg-8 col-12"></div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button class="main-btn1 mt-4 mb-4" style="background-color: #C7C7C7;"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                    تحرير القالب
+                                    {{ __('site.edit_the_template') }}
                                 </button>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-4 mb-5">
-                            <button class="prev1-btn btn-login" style="border: none;">عودة</button>
-                            <button class="next1-btn main-btn1" id="step2Btn">حفظ ومتابعة</button>
+                            <button class="prev1-btn btn-login" style="border: none;">{{ __('site.back') }}</button>
+                            <button class="next1-btn main-btn1"
+                                id="step2Btn">{{ __('site.save_and_continue') }}</button>
                         </div>
                     </div>
                     <!-- end second step -->
@@ -194,17 +200,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="mb-3">استيراد جهات الاتصال من ملف اكسيل</h5>
-                    <p>1- احفظ الملف على صيغة اكسيل</p>
-                    <p>2- نسق بيانات الاتصال على هذا الشكل</p>
+                    <h5 class="mb-3">{{ __('site.import_contacts_from_excel_file') }}</h5>
+                    <p>1- {{ __('site.save_the_file_in_excel_format') }}</p>
+                    <p>2- {{ __('site.format_contact_information_in_this_format') }}</p>
                     <div class="scroll">
                         <table class="table table-striped border">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">الاسم</th>
-                                    <th scope="col">البريد الالكترونى</th>
-                                    <th scope="col">الهاتف</th>
+                                    <th scope="col">{{ __('site.the_name') }}</th>
+                                    <th scope="col">{{ __('site.email') }}</th>
+                                    <th scope="col">{{ __('site.phone') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -225,7 +231,8 @@
                     </div>
 
                     <div class="d-flex justify-content-center mb-2 mt-4">
-                        <button class="btn-login" type="submit" style="border: none;">رفع الملف</button>
+                        <button class="btn-login" type="submit"
+                            style="border: none;">{{ __('site.file_upload') }}</button>
                     </div>
                 </div>
             </div>
@@ -243,37 +250,37 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="validationCustom04" class="form-label">اللغة</label>
+                            <label for="validationCustom04" class="form-label">{{ __('site.lang') }}</label>
                             <select class="form-select" id="validationCustom04" required>
-                                <option selected disabled value="">حدد الغة</option>
-                                <option>عربى</option>
-                                <option>انجليزى</option>
+                                <option selected disabled value="">{{ __('site.to_set') }}.
+                                    {{ __('site.lang') }}</option>
+                                <option>{{ __('arabic') }}</option>
+                                <option>{{ __('english') }}</option>
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label">اسم المناسبة</label>
+                            <label class="form-label">{{ __('site.the_name'). __('site.occasion') }}</label>
                             <input type="text" class="form-control titlePreview" required>
                         </div>
                     </div>
-                    <h5 class="mt-4 mb-4">معاينة</h5>
+                    <h5 class="mt-4 mb-4">{{ __('site.preview') }}</h5>
                     <div class="row">
                         <div class="col-12">
                             <div class="image-card mb-3">
                                 <img src="" class="imagePreview" alt="no-image">
                             </div>
                             <h5>{{ auth()->user()->name }}</h5>
-                            <p> يتشرف بدعوتكم لحضور <span class="titlePreview"></span></p>
+                            <p>{{ __('site.honored_to_invite_you_to_attend') }}<span class="titlePreview"></span></p>
                             <div class="d-flex mb-2">
-                                <button class="main-btn1" style="background-color: #C7C7C7;"> تأكيد</button>
-                                <button class="main-btn1" style="background-color: #C7C7C7;"> اعتذار</button>
+                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
+                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
                             </div>
-                            <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">موقع
-                                المناسبة</button>
+                            <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}</button>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-center mb-2 mt-5">
-                        <button class="btn-login" type="submit" style="border: none;"> حفظ</button>
+                        <button class="btn-login" type="submit" style="border: none;">{{ __('site.save') }}</button>
                     </div>
                 </div>
             </div>

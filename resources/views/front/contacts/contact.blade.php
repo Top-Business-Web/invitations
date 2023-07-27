@@ -12,13 +12,13 @@
     <div class="section pt-5 pb-5">
         <div class="container">
             <div class="d-flex justify-content-between mb-4">
-                <h3>جهات الاتصال</h3>
+                <h3>{{ __('site.contacts') }}</h3>
                 <div class="d-flex flex-column">
                     <button type="button" class="main-btn1 mb-2 addBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        اضافة جهة الاتصال
+                        {{ __('site.add_the_contact') }}
                     </button>
                     <a href="{{ route('contacts.showExcel') }}" class="text-decoration-none">
-                        <button type="button" class="main-btn1 bg-color">استيراد</button>
+                        <button type="button" class="main-btn1 bg-color">{{ __('site.import') }}</button>
                     </a>
                 </div>
             </div>
@@ -33,9 +33,9 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">الاسم</th>
-                            <th scope="col">البريد الالكترونى</th>
-                            <th scope="col">الهاتف</th>
+                            <th scope="col">{{ __('site.the_name') }}</th>
+                            <th scope="col">{{ __('site.email') }}</th>
+                            <th scope="col">{{ __('site.phone') }}</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -75,11 +75,11 @@
 
                     <div class="modal-body">
                         <input id="delete_id" name="id" type="hidden">
-                        <p>هل انت متأكد من حذف البيانات التالية <span id="title" class="text-danger"></span>؟</p>
+                        <p>{{ __('site.are_you_sure_to_delete_the_following_data') }}<span id="title" class="text-danger"></span>؟</p>
                     </div>
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-danger" id="delete_btn">حذف !</button>
+                        <button type="button" class="btn btn-danger" id="delete_btn">{{ __('site.delete') }} !</button>
                     </div>
 {{--                </div>--}}
             </div>

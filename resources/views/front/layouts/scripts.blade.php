@@ -3,7 +3,11 @@
 <script src="{{ asset('assets/front/') }}/js/jquery-1.10.1.min.js"></script>
 <script src="{{ asset('assets/front/') }}/js/owl.carousel.min.js"></script>
 <script src="{{ asset('assets/front/') }}/js/plugin.js"></script>
-<script src="{{ asset('assets/front/') }}/js/main.js"></script>
+@if (app()->getLocale() == 'ar')
+    <script src="{{ asset('assets/front/') }}/js/main.js"></script>
+@else
+    <script src="{{ asset('assets/front/') }}/js/main_en.js"></script>
+@endif
 <script src="{{ asset('assets/front/') }}/js/dropify.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- Include toastr JavaScript -->
@@ -18,7 +22,7 @@
 <!-- Include toastr CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         toastr.options = {
             "closeButton": true,
             "progressBar": true,
@@ -35,7 +39,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script>
-    $(function () {
+    $(function() {
         $("#datepicker").datepicker();
     });
 </script>
@@ -44,7 +48,10 @@
 <script>
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 22.3038945, lng: 70.80215989999999},
+            center: {
+                lat: 22.3038945,
+                lng: 70.80215989999999
+            },
             zoom: 13
         });
         var input = document.getElementById('searchMapInput');
@@ -59,7 +66,7 @@
             anchorPoint: new google.maps.Point(0, -29)
         });
 
-        autocomplete.addListener('place_changed', function () {
+        autocomplete.addListener('place_changed', function() {
             infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
@@ -104,14 +111,13 @@
 </script>
 
 <script>
-
     // validate input
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Function to check all input fields and enable/disable the button accordingly
         function toggleButtonState() {
             var allFieldsFilled = true;
 
-            $('.input-field').each(function () {
+            $('.input-field').each(function() {
                 if ($(this).val().trim() === '') {
                     allFieldsFilled = false;
                     return false; // Exit the loop early if any field is empty
@@ -124,15 +130,15 @@
         toggleButtonState();
 
         // Check the input fields when typing in any of them
-        $('.input-field').on('input', function () {
+        $('.input-field').on('input', function() {
             toggleButtonState();
         });
     });
 
     // show image
-    $(document).ready(function () {
+    $(document).ready(function() {
         // When a file is selected using the input field
-        $("#image").change(function () {
+        $("#image").change(function() {
             var file = this.files[0];
             if (file) {
                 var imageURL = URL.createObjectURL(file);
@@ -150,7 +156,7 @@
     // ----------------------
     // start step 1 add
     // ----------------------
-    $(document).on('click', '#step1Btn', function () {
+    $(document).on('click', '#step1Btn', function() {
 
         var datePicker = $("#datepicker").val();
         var title = $("#title").val();
@@ -183,7 +189,7 @@
     // ----------------------
     //  start step 2 add
     // ----------------------
-    $(document).on('click', '#step2Btn', function () {
+    $(document).on('click', '#step2Btn', function() {
 
         var url = '{{ route('addInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
@@ -196,16 +202,16 @@
         let email_list = [];
         let number_list = [];
 
-        invitees_phone.each(function () {
+        invitees_phone.each(function() {
             phone_list.push($(this).val());
         });
-        invitees_name.each(function () {
+        invitees_name.each(function() {
             name_list.push($(this).val());
         });
-        invitees_email.each(function () {
+        invitees_email.each(function() {
             email_list.push($(this).val());
         });
-        invitees_number.each(function () {
+        invitees_number.each(function() {
             number_list.push($(this).val());
         });
         // first step value declare
@@ -269,21 +275,21 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function () {
+            beforeSend: function() {
                 // Show loading spinner or do something before sending the request
             },
-            success: function (data) {
+            success: function(data) {
                 // Handle the successful response from the server
                 toastr.success('تم انشاء الدعوة بنجاح');
-                setTimeout(function () {
+                setTimeout(function() {
                     location.href = '{{ route('invites') }}';
                 })
             },
-            error: function (error) {
+            error: function(error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function () {
+            complete: function() {
                 // Do something after the request is completed, regardless of success or error
             }
         })
@@ -303,7 +309,7 @@
     // ----------------------------------------------------------------
     // start draft
     // ----------------------------------------------------------------
-    $(document).on('click', '#addDraftInvite', function () {
+    $(document).on('click', '#addDraftInvite', function() {
 
         var url = '{{ route('addDraft') }}'
         var datePicker = $("#datepicker").val();
@@ -338,21 +344,21 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function () {
+            beforeSend: function() {
                 // Show loading spinner or do something before sending the request dddddd
             },
-            success: function (data) {
+            success: function(data) {
                 // Handle the successful response from the server
                 toastr.success('تم انشاء الدعوة بنجاح كمسودة');
-                setTimeout(function () {
+                setTimeout(function() {
                     location.href = '{{ route('invites') }}';
                 })
             },
-            error: function (error) {
+            error: function(error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function () {
+            complete: function() {
                 // Do something after the request is completed, regardless of success or error
             }
         })
@@ -370,9 +376,9 @@
     // ----------------------------------------------------------------
 
     // editBtnInvite
-    $(document).on('click', '#editBtnInvite', function () {
+    $(document).on('click', '#editBtnInvite', function() {
         let id = $(this).data('id');
-        let url = "{{ route('editInvitation',':id')  }}";
+        let url = "{{ route('editInvitation', ':id') }}";
         url = url.replace(':id', id);
         window.location.href = url;
     })
@@ -381,7 +387,7 @@
     // ----------------------
     // start step 1 edit
     // ----------------------
-    $(document).on('click', '#step1BtnEdit', function () {
+    $(document).on('click', '#step1BtnEdit', function() {
 
         var datePicker = $("#datepicker").val();
         var id = $('input[name="id"]').val();
@@ -416,7 +422,7 @@
     // ----------------------
     //  start step 2 edit
     // ----------------------
-    $(document).on('click', '#step2BtnEdit', function () {
+    $(document).on('click', '#step2BtnEdit', function() {
 
         var url = '{{ route('editInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
@@ -429,16 +435,16 @@
         let email_list = [];
         let number_list = [];
 
-        invitees_phone.each(function () {
+        invitees_phone.each(function() {
             phone_list.push($(this).val());
         });
-        invitees_name.each(function () {
+        invitees_name.each(function() {
             name_list.push($(this).val());
         });
-        invitees_email.each(function () {
+        invitees_email.each(function() {
             email_list.push($(this).val());
         });
-        invitees_number.each(function () {
+        invitees_number.each(function() {
             number_list.push($(this).val());
         });
         // first step value declare
@@ -504,21 +510,21 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function () {
+            beforeSend: function() {
                 // Show loading spinner or do something before sending the request
             },
-            success: function (data) {
+            success: function(data) {
                 // Handle the successful response from the server
                 toastr.success('تم تعديل الدعوة بنجاح');
-                setTimeout(function () {
+                setTimeout(function() {
                     location.href = '{{ route('invites') }}';
                 })
             },
-            error: function (error) {
+            error: function(error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function () {
+            complete: function() {
                 // Do something after the request is completed, regardless of success or error
             }
         })
@@ -532,8 +538,6 @@
     // ----------------------------------------------------------------
     // end edit
     // ----------------------------------------------------------------
-
-
 </script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK34ZyoH4758BkVP05-GxKP0dSmBi4yTo&libraries=places&callback=initMap"

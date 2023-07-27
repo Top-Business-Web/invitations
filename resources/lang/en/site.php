@@ -158,6 +158,22 @@ return [
     "back" => "Back",
     "save_to_drafts" => "Save to drafts",
     "save_and_continue" => "Save and continue",
+    "import_guests" => "Import guests",
+    "add_guest" => "Add guest",
+    "escorts" => "Escorts",
+    "preview" => "Preview",
+    "honored_to_invite_you_to_attend" => "Honored to invite you to attend",
+    "to_be_sure" => "To be sure",
+    "edit_the_template" => "Edit the template",
+    "import_contacts_from_excel_file" => "Import contacts from excel file",
+    "save_the_file_in_excel_format" => "Save the file in excel format",
+    "format_contact_information_in_this_format" => "Format contact information in this format",
+    "file_upload" => "File upload",
+    "lang" => "Lang",
+    "add_the_contact" => "Add the contact",
+    "import" => "Import",
+    "are_you_sure_to_delete_the_following_data?" => "Are you sure to delete the following data?",
+
 
 
 
