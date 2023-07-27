@@ -166,22 +166,21 @@ return [
     "back" => "رجوع",
     "save_to_drafts" => "حفظ فى المسودات",
     "save_and_continue" => "حفظ ومتابعة",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "import_guests" => "استيراد ضيوف",
+    "add_guest" => "اضافة ضيف",
+    "escorts" => "المرافقين",
+    "preview" => "معاينة",
+    "honored_to_invite_you_to_attend" => "يتشرف بدعوتكم لحضور ",
+    "to_be_sure" => "تأكيد",
+    "edit_the_template" => "تحرير القالب",
+    "import_contacts_from_excel_file" => "استيراد جهات الاتصال من ملف اكسيل",
+    "save_the_file_in_excel_format" => "احفظ الملف على صيغة اكسيل",
+    "format_contact_information_in_this_format" => "نسق بيانات الاتصال على هذا الشكل",
+    "file_upload" => "رفع الملف",
+    "lang" => "لغة",
+    "add_the_contact" => "اضافة جهة الاتصال",
+    "import" => "استيراد",
+    "are_you_sure_to_delete_the_following_data?" => "هل انت متأكد من حذف البيانات التالية "
 
 
 ];

@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-center">
-        <img class="image-banner" src="{{ asset('assets/front') }}/photo/Group 1sss .jpg" alt="no-image">
+        <img class="image-banner" src="{{ asset('assets/front') }}/photo/Group 1sss.jpg" alt="no-image">
       </div>
     </div>
   </div>
