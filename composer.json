@@ -13,6 +13,7 @@
         "convertio/convertio-php": "^0.4.0",
         "darryldecode/cart": "^4.2",
         "doctrine/dbal": "^3.6",
+        "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",

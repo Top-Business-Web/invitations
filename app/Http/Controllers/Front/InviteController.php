@@ -26,6 +26,7 @@ class InviteController extends Controller
                 4 => 'لم يتم الارسال',
                 5 => 'فشل'
             ];
+            
         return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses'));
     }
 
