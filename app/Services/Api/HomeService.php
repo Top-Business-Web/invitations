@@ -38,14 +38,13 @@ class HomeService
 
     public function contacts(){
         $data = Contact::select('id','name','phone','email','user_id')->where('user_id', Auth()->id())->get();
-
         return helperJson($data, '');
     }
 
 
     public function notifications(){
 
-        $data = NotificationResource::collection(Notification::whereJsonContains('user_id', auth()->id())->get());
+        $data = NotificationResource::collection(Notification::query()->where('user_id','=',auth('user-api')->id())->get());
         return helperJson($data, '');
     }
 
