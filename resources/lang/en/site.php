@@ -104,7 +104,7 @@ return [
     "search" => "Search",
     "confirmed" => "Confirmed",
     "un_confirmed" => "Draft",
-    "download_the_app" => "Download The App",
+    "download_the_app" => "Download App",
     "contact_statuses" => "Contact Statuses",
     "scanned" => "Scanned",
     "apology" => "Apology",
