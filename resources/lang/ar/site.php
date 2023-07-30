@@ -108,7 +108,7 @@ return [
     "the_status" => "الحالة",
     "search" => "بحث",
     "confirmed" => "مؤكد",
-    "un_confirmed" => "غير مؤكد",
+    "un_confirmed" => "مسودة",
     "download_the_app" => "حمل التطبيق",
     "contact_statuses" => "حالات جهات الاتصال",
     "scanned" => "الممسوحة ضوئيا",
@@ -180,7 +180,8 @@ return [
     "lang" => "لغة",
     "add_the_contact" => "اضافة جهة الاتصال",
     "import" => "استيراد",
-    "are_you_sure_to_delete_the_following_data?" => "هل انت متأكد من حذف البيانات التالية "
+    "are_you_sure_to_delete_the_following_data?" => "هل انت متأكد من حذف البيانات التالية ",
+    "no_invitations_found" => "لم يتم العثور على دعوات",
 
 
 ];

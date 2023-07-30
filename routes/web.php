@@ -68,7 +68,7 @@ Route::group(
             //add invitation
             Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
             Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
-            Route::post('/search-invitations', [InvitationController::class, 'search'])->name('search.invitations');
+            Route::get('/search/invitations', [InvitationController::class, 'searchInvitations'])->name('search.invitations');
             Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
 
 
@@ -83,8 +83,8 @@ Route::group(
             Route::post('addDraft', [AddInvitationController::class, 'addDraft'])->name('addDraft');
             Route::get('edit_invitation/{id}', [AddInvitationController::class, 'editInvitation'])->name('editInvitation');
             Route::post('editInvitationByClient', [AddInvitationController::class, 'editInvitationByClient'])->name('editInvitationByClient');
-            Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class,'InvitationStepTwo'])->name('InvitationStepTwo');
-            Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class,'addInvitationStepTwo'])->name('addInvitationStepTwo');
+            Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class, 'InvitationStepTwo'])->name('InvitationStepTwo');
+            Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class, 'addInvitationStepTwo'])->name('addInvitationStepTwo');
             Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');
 
 
