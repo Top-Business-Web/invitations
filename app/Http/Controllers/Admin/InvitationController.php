@@ -119,19 +119,6 @@ class InvitationController extends Controller
         return view('front.invites.components.contacts')->with('data', $data);
     }
 
-    public function searchInvitations(Request $request)
-    {
-        // Get the search query and user ID from the request parameters
-        $query = $request->input('query');
-        $userId = $request->input('user_id');
-
-        // Perform the search in the invitations table using Eloquent
-        $results = Invitation::where('user_id', $userId)
-            ->where('title', 'LIKE', "%$query%")
-            ->get();
-
-        return response()->json($results);
-    }
 
     public function deleteInvitation($id)
     {
