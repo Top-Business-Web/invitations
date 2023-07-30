@@ -128,4 +128,6 @@ class Invitation extends Model
     public function faild_qr(){
         return $this->hasMany(Status::class)->where(['status'=> 4, 'type' => 'qr_code']);
     }
+
+
 }
