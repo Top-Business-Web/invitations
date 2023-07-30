@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
@@ -14,5 +15,10 @@ class Message extends Model
         'title',
         'message',
     ];
+
+
+    public function invitee(): BelongsTo{
+        return $this->belongsTo(Invitee::class,'invitee_id','id');
+    }
 
 }
