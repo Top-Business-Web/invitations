@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Invitee;
+use App\Models\Message;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvitationResource extends JsonResource
@@ -14,6 +16,13 @@ class InvitationResource extends JsonResource
      */
     public function toArray($request)
     {
+        $id = $this->id;
+        $invitees = Invitee::query()->where(['invitation_id'=> $id])->get();
+        $messages = $invitees->map(function ($item) use ($id) {
+            $item->messages = Message::query()->where(['invitation_id'=> $id,'invitee_id' => $item->id])->get();
+            return $item;
+        });
+
         return [
 
             'id'=>$this->id,
@@ -31,6 +40,7 @@ class InvitationResource extends JsonResource
             'status'=>$this->status,
             'step'=>$this->step,
             'invitees'=>$this->invitees,
+            'invitees_messages'=>$messages,
             'all_messages' => $this->messages,
             'all_confirmed'=>$this->confirmed,
             'all_scanned'=>$this->scanned,

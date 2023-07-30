@@ -53,7 +53,6 @@ class AuthScannerService
         if (! $invitation) {
             return helperJson(null, 'there is no invitation', 406);
         }
-        return helperJson(['user_date' =>new UserResources($user),'invitation'=> new InvitationResource($invitation)], 'login successfully');
+        return helperJson(['user-model' =>new UserResources($user),'invitation-model'=> new InvitationResource($invitation)], 'تم تسجيل الدخول بنجاح بواسطه البريد الالكتروني وكلمه مرور الدعوه بنجاح');
     }//end fun
-
 }

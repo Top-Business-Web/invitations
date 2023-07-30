@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\InvitationController;
 use App\Http\Controllers\Api\ResetPassword\CodeCheckController;
 use App\Http\Controllers\Api\ResetPassword\ForgotPasswordController;
 use App\Http\Controllers\Api\ResetPassword\ResetPasswordController;
+use App\Http\Controllers\Api\ScannerInvitation\ScannerInvitationController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'provider/auth'],function (){
 });
 
 Route::post('scanner/auth/login',[AuthScannerController::class, 'login']);
+Route::post('scanner-invitation',[ScannerInvitationController::class, 'scannerInvitation'])->middleware('api');
 
 
 Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
