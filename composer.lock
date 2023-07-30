@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "959e6f8b22c2261945b11f9634074cfd",
+
     "packages": [
         {
             "name": "a6digital/laravel-default-profile-image",

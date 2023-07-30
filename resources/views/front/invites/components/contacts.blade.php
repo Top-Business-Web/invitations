@@ -2,22 +2,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
         <div class="d-flex justify-content-between">
-            <h3>دعواتى</h3>
+            <h3>{{ __('site.my_invitations') }}</h3>
 
-            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">انشاء دعوة</a>
+            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">{{ __('site.create_an_invitation') }}</a>
 
         </div>
         <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <select class="form-select" aria-label="Default select example" id="sortSelect">
-                    <option selected>ترتيب حسب</option>
-                    <option value="1">الاسم</option>
-                    <option value="2">التاريخ</option>
-                    <option value="3">الحالة</option>
+                    <option selected>{{ __('site.sort_by') }}</option>
+                    <option value="1">{{ __('site.the_name') }}</option>
+                    <option value="2">{{ __('site.the_date') }}</option>
+                    <option value="3">{{ __('site.the_status') }}</option>
                 </select>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <input class="form-control" type="search" placeholder="بحث" id="searchInput">
+                <input class="form-control" type="search" placeholder="{{ __('site.search') }}" id="searchInput">
             </div>
         </div>
         @if ($invitations->isEmpty())
@@ -38,7 +38,7 @@
                                 <p
                                     style="{{ $invitation->status == 0 ? 'background-color : #E9EAEB;color: black;' : '' }}"
                                     class="btn-active">
-                                    {{ $invitation->status == 1 ? 'مؤكد' : 'غير مؤكد' }}
+                                    {{ $invitation->status == 1 ?  __('site.confirmed')  :  __('site.un_confirmed') }} 
                                 </p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
@@ -69,7 +69,7 @@
                                 </div>
                                 <p>{{ $invitation->password }}</p>
                                 <div style="margin-top: 35px;">
-                                    <a href="#" class="text-decoration-none btn-login">حمل التطبيق</a>
+                                    <a href="#" class="text-decoration-none btn-login">{{ __('SITE.download_the_app') }}</a>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
@@ -88,12 +88,12 @@
                         </div>
 
                         <div class="mt-5">
-                            <h6 class="mb-2">حالات جهات الاتصال</h6>
+                            <h6 class="mb-2">{{ __('site.contact_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".single-table">
                                         <p class="mb-0">{{ @$invitation->scanned->count() }}</p>
-                                        <p class="mb-0">الممسوحة ضوئيا</p>
+                                        <p class="mb-0">{{ __('site.scanned') }}</p>
                                     </div>
                                 </div>
 
@@ -102,98 +102,98 @@
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".confirmed">
                                         <p class="mb-0">{{ @$invitation->confirmed->count() }}</p>
-                                        <p class="mb-0"> تأكيد</p>
+                                        <p class="mb-0">{{ __('site.confirm') }}</p>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".apologized">
                                         <p class="mb-0">{{ @$invitation->apologized->count() }}</p>
-                                        <p class="mb-0"> اعتذار</p>
+                                        <p class="mb-0">{{ __('site.apology') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center">
                                         <p class="mb-0">1</p>
-                                        <p class="mb-0"> زار الصفحة</p>
+                                        <p class="mb-0">{{ __('site.visited_the_page') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".waiting">
                                         <p class="mb-0">{{ @$invitation->waiting->count() }}</p>
-                                        <p class="mb-0"> لايوجد رد</p>
+                                        <p class="mb-0">{{ __('site.no_answer') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand"  data-content=".failed">
                                         <p class="mb-0">{{ @$invitation->apologized->count() }}</p>
-                                        <p class="mb-0"> فشل</p>
+                                        <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".not-send">
                                         <p class="mb-0">{{ @$invitation->failed->count() }}</p>
-                                        <p class="mb-0"> لم يدعوا بعد</p>
+                                        <p class="mb-0">{{ __('site.they_havent_called_yet') }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <h6 class="mb-2">حالات دعوات الواتساب</h6>
+                            <h6 class="mb-2">{{ __('site.whatsApp_invitation_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color1 text-center btn-hand" data-content=".not-sent-whatsapp">
                                         <p class="mb-0">{{ @$invitation->not_sent_whatsapp->count() }}</p>
-                                        <p class="mb-0">لم ترسل</p>
+                                        <p class="mb-0">{{ __('site.did_not_send') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color1 text-center btn-hand" data-content=".received-whatsapp">
                                         <p class="mb-0">{{ @$invitation->received_whatsapp->count() }}</p>
-                                        <p class="mb-0"> تم الاستلام</p>
+                                        <p class="mb-0">{{ __('site.it_was_received') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color1 text-center btn-hand" data-content=".readIt-whatsapp">
                                         <p class="mb-0">{{ @$invitation->readIt_whatsapp->count() }}</p>
-                                        <p class="mb-0"> قرأ</p>
+                                        <p class="mb-0">{{ __('site.read') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color1 text-center btn-hand" data-content=".faild-whatsapp">
                                         <p class="mb-0">{{ $invitation->faild_whatsapp->count() }}</p>
-                                        <p class="mb-0"> فشل</p>
+                                        <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <h6 class="mb-2">حالات تسليم رمز QR</h6>
+                            <h6 class="mb-2">{{ __('site.qr_code_delivery_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color2 text-center btn-hand" data-content=".not-received-qr">
                                         <p class="mb-0">{{ $invitation->not_received_qr->count() }}</p>
-                                        <p class="mb-0">لايوجد حالة التسليم</p>
+                                        <p class="mb-0">{{ __('site.there_is_no_delivery_status') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color2 text-center btn-hand" data-content=".received-qr">
                                         <p class="mb-0">{{ $invitation->received_qr->count() }}</p>
-                                        <p class="mb-0"> تم الاستلام</p>
+                                        <p class="mb-0">{{ __('site.it_was_received') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color2 text-center btn-hand" data-content=".read-it-qr">
                                         <p class="mb-0">{{ $invitation->read_it_qr->count() }}</p>
-                                        <p class="mb-0"> قرأ</p>
+                                        <p class="mb-0">{{ __('site.read') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number bg-color2 text-center btn-hand" data-content=".faild-qr">
                                         <p class="mb-0">{{ $invitation->faild_qr->count() }}</p>
-                                        <p class="mb-0"> فشل </p>
+                                        <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -203,14 +203,14 @@
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link btn-link-bg" data-bs-toggle="modal"
                                         data-bs-id="{{ $invitation->id }}" data-bs-target="#modalWhatsApp">
-                                    <i class="fa-brands fa-whatsapp fa-lg ms-2"></i> ارسال الدعوات عبر الواتساب
+                                    <i class="fa-brands fa-whatsapp fa-lg ms-2"></i> {{ __('site.send_invitations_via_whatsApp') }}
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalQr">
                                     <i class="fa-solid fa-rotate-right fa-lg ms-2"></i>
-                                    ارسال رموز QR التى لم يتم تسليمها
+                                    {{ __('site.send_undelivered_qr_codes') }}
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
@@ -218,21 +218,21 @@
                                    href="{{ route('showUserScanned', $invitation->id) }}">
                                     <button type="button" class="btn-link">
                                         <i class="fa-solid fa-qrcode fa-lg ms-2"></i>
-                                        ادارة المسح الضوئى
+                                        {{ __('site.scan_management') }}
                                     </button>
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link btn-hand" data-content=".hand-invite">
                                     <i class="fa-solid fa-envelope fa-lg ms-2"></i>
-                                    ارسال الدعوات يدويا
+                                    {{ __('site.send_invitations_manually') }}
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <a class="text-decoration-none" href="{{ route('reminder', $invitation->id) }}">
                                     <button type="button" class="btn-link">
                                         <i class="fa-solid fa-bell fa-lg ms-2"></i>
-                                        ارسال تذكير
+                                        {{ __('site.send_a_reminder') }}
                                     </button>
                                 </a>
                             </div>
@@ -246,10 +246,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الحالة</th>
-                                                <th scope="col">الارسال يدوى</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.the_status') }}</th>
+                                                <th scope="col">{{ __('site.the_transmitter_is_manual') }}</th>
                                             </tr>
                                             </thead>
 
@@ -257,7 +257,7 @@
 
                                                 @if ($invitation->failed->isEmpty())
                                                     <tr>
-                                                        <td colspan="5" class="text-center">لا يوجد معلومات
+                                                        <td colspan="5" class="text-center">{{ __('site.there_is_no_information') }}
                                                         </td>
                                                     </tr>
                                                 @else
@@ -288,18 +288,18 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
 
-                                            </tr>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col">{{ __('site.the_status') }}</th>
+
                                             </thead>
                                             <tbody>
 
                                             @if ($invitation->scanned->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5" class="text-center">{{ __('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
@@ -804,16 +804,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">تأكيد الحذف</h5>
+                <h5 class="modal-title">{{ __('site.confirm_deletion') }}</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                هل أنت متأكد أنك تريد حذف: <input type="hidden" id="invitationId">
+                {{ __('site.are_you_sure_you_want_to_delete') }}: <input type="hidden" id="invitationId">
                 <span class=" text-danger" id="invitationTitle"></span>?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">لا</button>
-                <button type="button" class="btn btn-danger" id="deleteButton">حذف</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('site.no') }}</button>
+                <button type="button" class="btn btn-danger" id="deleteButton">{{ __('site.delete') }}</button>
             </div>
         </div>
     </div>

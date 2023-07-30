@@ -95,6 +95,94 @@ return [
     "confirm" => "Confirm",
 
 
+    // Path: Resource/Views/Front/Invites/Components/contacts
+    "my_invitations" => "My Invitations",
+    "create_an_invitation" => "Create an invitation",
+    "sort_by" => "Sort by",
+    "the_date" => "Date",
+    "the_status" => "Status",
+    "search" => "Search",
+    "confirmed" => "Confirmed",
+    "un_confirmed" => "Un Confirmed",
+    "download_the_app" => "Download The App",
+    "contact_statuses" => "Contact Statuses",
+    "scanned" => "Scanned",
+    "apology" => "Apology",
+    "visited_the_page" => "Visited the page",
+    "no_answer" => "No Answer",
+    "to_fail" => "to fail",
+    "they_havent_called_yet" => "They haven't called yet",
+    "whatsApp_invitation_statuses" => "WhatsApp invitation statuses",
+    "did_not_send" => "did not send",
+    "it_was_received" => "It was received",
+    "read" => "Read",
+    "qr_code_delivery_statuses" => "QR code delivery statuses",
+    "there_is_no_delivery_status" => "There is no delivery status",
+    "send_invitations_via_whatsApp" => "Send invitations via WhatsApp",
+    "send_undelivered_qr_codes" => "Send undelivered QR codes",
+    "scan_management" => "Scan management",
+    "send_invitations_manually" => "Send invitations manually",
+    "send_a_reminder" => "Send a reminder",
+    "the_transmitter_is_manual" => "The transmitter is manual",
+    "there_is_no_information" => "There is no information",
+    "confirm_deletion" => "Confirm deletion",
+    "are_you_sure_you_want_to_delete" => "Are you sure you want to delete",
+    "no" => "No",
+    "delete" => "Delete",
+
+    // Path: Resource/Views/Front/Invites/Components/Whatsapp
+    "all_invitations_will_be" => "All invitations will be sent to guests before sending. Please note that the mobile number begins with the area number. The status of the message will be updated for each guest within a few minutes if the status fails.
+    Check the contact's phone number, it may be invalid or the contact may not be using WhatsApp",
+    "send_invitations_automatically_via_whatsApp" => "Send invitations automatically via WhatsApp",
+    "cancellation" => "Cancellation",
+    "save" => "Save",
+
+    // Path: Resource/Views/Front/Invites/Components/qr_code
+    "undelivered_qr_codes_will_be" => "Undelivered QR codes will be sent. And update the status of contacts within a few minutes",
+
+    // Path: Resource/Views/Front/Scan/Components/Scann_manage
+    "scanned_quantity" => "Scanned quantity",
+
+    // Path: Resource/Views/Front/Scan/Components/Reminder
+    "call_reminder" => "Call reminder",
+    "to_set" => "to set",
+
+    // Path: Resource/Views/Front/Scan/Components/add_invite
+    "call_information" => "Call information",
+    "send_invitation" => "Send invitation",
+    "the_date_of_the_occasion" => " The date of the occasion",
+    "occasion" => "Occasion",
+    "choose_a_surname" => "Choose a surname",
+    "appropriate_site" => "Appropriate site",
+    "show_the_access_code" => "Show the access code",
+    "back" => "Back",
+    "save_to_drafts" => "Save to drafts",
+    "save_and_continue" => "Save and continue",
+    "import_guests" => "Import guests",
+    "add_guest" => "Add guest",
+    "escorts" => "Escorts",
+    "preview" => "Preview",
+    "honored_to_invite_you_to_attend" => "Honored to invite you to attend",
+    "to_be_sure" => "To be sure",
+    "edit_the_template" => "Edit the template",
+    "import_contacts_from_excel_file" => "Import contacts from excel file",
+    "save_the_file_in_excel_format" => "Save the file in excel format",
+    "format_contact_information_in_this_format" => "Format contact information in this format",
+    "file_upload" => "File upload",
+    "lang" => "Lang",
+    "add_the_contact" => "Add the contact",
+    "import" => "Import",
+    "are_you_sure_to_delete_the_following_data?" => "Are you sure to delete the following data?",
+
+
+
+
+
+
+
+
+
+
 
 
 
