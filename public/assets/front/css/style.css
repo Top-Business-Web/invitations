@@ -59,13 +59,11 @@ body {
 
 .main-btn3 {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    background-color: #f3f3f3;
-    color: white;
+    color: black;
     padding: 10px 20px;
     border-radius: 8px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease-in-out;
-    background-color: var(--dark-green-color);
 }
 
 .main-btn1 {
@@ -83,10 +81,6 @@ body {
     transition: all 0.5s ease;
 }
 
-.main-btn3:hover {
-    color: white;
-    background-color: var(--black-color);
-}
 .main-btn1:hover {
     color: white;
     background-color: var(--black-color);
