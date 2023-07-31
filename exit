@@ -1,0 +1,526 @@
+[33mcommit d0128d153ada8ab5d469debc1515e3e669841aa9[m[33m ([m[1;36mHEAD -> [m[1;32mhumsi[m[33m)[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Mon Jul 31 13:05:36 2023 +0300
+
+    fix translate and something else
+
+[33mcommit 5965e466c7de5122586375fcb8d6341a9e809a64[m[33m ([m[1;31morigin/humsi[m[33m)[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Mon Jul 31 08:48:47 2023 +0300
+
+    fix translate
+
+[33mcommit 0b5d105b88b8778b56842d942e9e4279f6dd4d0a[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Sun Jul 30 15:20:49 2023 +0300
+
+    fix
+
+[33mcommit 4ec0a876d6b519b47012cfe4789acf3a8c488213[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Sun Jul 30 15:15:46 2023 +0300
+
+    work in search bar and fix some word in English
+
+[33mcommit 4801f394f2ea573fac268dd0d65861cb51428fb4[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 08be652e e8c38fd9
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Thu Jul 27 14:56:53 2023 +0300
+
+    Merge pull request #111 from Top-Business-Web/humsi
+    
+    translte done
+
+[33mcommit e8c38fd9cdd780e06fda60149b92ebf90593e3fd[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Thu Jul 27 14:56:21 2023 +0300
+
+    translte done
+
+[33mcommit 08be652eb848136ead7e2f0caf911073b4d6dd4e[m
+Merge: d02868a4 07ec980f
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Thu Jul 27 12:14:59 2023 +0300
+
+    Merge pull request #110 from Top-Business-Web/humsi
+    
+    Humsi
+
+[33mcommit 07ec980f30bd9dae81bb175eb74398166011aac6[m
+Merge: 83892eca d02868a4
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Thu Jul 27 12:14:45 2023 +0300
+
+    Merge branch 'master' into humsi
+
+[33mcommit 83892eca30fa81bbe9c41af63aae85756dde3b9f[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Thu Jul 27 12:13:32 2023 +0300
+
+    translate add invite page
+
+[33mcommit d02868a48d9f87d7fdf9af3b8ade2ee87b153506[m
+Merge: 991344b3 466516fb
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Thu Jul 27 09:52:50 2023 +0300
+
+    Merge pull request #109 from Top-Business-Web/eldapour1
+    
+    add vendor 27_7_2023
+
+[33mcommit 466516fbea3fa50ef3f7796c7bb646362658dd45[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Thu Jul 27 09:51:39 2023 +0300
+
+    add vendor 27_7_2023
+
+[33mcommit b4a28ed19955bf0c6f4f588f0b76bb90bdb5cee8[m
+Merge: 26ff9e1d 758f4467
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Thu Jul 27 09:11:02 2023 +0300
+
+    Merge branch 'master' of https://github.com/Top-Business-Web/invitations into humsi
+
+[33mcommit 991344b37f745cc91d191e5e0b3e18687ad58b78[m
+Merge: 7c5095e2 71c6ce06
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 17:51:27 2023 +0300
+
+    Merge pull request #108 from Top-Business-Web/eldapour1
+    
+    Eldapour1
+
+[33mcommit 71c6ce06dfb2e9343fd7887f90358ba7eddbc128[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 17:50:11 2023 +0300
+
+    add vendor 26_7_2023
+
+[33mcommit 071d81b1b3ac141be5d4e021491b983f70b65a41[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 17:49:36 2023 +0300
+
+    add vendor 26_7_2023
+
+[33mcommit 26ff9e1d314032e2344e1a031284216af7f49ed7[m
+Merge: b6461e13 286103e4
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 15:19:37 2023 +0300
+
+    translate invitations
+
+[33mcommit 7c5095e2a083e6f2130a6052933ed3f15011c588[m
+Merge: c0c43731 ee9a8701
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 17:24:52 2023 +0300
+
+    Merge pull request #107 from Top-Business-Web/eldapour1
+    
+    add vendor 26_7_2023
+
+[33mcommit ee9a870191ad58b97baaaf020afcd24811420409[m[33m ([m[1;31morigin/eldapour1[m[33m)[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 17:24:12 2023 +0300
+
+    add vendor 26_7_2023
+
+[33mcommit c0c43731b1143e6208e58ae01758ecbd54ef8831[m
+Merge: 6c612b5a 6be3fd65
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 17:07:09 2023 +0300
+
+    Merge pull request #106 from Top-Business-Web/eldapour1
+    
+    add vendor 26_7_2023
+
+[33mcommit 6be3fd6566131e751635cc43d1f99df8fc6073c4[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 17:01:51 2023 +0300
+
+    add vendor 26_7_2023
+
+[33mcommit 6c612b5a1eac90b392dbf8ab128924cb2c8a9d32[m
+Merge: 5c96106e 5e626c0c
+Author: eslamandroid12345 <96002614+eslamandroid12345@users.noreply.github.com>
+Date:   Wed Jul 26 16:29:37 2023 +0300
+
+    Merge pull request #105 from Top-Business-Web/eslamandroid12345-patch-1
+    
+    Delete vendor directory
+
+[33mcommit 5e626c0c95d5d098391a09179db591b7b329c294[m[33m ([m[1;31morigin/eslamandroid12345-patch-1[m[33m)[m
+Author: eslamandroid12345 <96002614+eslamandroid12345@users.noreply.github.com>
+Date:   Wed Jul 26 16:28:54 2023 +0300
+
+    Delete vendor directory
+
+[33mcommit 5c96106e30b5af6aef79514b51e8301dda7a9813[m
+Merge: 8f80cafb 669f9b13
+Author: eslamandroid12345 <96002614+eslamandroid12345@users.noreply.github.com>
+Date:   Wed Jul 26 16:27:44 2023 +0300
+
+    Merge pull request #104 from Top-Business-Web/eslam
+    
+    add all list in website
+
+[33mcommit 669f9b13a41ee4fab788353512b2c3fb3962dba3[m[33m ([m[1;31morigin/eslam[m[33m)[m
+Author: eslamandroid12345 <eslamemo457@gmail.com>
+Date:   Wed Jul 26 16:27:22 2023 +0300
+
+    solve conflict
+
+[33mcommit e868177263c5b58a9fc2fe13cb95ecb523a5ad9a[m
+Merge: d753560b 8f80cafb
+Author: eslamandroid12345 <eslamemo457@gmail.com>
+Date:   Wed Jul 26 16:26:01 2023 +0300
+
+    update folders
+
+[33mcommit 8f80cafbd12315b8bc48bcbd9ea39edd4eef5f32[m
+Merge: 47c09d82 758f4467
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 16:22:26 2023 +0300
+
+    Merge pull request #103 from Top-Business-Web/humsi
+    
+    translate sign in and sign up
+
+[33mcommit 758f4467838cbcf8c907ee918e2c4865c9192116[m
+Merge: 21880a0f 47c09d82
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 16:21:59 2023 +0300
+
+    Merge branch 'master' into humsi
+
+[33mcommit d753560b02ce338e75c8c3c3c54ecf4c5f4b1201[m
+Author: eslamandroid12345 <eslamemo457@gmail.com>
+Date:   Wed Jul 26 16:21:19 2023 +0300
+
+    add all list in website
+
+[33mcommit 21880a0fc16870643c6e49639d4f9eaff00b53d1[m
+Merge: b6461e13 286103e4
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 15:19:37 2023 +0300
+
+    translate sign in and sign up
+
+[33mcommit 47c09d8246ecf03caacf754fa14d38a45dd61713[m
+Merge: ab13dfa6 819e9800
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 16:19:53 2023 +0300
+
+    Merge pull request #102 from Top-Business-Web/eldapour1
+    
+    make draft invite 26_7_2023
+
+[33mcommit ab13dfa6ba76fd406d910187c197e01631fb521b[m
+Merge: ab849ca0 d95abe19
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 16:19:34 2023 +0300
+
+    Merge pull request #101 from Top-Business-Web/delete-vendor
+    
+    Delete vendor directory
+
+[33mcommit d95abe19572e938a98a8d8455169e00d8f9d3954[m[33m ([m[1;31morigin/delete-vendor[m[33m)[m
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 16:18:59 2023 +0300
+
+    Delete vendor directory
+
+[33mcommit 819e9800b73082f6220f18fff3724263b7f9e233[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 16:17:48 2023 +0300
+
+    make draft invite 26_7_2023
+
+[33mcommit ab849ca06524dd763f12d9c515d3f0f4eb37f5e0[m
+Merge: 4fa9e57c 3a36af93
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Wed Jul 26 15:50:07 2023 +0300
+
+    Merge pull request #100 from Top-Business-Web/osama
+    
+    noee
+
+[33mcommit 3a36af93b4c6acd171873cfc53cce432135bc87c[m[33m ([m[1;31morigin/osama[m[33m)[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Wed Jul 26 15:49:28 2023 +0300
+
+    noee
+
+[33mcommit 4fa9e57cd3a630b79967404d09f175fae30debfb[m
+Merge: d920ff7b 21037bee
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Wed Jul 26 15:43:41 2023 +0300
+
+    Merge pull request #99 from Top-Business-Web/osama
+    
+    fix bug in notifications apis
+
+[33mcommit 21037bee06d812f61b9ee298d69bf3d892fbbb11[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Wed Jul 26 15:42:33 2023 +0300
+
+    fix bug in notifications apis
+
+[33mcommit d920ff7ba621e191cf55f5bfad57368357323e8f[m
+Merge: b6461e13 286103e4
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 15:19:37 2023 +0300
+
+    Merge pull request #98 from Top-Business-Web/humsi
+    
+    translate home page
+
+[33mcommit 286103e42c2755ae458a9509c9eec9d9ad54d160[m
+Merge: 2b20dbdd 61894b51
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 11:36:13 2023 +0300
+
+    translate home page
+
+[33mcommit b6461e13e69864d809a5635f14329e5b6bfc8744[m
+Merge: 78ea19ec 5b281871
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 14:42:14 2023 +0300
+
+    Merge pull request #97 from Top-Business-Web/eldapour1
+    
+    Eldapour1
+
+[33mcommit 5b281871f81a7b952c519dea7788eeeb9b996bc0[m
+Merge: c8ae1c11 78ea19ec
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 14:42:05 2023 +0300
+
+    Merge branch 'master' into eldapour1
+
+[33mcommit c8ae1c11ee0bfcf0d238d488ff9f145ebfefb3ae[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 14:40:03 2023 +0300
+
+    make draft invite 26_7_2023
+
+[33mcommit c57777452c1dccf076220bb92212ca52e57bd7a5[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 12:00:25 2023 +0300
+
+    make draft invite 26_7_2023
+
+[33mcommit 78ea19ec3cf579a4822f75d9c2a9f2c7ae2e95e7[m
+Merge: 2b20dbdd 61894b51
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 11:36:13 2023 +0300
+
+    Merge pull request #96 from Top-Business-Web/humsi
+    
+    merge rtl to web daawat and add package localizaton
+
+[33mcommit 61894b51f100498d7140d0e5bcc8702d836c81d4[m
+Merge: 2a9300a1 2b20dbdd
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 11:36:06 2023 +0300
+
+    Merge branch 'master' into humsi
+
+[33mcommit 2a9300a15b9e1cc0f0a4cbf34fa3d8de3ac3cfc5[m
+Merge: f06d760a 044e28da
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 10:50:36 2023 +0300
+
+    merge rtl to web daawat and add package localizaton
+
+[33mcommit 2b20dbdd0d69d845f2aae245c6f7a3ebbea74e05[m
+Merge: f06d760a 044e28da
+Author: Abdullah Alhumis <136783504+Alhumsiabdo@users.noreply.github.com>
+Date:   Wed Jul 26 10:50:36 2023 +0300
+
+    Merge pull request #95 from Top-Business-Web/humsi
+    
+    work on profile page change input to h3 and cancel update just show
+
+[33mcommit 044e28da78047a837e15a5d7750cc36665906085[m
+Author: Abdullah <abdullah.alhumsi9@gmail.com>
+Date:   Wed Jul 26 10:45:18 2023 +0300
+
+    work on profile page change input to h3 and cancel update just show
+
+[33mcommit f06d760a25a9f13446dc3fe6bc92d71a8849b271[m
+Merge: 09a0af1f 6c99a8a7
+Author: eslamandroid12345 <96002614+eslamandroid12345@users.noreply.github.com>
+Date:   Wed Jul 26 10:10:20 2023 +0300
+
+    Merge pull request #94 from Top-Business-Web/eslam
+    
+    update forget password controller
+
+[33mcommit 6c99a8a73179a0a9bb572a450b7fba5340ca4557[m
+Author: eslamandroid12345 <eslamemo457@gmail.com>
+Date:   Wed Jul 26 10:09:36 2023 +0300
+
+    update forget password controller
+
+[33mcommit 09a0af1fb4fb4038c7ed1c605d40faa7f0b03347[m
+Merge: 06d11636 2b67a1c6
+Author: Abdallah Mahmoud <48735798+eldapour@users.noreply.github.com>
+Date:   Wed Jul 26 10:07:30 2023 +0300
+
+    Merge pull request #93 from Top-Business-Web/eldapour1
+    
+    Eldapour1
+
+[33mcommit 2b67a1c6bbec1ecd5f36114fc339aba045cdf0e2[m
+Merge: a87cb05a 06d11636
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 10:07:05 2023 +0300
+
+    fix bug 26_7_2023
+
+[33mcommit a87cb05a4e198f9fc53752b936379eccd2ffc32f[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Wed Jul 26 09:34:45 2023 +0300
+
+    fix bug 26_7_2023
+
+[33mcommit 06d11636a86f40b770b1115b94aa3f6484cb3a70[m
+Merge: 68f34bbb f5ede0d0
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 16:29:02 2023 +0300
+
+    Merge pull request #92 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit f5ede0d0df9b033035ea4e6c4566c9f1451d104f[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 16:28:31 2023 +0300
+
+    InvitationService
+
+[33mcommit 68f34bbbeb403118ee0af37919d51ad17a07b3ab[m
+Merge: f4d3e236 8043be60
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 16:27:15 2023 +0300
+
+    Merge pull request #91 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit 8043be60d44e308880bc1f37654e5bb95c174772[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 16:26:44 2023 +0300
+
+    InvitationService
+
+[33mcommit f4d3e236eea2c8a03fec23f2c803cde1fe207f84[m
+Merge: b4eaf4ea bb6bd281
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 16:25:00 2023 +0300
+
+    Merge pull request #90 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit bb6bd2818916c7371898e125eab73db7010d155c[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 16:24:22 2023 +0300
+
+    InvitationService
+
+[33mcommit b4eaf4ea6ba89efeef691379ce47fc05857fe87c[m
+Merge: eb04dc48 f3d544e2
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 16:21:34 2023 +0300
+
+    Merge pull request #89 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit f3d544e2dfd85b66796730e92482eee71b3380fb[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 16:20:59 2023 +0300
+
+    InvitationService
+
+[33mcommit eb04dc48f079003d017c7ed5bc738de3ae595a71[m
+Merge: 148bb1c7 6cf47ed7
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 16:19:12 2023 +0300
+
+    Merge pull request #88 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit 6cf47ed74c450416f1307e863a483c598631d5fa[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 16:15:25 2023 +0300
+
+    InvitationService
+
+[33mcommit 148bb1c742ee8fe8552316f65ce903741ee353dd[m
+Merge: af4489f9 da3aec22
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 15:58:03 2023 +0300
+
+    Merge pull request #87 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit da3aec22d69d869f06b0cd5729b00620db43f5de[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 15:57:29 2023 +0300
+
+    InvitationService
+
+[33mcommit af4489f906b0a9f66ea5a55532941bdb3797f421[m
+Merge: 9d26d7c2 9019b06c
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 15:44:10 2023 +0300
+
+    Merge pull request #86 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit 9019b06c78f74214e9787ad186538099d000dc7c[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 15:43:32 2023 +0300
+
+    InvitationService
+
+[33mcommit 9d26d7c248b9216fc7dd2d1fd2aa12b8c4b98c3b[m
+Merge: 58e72f4e 532447af
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 15:42:28 2023 +0300
+
+    Merge pull request #85 from Top-Business-Web/osama
+    
+    InvitationService
+
+[33mcommit 532447af5053d5259d53c6146fb0e37c94a221fd[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 15:41:46 2023 +0300
+
+    InvitationService
+
+[33mcommit 44e84e0bf2e366eb02083b5a55d1b5ac1b730ca3[m
+Author: eldapour <abdallahmahmoud1422003@gmail.com>
+Date:   Tue Jul 25 15:35:53 2023 +0300
+
+    add invition 25_7_2023
+
+[33mcommit 58e72f4e2d9acf1fbfe3a21720696521c1263aa1[m
+Merge: 64f6e9b5 3b27a929
+Author: arabDevCom <79645453+arabDevCom@users.noreply.github.com>
+Date:   Tue Jul 25 15:30:06 2023 +0300
+
+    Merge pull request #84 from Top-Business-Web/osama
+    
+    Osama
+
+[33mcommit 3b27a9293b3da945fc817c9a65ffda2bb04ffa2e[m
+Author: osamarafa1994 <osama@motaweron.com>
+Date:   Tue Jul 25 15:29:08 2023 +0300
+
+    InvitationService

@@ -61,6 +61,7 @@ Route::group(
         Route::group(['middleware' => ['auth:web']], function () {
             Route::get('invites', [InviteController::class, 'index'])->name('invites');
             Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
+            Route::get('/search/invitations', [InviteController::class, 'searchIndex'])->name('searchInvitations');
             Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
             Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
             Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
@@ -69,7 +70,6 @@ Route::group(
             //add invitation
             Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
             Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
-            Route::get('/search/invitations', [InvitationController::class, 'searchInvitations'])->name('search.invitations');
             Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
 
 

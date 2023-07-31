@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Invitee extends Model
 {
@@ -24,5 +25,7 @@ class Invitee extends Model
     {
         return $this->belongsTo(Invitation::class, 'invitation_id', 'id');
     }
+
+
 
 }
