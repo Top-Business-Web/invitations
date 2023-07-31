@@ -22,7 +22,7 @@
                     <input class="form-control" value="{{ $search ?? '' }}" name="search" type="search" placeholder="{{ __('site.search') }}" />
                 </div>
                 <button type="submit"
-                        class="text-decoration-none main-btn1">{{ __('site.search') }}</button>
+                        class="text-decoration-none main-btn1">{{ __('site.filter') }}</button>
             </div>
         </form>
         @if ($invitations->isEmpty())
@@ -74,11 +74,7 @@
                                 <p>{{ $invitation->password }}</p>
                                 <div style="margin-top: 35px;">
                                     <a href="#"
-<<<<<<< HEAD
                                         class="text-decoration-none btn-login">{{ __('site.download_the_app') }}</a>
-=======
-                                       class="text-decoration-none btn-login">{{ __('SITE.download_the_app') }}</a>
->>>>>>> fed2ba994e1583409ec37374f54627b6b8f1571b
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">

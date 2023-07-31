@@ -125,7 +125,7 @@ return [
     "scan_management" => "Scan management",
     "send_invitations_manually" => "Send invitations manually",
     "send_a_reminder" => "Send a reminder",
-    "the_transmitter_is_manual" => "The transmitter is manual",
+    "the_transmitter_is_manual" => "Send manual",
     "there_is_no_information" => "There is no information",
     "confirm_deletion" => "Confirm deletion",
     "are_you_sure_you_want_to_delete" => "Are you sure you want to delete",
@@ -147,7 +147,8 @@ return [
 
     // Path: Resource/Views/Front/Scan/Components/Reminder
     "call_reminder" => "Call reminder",
-    "to_set" => "to set",
+    "to_set" => "Check",
+    "filter" => "Filter",
     "deleted_successfully" => "Deleted Successfully",
 
     // Path: Resource/Views/Front/Scan/Components/add_invite
