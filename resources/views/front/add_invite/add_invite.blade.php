@@ -252,10 +252,10 @@
                         <div class="col-12">
                             <label for="validationCustom04" class="form-label">{{ __('site.lang') }}</label>
                             <select class="form-select" id="validationCustom04" required>
-                                <option selected disabled value="">{{ __('site.to_set') }}.
+                                <option selected disabled value="">
                                     {{ __('site.lang') }}</option>
-                                <option>{{ __('arabic') }}</option>
-                                <option>{{ __('english') }}</option>
+                                <option>{{ __('site.arabic') }}</option>
+                                <option>{{ __('site.english') }}</option>
                             </select>
                         </div>
                         <div class="col-12">

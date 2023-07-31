@@ -5,24 +5,32 @@
                 @csrf
                 <div class="row g-3">
                     <div class="col-md-6 col-12">
-                        <label class="form-label">{{ __('site.the_name') }} :</label>
+                        <label class="form-label">
+                            <strong>{{ __('site.the_name') }} :</strong>
+                        </label>                        
                         <h3 class="main-btn3">{{ $profile->name }}</h3>
                         {{-- <input type="text" {{ $profile->google_id == null ? '' : 'disabled' }}
                             value="{{ $profile->name }}" name="name" class="form-control" required> --}}
                     </div>
                     <div class="col-md-6 col-12">
-                        <label class="form-label">{{ __('site.email') }} :</label>
+                        <label class="form-label">
+                            <strong>{{ __('site.email') }} :</strong>
+                        </label>
                         <h3 class="main-btn3">{{ $profile->email }}</h3>
                         {{-- <input type="text" {{ $profile->google_id == null ? '' : 'disabled' }}
                             value="{{ $profile->email }}" name="email" class="form-control" required> --}}
                     </div>
                     <div class="col-md-6 col-12" {{ $profile->google_id == null ? '' : 'hidden' }}>
-                        <label class="form-label"> {{ __('site.the_address') }} :</label>
+                        <label class="form-label">
+                            <strong> {{ __('site.the_address') }} :</strong>
+                        </label>
                         <h3 class="main-btn3">{{ $profile->address }}</h3>
                         {{-- <input type="text" name="address" value="{{ $profile->address }}" class="form-control"> --}}
                     </div>
                     <div class="col-md-6 col-12" {{ $profile->google_id == null ? '' : 'hidden' }}>
-                        <label class="form-label"> {{ __('site.phone') }} :</label>
+                        <label class="form-label">
+                            <strong> {{ __('site.phone') }} :</strong>
+                        </label>
                         <h3 class="main-btn3">{{ $profile->phone }}</h3>
                         {{-- <input type="text" value="{{ $profile->phone }}" name="phone" class="form-control"
                             required> --}}
