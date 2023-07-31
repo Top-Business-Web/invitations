@@ -12,10 +12,10 @@
             <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <select class="form-select" name="sort" aria-label="Default select example" id="sortSelect">
-                        <option selected {{ ($sort == 0) ? 'selected' : '' }} value="0">{{ __('site.sort_by') }}</option>
-                        <option {{ ($sort == 1) ? 'selected' : '' }} value="1">{{ __('site.the_name') }}</option>
-                        <option {{ ($sort == 2) ? 'selected' : '' }} value="2">{{ __('site.the_date') }}</option>
-                        <option {{ ($sort == 3) ? 'selected' : '' }} value="3">{{ __('site.the_status') }}</option>
+                        <option selected {{ (@$sort == 0) ? 'selected' : '' }} value="0">{{ __('site.sort_by') }}</option>
+                        <option {{ (@$sort == 1) ? 'selected' : '' }} value="1">{{ __('site.the_name') }}</option>
+                        <option {{ (@$sort == 2) ? 'selected' : '' }} value="2">{{ __('site.the_date') }}</option>
+                        <option {{ (@$sort == 3) ? 'selected' : '' }} value="3">{{ __('site.the_status') }}</option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
