@@ -39,6 +39,7 @@ return [
     "the_name" => "اسم",
     "arabic" => "العربية",
     "deleted_successfully" => "تم الحذف بنجاح",
+    "filter" => "فلتر",
     "english" => "الانجليزية",
     "surname" => "اللقب",
     "area_code" => "رمز المنطقة",

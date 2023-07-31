@@ -259,7 +259,7 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label">{{ __('site.the_name'). __('site.occasion') }}</label>
+                            <label class="form-label">{{ __('site.the_name') . __('site.occasion') }}</label>
                             <input type="text" class="form-control titlePreview" required>
                         </div>
                     </div>
@@ -272,15 +272,19 @@
                             <h5>{{ auth()->user()->name }}</h5>
                             <p>{{ __('site.honored_to_invite_you_to_attend') }}<span class="titlePreview"></span></p>
                             <div class="d-flex mb-2">
-                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
-                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
+                                <button class="main-btn1"
+                                    style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
+                                <button class="main-btn1"
+                                    style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
                             </div>
-                            <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}</button>
+                            <button class="main-btn1"
+                                style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}</button>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-center mb-2 mt-5">
-                        <button class="btn-login" type="submit" style="border: none;">{{ __('site.save') }}</button>
+                        <button class="btn-login" type="submit"
+                            style="border: none;">{{ __('site.save') }}</button>
                     </div>
                 </div>
             </div>
@@ -299,6 +303,7 @@
 
     <script>
         $('.dropify').dropify();
+        $("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
     </script>
 
 </body>
