@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\InvitationController;
-use App\Http\Controllers\Front\ContactsController;
-use App\Http\Controllers\Front\InvitationController as AddInvitationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\InviteController;
-use App\Http\Controllers\Front\ReminderController;
-use App\Http\Controllers\Front\GoogleLoginController;
 use App\Http\Controllers\Front\ProfileController;
+use App\Http\Controllers\Front\ContactsController;
+use App\Http\Controllers\Front\ReminderController;
+use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\Front\GoogleLoginController;
+use App\Http\Controllers\Auth\PasswordResetController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Front\InvitationController as AddInvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +125,8 @@ Route::group(
         Route::get('new_password', [HomeController::class, 'newPassword'])->name('newPassword');
         Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
         Route::get('verification', [HomeController::class, 'verification'])->name('verification');
+        Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+        Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.reset.submit');
 
 
         // index

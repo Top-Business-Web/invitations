@@ -74,7 +74,11 @@
                                 <p>{{ $invitation->password }}</p>
                                 <div style="margin-top: 35px;">
                                     <a href="#"
+<<<<<<< HEAD
+                                        class="text-decoration-none btn-login">{{ __('site.download_the_app') }}</a>
+=======
                                        class="text-decoration-none btn-login">{{ __('SITE.download_the_app') }}</a>
+>>>>>>> fed2ba994e1583409ec37374f54627b6b8f1571b
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
@@ -872,7 +876,7 @@
             })
                 .then(response => {
                     if (response.status === 200) {
-                        toastr.success('تم الحذف');
+                        toastr.success('{{ __('site.deleted_successfully') }}');
                         setTimeout(() => {
                             location.reload();
                         }, 2000);

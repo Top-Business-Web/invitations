@@ -75,7 +75,7 @@
 
                     <div class="modal-body">
                         <input id="delete_id" name="id" type="hidden">
-                        <p>{{ __('site.are_you_sure_to_delete_the_following_data') }}<span id="title" class="text-danger"></span>؟</p>
+                        <p>{{ __('site.are_you_sure_to_delete_the_following_data?') }}<span id="title" class="text-danger"></span>؟</p>
                     </div>
                     <div class="modal-footer">
 
