@@ -23,7 +23,7 @@
             data: formData,
             beforeSend: function() {
                 $('#loginButtonUser').html('<span class="spinner-border spinner-border-sm mr-2" ' +
-                    ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr(
+                    ' ></span> <span style="margin-left: 4px;">{{trans('site.wait')}} ..</span>').attr(
                     'disabled', true);
 
             },
@@ -33,14 +33,14 @@
             },
             success: function(data) {
                 if (data == 200) {
-                    toastr.success('مرحبا بعودتك');
+                    toastr.success('{{trans('site.welcome_back')}}');
                     window.setTimeout(function() {
                         window.location.href = '/invites';
                     }, 1000);
                 } else {
-                    toastr.error('بيانات دخول خاطئة');
+                    toastr.error('{{ __('site.wrong_login_information') }}');
                     $('#loginButton').html(
-                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> {{ __('site.login') }}`
                         ).attr('disabled', false);
                 }
 
@@ -48,12 +48,12 @@
             error: function(data) {
                 if (data.status === 500) {
                     $('#loginButton').html(
-                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> {{ __('site.login') }}`
                         ).attr('disabled', false);
                     toastr.error('هناك خطأ ما');
                 } else if (data.status === 422) {
                     $('#loginButton').html(
-                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> {{ __('site.login') }}`
                         ).attr('disabled', false);
                     var errors = $.parseJSON(data.responseText);
                     $.each(errors, function(key, value) {
@@ -66,10 +66,10 @@
                     });
                 } else {
                     $('#loginButton').html(
-                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> تسجيل الدخول`
+                        `<i id="lockId" class="fa fa-lock" style="margin-left: 6px"></i> {{ __('site.login') }}`
                         ).attr('disabled', false);
 
-                    toastr.error('هناك خطأ ما ...');
+                    toastr.error('{{ __('site.something_is_wrong') }} ...');
                 }
             }, //end error method
 

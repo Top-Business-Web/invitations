@@ -36,6 +36,8 @@ return [
     "try_invite_invitations_now" => "Try invite invitations now",
     "the_invitation_will" => "The invitation will be sent to you via WhatsApp",
     "the_name" => "Name",
+    "register_by" => "Register by",
+    "wait" => "Wait",
     "surname" => "Surname",
     "area_code" => "Area code",
     "phone" => "Phone",
@@ -174,6 +176,11 @@ return [
     "import" => "Import",
     "are_you_sure_to_delete_the_following_data?" => "Are you sure to delete the following data?",
     "no_invitations_found" => "No invitations found",
+    "points" => "Points",
+    "wrong_login_information" => "Wrong login information",
+    "something_is_wrong" => "Something is wrong",
+    "an_account_has_been_created" => "An account has been created",
+    
 
 
 

@@ -32,7 +32,7 @@
                     <a href="{{ route('signUp') }}" class="t-singin text-decoration-none">{{ __('site.create_an_account') }} !</a>
                 </div>
                 <span class="test"></span>
-                <span class="text-black-50 d-inline-block ms-2 me-2">او</span>
+                <span class="text-black-50 d-inline-block ms-2 me-2">{{ __('site.or') }}</span>
                 <span class="test"></span>
                 <div class="mt-3 text-center">
                     <a href="{{ route('login.google-redirect') }}" class="text-decoration-none icon-google">
