@@ -19,7 +19,7 @@
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <input class="form-control" name="search" type="search" placeholder="{{ __('site.search') }}" />
+                    <input class="form-control" value="{{ $search ?? '' }}" name="search" type="search" placeholder="{{ __('site.search') }}" />
                 </div>
                 <button type="submit"
                         class="text-decoration-none main-btn1">{{ __('site.search') }}</button>

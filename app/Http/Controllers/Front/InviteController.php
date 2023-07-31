@@ -33,6 +33,7 @@ class InviteController extends Controller
     public function searchIndex(Request $request)
     {
         $sort = $request->sort;
+        $search = $request->search;
         if ($request->sort == 0) {
             $invitations = Invitation::query()
                 ->where('user_id', auth()->user()->id)
@@ -67,7 +68,7 @@ class InviteController extends Controller
             5 => 'فشل'
         ];
 
-        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses','sort'));
+        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses','sort','search'));
     }
 
     public function sendInviteByWhatsapp(Request $request)
