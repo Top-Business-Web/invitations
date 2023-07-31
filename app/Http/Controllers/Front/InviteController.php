@@ -19,29 +19,55 @@ class InviteController extends Controller
         $invitations = Invitation::query()->where('user_id', auth()->user()->id)->get();
         $scanneds = Scanned::get()->count();
         $manualSend =
-            $statuses = [
-                1 => 'انتظار',
-                2 => 'مأكد',
-                3 => 'تم الاعتذار',
-                4 => 'لم يتم الارسال',
-                5 => 'فشل'
-            ];
-            
+        $statuses = [
+            1 => 'انتظار',
+            2 => 'مأكد',
+            3 => 'تم الاعتذار',
+            4 => 'لم يتم الارسال',
+            5 => 'فشل'
+        ];
+
         return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses'));
     }
 
-    public function search(Request $request)
+    public function searchIndex(Request $request)
     {
-        $searchValue = $request->input('searchValue');
+        $sort = $request->sort;
+        if ($request->sort == 0) {
+            $invitations = Invitation::query()
+                ->where('user_id', auth()->user()->id)
+                ->where('title', 'like', '%' . $request->search . '%')
+                ->get();
+        } elseif ($request->sort == 1) {
+            $invitations = Invitation::query()
+                ->where('user_id', auth()->user()->id)
+                ->where('title', 'like', '%' . $request->search . '%')
+                ->orderBy('title')
+                ->get();
+        } elseif ($request->sort == 2) {
+            $invitations = Invitation::query()
+                ->where('user_id', auth()->user()->id)
+                ->where('title', 'like', '%' . $request->search . '%')
+                ->orderBy('date')
+                ->get();
+        } elseif ($request->sort == 3) {
+            $invitations = Invitation::query()
+                ->where('user_id', auth()->user()->id)
+                ->where('title', 'like', '%' . $request->search . '%')
+                ->orderBy('status','DESC')
+                ->get();
+        }
+        $scanneds = Scanned::get()->count();
+        $manualSend =
+        $statuses = [
+            1 => 'انتظار',
+            2 => 'مأكد',
+            3 => 'تم الاعتذار',
+            4 => 'لم يتم الارسال',
+            5 => 'فشل'
+        ];
 
-        // Perform the search query on the database based on name, address, and date columns
-        $invitations = Invitation::where('title', 'like', '%' . $searchValue . '%')
-            ->orWhere('address', 'like', '%' . $searchValue . '%')
-            ->orWhere('id', 'like', '%' . $searchValue . '%')
-            ->orWhere('date', 'like', '%' . $searchValue . '%')
-            ->get();
-
-        return response()->json($invitations);
+        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses','sort'));
     }
 
     public function sendInviteByWhatsapp(Request $request)
