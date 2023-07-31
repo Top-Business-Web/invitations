@@ -714,3 +714,6 @@ th{
 }
 
 /* end add guest */
+.dataTables_filter{
+    margin-bottom: 15px;
+}
