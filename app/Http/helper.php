@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -6,26 +7,37 @@ use Illuminate\Support\Facades\Storage;
 
 
 if (!function_exists('admin')) {
-	function admin(){
-		return auth()->guard('admin');
-	}
+    function admin()
+    {
+        return auth()->guard('admin');
+    }
+}
+
+if (!function_exists('render_status')) {
+    function render_status($status, $statuses)
+    {
+        return isset($statuses[$status]) ? __('site.' . $statuses[$status]) : __('site.Unknown Status');
+    }
 }
 
 
 if (!function_exists('loggedAdmin')) {
-	function loggedAdmin($field = null){
-		return auth()->guard('admin')->user()->$field;
-	}
+    function loggedAdmin($field = null)
+    {
+        return auth()->guard('admin')->user()->$field;
+    }
 }
 
 if (!function_exists('user')) {
-    function user() {
+    function user()
+    {
         return auth()->guard('user');
     }
 }
 
-function get_font_icons(){
-    $icons = array (
+function get_font_icons()
+{
+    $icons = array(
         0 => 'fab fa-500px',
         1 => 'fas fa-address-book',
         2 => 'fab fa-address-book-o',
@@ -799,30 +811,31 @@ function get_font_icons(){
 
 
 
-    if (!function_exists('get_user_file')) {
-        function get_user_file($image) {
-            if ($image!= null){
-                if (!file_exists($image)){
-                    return asset('uploads/avatar.png');
-                }else{
-                    return asset($image);
-                }
-            }else{
+if (!function_exists('get_user_file')) {
+    function get_user_file($image)
+    {
+        if ($image != null) {
+            if (!file_exists($image)) {
                 return asset('uploads/avatar.png');
+            } else {
+                return asset($image);
             }
+        } else {
+            return asset('uploads/avatar.png');
         }
     }
+}
 
 if (!function_exists('get_file')) {
     function getFile($image): string
     {
-        if ($image!= null){
-            if (!file_exists($image)){
+        if ($image != null) {
+            if (!file_exists($image)) {
                 return asset('uploads/noImage.png');
-            }else{
+            } else {
                 return asset($image);
             }
-        }else{
+        } else {
             return asset('uploads/noImage.png');
         }
     }

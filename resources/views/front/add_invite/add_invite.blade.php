@@ -251,15 +251,14 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="validationCustom04" class="form-label">{{ __('site.lang') }}</label>
-                            <select class="form-select" id="validationCustom04" required>
-                                <option selected disabled value="">{{ __('site.to_set') }}.
-                                    {{ __('site.lang') }}</option>
-                                <option>{{ __('arabic') }}</option>
-                                <option>{{ __('english') }}</option>
+                            <select class="form-select" id="mySelect" required>
+                                <option selected disabled value="">{{ __('site.lang') }}</option>
+                                <option value="ar">{{ __('site.arabic') }}</option>
+                                <option value="en">{{ __('site.english') }}</option>
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label">{{ __('site.the_name'). __('site.occasion') }}</label>
+                            <label class="form-label">{{ __('site.the_name') . __('site.occasion') }}</label>
                             <input type="text" class="form-control titlePreview" required>
                         </div>
                     </div>
@@ -270,35 +269,73 @@
                                 <img src="" class="imagePreview" alt="no-image">
                             </div>
                             <h5>{{ auth()->user()->name }}</h5>
-                            <p>{{ __('site.honored_to_invite_you_to_attend') }}<span class="titlePreview"></span></p>
+                            <p class="lang" id="invitationText">
+                                {{ __('site.honored_to_invite_you_to_attend') }}<span class="titlePreview"></span></p>
                             <div class="d-flex mb-2">
-                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
-                                <button class="main-btn1" style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
+                                <button class="main-btn1 lang" id="buttonSureText"
+                                    style="background-color: #C7C7C7;">{{ __('site.to_be_sure') }}</button>
+                                <button class="main-btn1 lang" id="buttonApologyText"
+                                    style="background-color: #C7C7C7;">{{ __('site.apology') }}</button>
                             </div>
-                            <button class="main-btn1" style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}</button>
+                            <button class="main-btn1 lang" id="buttonAppropriateText"
+                                style="width:300px;background-color: #C7C7C7;">{{ __('site.appropriate_site') }}</button>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-center mb-2 mt-5">
-                        <button class="btn-login" type="submit" style="border: none;">{{ __('site.save') }}</button>
+                        <button class="btn-login" type="submit"
+                            style="border: none;">{{ __('site.save') }}</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    {{--    <!-- invite Info --> --}}
-    {{--    @include('front.add_invite.components.invite_info') --}}
-
-    {{--    <!-- invite Excel--> --}}
-    {{--    @include('front.add_invite.components.invite_excel') --}}
-
-    {{--    @include('front.add_invite.components.invite_edit') --}}
 
     @include('front.layouts.scripts')
 
     <script>
-        $('.dropify').dropify();
+        // JavaScript variables for translations
+        const arInvitation = 'نتشرف بدعوتكم للحضور';
+        const enInvitation = 'Honored to invite you to attend';
+        const arbuttonSure = 'تأكيد';
+        const enbuttonSure = 'Confirm';
+        const arbuttonApology = 'اعتذار';
+        const enbuttonApology = 'Apology';
+        const arbuttonAppropriate = 'موقع المناسبة';
+        const enbuttonAppropriate = 'Appropriate Site';
+
+        function handleAjaxRequest(selectedValue) {
+            var lang = selectedValue;
+            const checkLang = document.getElementsByClassName('lang')[0];
+            const invitationTextElement = document.getElementById('invitationText');
+            const buttonSureTextElement = document.getElementById('buttonSureText');
+            const buttonApologyTextElement = document.getElementById('buttonApologyText');
+            const buttonAppropriateTextElement = document.getElementById('buttonAppropriateText');
+
+            // Update the language class of the element
+            checkLang.classList.remove('ar', 'en');
+            checkLang.classList.add(lang);
+
+            if (checkLang.classList.contains('ar')) {
+                invitationTextElement.textContent = arInvitation;
+                buttonSureTextElement.textContent = arbuttonSure;
+                buttonApologyTextElement.textContent = arbuttonApology;
+                buttonAppropriateTextElement.textContent = arbuttonAppropriate;
+            } else {
+                invitationTextElement.textContent = enInvitation;
+                buttonSureTextElement.textContent = enbuttonSure;
+                buttonApologyTextElement.textContent = enbuttonApology;
+                buttonAppropriateTextElement.textContent = enbuttonAppropriate;
+            }
+        }
+
+        const selectElement = document.getElementById('mySelect');
+        selectElement.addEventListener('change', function() {
+            const selectedValue = this.value;
+            handleAjaxRequest(selectedValue);
+        });
+
     </script>
 
 </body>

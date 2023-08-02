@@ -5,25 +5,33 @@
                 @csrf
                 <div class="row g-3">
                     <div class="col-md-6 col-12">
-                        <label class="form-label">{{ __('site.the_name') }} :</label>
-                        <h3 class="main-btn3">{{ $profile->name }}</h3>
+                        <label class="form-label">
+                            <h4>{{ __('site.the_name') }} :</h4>
+                        </label>                        
+                        <strong class="main-btn3 fs-5">{{ $profile->name }}</strong>
                         {{-- <input type="text" {{ $profile->google_id == null ? '' : 'disabled' }}
                             value="{{ $profile->name }}" name="name" class="form-control" required> --}}
                     </div>
                     <div class="col-md-6 col-12">
-                        <label class="form-label">{{ __('site.email') }} :</label>
-                        <h3 class="main-btn3">{{ $profile->email }}</h3>
+                        <label class="form-label">
+                            <h4>{{ __('site.email') }} :</h4>
+                        </label>
+                        <strong class="main-btn3 fs-5">{{ $profile->email }}</strong>
                         {{-- <input type="text" {{ $profile->google_id == null ? '' : 'disabled' }}
                             value="{{ $profile->email }}" name="email" class="form-control" required> --}}
                     </div>
                     <div class="col-md-6 col-12" {{ $profile->google_id == null ? '' : 'hidden' }}>
-                        <label class="form-label"> {{ __('site.the_address') }} :</label>
-                        <h3 class="main-btn3">{{ $profile->address }}</h3>
+                        <label class="form-label">
+                            <h4> {{ __('site.the_address') }} :</h4>
+                        </label>
+                        <strong class="main-btn3 fs-5">{{ $profile->address }}</strong>
                         {{-- <input type="text" name="address" value="{{ $profile->address }}" class="form-control"> --}}
                     </div>
                     <div class="col-md-6 col-12" {{ $profile->google_id == null ? '' : 'hidden' }}>
-                        <label class="form-label"> {{ __('site.phone') }} :</label>
-                        <h3 class="main-btn3">{{ $profile->phone }}</h3>
+                        <label class="form-label">
+                            <h4> {{ __('site.phone') }} :</h4>
+                        </label>
+                        <strong class="main-btn3 fs-5">{{ $profile->phone }}</strong>
                         {{-- <input type="text" value="{{ $profile->phone }}" name="phone" class="form-control"
                             required> --}}
                     </div>
