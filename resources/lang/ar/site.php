@@ -36,7 +36,11 @@ return [
     "completely_electronic_invitations" => "دعوات الكترونية بشكل كامل تغنيك عن أي كرت دعوة آخر ، تصل لضيوفك بكل سهوله عبر الواتساب مع خاصية تأكيد الحضور التي تصلك لحظه بلحظه . وباركود دخول خاص لكل ضيف لتنظيم الدخول يوم مناسبتك",
     "try_invite_invitations_now" => "جرب دعوة دعوات الان",
     "the_invitation_will" => "سيتم ارسال الدعوة للك عبر الواتساب",
-    "the_name" => "الاسم",
+    "the_name" => "اسم",
+    "arabic" => "العربية",
+    "deleted_successfully" => "تم الحذف بنجاح",
+    "filter" => "فلتر",
+    "english" => "الانجليزية",
     "surname" => "اللقب",
     "area_code" => "رمز المنطقة",
     "phone" => "الهاتف",
@@ -108,7 +112,7 @@ return [
     "the_status" => "الحالة",
     "search" => "بحث",
     "confirmed" => "مؤكد",
-    "un_confirmed" => "غير مؤكد",
+    "un_confirmed" => "مسودة",
     "download_the_app" => "حمل التطبيق",
     "contact_statuses" => "حالات جهات الاتصال",
     "scanned" => "الممسوحة ضوئيا",
@@ -179,8 +183,16 @@ return [
     "file_upload" => "رفع الملف",
     "lang" => "لغة",
     "add_the_contact" => "اضافة جهة الاتصال",
+    "register_by" => "سجل بواسطة",
+    "wait" => "انتظر",
     "import" => "استيراد",
-    "are_you_sure_to_delete_the_following_data?" => "هل انت متأكد من حذف البيانات التالية "
+    "are_you_sure_to_delete_the_following_data?" => "هل انت متأكد من حذف البيانات التالية ",
+    "no_invitations_found" => "لم يتم العثور على دعوات",
+    "points" => "نقاط",
+    "wrong_login_information" => "بيانات دخول خاطئة",
+    "something_is_wrong" => "هناك خطأ ما",
+    "an_account_has_been_created" => "تم انشاء حساب",
+    
 
 
 ];

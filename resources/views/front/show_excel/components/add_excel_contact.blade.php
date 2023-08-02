@@ -40,7 +40,7 @@
 
         </div>
 
-        <a href="{{ route('contact.index') }}" class="text-decoration-none main-btn1" style="width: 190px;">{{ __('site.back'). __('site.contacts') }}</a>
+        <a href="{{ route('contact.index') }}" class="text-decoration-none main-btn1" style="width: 190px;">{{ __('site.back'). " ". __('site.contacts') }}</a>
 
     </div>
 </div>

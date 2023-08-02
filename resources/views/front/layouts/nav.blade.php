@@ -82,11 +82,11 @@
                             {{ __('site.my_account') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('getProfileUserData') }}">{{ __('site.personal_file') }}</a></li>
+                            <li class="{{ app()->getLocale() == 'ar' ? 'text-end' : '' }}"><a class="dropdown-item" href="{{ route('getProfileUserData') }}">{{ __('site.personal_file') }}</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('user.logout') }}">{{ __('site.log_out') }}</a></li>
+                            <li class="{{ app()->getLocale() == 'ar' ? 'text-end' : '' }}"><a class="dropdown-item" href="{{ route('user.logout') }}">{{ __('site.log_out') }}</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -36,6 +36,8 @@ return [
     "try_invite_invitations_now" => "Try invite invitations now",
     "the_invitation_will" => "The invitation will be sent to you via WhatsApp",
     "the_name" => "Name",
+    "register_by" => "Register by",
+    "wait" => "Wait",
     "surname" => "Surname",
     "area_code" => "Area code",
     "phone" => "Phone",
@@ -103,27 +105,27 @@ return [
     "the_status" => "Status",
     "search" => "Search",
     "confirmed" => "Confirmed",
-    "un_confirmed" => "Un Confirmed",
-    "download_the_app" => "Download The App",
+    "un_confirmed" => "Draft",
+    "download_the_app" => "Download App",
     "contact_statuses" => "Contact Statuses",
     "scanned" => "Scanned",
     "apology" => "Apology",
-    "visited_the_page" => "Visited the page",
+    "visited_the_page" => "Visited page",
     "no_answer" => "No Answer",
-    "to_fail" => "to fail",
-    "they_havent_called_yet" => "They haven't called yet",
+    "to_fail" => "Fail",
+    "they_havent_called_yet" => "Not Invited yet",
     "whatsApp_invitation_statuses" => "WhatsApp invitation statuses",
-    "did_not_send" => "did not send",
-    "it_was_received" => "It was received",
+    "did_not_send" => "not send",
+    "it_was_received" => "Received",
     "read" => "Read",
     "qr_code_delivery_statuses" => "QR code delivery statuses",
-    "there_is_no_delivery_status" => "There is no delivery status",
-    "send_invitations_via_whatsApp" => "Send invitations via WhatsApp",
+    "there_is_no_delivery_status" => "No delivery",
+    "send_invitations_via_whatsApp" => "Send invitations WhatsApp",
     "send_undelivered_qr_codes" => "Send undelivered QR codes",
     "scan_management" => "Scan management",
     "send_invitations_manually" => "Send invitations manually",
     "send_a_reminder" => "Send a reminder",
-    "the_transmitter_is_manual" => "The transmitter is manual",
+    "the_transmitter_is_manual" => "Send manual",
     "there_is_no_information" => "There is no information",
     "confirm_deletion" => "Confirm deletion",
     "are_you_sure_you_want_to_delete" => "Are you sure you want to delete",
@@ -134,7 +136,7 @@ return [
     "all_invitations_will_be" => "All invitations will be sent to guests before sending. Please note that the mobile number begins with the area number. The status of the message will be updated for each guest within a few minutes if the status fails.
     Check the contact's phone number, it may be invalid or the contact may not be using WhatsApp",
     "send_invitations_automatically_via_whatsApp" => "Send invitations automatically via WhatsApp",
-    "cancellation" => "Cancellation",
+    "cancellation" => "Cancel",
     "save" => "Save",
 
     // Path: Resource/Views/Front/Invites/Components/qr_code
@@ -145,7 +147,9 @@ return [
 
     // Path: Resource/Views/Front/Scan/Components/Reminder
     "call_reminder" => "Call reminder",
-    "to_set" => "to set",
+    "to_set" => "Check",
+    "filter" => "Filter",
+    "deleted_successfully" => "Deleted Successfully",
 
     // Path: Resource/Views/Front/Scan/Components/add_invite
     "call_information" => "Call information",
@@ -172,22 +176,13 @@ return [
     "lang" => "Lang",
     "add_the_contact" => "Add the contact",
     "import" => "Import",
+    "arabic" => "Arabic",
+    "english" => "Englsih",
     "are_you_sure_to_delete_the_following_data?" => "Are you sure to delete the following data?",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "no_invitations_found" => "No invitations found",
+    "points" => "Points",
+    "wrong_login_information" => "Wrong login information",
+    "something_is_wrong" => "Something is wrong",
+    "an_account_has_been_created" => "An account has been created",
 
 ];

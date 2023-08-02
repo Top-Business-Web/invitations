@@ -22,7 +22,7 @@
                                 </td>
                                 <td>{{ $user_invitee_reminder->name }}</td>
                                 <td>{{ $user_invitee_reminder->email }}</td>
-                                <td>{{ $statuses[$user_invitee_reminder->status] }}</td>
+                                <td>{{ app()->getLocale() === 'ar' ? $statusesAr[$user_invitee_reminder->status] : $statusesEn[$user_invitee_reminder->status] }}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -119,19 +119,6 @@ class InvitationController extends Controller
         return view('front.invites.components.contacts')->with('data', $data);
     }
 
-    public function search(Request $request)
-{
-    $searchValue = $request->input('searchValue');
-
-    // Perform the search query on the database based on name, address, and date columns
-    $invitations = Invitation::where('title', 'like', '%' . $searchValue . '%')
-        ->orWhere('address', 'like', '%' . $searchValue . '%')
-        ->orWhere('date', 'like', '%' . $searchValue . '%')
-        ->get();
-
-    return response()->json($invitations);
-}
-
 
     public function deleteInvitation($id)
     {

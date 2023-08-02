@@ -4,27 +4,32 @@
         <div class="d-flex justify-content-between">
             <h3>{{ __('site.my_invitations') }}</h3>
 
-            <a href="{{route('addInvites')}}" class="text-decoration-none main-btn1">{{ __('site.create_an_invitation') }}</a>
+            <a href="{{ route('addInvites') }}"
+               class="text-decoration-none main-btn1">{{ __('site.create_an_invitation') }}</a>
 
         </div>
-        <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <select class="form-select" aria-label="Default select example" id="sortSelect">
-                    <option selected>{{ __('site.sort_by') }}</option>
-                    <option value="1">{{ __('site.the_name') }}</option>
-                    <option value="2">{{ __('site.the_date') }}</option>
-                    <option value="3">{{ __('site.the_status') }}</option>
-                </select>
+        <form action="{{ route('searchInvitations')}}">
+            <div class="row mt-5" <?php echo $invitations->isEmpty() ? 'hidden' : ''; ?>>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <select class="form-select" name="sort" aria-label="Default select example" id="sortSelect">
+                        <option selected {{ (@$sort == 0) ? 'selected' : '' }} value="0">{{ __('site.sort_by') }}</option>
+                        <option {{ (@$sort == 1) ? 'selected' : '' }} value="1">{{ __('site.the_name') }}</option>
+                        <option {{ (@$sort == 2) ? 'selected' : '' }} value="2">{{ __('site.the_date') }}</option>
+                        <option {{ (@$sort == 3) ? 'selected' : '' }} value="3">{{ __('site.the_status') }}</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <input class="form-control" value="{{ $search ?? '' }}" name="search" type="search" placeholder="{{ __('site.search') }}" />
+                </div>
+                <button type="submit"
+                        class="text-decoration-none main-btn1">{{ __('site.filter') }}</button>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <input class="form-control" type="search" placeholder="{{ __('site.search') }}" id="searchInput">
-            </div>
-        </div>
+        </form>
         @if ($invitations->isEmpty())
             @include('front.not_found.not_found')
         @else
             @foreach ($invitations as $invitation)
-                <div class="card-invite mt-2" id="dataContainer">
+                <div class="card-invite default mt-2" id="dataContainer">
                     <button class="btn-faq d-flex justify-content-between align-items-center w-100"
                             data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $invitation->id }}"
                             aria-expanded="false" aria-controls="collapseExample">
@@ -35,10 +40,9 @@
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center">
-                                <p
-                                    style="{{ $invitation->status == 0 ? 'background-color : #E9EAEB;color: black;' : '' }}"
-                                    class="btn-active">
-                                    {{ $invitation->status == 1 ?  __('site.confirmed')  :  __('site.un_confirmed') }} 
+                                <p style="{{ $invitation->status == 0 ? 'background-color : #E9EAEB;color: black;' : '' }}"
+                                   class="btn-active">
+                                    {{ $invitation->status == 1 ? __('site.confirmed') : __('site.un_confirmed') }}
                                 </p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center">
@@ -56,20 +60,21 @@
                             </div>
                             <div class="col-lg-7 col-12">
                                 <div class="d-flex mb-2">
-                                    <div class="color2 ms-2"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div class="color2 me-2 ms-2"><i class="fa-solid fa-location-dot"></i></div>
                                     <div>{{ $invitation->address }}</div>
                                 </div>
                                 <div class="d-flex mb-2">
-                                    <div class="color2 ms-2"><i class="fa-solid fa-calendar-days"></i></div>
+                                    <div class="color2 me-2 ms-2"><i class="fa-solid fa-calendar-days"></i></div>
                                     <div>{{ $invitation->date }}</div>
                                 </div>
                                 <div class="d-flex mb-2">
-                                    <div class="color2 ms-2"><i class="fa-solid fa-lock"></i></div>
-                                    <div>كلمة المرور للتطبيق</div>
+                                    <div class="color2 me-2 ms-2"><i class="fa-solid fa-lock"></i></div>
+                                    <div>{{  app()->getlocale() == 'ar' ? 'كلمة المرور للتطبيق' : 'password for App' }}</div>
                                 </div>
                                 <p>{{ $invitation->password }}</p>
                                 <div style="margin-top: 35px;">
-                                    <a href="#" class="text-decoration-none btn-login">{{ __('SITE.download_the_app') }}</a>
+                                    <a href="#"
+                                        class="text-decoration-none btn-login">{{ __('site.download_the_app') }}</a>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-6 d-flex justify-content-end">
@@ -98,7 +103,6 @@
                                 </div>
 
 
-
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="details-number text-center btn-hand" data-content=".confirmed">
                                         <p class="mb-0">{{ @$invitation->confirmed->count() }}</p>
@@ -125,7 +129,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number text-center btn-hand"  data-content=".failed">
+                                    <div class="details-number text-center btn-hand" data-content=".failed">
                                         <p class="mb-0">{{ @$invitation->apologized->count() }}</p>
                                         <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
@@ -143,25 +147,29 @@
                             <h6 class="mb-2">{{ __('site.whatsApp_invitation_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color1 text-center btn-hand" data-content=".not-sent-whatsapp">
+                                    <div class="details-number bg-color1 text-center btn-hand"
+                                         data-content=".not-sent-whatsapp">
                                         <p class="mb-0">{{ @$invitation->not_sent_whatsapp->count() }}</p>
                                         <p class="mb-0">{{ __('site.did_not_send') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color1 text-center btn-hand" data-content=".received-whatsapp">
+                                    <div class="details-number bg-color1 text-center btn-hand"
+                                         data-content=".received-whatsapp">
                                         <p class="mb-0">{{ @$invitation->received_whatsapp->count() }}</p>
                                         <p class="mb-0">{{ __('site.it_was_received') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color1 text-center btn-hand" data-content=".readIt-whatsapp">
+                                    <div class="details-number bg-color1 text-center btn-hand"
+                                         data-content=".readIt-whatsapp">
                                         <p class="mb-0">{{ @$invitation->readIt_whatsapp->count() }}</p>
                                         <p class="mb-0">{{ __('site.read') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color1 text-center btn-hand" data-content=".faild-whatsapp">
+                                    <div class="details-number bg-color1 text-center btn-hand"
+                                         data-content=".faild-whatsapp">
                                         <p class="mb-0">{{ $invitation->faild_whatsapp->count() }}</p>
                                         <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
@@ -173,25 +181,29 @@
                             <h6 class="mb-2">{{ __('site.qr_code_delivery_statuses') }}</h6>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color2 text-center btn-hand" data-content=".not-received-qr">
+                                    <div class="details-number bg-color2 text-center btn-hand"
+                                         data-content=".not-received-qr">
                                         <p class="mb-0">{{ $invitation->not_received_qr->count() }}</p>
                                         <p class="mb-0">{{ __('site.there_is_no_delivery_status') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color2 text-center btn-hand" data-content=".received-qr">
+                                    <div class="details-number bg-color2 text-center btn-hand"
+                                         data-content=".received-qr">
                                         <p class="mb-0">{{ $invitation->received_qr->count() }}</p>
                                         <p class="mb-0">{{ __('site.it_was_received') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color2 text-center btn-hand" data-content=".read-it-qr">
+                                    <div class="details-number bg-color2 text-center btn-hand"
+                                         data-content=".read-it-qr">
                                         <p class="mb-0">{{ $invitation->read_it_qr->count() }}</p>
                                         <p class="mb-0">{{ __('site.read') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="details-number bg-color2 text-center btn-hand" data-content=".faild-qr">
+                                    <div class="details-number bg-color2 text-center btn-hand"
+                                         data-content=".faild-qr">
                                         <p class="mb-0">{{ $invitation->faild_qr->count() }}</p>
                                         <p class="mb-0">{{ __('site.to_fail') }}</p>
                                     </div>
@@ -203,7 +215,8 @@
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <button type="button" class="btn-link btn-link-bg" data-bs-toggle="modal"
                                         data-bs-id="{{ $invitation->id }}" data-bs-target="#modalWhatsApp">
-                                    <i class="fa-brands fa-whatsapp fa-lg ms-2"></i> {{ __('site.send_invitations_via_whatsApp') }}
+                                    <i class="fa-brands fa-whatsapp fa-lg ms-2"></i>
+                                    {{ __('site.send_invitations_via_whatsApp') }}
                                 </button>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
@@ -255,32 +268,32 @@
 
                                             <tbody>
 
-                                                @if ($invitation->failed->isEmpty())
+                                            @if ($invitation->failed->isEmpty())
+                                                <tr>
+                                                    <td colspan="5" class="text-center">
+                                                        {{ __('site.there_is_no_information') }}
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                @foreach ($invitation->failed as $userFailed)
                                                     <tr>
-                                                        <td colspan="5" class="text-center">{{ __('site.there_is_no_information') }}
+                                                        <td scope="row">{{ $userFailed->id }}</td>
+                                                        <td>{{ $userFailed->name }}</td>
+                                                        <td>{{ $userFailed->email }}</td>
+                                                        <td>{{ $statuses[$userFailed->status] }}</td>
+                                                        <td>
+                                                            <a href="https://wa.me/920033007" target="_blank"
+                                                               class="whatsapp">
+                                                                <i class="fa-brands fa-whatsapp fs-3"></i>
+                                                            </a>
                                                         </td>
                                                     </tr>
-                                                @else
-                                                    @foreach ($invitation->failed as $userFailed)
-                                                        <tr>
-                                                            <td scope="row">{{ $userFailed->id }}</td>
-                                                            <td>{{ $userFailed->name }}</td>
-                                                            <td>{{ $userFailed->email }}</td>
-                                                            <td>{{ $statuses[$userFailed->status] }}</td>
-                                                            <td>
-                                                                <a href="https://wa.me/920033007"
-                                                                   target="_blank" class="whatsapp">
-                                                                    <i class="fa-brands fa-whatsapp fs-3"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
+                                                @endforeach
+                                            @endif
 
                                             </tbody>
                                         </table>
                                     </div>
-
 
 
                                     <div class="scroll single-table">
@@ -299,7 +312,8 @@
 
                                             @if ($invitation->scanned->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">{{ __('site.there_is_no_information') }}
+                                                    <td colspan="5" class="text-center">
+                                                        {{ __('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
@@ -316,8 +330,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll confirmed">
@@ -325,10 +338,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -336,7 +349,8 @@
 
                                             @if ($invitation->confirmed->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
@@ -353,19 +367,19 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
+                                    {{-- end div of table --}}
 
 
-                                          <div class="scroll apologized">
+                                    <div class="scroll apologized">
 
                                         <table class="table table-striped border">
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -373,7 +387,8 @@
 
                                             @if ($invitation->apologized->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
@@ -390,9 +405,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll waiting">
@@ -400,10 +413,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -411,7 +424,8 @@
 
                                             @if ($invitation->waiting->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
@@ -428,7 +442,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll not-send">
@@ -436,10 +450,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -447,13 +461,14 @@
 
                                             @if ($invitation->not_sent->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->not_sent as $userNotSent)
                                                     <tr>
-                                                        <td scope="row">{{$userNotSent->id }}</td>
+                                                        <td scope="row">{{ $userNotSent->id }}</td>
                                                         <td>{{ $userNotSent->name }}</td>
                                                         <td>{{ $userNotSent->email }}</td>
                                                         <td>{{ $userNotSent->phone }}</td>
@@ -464,20 +479,20 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
+                                    {{-- end div of table --}}
 
 
-                                    {{-- start read of whatsapp status--}}
+                                    {{-- start read of whatsapp status --}}
 
                                     <div class="scroll not-sent-whatsapp">
                                         <table class="table table-striped border">
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -485,13 +500,15 @@
 
                                             @if ($invitation->not_sent_whatsapp->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->not_sent_whatsapp as $not_sent_whatsapp)
                                                     <tr>
-                                                        <td scope="row">{{$not_sent_whatsapp->invitee->id }}</td>
+                                                        <td scope="row">{{ $not_sent_whatsapp->invitee->id }}
+                                                        </td>
                                                         <td>{{ $not_sent_whatsapp->invitee->name }}</td>
                                                         <td>{{ $not_sent_whatsapp->invitee->email }}</td>
                                                         <td>{{ $not_sent_whatsapp->invitee->phone }}</td>
@@ -502,8 +519,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll received-whatsapp">
@@ -511,10 +527,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -522,13 +538,15 @@
 
                                             @if ($invitation->received_whatsapp->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->received_whatsapp as $received_whatsapp)
                                                     <tr>
-                                                        <td scope="row">{{$received_whatsapp->invitee->id }}</td>
+                                                        <td scope="row">{{ $received_whatsapp->invitee->id }}
+                                                        </td>
                                                         <td>{{ $received_whatsapp->invitee->name }}</td>
                                                         <td>{{ $received_whatsapp->invitee->email }}</td>
                                                         <td>{{ $received_whatsapp->invitee->phone }}</td>
@@ -539,9 +557,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll readIt-whatsapp">
@@ -549,10 +565,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -560,13 +576,15 @@
 
                                             @if ($invitation->readIt_whatsapp->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->readIt_whatsapp as $readIt_whatsapp)
                                                     <tr>
-                                                        <td scope="row">{{$readIt_whatsapp->invitee->id }}</td>
+                                                        <td scope="row">{{ $readIt_whatsapp->invitee->id }}
+                                                        </td>
                                                         <td>{{ $readIt_whatsapp->invitee->name }}</td>
                                                         <td>{{ $readIt_whatsapp->invitee->email }}</td>
                                                         <td>{{ $readIt_whatsapp->invitee->phone }}</td>
@@ -577,8 +595,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll faild-whatsapp">
@@ -586,10 +603,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -597,36 +614,38 @@
 
                                             @if ($invitation->faild_whatsapp->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->faild_whatsapp as $faild_whatsapp)
                                                     <tr>
-                                                        <td scope="row">{{$faild_whatsapp->invitee->id }}</td>
+                                                        <td scope="row">{{ $faild_whatsapp->invitee->id }}
+                                                        </td>
                                                         <td>{{ $faild_whatsapp->invitee->name }}</td>
                                                         <td>{{ $faild_whatsapp->invitee->email }}</td>
                                                         <td>{{ $faild_whatsapp->invitee->phone }}</td>
-                                                        <td>Failed </td>
+                                                        <td>Failed</td>
                                                     </tr>
                                                 @endforeach
                                             @endif
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
+                                    {{-- end div of table --}}
 
 
-                                    {{-- start read of Qr status--}}
+                                    {{-- start read of Qr status --}}
                                     <div class="scroll not-received-qr">
                                         <table class="table table-striped border">
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -634,13 +653,15 @@
 
                                             @if ($invitation->not_received_qr->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->not_received_qr as $not_received_qr)
                                                     <tr>
-                                                        <td scope="row">{{$not_received_qr->invitee->id }}</td>
+                                                        <td scope="row">{{ $not_received_qr->invitee->id }}
+                                                        </td>
                                                         <td>{{ $not_received_qr->invitee->name }}</td>
                                                         <td>{{ $not_received_qr->invitee->email }}</td>
                                                         <td>{{ $not_received_qr->invitee->phone }}</td>
@@ -651,8 +672,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll received-qr">
@@ -660,10 +680,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -671,26 +691,25 @@
 
                                             @if ($invitation->received_qr->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->received_qr as $received_qr)
                                                     <tr>
-                                                        <td scope="row">{{$received_qr->invitee->id }}</td>
+                                                        <td scope="row">{{ $received_qr->invitee->id }}</td>
                                                         <td>{{ $received_qr->invitee->name }}</td>
                                                         <td>{{ $received_qr->invitee->email }}</td>
                                                         <td>{{ $received_qr->invitee->phone }}</td>
-                                                        <td> received qr </td>
+                                                        <td> received qr</td>
                                                     </tr>
                                                 @endforeach
                                             @endif
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll read-it-qr">
@@ -698,10 +717,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -709,25 +728,25 @@
 
                                             @if ($invitation->read_it_qr->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5"
+                                                        class="text-center">{{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->read_it_qr as $read_it_qr)
                                                     <tr>
-                                                        <td scope="row">{{$read_it_qr->invitee->id }}</td>
+                                                        <td scope="row">{{ $read_it_qr->invitee->id }}</td>
                                                         <td>{{ $read_it_qr->invitee->name }}</td>
                                                         <td>{{ $read_it_qr->invitee->email }}</td>
                                                         <td>{{ $read_it_qr->invitee->phone }}</td>
-                                                        <td> read it qr </td>
+                                                        <td> read it qr</td>
                                                     </tr>
                                                 @endforeach
                                             @endif
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
+                                    {{-- end div of table --}}
 
 
                                     <div class="scroll faild-qr">
@@ -735,10 +754,10 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">البريد الالكترونى</th>
-                                                <th scope="col">الهاتف</th>
-                                                <th scope="col"> الحالة</th>
+                                                <th scope="col">{{ __('site.the_name') }}</th>
+                                                <th scope="col">{{ __('site.email') }}</th>
+                                                <th scope="col">{{ __('site.phone') }}</th>
+                                                <th scope="col"> {{ __('site.the_status') }}</th>
 
                                             </tr>
                                             </thead>
@@ -746,27 +765,25 @@
 
                                             @if ($invitation->faild_qr->isEmpty())
                                                 <tr>
-                                                    <td colspan="5" class="text-center">لا يوجد معلومات
+                                                    <td colspan="5" class="text-center">
+                                                        {{ trans('site.there_is_no_information') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 @foreach ($invitation->faild_qr as $faild_qr)
                                                     <tr>
-                                                        <td scope="row">{{$faild_qr->invitee->id }}</td>
+                                                        <td scope="row">{{ $faild_qr->invitee->id }}</td>
                                                         <td>{{ $faild_qr->invitee->name }}</td>
                                                         <td>{{ $faild_qr->invitee->email }}</td>
                                                         <td>{{ $faild_qr->invitee->phone }}</td>
-                                                        <td> failed qr </td>
+                                                        <td> failed qr</td>
                                                     </tr>
                                                 @endforeach
                                             @endif
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{--end div of table--}}
-
-
-
+                                    {{-- end div of table --}}
 
 
                                 </div>
@@ -824,10 +841,9 @@
 @include('Admin/layouts/myAjaxHelper')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
     $('#editBtnInvite').on('click', function () {
         let id = $(this).data('id');
-        let url = "{{ route('editInvitation',':id') }}";
+        let url = "{{ route('editInvitation', ':id') }}";
         url = url.replace(':id', id);
         location.href = url;
     })
@@ -856,7 +872,7 @@
             })
                 .then(response => {
                     if (response.status === 200) {
-                        toastr.success('تم الحذف');
+                        toastr.success('{{ __('site.deleted_successfully') }}');
                         setTimeout(() => {
                             location.reload();
                         }, 2000);
@@ -872,4 +888,3 @@
         });
     });
 </script>
-
