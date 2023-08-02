@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\ResetCodePassword;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class PasswordResetController extends Controller
 {
@@ -15,8 +18,21 @@ class PasswordResetController extends Controller
     // Implement the route to handle the form submission (not sending reset link here)
     public function reset(Request $request)
     {
-        // Process the form submission, but do not handle password reset link sending here
-        // Password reset link sending will be handled on the frontend using Firebase SDK
-        // You can validate the form data, etc., and perform necessary actions as required.
+//        dd($request->all());
+        User::query()
+            ->where('phone', 'like', '%' . $request->phone . '%')
+            ->first()
+            ->update([
+                'password' => Hash::make($request->password)
+            ]);
+        ResetCodePassword::query()
+            ->updateOrCreate(['phone' => $request->phone],
+                [
+                    'phone' => $request->phone,
+                    'code' => $request->code
+                ]);
+
+        $msg = 'تم تغير كلمة السر بنجاح';
+        return view('front.500.500',compact('msg'));
     }
 }
