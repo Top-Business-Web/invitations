@@ -154,6 +154,7 @@ class AuthService
             }
         }
 
+        //update user
         $user = User::find($user->id);
         $user->phone = $request->phone;
         $user->email = $request->email;
