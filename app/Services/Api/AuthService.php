@@ -109,6 +109,7 @@ class AuthService
     }//end fun
 
     public function update_profile($request){
+
         $user = auth()->user();
         $validator = Validator::make($request->all(), [
 //            'phone'      => 'required|unique:users,phone,'.$user->id,
@@ -137,12 +138,26 @@ class AuthService
 
         $data = $request->all();
 
-        if($request->hasFile('image')){
-            $data['image'] = $this->uploadFiles('users', $request->file('image'));
+//        if($request->hasFile('image')){
+//            $data['image'] = $this->uploadFiles('users', $request->file('image'));
+//        }
+
+        if ($image = $request->file('image')) {
+
+            $destinationPath = 'assets/uploads/users/';
+            $profileImage =  date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $request['image'] = $destinationPath."$profileImage";
+
+            if (file_exists(public_path('assets/uploads/users/' . $user->image)) && $user->image != null) {
+                unlink(public_path('assets/uploads/users/' . $user->image));
+            }
         }
+
         $user = User::find($user->id);
         $user->phone = $request->phone;
         $user->email = $request->email;
+        $user->image = $destinationPath.$profileImage;
         $user->name = $request->name;
         $user->save();
         $token = JWTAuth::fromUser($user);

@@ -22,7 +22,7 @@ class UserResources extends JsonResource
                 'status'=>$this->status,
                 'user_type'=>$this->role_id,
                 'watts'=> $this->phone_code.$this->phone,
-                'image'=>$this->image,
+                'image'=> $this->image,
                 'address'=>$this->address,
                 'about_me'=>$this->about_me,
                 'balance'=>$this->points,
