@@ -13,23 +13,23 @@ class ForgotPasswordController extends Controller{
     {
 
         $data = $request->validate([
-            'email' => 'required|email|exists:users',
+            'phone' => 'required|numeric|exists:users',
         ]);
 
         // Delete all old code that user send before.
-        ResetCodePassword::query()->where('email', $request->email)
+        ResetCodePassword::query()->where('phone', $request->phone)
             ->delete();
 
-        // Generate random code
-        $data['code'] = mt_rand(100000, 999999);
+//        // Generate random code
+//        $data['code'] = mt_rand(100000, 999999);
 
         // Create a new code
         $codeData = ResetCodePassword::create($data);
 
         // Send email to user
-        Mail::to($request->email)->send(new SendCodeResetPassword($codeData->code));
+//        Mail::to($request->email)->send(new SendCodeResetPassword($codeData->code));
 
-        return response(['message' => "Code reset password send from email",'code'=>200], 200);
+        return response(['message' => "The phone is exists",'code'=>200], 200);
     }
 
 }
