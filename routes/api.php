@@ -82,3 +82,4 @@ Route::group([ 'middleware' => 'api','namespace' => 'Api'], function () {
 
 //end route api -------------------------------------
 
+Route::get('integrated-whatsapp',[\App\Http\Controllers\Api\TestIntegratedController::class, 'index']);

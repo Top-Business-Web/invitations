@@ -17,14 +17,13 @@ class InvitationResource extends JsonResource
     public function toArray($request)
     {
         $id = $this->id;
-        $invitees = Invitee::query()->where(['invitation_id'=> $id])->get();
+        $invitees = Invitee::query()->whereHas('messages')->where(['invitation_id'=> $id])->get();
         $messages = $invitees->map(function ($item) use ($id) {
             $item->messages = Message::query()->where(['invitation_id'=> $id,'invitee_id' => $item->id])->get();
             return $item;
         });
 
         return [
-
             'id'=>$this->id,
             'date'=>$this->date,
             'title'=>$this->title,
@@ -43,7 +42,7 @@ class InvitationResource extends JsonResource
             'invitees_messages'=>$messages,
             'all_messages' => $this->messages,
             'all_confirmed'=>$this->confirmed,
-            'all_scanned'=>$this->scanned,
+            'all_scanned'=> ScannedPepoleResource::collection($this->scanned),
             'all_waiting'=>$this->waiting,
             'all_apologized'=>$this->apologized,
             'all_failed'=>$this->failed,
