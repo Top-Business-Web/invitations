@@ -14,12 +14,12 @@ class ResetPasswordController extends Controller{
     {
         $request->validate([
             'password' => 'required|string|min:6|confirmed',
-            'code' => 'required|exists:reset_code_passwords,code'
+            'phone' => 'required|exists:reset_code_passwords,phone'
         ]);
 
 
         // find the code
-        $passwordReset = ResetCodePassword::firstWhere('code','=',$request->code);
+        $passwordReset = ResetCodePassword::firstWhere('phone','=',$request->phone);
 
         // check if it does not expired: the time is one hour
         if ($passwordReset->created_at > now()->addHour()) {
@@ -28,7 +28,7 @@ class ResetPasswordController extends Controller{
         }
 
         // find user's email
-        $user = User::query()->where('email',$passwordReset->email)->first();
+        $user = User::query()->where('phone',$passwordReset->phone)->first();
 
         // update user password
         $user->update([
