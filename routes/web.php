@@ -117,12 +117,12 @@ Route::group(
 
         Route::get('/', function () {
             return redirect('/');
-        });
+        }); // eldapour
 
         // sign
         Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
         Route::get('sign_up', [HomeController::class, 'signUp'])->name('signUp');
-        Route::get('new_password', [HomeController::class, 'newPassword'])->name('newPassword');
+        Route::get('new_password/{code}/{phone}/{token}', [HomeController::class, 'newPassword'])->name('newPassword');
         Route::get('forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
         Route::get('verification', [HomeController::class, 'verification'])->name('verification');
         Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
@@ -148,3 +148,5 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
+
+Route::view('/500','front.500.500')->name('500');
