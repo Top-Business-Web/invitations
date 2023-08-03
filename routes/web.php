@@ -117,7 +117,7 @@ Route::group(
 
         Route::get('/', function () {
             return redirect('/');
-        });
+        }); // eldapour
 
         // sign
         Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
