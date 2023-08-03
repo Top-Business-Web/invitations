@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Contact;
 use App\Models\ResetCodePassword;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,7 @@ class HomeController extends Controller
             $resetPassword = ResetCodePassword::query()
                 ->where('phone', $phone)
                 ->where('code', $code)
+                ->where('created_at', Carbon::now())
                 ->latest()->first();
 
             if (!$resetPassword) {
