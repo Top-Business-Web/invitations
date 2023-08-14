@@ -93,7 +93,7 @@ class InvitationService
                     'appkey' => 'c0fd2111-1c65-41f5-90c1-794ffa752a6e',
                     'authkey' => 'Ac3TcLaOIbRpvaZD0qdcPKGuxD3GjSZY35TAGVI4KuHdgiPvfF',
                     'to' => $contact,
-                    'template_id' => '281a783e-8019-4456-9ecb-5a8bcc40489a',
+                    'template_id' => '43b7b891-4e3c-4c93-bb28-714479525c81',
 
                 ];
 
@@ -105,7 +105,7 @@ class InvitationService
 
                 curl_setopt_array($curl, [
                     CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
-//                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
+                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
                     CURLOPT_HTTPHEADER => $headers,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
