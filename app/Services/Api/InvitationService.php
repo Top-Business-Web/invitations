@@ -8,6 +8,7 @@ use App\Models\Invitee;
 use App\Models\Message;
 use App\Models\Scanned;
 use App\Traits\PhotoTrait;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class InvitationService
@@ -70,7 +71,9 @@ class InvitationService
                 $one_invitation->save();
             }
             if($request->step > 4){
+                $this->sendInviteByWhatsapp($inputs['invitees']);
                 $one_invitation->status = "1";
+
                 $one_invitation->save();
             }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
@@ -78,6 +81,59 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function sendInviteByWhatsapp( $contactArray)
+    {
+
+        $phones = [];
+        if($contactArray){
+            for ($contact = 0; $contact < count($contactArray); $contact++) {
+                $contact = $contactArray[$contact]['phone'];
+
+                $data = [
+                    'appkey' => 'e22af6ad-3a4e-4117-bd3e-0e9d44a8ae2d',
+                    'authkey' => '3GT8TpNzJMfkMwFQ8zHeU9QC8gOZX18wC0FPJxH78g8qBGzGPP',
+                    'to' => $contact,
+                    'message' => 'Hiiiii',
+                    'file' => 'https://www.africau.edu/images/default/sample.pdf',
+                    'sandbox' => 'false'
+                ];
+
+                $curl = curl_init();
+
+                $headers = [
+                    'Content-Type: application/x-www-form-urlencoded', // Adjust based on API requirements
+                ];
+
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'), // in local only
+                    CURLOPT_HTTPHEADER => $headers,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => http_build_query($data),
+
+                ]);
+
+                $response = curl_exec($curl);
+                if ($response === false) {
+                    $error = curl_error($curl);
+                    $errorNumber = curl_errno($curl);
+                    dd("cURL Error: {$error} (Error Code: {$errorNumber})");
+                }
+
+                curl_close($curl);
+
+            }
+        }
+
+
+    }
+
 
     public function update($request,$id){
         try {
