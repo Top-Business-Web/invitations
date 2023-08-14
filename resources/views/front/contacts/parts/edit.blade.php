@@ -14,7 +14,7 @@
         </div>
         <div class="col-12">
             <label class="form-label"> البريد الالكترونى</label>
-            <input type="email" value="{{$find->email}}" name="email" class="form-control" required>
+            <input type="email" value="{{$find->email}}" name="email" class="form-control">
         </div>
         <div class="col-12">
             <label class="form-label"> الهاتف</label>

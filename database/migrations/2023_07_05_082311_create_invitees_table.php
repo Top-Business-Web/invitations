@@ -21,7 +21,7 @@ class CreateInviteesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('invitation_id')->nullable();
             $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->text('phone');
             $table->integer('invitees_number')->default(1);
             $table->foreign('invitation_id')->references('id')->on('invitations')->cascadeOnUpdate()->cascadeOnDelete();

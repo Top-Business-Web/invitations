@@ -34,22 +34,22 @@
                     </div>
                     <div class="row g-3">
 
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-6 col-12">
                             <label class="form-label">تاريخ المناسبة</label>
                             <input type="text" name="date" value="{{ $invite->date }}" class="form-control input-field" id="datepicker">
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-6 col-12">
                             <label class="form-label">اسم المناسبة</label>
                             <input type="text" name="title" value="{{ $invite->title }}" class="form-control input-field" id="title">
                         </div>
 
-                        <div class="col-md-4 col-12">
-                            <label class="form-label">اختر اللقب</label>
-                            <select name="sur_name" id="sur_name" class="form-control">
-                                <option {{ ($invite->sur_name == 'mr/mis' ? 'selected' : '') }} value="mr/mis">mr/mis</option>
-                                <option {{ ($invite->sur_name == 'honored' ? 'selected' : '') }} value="honored">honored</option>
-                            </select>
-                        </div>
+{{--                        <div class="col-md-4 col-12">--}}
+{{--                            <label class="form-label">اختر اللقب</label>--}}
+{{--                            <select name="sur_name" id="sur_name" class="form-control">--}}
+{{--                                <option {{ ($invite->sur_name == 'mr/mis' ? 'selected' : '') }} value="mr/mis">mr/mis</option>--}}
+{{--                                <option {{ ($invite->sur_name == 'honored' ? 'selected' : '') }} value="honored">honored</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
 
                         <div class="col-md-12 col-12">
                             <label class="form-label">موقع المناسبة</label>
@@ -114,10 +114,13 @@
                             </thead>
                             <tbody>
                             @foreach($invite->invitees as $index => $contact)
+                                <input type="hidden" class="invitees_id" name="invitees_id"
+                                       value="{{ $contact->id }}">
                                 <input type="hidden" class="invitees_name" name="invitees_name" value="{{ $contact->name }}">
                                 <input type="hidden" class="invitees_email" name="invitees_email" value="{{ $contact->email }}">
                                 <input type="hidden" class="invitees_phone" name="invitees_phone" value="{{ $contact->phone }}">
                                 <tr>
+
                                     <td scope="row">{{ $index+1 }}</td>
                                     <td >{{ $contact->name }}</td>
                                     <td >{{ $contact->email ?? '-' }}</td>
