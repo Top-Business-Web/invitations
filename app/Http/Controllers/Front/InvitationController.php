@@ -11,6 +11,7 @@ use App\Traits\PhotoTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvitationController extends Controller
 {
@@ -39,30 +40,57 @@ class InvitationController extends Controller
             $addInvitation->status = $request->status;
             $addInvitation->password = mt_rand(11111111, 99999999);
             $addInvitation->user_id = Auth::id();
-
             $addInvitation->save();
 
-            if ($addInvitation->save()) {
+            $user = Auth::user();
+            $invites_number = 0;
+            $total_invites = 0;
 
+
+            $array = explode(',',$request->check_contact);
+
+            if ($addInvitation->save()) {
                 for ($i = 0; $i < count($request->contactArray); $i++) {
-                    Invitee::create([
-                        'invitation_id' => $addInvitation->id,
-                        'name' => $request->contactArray[$i]['name'],
-                        'email' => $request->contactArray[$i]['email'],
-                        'phone' => $request->contactArray[$i]['phone'],
-                        'invitees_number' => $request->contactArray[$i]['number'],
-                    ]);
+
+                    if(in_array($request->contactArray[$i]['id'],$array)){
+
+                            Invitee::create([
+                            'invitation_id' => $addInvitation->id,
+                            'name' => $request->contactArray[$i]['name'],
+                            'email' => $request->contactArray[$i]['email'],
+                            'phone' => $request->contactArray[$i]['phone'],
+                            'invitees_number' => $request->contactArray[$i]['number'],
+                        ]);
+
+                        $invites_number+=$request->contactArray[$i]['number'];
+                        ++$total_invites;
+                    }
                 }
 
-                return response()->json(['status' => 200]);
-            } else {
-                return response()->json(['status' => 405]);
-            }
+                $total_invitations_count = $invites_number + $total_invites;
 
-        } catch (\Exception $exception) {
+                if($user->points >= $total_invitations_count){
 
-            return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
-        }
+                    $user->update(['points' => $user->points - $total_invitations_count]);
+                    return response()->json(['status' => 200]);
+
+                }else{
+
+                    DB::table('invitations')->where('id','=',$addInvitation->id)->delete();
+                    DB::table('invitees')->where('invitation_id','=',$addInvitation->id)->delete();
+
+                    return response()->json(['status' => 409]);
+
+                }
+
+                } else {
+                    return response()->json(['status' => 405]);
+                }
+
+                } catch (\Exception $exception) {
+
+                    return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
+                }
     } // end add invitation
 
     public function addDraft(Request $request)
@@ -134,9 +162,12 @@ class InvitationController extends Controller
             ->where('id', $id)
             ->with('invitees')
             ->first();
+
         $contacts = Contact::where('user_id',Auth::user()->id)->get();
+
         return view('front.add_invite.edit_invite', compact('invite','contacts'));
-    } // end editInvitation
+    }
+
 
     public function editInvitationByClient(Request $request)
     {
@@ -168,6 +199,7 @@ class InvitationController extends Controller
             if ($invite->save()) {
 
                 for ($i = 0; $i < count($request->contactArray); $i++) {
+
                     Invitee::updateOrCreate([
                         'invitation_id' => $invite->id,
                         'phone' => $request->contactArray[$i]['phone'],

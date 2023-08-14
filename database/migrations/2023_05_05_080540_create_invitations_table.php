@@ -26,7 +26,7 @@ class CreateInvitationsTable extends Migration
             $table->string('qrcode',255)->nullable();
             $table->enum('send_date' ,[0,1])->default(0);
             $table->enum('lang' ,['ar', 'en'])->default('ar');
-            $table->enum('sur_name' ,['mr/mis', 'honored'])->default('mr/mis');
+            $table->enum('sur_name' ,['mr/mis', 'honored'])->nullable()->default('mr/mis');
             $table->string('address')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
