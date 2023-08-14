@@ -90,10 +90,10 @@ class InvitationService
                 $contact = $contactArray[$contact]['phone'];
 
                 $data = [
-                    'appkey' => '8e347c11-54f4-4947-b9ec-ba2c4e85720f',
-                    'authkey' => 'zqtE6QyIkP8HAsbCbXpythyuIClTJzIL7tS3eIvJc5XfrcjUpV',
+                    'appkey' => 'c0fd2111-1c65-41f5-90c1-794ffa752a6e',
+                    'authkey' => 'Ac3TcLaOIbRpvaZD0qdcPKGuxD3GjSZY35TAGVI4KuHdgiPvfF',
                     'to' => $contact,
-                    'template_id' => 'dad3553c-23e2-42c0-adf3-3335681ae87e',
+                    'template_id' => '281a783e-8019-4456-9ecb-5a8bcc40489a',
 
                 ];
 
@@ -126,6 +126,8 @@ class InvitationService
                 }
 
                 curl_close($curl);
+
+                dd($response);
 
             }
         }
