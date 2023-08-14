@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static findOrFail(mixed $id)
- */
 class Invitation extends Model
 {
     use HasFactory;
+
+    protected $table = 'invitations';
 
     protected $fillable=[
         'date',
