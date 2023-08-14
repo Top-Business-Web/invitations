@@ -193,11 +193,13 @@
 
         var url = '{{ route('addInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
+        var invitees_id = $('.invitees_id');
         var invitees_name = $('.invitees_name');
         var invitees_email = $('.invitees_email');
         var invitees_number = $('.invitees_number');
 
         let phone_list = [];
+        let id_list = [];
         let name_list = [];
         let email_list = [];
         let number_list = [];
@@ -205,9 +207,14 @@
         invitees_phone.each(function() {
             phone_list.push($(this).val());
         });
+
+        invitees_id.each(function() {
+            id_list.push($(this).val());
+        });
         invitees_name.each(function() {
             name_list.push($(this).val());
         });
+
         invitees_email.each(function() {
             email_list.push($(this).val());
         });
@@ -226,12 +233,15 @@
 
         var contactArray = name_list.map((value, index) => {
             return {
+                'id': id_list[index],
                 'name': value,
                 'email': email_list[index],
                 'phone': phone_list[index],
                 'number': number_list[index]
             };
         });
+
+        // console.log(contactArray);
 
         console.log({
             'url': url,
@@ -243,10 +253,15 @@
             'latitude': latitude,
             'longitude': longitude,
             'has_qrcode': has_qrcode,
-            'contactArray': contactArray
+            'contactArray': contactArray,
         })
 
         var imageFile = $('#image')[0].files[0];
+
+        var serviceValue = [];
+        $('.services:checked').each(function(){
+            serviceValue.push($(this).val());
+        })
 
         var formData = new FormData();
         formData.append('_token', '{{ csrf_token() }}');
@@ -259,13 +274,32 @@
         formData.append('longitude', longitude);
         formData.append('has_qrcode', has_qrcode);
         formData.append('status', 1);
+        formData.append('check_contact',serviceValue);
+
+
+
 
         for (var i = 0; i < contactArray.length; i++) {
+            formData.append('contactArray[' + i + '][id]', contactArray[i]['id']);
             formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
             formData.append('contactArray[' + i + '][email]', contactArray[i]['email']);
             formData.append('contactArray[' + i + '][phone]', contactArray[i]['phone']);
             formData.append('contactArray[' + i + '][number]', contactArray[i]['number']);
         }
+
+
+
+        $.ajax({
+
+            type: 'POST',
+            url: "{{ url('api/send_invite_by_whatsapp') }}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                console.log(data);
+            },
+        });
 
         $.ajax({
             headers: {
@@ -281,10 +315,19 @@
             },
             success: function(data) {
                 // Handle the successful response from the server
-                toastr.success('تم انشاء الدعوة بنجاح');
-                setTimeout(function() {
-                    location.href = '{{ route('invites') }}';
-                })
+
+                if(data.status == 409){
+                    toastr.error('يرجي اضافه المزيد من الدعوات بواسطه الادمن');
+
+                }else{
+
+                    toastr.success('تم انشاء الدعوة بنجاح');
+                }
+
+
+                {{--setTimeout(function() {--}}
+                {{--    location.href = '{{ route('invites') }}';--}}
+                {{--})--}}
             },
             error: function(error) {
                 // Handle errors in the request

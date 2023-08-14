@@ -8,6 +8,7 @@ use App\Models\Invitee;
 use App\Models\Message;
 use App\Models\Scanned;
 use App\Traits\PhotoTrait;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class InvitationService
@@ -70,7 +71,9 @@ class InvitationService
                 $one_invitation->save();
             }
             if($request->step > 4){
+                $this->sendInviteByWhatsapp($inputs['invitees']);
                 $one_invitation->status = "1";
+
                 $one_invitation->save();
             }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
@@ -78,6 +81,60 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function sendInviteByWhatsapp( $contactArray)
+    {
+
+        $phones = [];
+        if($contactArray){
+            for ($contact = 0; $contact < count($contactArray); $contact++) {
+                $contact = $contactArray[$contact]['phone'];
+
+                $data = [
+                    'appkey' => 'c0fd2111-1c65-41f5-90c1-794ffa752a6e',
+                    'authkey' => 'Ac3TcLaOIbRpvaZD0qdcPKGuxD3GjSZY35TAGVI4KuHdgiPvfF',
+                    'to' => $contact,
+                    'template_id' => '43b7b891-4e3c-4c93-bb28-714479525c81',
+
+                ];
+
+                $curl = curl_init();
+
+                $headers = [
+                    'Content-Type: application/x-www-form-urlencoded', // Adjust based on API requirements
+                ];
+
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
+                    CURLOPT_HTTPHEADER => $headers,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => http_build_query($data),
+
+                ]);
+
+                $response = curl_exec($curl);
+                if ($response === false) {
+                    $error = curl_error($curl);
+                    $errorNumber = curl_errno($curl);
+                    dd("cURL Error: {$error} (Error Code: {$errorNumber})");
+                }
+
+                curl_close($curl);
+
+                dd($response);
+
+            }
+        }
+
+
+    }
+
 
     public function update($request,$id){
         try {

@@ -17,7 +17,6 @@ class ResetPasswordController extends Controller{
             'phone' => 'required|exists:reset_code_passwords,phone'
         ]);
 
-
         // find the code
         $passwordReset = ResetCodePassword::firstWhere('phone','=',$request->phone);
 

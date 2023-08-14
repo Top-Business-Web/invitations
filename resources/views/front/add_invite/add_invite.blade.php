@@ -33,22 +33,22 @@
                         </div>
                         <div class="row g-3">
 
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-6 col-12">
                                 <label class="form-label">{{ __('site.the_date_of_the_occasion') }}</label>
                                 <input type="text" name="date" class="form-control input-field" id="datepicker">
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-6 col-12">
                                 <label class="form-label">{{ __('site.the_name') . ' ' . __('site.occasion') }} </label>
                                 <input type="text" name="title" class="form-control input-field" id="title">
                             </div>
 
-                            <div class="col-md-4 col-12">
-                                <label class="form-label">{{ __('site.choose_a_surname') }}</label>
-                                <select name="sur_name" id="sur_name" class="form-control">
-                                    <option value="mr/mis">mr/mis</option>
-                                    <option value="honored">honored</option>
-                                </select>
-                            </div>
+{{--                            <div class="col-md-4 col-12">--}}
+{{--                                <label class="form-label">{{ __('site.choose_a_surname') }}</label>--}}
+{{--                                <select name="sur_name" id="sur_name" class="form-control">--}}
+{{--                                    <option value="mr/mis">mr/mis</option>--}}
+{{--                                    <option value="honored">honored</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
 
                             <div class="col-md-12 col-12">
                                 <label class="form-label">{{ __('site.appropriate_site') }}</label>
@@ -120,6 +120,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($contacts as $index => $contact)
+
+                                        <input type="hidden" class="invitees_id" name="invitees_id"
+                                            value="{{ $contact->id }}">
+
                                         <input type="hidden" class="invitees_name" name="invitees_name"
                                             value="{{ $contact->name }}">
                                         <input type="hidden" class="invitees_email" name="invitees_email"
@@ -127,7 +131,9 @@
                                         <input type="hidden" class="invitees_phone" name="invitees_phone"
                                             value="{{ $contact->phone }}">
                                         <tr>
-                                            <td scope="row">{{ $index + 1 }}</td>
+                                            <td scope="row">
+                                                <input type="checkbox" class="custom-control-input services" name="service_id[]" value="{{ $contact['id']}}" >
+                                            </td>
                                             <td>{{ $contact->name }}</td>
                                             <td>{{ $contact->email ?? '-' }}</td>
                                             <td>
