@@ -90,10 +90,10 @@ class InvitationService
                 $contact = $contactArray[$contact]['phone'];
 
                 $data = [
-                    'appkey' => 'e22af6ad-3a4e-4117-bd3e-0e9d44a8ae2d',
-                    'authkey' => '3GT8TpNzJMfkMwFQ8zHeU9QC8gOZX18wC0FPJxH78g8qBGzGPP',
+                    'appkey' => '8e347c11-54f4-4947-b9ec-ba2c4e85720f',
+                    'authkey' => 'zqtE6QyIkP8HAsbCbXpythyuIClTJzIL7tS3eIvJc5XfrcjUpV',
                     'to' => $contact,
-                    'message' => 'Hiiiii',
+                    'template_id' => 'dad3553c-23e2-42c0-adf3-3335681ae87e',
                     'file' => 'https://www.africau.edu/images/default/sample.pdf',
                     'sandbox' => 'false'
                 ];
