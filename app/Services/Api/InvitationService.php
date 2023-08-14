@@ -105,7 +105,7 @@ class InvitationService
 
                 curl_setopt_array($curl, [
                     CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
-                    CURLOPT_CAINFO => storage_path('cacert.pem'), // in local only
+//                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
                     CURLOPT_HTTPHEADER => $headers,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
