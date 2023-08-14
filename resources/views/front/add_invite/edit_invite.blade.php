@@ -27,7 +27,7 @@
         <div class="form-outer">
             <div class="form">
                 <!-- start first step -->
-                <div class="page slidePage">
+                <div class="page slidePage" id="div1">
                     <input type="hidden" value="{{ $invite->id }}" name="id">
                     <div class="">
                         <input name="image" id="image" type="file" class="dropify" data-default-file="{{ asset($invite->image) }}">
@@ -92,13 +92,7 @@
                 <!-- end first step -->
 
                 <!-- start second step -->
-                <div class="page">
-                    {{--                    <h5 class="mb-3">تحديث الضيوف الاضافين</h5>--}}
-                    {{--                    <div class="incr-decr-number mb-4">--}}
-                    {{--                        <input type="button" value="+" class="inc">--}}
-                    {{--                        <input type="text" value="0" class="input-field">--}}
-                    {{--                        <input type="button" value="-" class="dec">--}}
-                    {{--                    </div>--}}
+                <div class="page" id="div2">
                     <div class="d-flex justify-content-center mb-5">
                         <a href="{{ route('contacts.showExcel') }}" style="text-decoration: none" class="main-btn1 bg-color">
                             استيراد ضيوف
@@ -287,6 +281,14 @@
 
 <script>
     $('.dropify').dropify();
+
+    @if($invite->status == 0)
+        @if(app()->getLocale() == 'ar')
+        $("#div1").css('margin-right','-25%');
+        @else
+        $("#div1").css('margin-left','-25%');
+        @endif
+    @endif
 </script>
 
 </body>

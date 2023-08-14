@@ -249,6 +249,7 @@
         var imageFile = $('#image')[0].files[0];
 
         var formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}');
         formData.append('image', imageFile);
         formData.append('datePicker', datePicker);
         formData.append('title', title);
@@ -267,6 +268,18 @@
         }
 
         $.ajax({
+            type: 'POST',
+            url: "{{ url('api/send_invite_by_whatsapp') }}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                toastr.success('تم ارسال الدعوات بنجاح');
+                console.log(data);
+            },
+        });
+
+        $.ajax({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
@@ -281,9 +294,9 @@
             success: function(data) {
                 // Handle the successful response from the server
                 toastr.success('تم انشاء الدعوة بنجاح');
-                setTimeout(function() {
-                    location.href = '{{ route('invites') }}';
-                })
+                {{--setTimeout(function() {--}}
+                {{--    location.href = '{{ route('invites') }}';--}}
+                {{--})--}}
             },
             error: function(error) {
                 // Handle errors in the request
@@ -292,7 +305,7 @@
             complete: function() {
                 // Do something after the request is completed, regardless of success or error
             }
-        })
+        });
 
     });
     // ----------------------

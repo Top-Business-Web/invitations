@@ -26,6 +26,8 @@ use Orion\Facades\Orion;
 |
 */
 
+Route::post('send_invite_by_whatsapp', [\App\Http\Controllers\Front\InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
+
 Route::group(['prefix' => 'provider/auth'],function (){
 
     Route::post('forget-password',  ForgotPasswordController::class);
