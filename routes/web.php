@@ -26,6 +26,9 @@ use App\Http\Controllers\Front\InvitationController as AddInvitationController;
 |
 */
 
+//Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
+
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -63,7 +66,6 @@ Route::group(
             Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
             Route::get('/search/invitations', [InviteController::class, 'searchIndex'])->name('searchInvitations');
             Route::get('reminder/{id}', [ReminderController::class, 'index'])->name('reminder');
-            Route::post('send_invite_by_whatsapp', [InviteController::class, 'sendInviteByWhatsapp'])->name('sendInviteByWhatsapp');
             Route::get('managScanned/{id}', [InviteController::class, 'showUserScanned'])->name('showUserScanned');
 
 
