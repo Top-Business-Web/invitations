@@ -94,8 +94,7 @@ class InvitationService
                     'authkey' => 'zqtE6QyIkP8HAsbCbXpythyuIClTJzIL7tS3eIvJc5XfrcjUpV',
                     'to' => $contact,
                     'template_id' => 'dad3553c-23e2-42c0-adf3-3335681ae87e',
-                    'file' => 'https://www.africau.edu/images/default/sample.pdf',
-                    'sandbox' => 'false'
+
                 ];
 
                 $curl = curl_init();
