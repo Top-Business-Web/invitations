@@ -285,13 +285,11 @@
 <script>
     $('.dropify').dropify();
 
-    @if($invite->status == 0)
         @if(app()->getLocale() == 'ar')
         $("#div1").css('margin-right','-25%');
         @else
         $("#div1").css('margin-left','-25%');
         @endif
-    @endif
 </script>
 
 </body>
