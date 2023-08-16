@@ -142,10 +142,10 @@ class InvitationService
         $phones = [];
         if($contactArray){
             for ($contact = 0; $contact < count($contactArray); $contact++) {
-                $contact = $contactArray[$contact]['phone'];
+                $phone = $contactArray[$contact]['phone'];
 
-                $phoneNumber = "+201003210436";
-                $message = 'المكرم: '.'  نتشرف بدعوتكم لحضور '.$one_invitation->title."بتاريخ ".$one_invitation->date;
+                $phoneNumber = "+2".$phone;
+                $message = 'المكرم: '.$contactArray[$contact]['name'].'  نتشرف بدعوتكم لحضور '.$one_invitation->title." بتاريخ ".$one_invitation->date;
 
                 $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
                 $authToken = '3680b3489b558f90e3663837e777fa42';
