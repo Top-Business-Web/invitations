@@ -52,15 +52,17 @@
 <div class="section">
     <div class="container d-flex justify-content-center">
         <div class="up-card mt-4 p-4 mb-4">
-            <h5 class="text-center mb-4">المكرمة aya</h5>
-            <img src="photo/blog2.jpg" class="w-100">
+            <h5 class="text-center mb-4">المكرم/ة {{$invitee->name}}</h5>
+            <img src="{{$invitation->image}}" class="w-100">
             <div class="d-flex justify-content-between mt-4">
                 <button class="accept-btn">تأكيد</button>
                 <button class="accept-btn reject-btn">رفض</button>
             </div>
             <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="4" placeholder="ارسال رسالة الى الداعى"></textarea>
             <button class="send-btn mt-4">ارسال</button>
+            <a class="send-btn mt-4 mb-4" target="blank" href="http://maps.google.com/maps?q={{$invitation->longitude.','.$invitation->latitude}}">
             <button class="send-btn mt-4 mb-4">موقع المناسبة</button>
+            </a>
         </div>
     </div>
 </div>

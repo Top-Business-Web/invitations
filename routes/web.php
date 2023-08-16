@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\ShareController;
 use App\Http\Controllers\WhatsAppTemplateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -153,6 +154,7 @@ Route::get('/clear', function () {
 });
 Route::post('/whatsapp/send-message', [WhatsAppTemplateController::class,'sendWhatsAppMessage']);
 Route::get('/whatsapp', [WhatsAppTemplateController::class,'index']);
+Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class,'show']);
 
 
 Route::view('/500','front.500.500')->name('500');
