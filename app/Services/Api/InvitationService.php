@@ -147,8 +147,8 @@ class InvitationService
                 $phoneNumber = "+2".$contact;
                 $message = 'المكرم: '.'  نتشرف بدعوتكم لحضور '.$one_invitation->title."بتاريخ ".$one_invitation->date;
 
-                $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
-                $authToken = '6c205580be8381466da51c32c96ec66f';
+                $accountSid = 'AC37935072eba4fd89192d831c86c039cd';
+                $authToken = 'c3f48265706c8426748fc4e4b0d61e70';
                 $twilioPhoneNumber = '+14155238886';
 //        $response = new MessagingResponse();
                 $twilioClient = new Client($accountSid, $authToken);
@@ -164,7 +164,6 @@ class InvitationService
                         'Content-Type' => 'text/html'
                     ]
                 );
-
 
 
 
