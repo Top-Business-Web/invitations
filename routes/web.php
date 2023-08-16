@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WhatsAppTemplateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Socialite\Facades\Socialite;
@@ -150,5 +151,8 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
+Route::post('/whatsapp/send-message', [WhatsAppTemplateController::class,'sendWhatsAppMessage']);
+Route::get('/whatsapp', [WhatsAppTemplateController::class,'index']);
+
 
 Route::view('/500','front.500.500')->name('500');

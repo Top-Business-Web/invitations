@@ -10,6 +10,7 @@ use App\Models\Scanned;
 use App\Traits\PhotoTrait;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twilio\Rest\Client;
 
 class InvitationService
 {
@@ -29,7 +30,7 @@ class InvitationService
             $inputs['qrcode'] = \Ramsey\Uuid\Uuid::uuid4()->toString();
             $inputs['lang'] = $request->lang;
             if ($request->has('image') && $request->image != null) {
-                $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
+                $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'dddd', '100');
             }
             $invitation = Invitation::create($inputs);
             if($request->step > 1){
@@ -71,7 +72,7 @@ class InvitationService
                 $one_invitation->save();
             }
             if($request->step > 4){
-                $this->sendInviteByWhatsapp($inputs['invitees']);
+                $this->sendInviteByWhatsapp($inputs['invitees'],$one_invitation);
                 $one_invitation->status = "1";
 
                 $one_invitation->save();
@@ -81,7 +82,7 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    public function sendInviteByWhatsapp( $contactArray)
+    public function sendInviteByWhatsapp_abdo( $contactArray)
     {
 
         $phones = [];
@@ -128,6 +129,45 @@ class InvitationService
                 curl_close($curl);
 
                 dd($response);
+
+            }
+        }
+
+
+    }
+
+  public function sendInviteByWhatsapp( $contactArray,$one_invitation)
+    {
+
+        $phones = [];
+        if($contactArray){
+            for ($contact = 0; $contact < count($contactArray); $contact++) {
+                $contact = $contactArray[$contact]['phone'];
+
+                $phoneNumber = "+2".$contact;
+                $message = 'المكرم: '.'  نتشرف بدعوتكم لحضور '.$one_invitation->title."بتاريخ ".$one_invitation->date;
+
+                $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
+                $authToken = '6c205580be8381466da51c32c96ec66f';
+                $twilioPhoneNumber = '+14155238886';
+//        $response = new MessagingResponse();
+                $twilioClient = new Client($accountSid, $authToken);
+                // Cart details
+
+                $twilioClient->messages->create(
+                    "whatsapp:$phoneNumber",
+                    [
+                        'from' => "whatsapp:$twilioPhoneNumber",
+                        "mediaUrl" => ["$one_invitation->image"],
+                        'body' => $message,
+
+                        'Content-Type' => 'text/html'
+                    ]
+                );
+
+
+
+
 
             }
         }
