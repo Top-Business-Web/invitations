@@ -75,6 +75,9 @@ Route::group(
             Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
             Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
             Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
+            Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
+            Route::post('/cancelInvitation', [InvitationController::class, 'cancelInvitation'])->name('cancelInvitation');
+            Route::post('/send-message', [InvitationController::class, 'sendMessage'])->name('sendMessage');
 
 
             Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
