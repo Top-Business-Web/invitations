@@ -48,21 +48,6 @@ class InvitationController extends Controller
         }
     }
 
-    public function changeStatus(Request $request)
-    {
-        $userId = $request->input('id');
-
-        // Assuming you have a User model with a 'status' field
-        $user = Invitee::find($userId);
-
-        if ($user->status != 3) {
-            $user->status = 3;
-            $user->save();
-            return response()->json(['status' => 200]);
-        } else {
-            return response()->json(['status' => 405]);
-        }
-    }
 
     public function cancelInvitation(Request $request)
     {

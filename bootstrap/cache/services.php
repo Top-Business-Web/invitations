@@ -62,6 +62,7 @@
     58 => 'Darryldecode\\Cart\\CartServiceProvider',
     59 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
     60 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    61 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
   ),
   'eager' => 
   array (
@@ -109,6 +110,7 @@
     41 => 'Darryldecode\\Cart\\CartServiceProvider',
     42 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
     43 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    44 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
   ),
   'deferred' => 
   array (

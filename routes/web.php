@@ -11,7 +11,7 @@ use App\Http\Controllers\Front\InviteController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\ContactsController;
 use App\Http\Controllers\Front\ReminderController;
-use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\Front\InvitationController;
 use App\Http\Controllers\Front\GoogleLoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -75,10 +75,8 @@ Route::group(
             Route::get('add_invites', [HomeController::class, 'addInvites'])->name('addInvites');
             Route::delete('/delete-invitation/{id}', [InvitationController::class, 'deleteInvitation']);
             Route::get('/sort_data', [InvitationController::class, 'sort'])->name('sort_data');
-            Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
             Route::post('/cancelInvitation', [InvitationController::class, 'cancelInvitation'])->name('cancelInvitation');
             Route::post('/send-message', [InvitationController::class, 'sendMessage'])->name('sendMessage');
-
 
             Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
 
@@ -113,7 +111,7 @@ Route::group(
              *  end contacts controller
              */
             Route::get('profile', [ProfileController::class, 'getProfileUserData'])->name('getProfileUserData');
-            Route::post('/update-profile',  [ProfileController::class, 'update'])->name('update_profile');
+            Route::post('/update-profile', [ProfileController::class, 'update'])->name('update_profile');
 
 
 
@@ -125,7 +123,7 @@ Route::group(
         Route::get('/', function () {
             return redirect('/');
         }); // eldapour
-
+    
         // sign
         Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
         Route::get('sign_up', [HomeController::class, 'signUp'])->name('signUp');
@@ -155,9 +153,11 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
-Route::post('/whatsapp/send-message', [WhatsAppTemplateController::class,'sendWhatsAppMessage']);
-Route::get('/whatsapp', [WhatsAppTemplateController::class,'index']);
-Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class,'show']);
+Route::post('/whatsapp/send-message', [WhatsAppTemplateController::class, 'sendWhatsAppMessage']);
+Route::get('/whatsapp', [WhatsAppTemplateController::class, 'index']);
+Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
+Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
+Route::get('/parcode/{id}/{cId}/{token}', [InvitationController::class, 'parcode'])->name('parcode');
 
 
-Route::view('/500','front.500.500')->name('500');
+Route::view('/500', 'front.500.500')->name('500');

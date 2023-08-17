@@ -15,7 +15,12 @@ class ShareController extends Controller
     {
         $data['invitation'] = Invitation::where(['id'=>$id])->first();
         $data['invitee'] = Invitee::where(['id'=>$invitee_id])->first();
-        return view('front.share', $data);
+        if ($data['invitee']->status == 3) {
+            return redirect()->route('parcode',[$id,$token]);
+        }else{
+
+            return view('front.share', $data);
+        }
     }
 
 }
