@@ -157,7 +157,7 @@ class InvitationService
                 $message = 'المكرم: '.$contactArray[$contact]['name'].'  نتشرف بدعوتكم لحضور '.$one_invitation->title." بتاريخ ".$one_invitation->date;
 
                 $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
-                $authToken = '3680b3489b558f90e3663837e777fa42';
+                $authToken = '31d7e6f2ad06e07ba88b173f580fdd30';
                 $twilioPhoneNumber = '+14155238886';
 //        $response = new MessagingResponse();
                 $twilioClient = new Client($accountSid, $authToken);
@@ -167,7 +167,7 @@ class InvitationService
                     "whatsapp:$phoneNumber",
                     [
                         'from' => "whatsapp:$twilioPhoneNumber",
-                        "mediaUrl" => ["https://daawat.topbusiness.io/share/6/7/1"],
+//                        "mediaUrl" => ["https://daawat.topbusiness.io/share/6/7/1"],
                         'body' => $message,
 //                        'mediaUrl' => ["$webpageUrl"], // Optional: Include media (link)
 
