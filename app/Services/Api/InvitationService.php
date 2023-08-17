@@ -87,9 +87,9 @@ class InvitationService
     {
         $one_invitation =  Invitation::find(1);
         $invitees = ['phone'=>'01003210436','name'=>"ddddd"];
-        if($request->body == "yes"){
+//        if($request->body == "yes"){
             $this->sendInviteByWhatsapp($invitees,$one_invitation);
-        }
+//        }
     }
     public function sendInviteByWhatsapp_abdo( $contactArray)
     {
