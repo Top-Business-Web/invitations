@@ -82,6 +82,15 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function replywats($request)
+    {
+        $one_invitation =  Invitation::find(1);
+        $invitees = ['phone'=>'01003210436','name'=>"ddddd"];
+        if($request->body == "yes"){
+            $this->sendInviteByWhatsapp($invitees,$one_invitation);
+        }
+    }
     public function sendInviteByWhatsapp_abdo( $contactArray)
     {
 
@@ -153,15 +162,16 @@ class InvitationService
 //        $response = new MessagingResponse();
                 $twilioClient = new Client($accountSid, $authToken);
                 // Cart details
-
+                $webpageUrl = "https://daawat.topbusiness.io/share/6/7/1";
                 $twilioClient->messages->create(
                     "whatsapp:$phoneNumber",
                     [
                         'from' => "whatsapp:$twilioPhoneNumber",
-                        "mediaUrl" => ["$one_invitation->image"],
+                        "mediaUrl" => ["https://daawat.topbusiness.io/share/6/7/1"],
                         'body' => $message,
+//                        'mediaUrl' => ["$webpageUrl"], // Optional: Include media (link)
 
-                        'Content-Type' => 'text/html'
+//                        'Content-Type' => 'text/html'
                     ]
                 );
 

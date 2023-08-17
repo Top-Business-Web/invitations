@@ -48,6 +48,7 @@ Route::group(['prefix' => 'provider/auth'],function (){
 Route::post('scanner/auth/login',[AuthScannerController::class, 'login']);
 Route::post('scanner-invitation',[ScannerInvitationController::class, 'scannerInvitation'])->middleware('api');
 
+Route::post('replywats', [InvitationController::class, 'replywats']);
 
 Route::group(['middleware' => 'auth_jwt','prefix' => 'invitations'],function (){
     Route::get('home', [HomeController::class, 'index']);

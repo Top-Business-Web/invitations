@@ -22,6 +22,10 @@ class InvitationController extends Controller
         return $this->invitationService->store($request);
     }
 
+    public function replywats(Request $request){
+        return $this->invitationService->replywats($request);
+    }
+
     public function update(Request $request,$id){
         return $this->invitationService->update($request,$id);
     }
