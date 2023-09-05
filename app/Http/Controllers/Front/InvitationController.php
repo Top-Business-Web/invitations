@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
@@ -46,14 +47,16 @@ class InvitationController extends Controller
             $invites_number = 0;
             $total_invites = 0;
 
-            $array = explode(',',$request->check_contact);
+
+            $array = explode(',', $request->check_contact);
+
 
             if ($addInvitation->save()) {
                 for ($i = 0; $i < count($request->contactArray); $i++) {
 
-                    if(in_array($request->contactArray[$i]['id'],$array)){
+                    if (in_array($request->contactArray[$i]['id'], $array)) {
 
-                            Invitee::create([
+                        Invitee::create([
                             'invitation_id' => $addInvitation->id,
                             'name' => $request->contactArray[$i]['name'],
                             'email' => $request->contactArray[$i]['email'],
@@ -61,34 +64,34 @@ class InvitationController extends Controller
                             'invitees_number' => $request->contactArray[$i]['number'],
                         ]);
 
-                        $invites_number+=$request->contactArray[$i]['number'];
+                        $invites_number += $request->contactArray[$i]['number'];
                         ++$total_invites;
                     }
                 }
 
                 $total_invitations_count = $invites_number + $total_invites;
 
-                if($user->points >= $total_invitations_count){
+                if ($user->points >= $total_invitations_count) {
 
                     $user->update(['points' => $user->points - $total_invitations_count]);
                     return response()->json(['status' => 200]);
 
-                }else{
+                } else {
 
-                    DB::table('invitations')->where('id','=',$addInvitation->id)->delete();
-                    DB::table('invitees')->where('invitation_id','=',$addInvitation->id)->delete();
+                    DB::table('invitations')->where('id', '=', $addInvitation->id)->delete();
+                    DB::table('invitees')->where('invitation_id', '=', $addInvitation->id)->delete();
 
                     return response()->json(['status' => 409]);
                 }
 
-                } else {
-                    return response()->json(['status' => 405]);
-                }
+            } else {
+                return response()->json(['status' => 405]);
+            }
 
-                } catch (\Exception $exception) {
+        } catch (\Exception $exception) {
 
-                    return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
-                }
+            return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
+        }
     } // end add invitation
 
     public function addDraft(Request $request)
@@ -102,7 +105,7 @@ class InvitationController extends Controller
                 $request->except('image');
             }
 
-            if ($request->id == null){
+            if ($request->id == null) {
                 $addInvitation = new Invitation();
                 $addInvitation->date = Carbon::parse($request->datePicker)->format('Y-m-d');
                 $addInvitation->title = $request->title;
@@ -124,7 +127,7 @@ class InvitationController extends Controller
                     return response()->json(['status' => 405]);
                 }
             } else {
-               $addInvitation = Invitation::updateOrCreate(
+                $addInvitation = Invitation::updateOrCreate(
                     ['id' => $request->id],
                     [
                         'date' => Carbon::parse($request->datePicker)->format('Y-m-d'),
@@ -139,7 +142,8 @@ class InvitationController extends Controller
                         'status' => $request->status,
                         'password' => mt_rand(11111111, 99999999),
                         'user_id' => Auth::id(),
-                    ]);
+                    ]
+                );
                 if ($addInvitation) {
                     return response()->json(['status' => 200]);
                 } else {
@@ -153,7 +157,6 @@ class InvitationController extends Controller
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
         }
     } // end add draft
-
     public function editInvitation($id)
     {
         $invite = Invitation::query()
@@ -161,11 +164,10 @@ class InvitationController extends Controller
             ->with('invitees')
             ->first();
 
-        $contacts = Contact::where('user_id',Auth::user()->id)->get();
+        $contacts = Contact::where('user_id', Auth::user()->id)->get();
 
-        return view('front.add_invite.edit_invite', compact('invite','contacts'));
+        return view('front.add_invite.edit_invite', compact('invite', 'contacts'));
     }
-
 
     public function editInvitationByClient(Request $request)
     {
@@ -201,7 +203,7 @@ class InvitationController extends Controller
                     Invitee::updateOrCreate([
                         'invitation_id' => $invite->id,
                         'phone' => $request->contactArray[$i]['phone'],
-                    ],[
+                    ], [
                         'invitation_id' => $invite->id,
                         'name' => $request->contactArray[$i]['name'],
                         'email' => $request->contactArray[$i]['email'],
@@ -220,5 +222,29 @@ class InvitationController extends Controller
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
         }
     } // end edit invitation
+
+    public function changeStatus(Request $request)
+    {
+        $userId = $request->input('id');
+        $token = Str::random(60);
+
+        // Assuming you have a User model with a 'status' field
+        $user = Invitee::find($userId);
+
+        if ($user->status !== 3) {
+            $user->status = 3;
+            $user->save();
+            return response()->json(['status' => 200]);
+        } else if($user->status == 3) {
+            return redirect()->route('parcode',[$userId,$token]);
+        }
+    } // end change status
+
+
+    public function parcode($id,$cId,$token){
+        $data['invitation'] = Invitation::find($id);
+        $data['invitess'] = Invitee::find($cId);
+        return view('front.parcode.parcode')->with($data);
+    } // end parcode
 
 }

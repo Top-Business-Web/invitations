@@ -52,6 +52,7 @@ class InvitationResource extends JsonResource
             'scanned'=>$this->scanned->count(),
             'confirmed'=>$this->confirmed->count(),
             'apologized'=>$this->apologized->count(),
+            'share_link'=> url('share/'.$this->id),
             'waiting'=>$this->waiting->count(),
             'not_sent'=>$this->not_sent->count(),
             'failed'=>$this->failed->count(),

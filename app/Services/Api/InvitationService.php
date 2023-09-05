@@ -8,7 +8,9 @@ use App\Models\Invitee;
 use App\Models\Message;
 use App\Models\Scanned;
 use App\Traits\PhotoTrait;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twilio\Rest\Client;
 
 class InvitationService
 {
@@ -28,7 +30,7 @@ class InvitationService
             $inputs['qrcode'] = \Ramsey\Uuid\Uuid::uuid4()->toString();
             $inputs['lang'] = $request->lang;
             if ($request->has('image') && $request->image != null) {
-                $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
+                $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'dddd', '100');
             }
             $invitation = Invitation::create($inputs);
             if($request->step > 1){
@@ -70,7 +72,9 @@ class InvitationService
                 $one_invitation->save();
             }
             if($request->step > 4){
+                $this->sendInviteByWhatsapp($inputs['invitees'],$one_invitation);
                 $one_invitation->status = "1";
+
                 $one_invitation->save();
             }
             return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
@@ -78,6 +82,108 @@ class InvitationService
             return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function replywats($request)
+    {
+        $one_invitation =  Invitation::find(1);
+        $invitees = ['phone'=>'01003210436','name'=>"ddddd"];
+//        if($request->body == "yes"){
+            $this->sendInviteByWhatsapp($invitees,$one_invitation);
+//        }
+    }
+    public function sendInviteByWhatsapp_abdo( $contactArray)
+    {
+
+        $phones = [];
+        if($contactArray){
+            for ($contact = 0; $contact < count($contactArray); $contact++) {
+                $contact = $contactArray[$contact]['phone'];
+
+                $data = [
+                    'appkey' => 'c0fd2111-1c65-41f5-90c1-794ffa752a6e',
+                    'authkey' => 'Ac3TcLaOIbRpvaZD0qdcPKGuxD3GjSZY35TAGVI4KuHdgiPvfF',
+                    'to' => $contact,
+                    'template_id' => '43b7b891-4e3c-4c93-bb28-714479525c81',
+
+                ];
+
+                $curl = curl_init();
+
+                $headers = [
+                    'Content-Type: application/x-www-form-urlencoded', // Adjust based on API requirements
+                ];
+
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
+                    CURLOPT_HTTPHEADER => $headers,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => http_build_query($data),
+
+                ]);
+
+                $response = curl_exec($curl);
+                if ($response === false) {
+                    $error = curl_error($curl);
+                    $errorNumber = curl_errno($curl);
+                    dd("cURL Error: {$error} (Error Code: {$errorNumber})");
+                }
+
+                curl_close($curl);
+
+                dd($response);
+
+            }
+        }
+
+
+    }
+
+  public function sendInviteByWhatsapp( $contactArray,$one_invitation)
+    {
+
+        $phones = [];
+        if($contactArray){
+            for ($contact = 0; $contact < count($contactArray); $contact++) {
+                $phone = $contactArray[$contact]['phone'];
+
+                $phoneNumber = "+2".$phone;
+                $message = 'المكرم: '.$contactArray[$contact]['name'].'  نتشرف بدعوتكم لحضور '.$one_invitation->title." بتاريخ ".$one_invitation->date;
+
+                $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
+                $authToken = '31d7e6f2ad06e07ba88b173f580fdd30';
+                $twilioPhoneNumber = '+14155238886';
+//        $response = new MessagingResponse();
+                $twilioClient = new Client($accountSid, $authToken);
+                // Cart details
+                $webpageUrl = "https://daawat.topbusiness.io/share/6/7/1";
+                $twilioClient->messages->create(
+                    "whatsapp:$phoneNumber",
+                    [
+                        'from' => "whatsapp:$twilioPhoneNumber",
+//                        "mediaUrl" => ["https://daawat.topbusiness.io/share/6/7/1"],
+                        'body' => $message,
+//                        'mediaUrl' => ["$webpageUrl"], // Optional: Include media (link)
+
+//                        'Content-Type' => 'text/html'
+                    ]
+                );
+
+
+
+
+            }
+        }
+
+
+    }
+
 
     public function update($request,$id){
         try {

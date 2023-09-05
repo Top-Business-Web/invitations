@@ -290,6 +290,7 @@
 
 
         $.ajax({
+
             type: 'POST',
             url: "{{ url('api/send_invite_by_whatsapp') }}",
             data: formData,
@@ -335,6 +336,19 @@
             complete: function() {
                 // Do something after the request is completed, regardless of success or error
             }
+        });
+
+        // send whatsapp
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('api/send_invite_by_whatsapp') }}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                toastr.success('تم ارسال الدعوات بنجاح');
+                console.log(data);
+            },
         });
 
     });
@@ -572,6 +586,19 @@
             }
         })
 
+        // send whatsapp
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('api/send_invite_by_whatsapp') }}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                toastr.success('تم ارسال الدعوات بنجاح');
+                console.log(data);
+            },
+        });
+
     });
     // ----------------------
     // end step 2 edit
@@ -581,6 +608,9 @@
     // ----------------------------------------------------------------
     // end edit
     // ----------------------------------------------------------------
+
+
+
 </script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK34ZyoH4758BkVP05-GxKP0dSmBi4yTo&libraries=places&callback=initMap"

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateInvitationRequest;
 use Yajra\DataTables\DataTables;
 use App\Models\Invitation;
 use App\Models\Invitee;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class InvitationController extends Controller
@@ -45,6 +46,39 @@ class InvitationController extends Controller
         } else {
             return view('Admin.invitations.index');
         }
+    }
+
+
+    public function cancelInvitation(Request $request)
+    {
+        $userId = $request->input('id');
+
+        // Assuming you have a User model with a 'status' field
+        $user = Invitee::find($userId);
+
+        if ($user->status != 4) {
+            $user->status = 4;
+            $user->save();
+            return response()->json(['status' => 200]);
+        } else {
+            return response()->json(['status' => 405]);
+        }
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $messageText = $request->input('message');
+        $messageInvitationId = $request->input('InvitationId');
+
+        // Create a new message record in the database
+        $message = new Message();
+        $message->invitee_id = $userId;
+        $message->message = $messageText;
+        $message->invitation_id = $messageInvitationId;
+        $message->save();
+
+        return response()->json(['status' => 200]);
     }
 
     public function updateStatus(Request $request)

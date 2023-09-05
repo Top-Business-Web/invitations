@@ -190,6 +190,8 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
 
     ],
 
@@ -252,6 +254,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 
