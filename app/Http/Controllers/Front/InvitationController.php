@@ -46,7 +46,6 @@ class InvitationController extends Controller
             $invites_number = 0;
             $total_invites = 0;
 
-
             $array = explode(',',$request->check_contact);
 
             if ($addInvitation->save()) {
@@ -80,7 +79,6 @@ class InvitationController extends Controller
                     DB::table('invitees')->where('invitation_id','=',$addInvitation->id)->delete();
 
                     return response()->json(['status' => 409]);
-
                 }
 
                 } else {

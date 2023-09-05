@@ -61,7 +61,7 @@ Route::group(
         Route::get('/login/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google-callback');
 
 
-        Route::group(['middleware' => ['auth:web']], function () {
+            Route::group(['middleware' => ['auth:web']], function () {
             Route::get('invites', [InviteController::class, 'index'])->name('invites');
             Route::get('edit_invites/{id}', [InviteController::class, 'edit'])->name('edit.invite');
             Route::get('/search/invitations', [InviteController::class, 'searchIndex'])->name('searchInvitations');
@@ -77,10 +77,6 @@ Route::group(
 
             Route::get('add_guest', [HomeController::class, 'addGuest'])->name('addGuest');
 
-
-
-
-
             //add invitations
             Route::post('add-invitation-by-client', [AddInvitationController::class, 'addInvitationByClient'])->name('addInvitationByClient');
             Route::post('addDraft', [AddInvitationController::class, 'addDraft'])->name('addDraft');
@@ -89,10 +85,6 @@ Route::group(
             Route::get('invitation-by-client-step-two/{id}', [AddInvitationController::class, 'InvitationStepTwo'])->name('InvitationStepTwo');
             Route::post('add-invitation-by-client-step-two/', [AddInvitationController::class, 'addInvitationStepTwo'])->name('addInvitationStepTwo');
             Route::post('update-invitation-by-client/{id}', [AddInvitationController::class, 'updateInvitationByClient'])->name('updateInvitationByClient');
-
-
-
-
 
             Route::get('notfound', [HomeController::class, 'notfound'])->name('notfound');
 
@@ -135,11 +127,6 @@ Route::group(
         Route::get('/', [HomeController::class, 'index'])->name('index');
     }
 );
-
-
-
-
-
 
 
 // Route to clear the application cache

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\InviteeController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/updateapp', function () {
     \Artisan::call('cache:clear');
     \Artisan::call('key:generate');
