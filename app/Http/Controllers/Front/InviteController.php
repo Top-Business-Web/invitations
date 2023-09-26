@@ -105,7 +105,7 @@ class InviteController extends Controller
                     'buttons[0][id]' => '1',
                     'buttons[0][title]' => 'تاكيد',
                     'buttons[0][type]' => '1',
-                    'buttons[0][extra_data]' => route('sendQrAccept',[$invition_id,201122717960]),
+                    'buttons[0][extra_data]' => route('parcode',[$invition_id,201122717960]),
                     'buttons[1][id]' => '2',
                     'buttons[1][title]' => 'رفض',
                     'buttons[1][type]' => '3',
