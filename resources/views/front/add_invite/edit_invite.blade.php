@@ -85,7 +85,7 @@
                             <a href="#" class="text-decoration-none btn-login"
                                id="addDraftInvite"
                                style="background-color: #C7C7C7;"> حفظ فى المسودات</a>
-                            <button type="button" id="step1BtnEdit" class="next-btn main-btn1 step1Btn">حفظ ومتابعة</button>
+                            <button type="button" id="step1BtnEdit" data-id="{{$invite->id}}" class="next-btn main-btn1 step1Btn">حفظ ومتابعة</button>
                         </div>
                     </div>
                 </div>

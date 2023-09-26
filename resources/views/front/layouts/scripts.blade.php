@@ -287,20 +287,6 @@
             formData.append('contactArray[' + i + '][number]', contactArray[i]['number']);
         }
 
-
-
-        $.ajax({
-
-            type: 'POST',
-            url: "{{ url('api/send_invite_by_whatsapp') }}",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                console.log(data);
-            },
-        });
-
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -338,18 +324,18 @@
             }
         });
 
-        // send whatsapp
-        $.ajax({
-            type: 'POST',
-            url: "{{ url('api/send_invite_by_whatsapp') }}",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                toastr.success('تم ارسال الدعوات بنجاح');
-                console.log(data);
-            },
-        });
+        {{--// send whatsapp--}}
+        {{--$.ajax({--}}
+        {{--    type: 'POST',--}}
+        {{--    url: "{{ url('api/send_invite_by_whatsapp') }}",--}}
+        {{--    data: formData,--}}
+        {{--    processData: false,--}}
+        {{--    contentType: false,--}}
+        {{--    success: function(data) {--}}
+        {{--        toastr.success('تم ارسال الدعوات بنجاح');--}}
+        {{--        console.log(data);--}}
+        {{--    },--}}
+        {{--});--}}
 
     });
     // ----------------------
@@ -481,6 +467,33 @@
     // ----------------------
     $(document).on('click', '#step2BtnEdit', function() {
 
+
+        var datePicker = $("#datepicker").val();
+        var id = $('input[name="id"]').val();
+        var title = $("#title").val();
+        var image = $('#image')[0].files[0]; // new eldapour edition
+        var sur_name = $("#sur_name").val();
+        var address = $("#searchMapInput").val();
+        var latitude = $("#lat-span").val();
+        var longitude = $("#lng-span").val();
+        var has_qrcode = $("#flexRadioDefault1").val();
+        $("#invition_title").text(title);
+        $(".titlePreview").text(title);
+        // first step value declare
+
+        localStorage.setItem('datePicker', datePicker);
+        localStorage.setItem('title', title);
+        localStorage.setItem('image', image);
+        localStorage.setItem('sur_name', sur_name);
+        localStorage.setItem('address', address);
+        localStorage.setItem('latitude', latitude);
+        localStorage.setItem('longitude', longitude);
+        localStorage.setItem('has_qrcode', has_qrcode);
+        localStorage.setItem('id', id);
+
+        $('.titlePreview').val(title);
+
+
         var url = '{{ route('editInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
         var invitees_name = $('.invitees_name');
@@ -586,18 +599,18 @@
             }
         })
 
-        // send whatsapp
-        $.ajax({
-            type: 'POST',
-            url: "{{ url('api/send_invite_by_whatsapp') }}",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                toastr.success('تم ارسال الدعوات بنجاح');
-                console.log(data);
-            },
-        });
+        {{--// send whatsapp--}}
+        {{--$.ajax({--}}
+        {{--    type: 'POST',--}}
+        {{--    url: "{{ url('api/send_invite_by_whatsapp') }}",--}}
+        {{--    data: formData,--}}
+        {{--    processData: false,--}}
+        {{--    contentType: false,--}}
+        {{--    success: function(data) {--}}
+        {{--        toastr.success('تم ارسال الدعوات بنجاح');--}}
+        {{--        console.log(data);--}}
+        {{--    },--}}
+        {{--});--}}
 
     });
     // ----------------------

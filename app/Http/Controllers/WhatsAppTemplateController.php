@@ -2,47 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Yajra\DataTables\DataTables;
+use App\Models\Invitation;
 use Illuminate\Http\Request;
-use Twilio\Rest\Client;
-use Twilio\TwiML\MessagingResponse;
-use WhatsAppBusinessApi\Library;
-use Illuminate\Support\Facades\Http;
-
-
+use Illuminate\Support\Facades\File;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class WhatsAppTemplateController extends Controller
 {
-    public function index(){
-        return view('watts');
-    }
-    public function sendWhatsAppMessage(Request $request)
+    public function uploadImage(Request $request)
     {
-        $phoneNumber = "+201003210436";
-        $message = '<h1>Hello, world!</h1><p>This is some <strong>HTML</strong> text.</p>';
+        $dataUrl = $request->input('image');
 
-        $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
-        $authToken = '6c205580be8381466da51c32c96ec66f';
-        $twilioPhoneNumber = '+14155238886';
-//        $response = new MessagingResponse();
-        $twilioClient = new Client($accountSid, $authToken);
-        // Cart details
+        // Decode the base64-encoded data URL
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $dataUrl));
 
+        // Generate a unique filename (you can customize this logic)
+        $filename = 'qrcode-'. $request->id . '.png';
 
-        $twilioClient->messages->create(
-            "whatsapp:$phoneNumber",
-            [
-                'from' => "whatsapp:$twilioPhoneNumber",
-                "mediaUrl" => ["https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/media/672263/2017-chevrolet-ss-in-depth-model-review-car-and-driver-photo-701558-s-original.jpg?crop=0.712xw:0.657xh;0.164xw,0.128xh&resize=1200:*"],
-                'body' => $message,
+        // Define the local file path within the "public" directory to save the image
+        $directoryPath = public_path('qrcodes');
 
-                'Content-Type' => 'text/html'
-            ]
-        );
+        // Create the directory if it doesn't exist
+        File::makeDirectory($directoryPath, 0777, true, true);
 
+        // Define the full file path
+        $filePath = $directoryPath . '/' . $filename;
 
+        // Use file_put_contents to save the image
+        if (file_put_contents($filePath, $imageData) !== false) {
+            return response()->json(['message' => 'Image saved successfully']);
+        } else {
+            return response()->json(['message' => 'Failed to save the image'], 500);
+        }
+    } // end save qrcode image
+    public function sendQrAccept($id,$phone)
+    {
+        $invition = Invitation::findOrFail($id);
+        $qrcode = $invition->qrcode;
+        $curl = curl_init();
 
-        return response()->json(['message' => 'WhatsApp message sent']);
+        curl_setopt_array($curl, array(
+            CURLOPT_URL =>  'https://go-wloop.net/api/v1/send/image',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_CAINFO => storage_path('cacert.pem'),
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'phone' => $phone,
+                'url' =>  asset('qrcodes/qrcode-'. $id .'.png'),
+                'caption' => 'Test image caption'
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
     }
 }

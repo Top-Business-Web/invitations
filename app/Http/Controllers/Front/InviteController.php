@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Contact;
-use App\Models\Invitee;
+
 use App\Models\Scanned;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -73,50 +70,62 @@ class InviteController extends Controller
 
     public function sendInviteByWhatsapp(Request $request)
     {
-        $contactArray = $request->contactArray;
-//        dd($contactArray);
-        $title = $request->title;
-        $address = $request->address;
+        $invition = Invitation::query()
+            ->where('id', $request->id)
+            ->with('invitees')
+            ->first();
+        $title = $invition->title;
+        $invition_id = $invition->id;
+        $address = $invition->address;
         $phones = [];
-        if ($contactArray) {
-            // template
-            $data = [
-                'appkey' => '2ee53228-0c31-42ba-9bbc-a7a5a48f9406',
-                'authkey' => 'NnOT8SOlRwzTPvdWDABAME8U6dMWYuePqLOu9yTt1kQgJ5VFgx',
-                'template_id' => 'dc6a8f30-21ba-46e3-8ae2-f2c8ae57ab45',
-                'to' => '+201122717960',
-//                    'message' => 'Example message',
-            ];
+
+        foreach ($invition->invitees as $contact) {
+            $phones[] = $contact->phone;
+        }
+
+        if (count($phones) > 0) {
 
             $curl = curl_init();
 
-            $headers = [
-                'Content-Type: application/x-www-form-urlencoded', // Adjust based on API requirements
-            ];
-
-            curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://wa.spallia.com/api/create-message',
-                CURLOPT_CAINFO => storage_path('cacert.pem'), // in local only
-                CURLOPT_HTTPHEADER => $headers,
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
+                CURLOPT_CAINFO => storage_path('cacert.pem'),
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => http_build_query($data),
-            ]);
+                CURLOPT_POSTFIELDS => array(
+                    'phone' => '201122717960',
+                    'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5HjVSk4lNwyM4IS_2SixhvQTWaRXu19PurXk4JJMXJ0QQ1icAMW-tg82xSb8vb5zl1DY&usqp=CAU',
+                    'caption' => 'دعوة حضور حفل',
+                    'footer' => 'شكرا لكم',
+                    'buttons[0][id]' => '1',
+                    'buttons[0][title]' => 'تاكيد',
+                    'buttons[0][type]' => '1',
+                    'buttons[0][extra_data]' => route('sendQrAccept',[$invition_id,201122717960]),
+                    'buttons[1][id]' => '2',
+                    'buttons[1][title]' => 'رفض',
+                    'buttons[1][type]' => '3',
+                    'buttons[1][extra_data]' => '123456',
+                    'buttons[2][id]' => '3',
+                    'buttons[2][title]' => 'معاينه المناسبة',
+                    'buttons[2][type]' => '3',
+                    'buttons[2][extra_data]' => '123456'
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                    ''
+                ),
+            ));
+
             $response = curl_exec($curl);
-            if ($response === false) {
-                $error = curl_error($curl);
-                $errorNumber = curl_errno($curl);
-                curl_close($curl); // Close the cURL handle
-                return "cURL Error: $error (Error Code: $errorNumber)";
-            }
-            curl_close($curl); // Close the cURL handle
-            $responseData = json_decode($response, true);
-            return [$responseData, $response];
+
+            curl_close($curl);
+             dd($response);
 
 
         }
