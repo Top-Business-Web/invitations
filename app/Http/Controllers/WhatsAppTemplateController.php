@@ -30,13 +30,15 @@ class WhatsAppTemplateController extends Controller
 
         // Use file_put_contents to save the image
         if (file_put_contents($filePath, $imageData) !== false) {
-            return response()->json(['message' => 'Image saved successfully']);
+            return redirect()->route('sendQrAccept',[$request->id,]);
         } else {
             return response()->json(['message' => 'Failed to save the image'], 500);
         }
     } // end save qrcode image
-    public function sendQrAccept($id,$phone)
+    public function sendQrAccept(Request $request)
     {
+        $id = $request->id;
+        $phone = $request->phone;
         $invition = Invitation::findOrFail($id);
         $qrcode = $invition->qrcode;
         $curl = curl_init();

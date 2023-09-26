@@ -116,11 +116,12 @@
                 const img = new Image();
                 img.src = dataUrl;
                 var id = '{{ $invitation->id }}';
+                var phone = '{{ $invitess->phone }}';
 
                 // Send the image data to Laravel for storage
                 fetch('{{ route('save-image') }}', {
                     method: 'POST',
-                    body: JSON.stringify({image: dataUrl,id :id}),
+                    body: JSON.stringify({image: dataUrl,id: id,phone: phone}),
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include Laravel CSRF token

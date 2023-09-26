@@ -242,7 +242,7 @@ class InvitationController extends Controller
     } // end change status
 
 
-    public function parcode($id,$cId,$token){
+    public function parcode($id,$cId){
         $data['invitation'] = Invitation::findOrFail($id);
         $qrcodes = $data['invitation']->qrcode;
         $data['invitess'] = Invitee::query()
