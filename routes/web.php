@@ -140,7 +140,7 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
-Route::post('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
+Route::get('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
 Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
 Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
 Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
