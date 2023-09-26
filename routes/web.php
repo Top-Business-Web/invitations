@@ -144,7 +144,7 @@ Route::post('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::cl
 Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
 Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
 Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
-Route::get('/qrcode/{id}/{cId}/{token}', [InvitationController::class, 'parcode'])->name('parcode');
+Route::get('/qrcode/{id}/{cId}', [InvitationController::class, 'parcode'])->name('parcode');
 
 
 Route::view('/500', 'front.500.500')->name('500');
