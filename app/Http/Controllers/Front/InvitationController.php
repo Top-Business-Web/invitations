@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class InvitationController extends Controller
 {
@@ -242,8 +243,12 @@ class InvitationController extends Controller
 
 
     public function parcode($id,$cId,$token){
-        $data['invitation'] = Invitation::find($id);
-        $data['invitess'] = Invitee::find($cId);
+        $data['invitation'] = Invitation::findOrFail($id);
+        $qrcodes = $data['invitation']->qrcode;
+        $data['invitess'] = Invitee::query()
+        ->where('invitation_id',$id)
+        ->where('phone',$cId)->firstOrFail();
+
         return view('front.parcode.parcode')->with($data);
     } // end parcode
 

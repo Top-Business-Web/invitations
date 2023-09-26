@@ -115,7 +115,7 @@ Route::group(
         Route::get('/', function () {
             return redirect('/');
         }); // eldapour
-    
+
         // sign
         Route::get('sign_in', [HomeController::class, 'signIn'])->name('signIn');
         Route::get('sign_up', [HomeController::class, 'signUp'])->name('signUp');
@@ -140,11 +140,11 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
-Route::post('/whatsapp/send-message', [WhatsAppTemplateController::class, 'sendWhatsAppMessage']);
-Route::get('/whatsapp', [WhatsAppTemplateController::class, 'index']);
+Route::post('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
+Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
 Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
 Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
-Route::get('/parcode/{id}/{cId}/{token}', [InvitationController::class, 'parcode'])->name('parcode');
+Route::get('/qrcode/{id}/{cId}/{token}', [InvitationController::class, 'parcode'])->name('parcode');
 
 
 Route::view('/500', 'front.500.500')->name('500');
