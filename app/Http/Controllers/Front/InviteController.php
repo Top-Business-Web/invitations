@@ -83,54 +83,53 @@ class InviteController extends Controller
             $phones[] = $contact->phone;
         }
 
+        $response_data = [];
         if (count($phones) > 0) {
 
-            $curl = curl_init();
+            for ($p = 0; $p < count($phones); $p++) {
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'),
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array(
+                        'phone' => $phones[$p],
+                        'image' => asset($invition->image),
+                        'caption' => $invition->title,
+                        'footer' => $invition->address,
+                        'buttons[0][id]' => '1',
+                        'buttons[0][title]' => 'تاكيد',
+                        'buttons[0][type]' => '1',
+                        'buttons[0][extra_data]' => route('parcode', [$invition_id, $phones[$p]]),
+                        'buttons[1][id]' => '2',
+                        'buttons[1][title]' => 'رفض',
+                        'buttons[1][type]' => '3',
+                        'buttons[1][extra_data]' => '2',
+                        'buttons[2][id]' => '3',
+                        'buttons[2][title]' => 'معاينه المناسبة',
+                        'buttons[2][type]' => '1',
+                        'buttons[2][extra_data]' => route('sendLocation', [$invition_id, $phones[$p]])
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                        'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                    ),
+                ));
+                $response = curl_exec($curl);
+                curl_close($curl);
+                $response_data [] = $response;
+            }
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_CAINFO => storage_path('cacert.pem'),
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array(
-                    'phone' => '96555862396',
-                    'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5HjVSk4lNwyM4IS_2SixhvQTWaRXu19PurXk4JJMXJ0QQ1icAMW-tg82xSb8vb5zl1DY&usqp=CAU',
-                    'caption' => 'دعوة حضور حفل',
-                    'footer' => 'شكرا لكم',
-                    'buttons[0][id]' => '1',
-                    'buttons[0][title]' => 'تاكيد',
-                    'buttons[0][type]' => '1',
-                    'buttons[0][extra_data]' => route('parcode',[$invition_id,96555862396]),
-                    'buttons[1][id]' => '2',
-                    'buttons[1][title]' => 'رفض',
-                    'buttons[1][type]' => '3',
-                    'buttons[1][extra_data]' => '2',
-                    'buttons[2][id]' => '3',
-                    'buttons[2][title]' => 'معاينه المناسبة',
-                    'buttons[2][type]' => '1',
-                    'buttons[2][extra_data]' => route('sendLocation',[$invition_id,96555862396])
-                ),
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
-                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
-                    ''
-                ),
-            ));
-
-            $response = curl_exec($curl);
-
-            curl_close($curl);
-             dd($response);
+            return $response_data;
 
 
         }
-
-
     }
 
     public function showUserScanned($id)

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class WhatsAppTemplateController extends Controller
 {
