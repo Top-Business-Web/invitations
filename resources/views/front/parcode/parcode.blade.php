@@ -100,10 +100,13 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include Laravel CSRF token
                     },
                 })
+                    .then(e => {
+                        window.location.href = 'https://wa.me/201003210436';
+                    })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data.message);
-                        window.location.href = 'https://wa.me/201003210436';
+                        // console.log(data.message);
+                        // window.location.href = 'https://wa.me/201003210436';
                     })
                     .catch(error => {
                         console.error('Error saving image:', error);
