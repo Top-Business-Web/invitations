@@ -109,11 +109,11 @@ class InviteController extends Controller
                     'buttons[1][id]' => '2',
                     'buttons[1][title]' => 'رفض',
                     'buttons[1][type]' => '3',
-                    'buttons[1][extra_data]' => '123456',
+                    'buttons[1][extra_data]' => '2',
                     'buttons[2][id]' => '3',
                     'buttons[2][title]' => 'معاينه المناسبة',
-                    'buttons[2][type]' => '3',
-                    'buttons[2][extra_data]' => '123456'
+                    'buttons[2][type]' => '1',
+                    'buttons[2][extra_data]' => route('sendLocation',[$invition_id,201122717960])
                 ),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',

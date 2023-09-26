@@ -142,6 +142,9 @@ Route::get('/clear', function () {
 });
 Route::get('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
 Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
+Route::get('/sendLocation/{id}/{phone}', [WhatsAppTemplateController::class, 'sendLocation'])->name('sendLocation');
+
+
 Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
 Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
 Route::get('/qrcode/{id}/{cId}', [InvitationController::class, 'parcode'])->name('parcode');

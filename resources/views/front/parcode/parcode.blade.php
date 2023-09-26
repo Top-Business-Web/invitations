@@ -78,34 +78,7 @@
 <script src="{{ asset('assets/front/parcode') }}/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('assets/front/parcode') }}/js/all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>--}}
 <script>
-    // Function to convert the div to an image and initiate download
-    // function convertAndDownload() {
-    //     const divElement = document.getElementById("content");
-    //
-    //     // Use dom-to-image to convert the div to an image
-    //     domtoimage.toBlob(divElement)
-    //         .then(function(blob) {
-    //             // Create a temporary anchor element
-    //             const link = document.createElement('a');
-    //             link.href = URL.createObjectURL(blob);
-    //             link.download = 'converted-image.png';
-    //
-    //             // Trigger the download
-    //             link.click();
-    //
-    //             // Clean up the temporary anchor
-    //             URL.revokeObjectURL(link.href);
-    //         })
-    //         .catch(function(error) {
-    //             console.error('Error converting div to image:', error);
-    //         });
-    // }
-
-    // Attach the conversion and download function to the window load event
-    // window.addEventListener("load", convertAndDownload);
-
     function convertAndDownload() {
         const divToCapture = document.getElementById('content');
 
