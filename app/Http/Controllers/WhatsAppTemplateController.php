@@ -61,7 +61,7 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_POSTFIELDS => array(
                     'phone' => $phone,
                     'url' => asset('qrcodes/qrcode-' . $id . '.png'),
-                    'caption' => ' : تم تاكيد الدعوه لرقم ' . $phone
+                    'caption' => ' : تم تاكيد الدعوه ' . 'https://daawat.topbusiness.io'
                 ),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
@@ -72,7 +72,7 @@ class WhatsAppTemplateController extends Controller
             $response = curl_exec($curl);
 
             curl_close($curl);
-            return redirect('https://wa.me/201003210436');
+            echo $response;
         } else {
             return redirect('https://wa.me/201003210436');
         }
