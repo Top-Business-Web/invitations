@@ -121,7 +121,7 @@
                 // Send the image data to Laravel for storage
                 fetch('{{ route('save-image') }}', {
                     method: 'POST',
-                    body: JSON.stringify({image: dataUrl,id: id,phone: phone}),
+                    body: JSON.stringify({image: dataUrl, id: id, phone: phone}),
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include Laravel CSRF token
@@ -130,6 +130,7 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log(data.message);
+                        window.location.href = 'https://wa.me/201003210436';
                     })
                     .catch(error => {
                         console.error('Error saving image:', error);
