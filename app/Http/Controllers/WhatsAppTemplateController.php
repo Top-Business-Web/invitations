@@ -54,7 +54,7 @@ class WhatsAppTemplateController extends Controller
             CURLOPT_POSTFIELDS => array(
                 'phone' => $phone,
                 'url' =>  asset('qrcodes/qrcode-'. $id .'.png'),
-                'caption' => 'Test image caption'
+                'caption' => ' : تم تاكيد الدعوه لرقم ' . $phone
             ),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
