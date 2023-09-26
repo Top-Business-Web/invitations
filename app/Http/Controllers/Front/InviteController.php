@@ -98,14 +98,14 @@ class InviteController extends Controller
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
-                    'phone' => '201122717960',
+                    'phone' => '96555862396',
                     'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5HjVSk4lNwyM4IS_2SixhvQTWaRXu19PurXk4JJMXJ0QQ1icAMW-tg82xSb8vb5zl1DY&usqp=CAU',
                     'caption' => 'دعوة حضور حفل',
                     'footer' => 'شكرا لكم',
                     'buttons[0][id]' => '1',
                     'buttons[0][title]' => 'تاكيد',
                     'buttons[0][type]' => '1',
-                    'buttons[0][extra_data]' => route('parcode',[$invition_id,201122717960]),
+                    'buttons[0][extra_data]' => route('parcode',[$invition_id,96555862396]),
                     'buttons[1][id]' => '2',
                     'buttons[1][title]' => 'رفض',
                     'buttons[1][type]' => '3',
@@ -113,7 +113,7 @@ class InviteController extends Controller
                     'buttons[2][id]' => '3',
                     'buttons[2][title]' => 'معاينه المناسبة',
                     'buttons[2][type]' => '1',
-                    'buttons[2][extra_data]' => route('sendLocation',[$invition_id,201122717960])
+                    'buttons[2][extra_data]' => route('sendLocation',[$invition_id,96555862396])
                 ),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
