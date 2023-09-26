@@ -56,7 +56,6 @@ class InviteController extends Controller
                 ->get();
         }
         $scanneds = Scanned::get()->count();
-        $manualSend =
         $statuses = [
             1 => 'انتظار',
             2 => 'مأكد',
