@@ -72,9 +72,9 @@ class WhatsAppTemplateController extends Controller
             $response = curl_exec($curl);
 
             curl_close($curl);
-            return $response;
+            return redirect('https://wa.me/201003210436');
         } else {
-            return 'تم الارسال من قبل';
+            return redirect('https://wa.me/201003210436');
         }
 
     }
