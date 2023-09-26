@@ -79,7 +79,7 @@ class WhatsAppTemplateController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://go-wloop.net/api/v1/send/location',
+            CURLOPT_URL => 'https://go-wloop.net/api/v1/button/location/template',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -87,7 +87,17 @@ class WhatsAppTemplateController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('phone' => $phone, 'lat' => $latitude, 'lng' => $longitude),
+            CURLOPT_POSTFIELDS => array(
+                'phone' => $phone,
+                'lat' => $latitude,
+                'lng' => $longitude,
+                'caption' => 'موقع المناسبة',
+                'footer' => $invite->title,
+                'buttons[0][id]' => '1',
+                'buttons[0][title]' => 'للتواصل',
+                'buttons[0][type]' => '2',
+                'buttons[0][extra_data]' => '+201003210436',
+                ),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
                 'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
