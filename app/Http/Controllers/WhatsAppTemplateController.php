@@ -26,7 +26,7 @@ class WhatsAppTemplateController extends Controller
         $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $dataUrl));
 
         // Generate a unique filename (you can customize this logic)
-        $filename = 'qrcode-' . $request->id .'-'. $request->phone. '.png';
+        $filename = 'qrcode-' . $request->id . '-' . $request->phone . '.png';
 
         // Define the local file path within the "public" directory to save the image
         $directoryPath = public_path('qrcodes');
@@ -74,7 +74,7 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'phone' => $phone,
-                    'url' => asset('qrcodes/qrcode-' . $id .'-'.$phone. '.png'),
+                    'url' => asset('qrcodes/qrcode-' . $id . '-' . $phone . '.png'),
                     'caption' => ' : تم تاكيد الدعوه ' . 'https://daawat.topbusiness.io'
                 ),
                 CURLOPT_HTTPHEADER => array(
@@ -86,14 +86,14 @@ class WhatsAppTemplateController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
 
-            $response_data = json_decode($response,true);
+            $response_data = json_decode($response, true);
 
             $invitie->status = 2;
             $invitie->save();
 
             DB::table('message_log')
                 ->insert([
-                    'type' => 2, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                    'type' => 2, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
                     'invitation_id' => $invition->id,
                     'phone' => $phone,
                     'status' => $response_data['success'],
@@ -115,17 +115,17 @@ class WhatsAppTemplateController extends Controller
     public function sendLocation($id, $phone)
     {
         $check = DB::table('message_log')
-            ->where('invitation_id',$id)
-            ->where('phone',$phone)
-            ->where('type','=',3)
-            ->where('status','=',1)
+            ->where('invitation_id', $id)
+            ->where('phone', $phone)
+            ->where('type', '=', 3)
+            ->where('status', '=', 1)
             ->latest()->first();
         $invite = Invitation::findOrFail($id);
 
         $longitude = $invite->longitude;
         $latitude = $invite->latitude;
 
-        if (!$check){
+        if (!$check) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -156,11 +156,11 @@ class WhatsAppTemplateController extends Controller
 
             $response = curl_exec($curl);
             curl_close($curl);
-            $response_data = json_decode($response,true);
+            $response_data = json_decode($response, true);
 
             DB::table('message_log')
                 ->insert([
-                    'type' => 3, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                    'type' => 3, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject , 5 => send reject
                     'invitation_id' => $invite->id,
                     'phone' => $phone,
                     'status' => $response_data['success'],
@@ -173,13 +173,17 @@ class WhatsAppTemplateController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function sendReminder(Request $request)
     {
         $check = DB::table('message_log')
-            ->where('invitation_id',$request->id)
-            ->whereIn('phone',$request->phone)
-            ->where('type','=',4)
-            ->where('status','=',1)
+            ->where('invitation_id', $request->id)
+            ->whereIn('phone', $request->phone)
+            ->where('type', '=', 4)
+            ->where('status', '=', 1)
             ->latest()->first();
 
         $invitation = Invitation::findOrFail($request->id);
@@ -228,5 +232,23 @@ class WhatsAppTemplateController extends Controller
 
         return $response_data;
 
+    }
+
+    public function sendReject($id, $phone)
+    {
+
+        $invites = Invitee::where('invitation_id',$id)
+            ->where('phone',$phone)
+            ->update(['status' => 3]);
+
+        DB::table('message_log')
+            ->insert([
+                'type' => 5, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
+                'invitation_id' => $id,
+                'phone' => $phone,
+                'status' => 'success',
+            ]);
+
+        return redirect('https://wa.me/201003210436');
     }
 }

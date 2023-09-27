@@ -148,6 +148,7 @@ Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])
 Route::get('/sendQrAccept/{id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
 Route::get('/sendLocation/{id}/{phone}', [WhatsAppTemplateController::class, 'sendLocation'])->name('sendLocation');
 Route::post('/sendReminder', [WhatsAppTemplateController::class, 'sendReminder'])->name('sendReminder');
+Route::get('/sendReject/{id}/{phone}', [WhatsAppTemplateController::class, 'sendReject'])->name('sendReject');
 //--------------------------------------------------------------------------------------------------------------------------
 //------------------------------------- whatsapp template sender -----------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------
