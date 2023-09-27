@@ -241,6 +241,8 @@ class WhatsAppTemplateController extends Controller
                         'phone' => $phones[$phone],
                         'status' => $response_data[$phone]['success'],
                     ]);
+            } else {
+                return redirect('https://wa.me/201003210436');
             }
         }
 
