@@ -57,7 +57,7 @@ class WhatsAppTemplateController extends Controller
             ->where('phone', $phone)
             ->first();
 
-        if ($invitie->status == 1) {
+        if ($invitie->status == 1 || $invitie->status == 4) {
             $qrcode = $invition->qrcode;
             $curl = curl_init();
 
@@ -86,6 +86,8 @@ class WhatsAppTemplateController extends Controller
 
             curl_close($curl);
             echo $response;
+            $invitie->status = 2;
+            $invitie->save();
         } else {
             return redirect('https://wa.me/201003210436');
         }
@@ -150,6 +152,7 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_URL => 'https://go-wloop.net/api/v1/send/image',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
+                CURLOPT_CAINFO => storage_path('cacert.pem'),
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
                 CURLOPT_FOLLOWLOCATION => true,
@@ -157,7 +160,7 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'phone' => $phones[$phone],
-                    'url' => asset($invitation->image),
+                    'url' => 'https://daawat.topbusiness.io/assets/front/photo/logo2.png',
                     'caption' => 'تذكير حضور .. ' . $invitation->title . 'https://daawat.topbusiness.io'
                 ),
                 CURLOPT_HTTPHEADER => array(
