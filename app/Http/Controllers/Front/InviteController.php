@@ -114,7 +114,7 @@ class InviteController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
                         'phone' => $phones[$p],
-                        'image' => asset($invition->image),
+                        'image' => 'https://daawat.topbusiness.io/qrcodes/qrcode-5-201122717960.png',
                         'caption' => $invition->title,
                         'footer' => $invition->address,
                         'buttons[0][id]' => '1',
@@ -138,16 +138,15 @@ class InviteController extends Controller
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response_data [] = json_decode($response, true);
-            }
 
-            for ($r = 0; $r < count($response_data); $r++) {
                 DB::table('message_log')
                     ->insert([
                         'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
                         'invitation_id' => $invition_id,
-                        'phone' => $phones[$r],
-                        'status' => $response_data[$r]['success'],
+                        'phone' => $phones[$p],
+                        'status' => $response_data[$p]['success'],
                     ]);
+
             }
 
             return $response_data;
