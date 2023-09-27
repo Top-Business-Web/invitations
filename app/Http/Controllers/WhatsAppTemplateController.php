@@ -93,13 +93,13 @@ class WhatsAppTemplateController extends Controller
 
             DB::table('message_log')
                 ->insert([
-                    'type' => 2,
+                    'type' => 2, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
                     'invitation_id' => $invition->id,
                     'phone' => $phone,
                     'status' => $response_data['success'],
                 ]);
 
-            return $response_data['success'];
+            return $response_data;
 
         } else {
             return redirect('https://wa.me/201003210436');
@@ -148,8 +148,16 @@ class WhatsAppTemplateController extends Controller
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
+        $response_data = json_decode($response,true);
+
+        DB::table('message_log')
+            ->insert([
+                'type' => 3, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                'invitation_id' => $invite->id,
+                'phone' => $phone,
+                'status' => $response_data['success'],
+            ]);
 
         return redirect('https://wa.me/201003210436');
     }
@@ -157,7 +165,7 @@ class WhatsAppTemplateController extends Controller
     public function sendReminder(Request $request)
     {
         $invitation = Invitation::findOrFail($request->id);
-
+        $response_data = [];
         $phones = $request->phone;
         for ($phone = 0; $phone < count($phones); $phone++) {
             $curl = curl_init();
@@ -183,9 +191,16 @@ class WhatsAppTemplateController extends Controller
             ));
 
             $response = curl_exec($curl);
-
             curl_close($curl);
-            $response_data [] = $response;
+            $response_data[] = json_decode($response,true);
+
+            DB::table('message_log')
+                ->insert([
+                    'type' => 4, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                    'invitation_id' => $invitation->id,
+                    'phone' => $phones[$phone],
+                    'status' => $response_data[$phone]['success'],
+                ]);
         }
 
         return $response_data;
