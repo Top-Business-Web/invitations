@@ -191,8 +191,8 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'phone' => $phones[$phone],
-                    'url' => 'https://daawat.topbusiness.io/assets/front/photo/logo2.png',
-                    'caption' => 'تذكير حضور .. ' . $invitation->title . 'https://daawat.topbusiness.io'
+                    'url' => asset($invitation->image),
+                    'caption' => 'تذكير حضور : ' . $invitation->title . '       https://daawat.topbusiness.io'
                 ),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
