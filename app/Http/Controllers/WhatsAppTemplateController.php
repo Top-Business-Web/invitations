@@ -234,13 +234,13 @@ class WhatsAppTemplateController extends Controller
                 curl_close($curl);
                 $response_data [] = json_decode($response, true);
 
-                DB::table('message_log')
-                    ->insert([
-                        'type' => 4, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
-                        'invitation_id' => $invitation->id,
-                        'phone' => $phones[$phone],
-                        'status' => $response_data[$phone]['success'],
-                    ]);
+//                DB::table('message_log')
+//                    ->insert([
+//                        'type' => 4, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+//                        'invitation_id' => $invitation->id,
+//                        'phone' => $phones[$phone],
+//                        'status' => $response_data[$phone]['success'],
+//                    ]);
             } else {
                 return redirect('https://wa.me/201003210436');
             }
