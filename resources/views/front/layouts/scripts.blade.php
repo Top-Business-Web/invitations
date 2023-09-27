@@ -636,9 +636,9 @@
             success: function (data) {
                 // Handle the successful response from the server
                 toastr.success('تم  ارسال التذكيرات بنجاح');
-                setTimeout(function () {
-                    location.href = '{{ route('invites') }}';
-                })
+                {{--setTimeout(function () {--}}
+                {{--    location.href = '{{ route('invites') }}';--}}
+                {{--})--}}
             },
             error: function (error) {
                 // Handle errors in the request
