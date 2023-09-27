@@ -122,11 +122,11 @@ class InviteController extends Controller
                         'buttons[0][type]' => '1',
                         'buttons[0][extra_data]' => route('parcode', [$invition_id, $phones[$p]]),
                         'buttons[1][id]' => '2',
-                        'buttons[1][title]' => 'رفض',
+                        'buttons[1][title]' => 'اعتذار',
                         'buttons[1][type]' => '3',
                         'buttons[1][extra_data]' => '2',
                         'buttons[2][id]' => '3',
-                        'buttons[2][title]' => 'معاينه المناسبة',
+                        'buttons[2][title]' => 'موقع المناسبة',
                         'buttons[2][type]' => '1',
                         'buttons[2][extra_data]' => route('sendLocation', [$invition_id, $phones[$p]])
                     ),
