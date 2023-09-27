@@ -137,12 +137,20 @@ class InviteController extends Controller
                 ));
                 $response = curl_exec($curl);
                 curl_close($curl);
-                $response_data [] = $response;
+                $response_data [] = json_decode($response, true);
+            }
+
+            for ($r = 0; $r < count($response_data); $r++) {
+                DB::table('message_log')
+                    ->insert([
+                        'type' => 1,
+                        'invitation_id' => $invition_id,
+                        'phone' => $phones[$r],
+                        'status' => $response_data[$r]['success'],
+                    ]);
             }
 
             return $response_data;
-
-
         }
     }
 
