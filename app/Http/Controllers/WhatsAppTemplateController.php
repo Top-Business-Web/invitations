@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class WhatsAppTemplateController extends Controller
@@ -83,11 +84,22 @@ class WhatsAppTemplateController extends Controller
             ));
 
             $response = curl_exec($curl);
-
             curl_close($curl);
-            echo $response;
+
+            $response_data = json_decode($response,true);
+
             $invitie->status = 2;
             $invitie->save();
+
+            DB::table('message_log')
+                ->insert([
+                    'type' => 1,
+                    'invitation_id' => $invition->id,
+                    'phone' => $phone,
+                    'status' => $response_data['success'],
+                ]);
+
+
         } else {
             return redirect('https://wa.me/201003210436');
         }
