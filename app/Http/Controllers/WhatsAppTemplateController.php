@@ -114,52 +114,62 @@ class WhatsAppTemplateController extends Controller
      */
     public function sendLocation($id, $phone)
     {
+       $check = DB::table('message_log')
+            ->where('invitation_id',$id)
+            ->where('phone',$phone)
+            ->where('status',1)
+            ->latest()->first();
         $invite = Invitation::findOrFail($id);
 
         $longitude = $invite->longitude;
         $latitude = $invite->latitude;
 
-        $curl = curl_init();
+        if (!$check){
+            $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://go-wloop.net/api/v1/button/location/template',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'phone' => $phone,
-                'lat' => $latitude,
-                'lng' => $longitude,
-                'caption' => 'موقع المناسبة',
-                'footer' => $invite->title,
-                'buttons[0][id]' => '1',
-                'buttons[0][title]' => 'للتواصل',
-                'buttons[0][type]' => '2',
-                'buttons[0][extra_data]' => '+201003210436',
-            ),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
-                'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
-            ),
-        ));
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://go-wloop.net/api/v1/button/location/template',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'phone' => $phone,
+                    'lat' => $latitude,
+                    'lng' => $longitude,
+                    'caption' => 'موقع المناسبة',
+                    'footer' => $invite->title,
+                    'buttons[0][id]' => '1',
+                    'buttons[0][title]' => 'للتواصل',
+                    'buttons[0][type]' => '2',
+                    'buttons[0][extra_data]' => '+201003210436',
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
+                ),
+            ));
 
-        $response = curl_exec($curl);
-        curl_close($curl);
-        $response_data = json_decode($response,true);
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $response_data = json_decode($response,true);
 
-        DB::table('message_log')
-            ->insert([
-                'type' => 3, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
-                'invitation_id' => $invite->id,
-                'phone' => $phone,
-                'status' => $response_data['success'],
-            ]);
+            DB::table('message_log')
+                ->insert([
+                    'type' => 3, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                    'invitation_id' => $invite->id,
+                    'phone' => $phone,
+                    'status' => $response_data['success'],
+                ]);
 
-        return redirect('https://wa.me/201003210436');
+            return redirect('https://wa.me/201003210436');
+        } else {
+            return redirect('https://wa.me/201003210436');
+        }
+
     }
 
     public function sendReminder(Request $request)
