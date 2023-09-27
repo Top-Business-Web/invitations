@@ -143,7 +143,7 @@ class InviteController extends Controller
             for ($r = 0; $r < count($response_data); $r++) {
                 DB::table('message_log')
                     ->insert([
-                        'type' => 1,
+                        'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
                         'invitation_id' => $invition_id,
                         'phone' => $phones[$r],
                         'status' => $response_data[$r]['success'],
