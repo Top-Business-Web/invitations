@@ -114,10 +114,10 @@ class WhatsAppTemplateController extends Controller
      */
     public function sendLocation($id, $phone)
     {
-       $check = DB::table('message_log')
+        $check = DB::table('message_log')
             ->where('invitation_id',$id)
             ->where('phone',$phone)
-           ->where('type','=',3)
+            ->where('type','=',3)
             ->where('status','=',1)
             ->latest()->first();
         $invite = Invitation::findOrFail($id);
@@ -187,63 +187,43 @@ class WhatsAppTemplateController extends Controller
         $phones = $request->phone;
 
         for ($phone = 0; $phone < count($phones); $phone++) {
-
-            $check = DB::table('message_log')
-                ->where('invitation_id',$request->id)
-                ->where('phone',$phones[$phone])
-                ->where('type','=',4)
-                ->where('status','=',1)
-                ->latest()->first();
-
-            if (!$check){
-                $curl = curl_init();
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_CAINFO => storage_path('cacert.pem'),
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => array(
-                        'phone' => $phones[$phone],
-                        'image' => asset($invitation->image),
-                        'caption' => 'تذكير : ' . $invitation->title,
-                        'footer' => $invitation->address,
-                        'buttons[0][id]' => '1',
-                        'buttons[0][title]' => 'تاكيد',
-                        'buttons[0][type]' => '1',
-                        'buttons[0][extra_data]' => route('parcode', [$invitation->id, $phones[$phone]]),
-                        'buttons[1][id]' => '2',
-                        'buttons[1][title]' => 'اعتذار',
-                        'buttons[1][type]' => '3',
-                        'buttons[1][extra_data]' => '2',
-                        'buttons[2][id]' => '3',
-                        'buttons[2][title]' => 'موقع المناسبة',
-                        'buttons[2][type]' => '1',
-                        'buttons[2][extra_data]' => route('sendLocation', [$invitation->id, $phones[$phone]])
-                    ),
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
-                        'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
-                    ),
-                ));
-                $response = curl_exec($curl);
-                curl_close($curl);
-                $response_data [] = json_decode($response, true);
-
-//                DB::table('message_log')
-//                    ->insert([
-//                        'type' => 4, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
-//                        'invitation_id' => $invitation->id,
-//                        'phone' => $phones[$phone],
-//                        'status' => $response_data[$phone]['success'],
-//                    ]);
-            } else {
-                return redirect('https://wa.me/201003210436');
-            }
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_CAINFO => storage_path('cacert.pem'),
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'phone' => $phones[$phone],
+                    'image' => asset($invitation->image),
+                    'caption' => 'تذكير : ' . $invitation->title,
+                    'footer' => $invitation->address,
+                    'buttons[0][id]' => '1',
+                    'buttons[0][title]' => 'تاكيد',
+                    'buttons[0][type]' => '1',
+                    'buttons[0][extra_data]' => route('parcode', [$invitation->id, $phones[$phone]]),
+                    'buttons[1][id]' => '2',
+                    'buttons[1][title]' => 'اعتذار',
+                    'buttons[1][type]' => '3',
+                    'buttons[1][extra_data]' => '2',
+                    'buttons[2][id]' => '3',
+                    'buttons[2][title]' => 'موقع المناسبة',
+                    'buttons[2][type]' => '1',
+                    'buttons[2][extra_data]' => route('sendLocation', [$invitation->id, $phones[$phone]])
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $response_data [] = json_decode($response, true);
         }
 
         return $response_data;
