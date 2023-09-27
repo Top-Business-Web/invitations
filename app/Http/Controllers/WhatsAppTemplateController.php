@@ -190,7 +190,7 @@ class WhatsAppTemplateController extends Controller
 
             $check = DB::table('message_log')
                 ->where('invitation_id',$request->id)
-                ->whereIn('phone',$phones[$phone])
+                ->where('phone',$phones[$phone])
                 ->where('type','=',4)
                 ->where('status','=',1)
                 ->latest()->first();
