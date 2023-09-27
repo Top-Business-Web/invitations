@@ -38,7 +38,7 @@ class WhatsAppTemplateController extends Controller
         $filePath = $directoryPath . '/' . $filename;
 
         // Use file_put_contents to save the image
-        if (file_put_contents($filePath, $imageData) !== false) {
+        if (file_put_contents($filePath, $imageData)) {
             $this->sendQrAccept($request->id, $request->phone);
         } else {
             return response()->json(['message' => 'Failed to save the image'], 500);
