@@ -123,8 +123,8 @@ class InviteController extends Controller
                         'buttons[0][extra_data]' => route('parcode', [$invition_id, $phones[$p]]),
                         'buttons[1][id]' => '2',
                         'buttons[1][title]' => 'اعتذار',
-                        'buttons[1][type]' => '3',
-                        'buttons[1][extra_data]' => '2',
+                        'buttons[1][type]' => '1',
+                        'buttons[1][extra_data]' => route('sendReject', [$invition_id, $phones[$p]]),
                         'buttons[2][id]' => '3',
                         'buttons[2][title]' => 'موقع المناسبة',
                         'buttons[2][type]' => '1',
@@ -141,7 +141,7 @@ class InviteController extends Controller
 
                 DB::table('message_log')
                     ->insert([
-                        'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder
+                        'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
                         'invitation_id' => $invition_id,
                         'phone' => $phones[$p],
                         'status' => $response_data[$p]['success'],
