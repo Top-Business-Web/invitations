@@ -117,7 +117,8 @@ class WhatsAppTemplateController extends Controller
        $check = DB::table('message_log')
             ->where('invitation_id',$id)
             ->where('phone',$phone)
-            ->where('status',1)
+           ->where('type','=',3)
+            ->where('status','=',1)
             ->latest()->first();
         $invite = Invitation::findOrFail($id);
 
