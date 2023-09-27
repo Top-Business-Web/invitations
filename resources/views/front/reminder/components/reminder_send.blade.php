@@ -14,11 +14,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <input type="hidden" name="id" value="{{ $id }}">
                         @foreach ($users_invitees_reminder as $user_invitee_reminder)
                             <tr>
                                 <td scope="row">{{ $user_invitee_reminder->id }}</td>
-                                <td><input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                <td><input class="form-check-input userPhone"
+                                           type="checkbox" value="{{ $user_invitee_reminder->phone }}">
                                 </td>
                                 <td>{{ $user_invitee_reminder->name }}</td>
                                 <td>{{ $user_invitee_reminder->email }}</td>
@@ -30,7 +31,7 @@
             </div>
 
             <div class="d-flex justify-content-center mt-4">
-                <button type="button" class="btn-login" style="border: none;">{{ __('site.send') }}</button>
+                <button type="button" class="btn-login" id="reminderBtn" style="border: none;">{{ __('site.send') }}</button>
             </div>
         </div>
     </div>

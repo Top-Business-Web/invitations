@@ -22,7 +22,7 @@
 <!-- Include toastr CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         toastr.options = {
             "closeButton": true,
             "progressBar": true,
@@ -39,7 +39,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script>
-    $(function() {
+    $(function () {
         $("#datepicker").datepicker();
     });
 </script>
@@ -66,7 +66,7 @@
             anchorPoint: new google.maps.Point(0, -29)
         });
 
-        autocomplete.addListener('place_changed', function() {
+        autocomplete.addListener('place_changed', function () {
             infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
@@ -112,12 +112,12 @@
 
 <script>
     // validate input
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Function to check all input fields and enable/disable the button accordingly
         function toggleButtonState() {
             var allFieldsFilled = true;
 
-            $('.input-field').each(function() {
+            $('.input-field').each(function () {
                 if ($(this).val().trim() === '') {
                     allFieldsFilled = false;
                     return false; // Exit the loop early if any field is empty
@@ -130,15 +130,15 @@
         toggleButtonState();
 
         // Check the input fields when typing in any of them
-        $('.input-field').on('input', function() {
+        $('.input-field').on('input', function () {
             toggleButtonState();
         });
     });
 
     // show image
-    $(document).ready(function() {
+    $(document).ready(function () {
         // When a file is selected using the input field
-        $("#image").change(function() {
+        $("#image").change(function () {
             var file = this.files[0];
             if (file) {
                 var imageURL = URL.createObjectURL(file);
@@ -148,7 +148,6 @@
     });
 
 
-
     // ----------------------------------------------------------------
     // start add
     // ----------------------------------------------------------------
@@ -156,7 +155,7 @@
     // ----------------------
     // start step 1 add
     // ----------------------
-    $(document).on('click', '#step1Btn', function() {
+    $(document).on('click', '#step1Btn', function () {
 
         var datePicker = $("#datepicker").val();
         var title = $("#title").val();
@@ -189,7 +188,7 @@
     // ----------------------
     //  start step 2 add
     // ----------------------
-    $(document).on('click', '#step2Btn', function() {
+    $(document).on('click', '#step2Btn', function () {
 
         var url = '{{ route('addInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
@@ -204,21 +203,21 @@
         let email_list = [];
         let number_list = [];
 
-        invitees_phone.each(function() {
+        invitees_phone.each(function () {
             phone_list.push($(this).val());
         });
 
-        invitees_id.each(function() {
+        invitees_id.each(function () {
             id_list.push($(this).val());
         });
-        invitees_name.each(function() {
+        invitees_name.each(function () {
             name_list.push($(this).val());
         });
 
-        invitees_email.each(function() {
+        invitees_email.each(function () {
             email_list.push($(this).val());
         });
-        invitees_number.each(function() {
+        invitees_number.each(function () {
             number_list.push($(this).val());
         });
         // first step value declare
@@ -259,7 +258,7 @@
         var imageFile = $('#image')[0].files[0];
 
         var serviceValue = [];
-        $('.services:checked').each(function(){
+        $('.services:checked').each(function () {
             serviceValue.push($(this).val());
         })
 
@@ -274,9 +273,7 @@
         formData.append('longitude', longitude);
         formData.append('has_qrcode', has_qrcode);
         formData.append('status', 1);
-        formData.append('check_contact',serviceValue);
-
-
+        formData.append('check_contact', serviceValue);
 
 
         for (var i = 0; i < contactArray.length; i++) {
@@ -296,16 +293,16 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function() {
+            beforeSend: function () {
                 // Show loading spinner or do something before sending the request
             },
-            success: function(data) {
+            success: function (data) {
                 // Handle the successful response from the server
 
-                if(data.status == 409){
+                if (data.status == 409) {
                     toastr.error('يرجي اضافه المزيد من الدعوات بواسطه الادمن');
 
-                }else{
+                } else {
 
                     toastr.success('تم انشاء الدعوة بنجاح');
                 }
@@ -315,11 +312,11 @@
                 {{--    location.href = '{{ route('invites') }}';--}}
                 {{--})--}}
             },
-            error: function(error) {
+            error: function (error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function() {
+            complete: function () {
                 // Do something after the request is completed, regardless of success or error
             }
         });
@@ -347,12 +344,10 @@
     // ----------------------------------------------------------------
 
 
-
-
     // ----------------------------------------------------------------
     // start draft
     // ----------------------------------------------------------------
-    $(document).on('click', '#addDraftInvite', function() {
+    $(document).on('click', '#addDraftInvite', function () {
 
         var url = '{{ route('addDraft') }}'
         var datePicker = $("#datepicker").val();
@@ -387,21 +382,21 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function() {
+            beforeSend: function () {
                 // Show loading spinner or do something before sending the request dddddd
             },
-            success: function(data) {
+            success: function (data) {
                 // Handle the successful response from the server
                 toastr.success('تم انشاء الدعوة بنجاح كمسودة');
-                setTimeout(function() {
+                setTimeout(function () {
                     location.href = '{{ route('invites') }}';
                 })
             },
-            error: function(error) {
+            error: function (error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function() {
+            complete: function () {
                 // Do something after the request is completed, regardless of success or error
             }
         })
@@ -412,14 +407,12 @@
     // ----------------------------------------------------------------
 
 
-
-
     // ----------------------------------------------------------------
     // start edit
     // ----------------------------------------------------------------
 
     // editBtnInvite
-    $(document).on('click', '#editBtnInvite', function() {
+    $(document).on('click', '#editBtnInvite', function () {
         let id = $(this).data('id');
         let url = "{{ route('editInvitation', ':id') }}";
         url = url.replace(':id', id);
@@ -430,7 +423,7 @@
     // ----------------------
     // start step 1 edit
     // ----------------------
-    $(document).on('click', '#step1BtnEdit', function() {
+    $(document).on('click', '#step1BtnEdit', function () {
 
         var datePicker = $("#datepicker").val();
         var id = $('input[name="id"]').val();
@@ -465,7 +458,7 @@
     // ----------------------
     //  start step 2 edit
     // ----------------------
-    $(document).on('click', '#step2BtnEdit', function() {
+    $(document).on('click', '#step2BtnEdit', function () {
 
 
         var datePicker = $("#datepicker").val();
@@ -505,16 +498,16 @@
         let email_list = [];
         let number_list = [];
 
-        invitees_phone.each(function() {
+        invitees_phone.each(function () {
             phone_list.push($(this).val());
         });
-        invitees_name.each(function() {
+        invitees_name.each(function () {
             name_list.push($(this).val());
         });
-        invitees_email.each(function() {
+        invitees_email.each(function () {
             email_list.push($(this).val());
         });
-        invitees_number.each(function() {
+        invitees_number.each(function () {
             number_list.push($(this).val());
         });
         // first step value declare
@@ -580,48 +573,82 @@
             data: formData,
             processData: false,
             contentType: false,
-            beforeSend: function() {
+            beforeSend: function () {
                 // Show loading spinner or do something before sending the request
             },
-            success: function(data) {
+            success: function (data) {
                 // Handle the successful response from the server
                 toastr.success('تم تعديل الدعوة بنجاح');
-                setTimeout(function() {
+                setTimeout(function () {
                     location.href = '{{ route('invites') }}';
                 })
             },
-            error: function(error) {
+            error: function (error) {
                 // Handle errors in the request
                 toastr.error('هناك خطا ما حاول في وقت لاحق');
             },
-            complete: function() {
+            complete: function () {
                 // Do something after the request is completed, regardless of success or error
             }
         })
-
-        {{--// send whatsapp--}}
-        {{--$.ajax({--}}
-        {{--    type: 'POST',--}}
-        {{--    url: "{{ url('api/send_invite_by_whatsapp') }}",--}}
-        {{--    data: formData,--}}
-        {{--    processData: false,--}}
-        {{--    contentType: false,--}}
-        {{--    success: function(data) {--}}
-        {{--        toastr.success('تم ارسال الدعوات بنجاح');--}}
-        {{--        console.log(data);--}}
-        {{--    },--}}
-        {{--});--}}
 
     });
     // ----------------------
     // end step 2 edit
     // ----------------------
 
-
     // ----------------------------------------------------------------
     // end edit
     // ----------------------------------------------------------------
 
+    // ----------------------------------------------------------------
+    // start reminder
+    // ----------------------------------------------------------------
+    $(document).on('click', '#reminderBtn', function () {
+
+        let inputValues = [];
+        let url = '{{ route('sendReminder') }}';
+        let id = $('input[name="id"]').val();
+        let reminderForm = new FormData();
+        $('.userPhone').each(function () {
+            if ($(this).is(':checked')) {
+                inputValues.push($(this).val());
+            }
+        });
+        reminderForm.append('id', id);
+        let arrayLength = inputValues.length;
+        for (let phone = 0; phone < arrayLength; phone++) {
+            reminderForm.append('phone[]', inputValues[phone]);
+        }
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            url: url,
+            data: reminderForm,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show loading spinner or do something before sending the request
+            },
+            success: function (data) {
+                // Handle the successful response from the server
+                toastr.success('تم  ارسال التذكيرات بنجاح');
+                setTimeout(function () {
+                    location.href = '{{ route('invites') }}';
+                })
+            },
+            error: function (error) {
+                // Handle errors in the request
+                toastr.error('هناك خطا ما حاول في وقت لاحق');
+            },
+            complete: function () {
+                // Do something after the request is completed, regardless of success or error
+            }
+        })
+    })
 
 
 </script>

@@ -27,6 +27,6 @@ class ReminderController extends Controller
             5 => 'Faild'
         ];
 
-        return view('front.reminder.reminder', compact('users_invitees_reminder', 'statusesAr', 'statusesEn'));
+        return view('front.reminder.reminder', compact('users_invitees_reminder','id', 'statusesAr', 'statusesEn'));
     }
 }

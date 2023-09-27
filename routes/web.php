@@ -140,10 +140,17 @@ Route::get('/clear', function () {
 
     return 'Cache cleared successfully.';
 });
-Route::get('/sendQrAccept/{invite_id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
-Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
-Route::get('/sendLocation/{id}/{phone}', [WhatsAppTemplateController::class, 'sendLocation'])->name('sendLocation');
 
+//--------------------------------------------------------------------------------------------------------------------------
+//------------------------------------- whatsapp template sender -----------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
+Route::post('/upload-image', [WhatsAppTemplateController::class, 'uploadImage'])->name('save-image');
+Route::get('/sendQrAccept/{id}/{phone}', [WhatsAppTemplateController::class, 'sendQrAccept'])->name('sendQrAccept');
+Route::get('/sendLocation/{id}/{phone}', [WhatsAppTemplateController::class, 'sendLocation'])->name('sendLocation');
+Route::post('/sendReminder', [WhatsAppTemplateController::class, 'sendReminder'])->name('sendReminder');
+//--------------------------------------------------------------------------------------------------------------------------
+//------------------------------------- whatsapp template sender -----------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/share/{id}/{invitee_id}/{token}', [ShareController::class, 'show']);
 Route::post('/change-user-status', [InvitationController::class, 'changeStatus'])->name('user.changeStatus');
