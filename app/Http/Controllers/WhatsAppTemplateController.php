@@ -99,6 +99,7 @@ class WhatsAppTemplateController extends Controller
                     'status' => $response_data['success'],
                 ]);
 
+            return $response_data;
 
         } else {
             return redirect('https://wa.me/201003210436');

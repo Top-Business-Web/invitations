@@ -50,8 +50,8 @@
                 .then(function(response) {
                     if (response.status == "200") {
                         toastr.success('تم ارسال الدعوات بنجاح');
-                        // $("#dismiss_modal")[0].click();
-                        // location.reload();
+                        $("#dismiss_modal")[0].click();
+                        location.reload();
                     } else {
                         throw new Error('Request failed');
                     }
