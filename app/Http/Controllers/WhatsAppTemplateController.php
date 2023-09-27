@@ -93,13 +93,13 @@ class WhatsAppTemplateController extends Controller
 
             DB::table('message_log')
                 ->insert([
-                    'type' => 1,
+                    'type' => 2,
                     'invitation_id' => $invition->id,
                     'phone' => $phone,
                     'status' => $response_data['success'],
                 ]);
 
-            return $response_data;
+            return $response_data['success'];
 
         } else {
             return redirect('https://wa.me/201003210436');
