@@ -74,7 +74,7 @@ class WhatsAppTemplateController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'phone' => $phone,
-                    'url' => asset('qrcodes/qrcode-' . $id . '.png'),
+                    'url' => asset('qrcodes/qrcode-' . $id .'-'.$phone. '.png'),
                     'caption' => ' : تم تاكيد الدعوه ' . 'https://daawat.topbusiness.io'
                 ),
                 CURLOPT_HTTPHEADER => array(
