@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use App\Models\Invitee;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\File;
 
 class WhatsAppTemplateController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     */
     public function uploadImage(Request $request)
     {
         $dataUrl = $request->input('image');
@@ -34,17 +42,22 @@ class WhatsAppTemplateController extends Controller
         } else {
             return response()->json(['message' => 'Failed to save the image'], 500);
         }
-    } // end save qrcode image
+    }
 
+    /**
+     * @param $id
+     * @param $phone
+     * @return Application|RedirectResponse|Redirector|void
+     */
     public function sendQrAccept($id, $phone)
     {
         $invition = Invitation::findOrFail($id);
         $invitie = Invitee::query()
-            ->where('invitation_id',$id)
-            ->where('phone',$phone)
+            ->where('invitation_id', $id)
+            ->where('phone', $phone)
             ->first();
 
-        if ($invitie->status == 1){
+        if ($invitie->status == 1) {
             $qrcode = $invition->qrcode;
             $curl = curl_init();
 
@@ -79,6 +92,11 @@ class WhatsAppTemplateController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param $phone
+     * @return Application|RedirectResponse|Redirector
+     */
     public function sendLocation($id, $phone)
     {
         $invite = Invitation::findOrFail($id);
@@ -107,7 +125,7 @@ class WhatsAppTemplateController extends Controller
                 'buttons[0][title]' => 'للتواصل',
                 'buttons[0][type]' => '2',
                 'buttons[0][extra_data]' => '+201003210436',
-                ),
+            ),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
                 'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
@@ -119,5 +137,42 @@ class WhatsAppTemplateController extends Controller
         curl_close($curl);
 
         return redirect('https://wa.me/201003210436');
+    }
+
+    public function sendReminder(Request $request)
+    {
+        $invitation = Invitation::findOrFail($request->id);
+
+        $phones = $request->phone;
+        for ($phone = 0; $phone < count($phones); $phone++) {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://go-wloop.net/api/v1/send/image',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'phone' => $phones[$phone],
+                    'url' => asset($invitation->image),
+                    'caption' => 'تذكير حضور .. ' . $invitation->title . 'https://daawat.topbusiness.io'
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg'
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+            $response_data [] = $response;
+        }
+
+        return $response_data;
+
     }
 }

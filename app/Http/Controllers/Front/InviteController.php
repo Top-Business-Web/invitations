@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Scanned;
 use App\Models\Invitation;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class InviteController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $invitations = Invitation::query()->where('user_id', auth()->user()->id)->get();
@@ -27,6 +34,10 @@ class InviteController extends Controller
         return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses'));
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function searchIndex(Request $request)
     {
         $sort = $request->sort;
@@ -67,6 +78,10 @@ class InviteController extends Controller
         return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses', 'sort', 'search'));
     }
 
+    /**
+     * @param Request $request
+     * @return array|void
+     */
     public function sendInviteByWhatsapp(Request $request)
     {
         $invition = Invitation::query()
@@ -131,12 +146,20 @@ class InviteController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function showUserScanned($id)
     {
         $scannedUsers = Scanned::where('invitation_id', $id)->groupBy('invitee_id')->select('invitee_id', DB::raw('count(*) as totalCount'))->get();
         return view('front.scans.scan', compact('scannedUsers'));
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function delete($id)
     {
         try {
