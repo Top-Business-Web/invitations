@@ -26,7 +26,7 @@ class WhatsAppTemplateController extends Controller
         $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $dataUrl));
 
         // Generate a unique filename (you can customize this logic)
-        $filename = 'qrcode-' . $request->id . '.png';
+        $filename = 'qrcode-' . $request->id .'-'. $request->phone. '.png';
 
         // Define the local file path within the "public" directory to save the image
         $directoryPath = public_path('qrcodes');
