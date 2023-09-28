@@ -356,11 +356,9 @@ if (datePicker != null  && title != null && sur_name != null && address != null 
 
                     toastr.success('تم انشاء الدعوة بنجاح');
                 }
-
-
-                {{--setTimeout(function() {--}}
-                {{--    location.href = '{{ route('invites') }}';--}}
-                {{--})--}}
+                setTimeout(function() {
+                    location.href = '{{ route('invites') }}';
+                })
             },
             error: function (error) {
                 // Handle errors in the request
