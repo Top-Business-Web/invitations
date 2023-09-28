@@ -246,7 +246,7 @@ class WhatsAppTemplateController extends Controller
                 'type' => 5, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
                 'invitation_id' => $id,
                 'phone' => $phone,
-                'status' => 'success',
+                'status' => 5,
             ]);
 
         return redirect('https://wa.me/201003210436');

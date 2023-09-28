@@ -114,7 +114,7 @@ class InviteController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
                         'phone' => $phones[$p],
-                        'image' => asset($invition->image),
+                        'image' => 'https://daawat.topbusiness.io/assets/uploads/invitations/72301695892153.jpg',
                         'caption' => $invition->title,
                         'footer' => $invition->address,
                         'buttons[0][id]' => '1',
