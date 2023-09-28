@@ -98,7 +98,7 @@ class InviteController extends Controller
         }
 
         $response_data = [];
-        if (count($phones) > 0) {
+//        if (count($phones) > 0) {
 
             for ($p = 0; $p < count($phones); $p++) {
                 $curl = curl_init();
@@ -151,7 +151,7 @@ class InviteController extends Controller
 
             return $response_data;
         }
-    }
+//    }
 
     /**
      * @param $id
