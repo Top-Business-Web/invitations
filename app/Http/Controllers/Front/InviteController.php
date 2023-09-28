@@ -98,7 +98,7 @@ class InviteController extends Controller
         }
 
         $response_data = [];
-//        if (count($phones) > 0) {
+        if (count($phones) > 0) {
 
             for ($p = 0; $p < count($phones); $p++) {
                 $curl = curl_init();
@@ -114,7 +114,7 @@ class InviteController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
                         'phone' => $phones[$p],
-                        'image' => asset($invition->image),
+                        'image' => 'https://daawat.topbusiness.io/assets/uploads/invitations/72301695892153.jpg',
                         'caption' => $invition->title,
                         'footer' => $invition->address,
                         'buttons[0][id]' => '1',
@@ -139,19 +139,19 @@ class InviteController extends Controller
                 curl_close($curl);
                 $response_data [] = json_decode($response, true);
 
-                DB::table('message_log')
-                    ->insert([
-                        'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
-                        'invitation_id' => $invition_id,
-                        'phone' => $phones[$p],
-                        'status' => $response_data[$p]['success'],
-                    ]);
+//                DB::table('message_log')
+//                    ->insert([
+//                        'type' => 1, // 1 => primary template , 2 => send qrcode , 3 => send location , 4 => send reminder , 5 => send reject
+//                        'invitation_id' => $invition_id,
+//                        'phone' => $phones[$p],
+//                        'status' => $response_data[$p]['success'],
+//                    ]);
 
             }
 
             return $response_data;
         }
-//    }
+    }
 
     /**
      * @param $id
