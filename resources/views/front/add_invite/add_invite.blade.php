@@ -27,7 +27,7 @@
             <div class="form-outer">
                 <div class="form">
                     <!-- start first step -->
-                    <div class="page slidePage">
+                    <div class="page slidePage" id="div1">
                         <div class="">
                             <input name="image" id="image" type="file" class="dropify" data-default-file="">
                         </div>
@@ -91,13 +91,7 @@
                     <!-- end first step -->
 
                     <!-- start second step -->
-                    <div class="page">
-                        {{--                    <h5 class="mb-3">تحديث الضيوف الاضافين</h5> --}}
-                        {{--                    <div class="incr-decr-number mb-4"> --}}
-                        {{--                        <input type="button" value="+" class="inc"> --}}
-                        {{--                        <input type="text" value="0" class="input-field"> --}}
-                        {{--                        <input type="button" value="-" class="dec"> --}}
-                        {{--                    </div> --}}
+                    <div class="page" id="div2">
                         <div class="d-flex justify-content-center mb-5">
                             <a href="{{ route('contacts.showExcel') }}" style="text-decoration: none"
                                 class="main-btn1 bg-color">
