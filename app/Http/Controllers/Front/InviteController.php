@@ -81,6 +81,12 @@ class InviteController extends Controller
     /**
      * @param Request $request
      * @return array|void
+     * @note 1 => primary template ,
+     * 2 => send qrcode ,
+     * 3 => send location ,
+     * 4 => send reminder ,
+     * 5 => send reject
+     *
      */
     public function sendInviteByWhatsapp(Request $request)
     {
@@ -91,6 +97,7 @@ class InviteController extends Controller
         $title = $invition->title;
         $invition_id = $invition->id;
         $address = $invition->address;
+        $image = asset($invition->image);
         $phones = [];
 
         foreach ($invition->invitees as $contact) {
@@ -114,9 +121,9 @@ class InviteController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
                         'phone' => $phones[$p],
-                        'image' => asset($invition->image),
-                        'caption' => $invition->title,
-                        'footer' => $invition->address,
+                        'image' => $image,
+                        'caption' => $title,
+                        'footer' => $address,
                         'buttons[0][id]' => '1',
                         'buttons[0][title]' => 'تاكيد',
                         'buttons[0][type]' => '1',
