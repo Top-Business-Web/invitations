@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class WhatsAppTemplateController extends Controller
 {
@@ -227,6 +228,11 @@ class WhatsAppTemplateController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param $phone
+     * @return Application|RedirectResponse|Redirector
+     */
     public function sendReject($id, $phone)
     {
 
@@ -243,5 +249,10 @@ class WhatsAppTemplateController extends Controller
             ]);
 
         return redirect('https://wa.me/201003210436');
+    }
+
+    public function guestTemplate(Request $request)
+    {
+        return $request->ip();
     }
 }

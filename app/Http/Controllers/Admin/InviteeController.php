@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Invitee;
 use App\Traits\PhotoTrait;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -13,6 +17,13 @@ class InviteeController extends Controller
 {
 
     use PhotoTrait;
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return Application|Factory|View
+     * @throws \Exception
+     */
     public function showInvitees(request $request, $id)
     {
         if ($request->ajax()) {
@@ -35,13 +46,19 @@ class InviteeController extends Controller
         }
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function create()
     {
         $invitees = Invitee::get();
         return view('Admin.invitees.parts.create', compact('invitees'));
     }
 
-
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function sendMessageToAllUser(Request $request)
     {
         $inputs = $request->all();
@@ -60,6 +77,11 @@ class InviteeController extends Controller
             return response()->json(['status' => 405]);
         }
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function sendMessageToUser(Request $request)
     {
         $inputs = $request->all();
@@ -74,26 +96,29 @@ class InviteeController extends Controller
         }
     }
 
-    // public function edit(Deadline $deadline)
-    // {
-    //     return view('admin.deadlines.parts.edit', compact('deadline'));
-    // }
+    /**
+     * comment func (edit,update,destroy)
+     public function edit(Deadline $deadline)
+     {
+         return view('admin.deadlines.parts.edit', compact('deadline'));
+     }
 
 
-    // public function update(Request $request, Deadline $deadline)
-    // {
-    //     if ($deadline->update($request->all())) {
-    //         return response()->json(['status' => 200]);
-    //     } else {
-    //         return response()->json(['status' => 405]);
-    //     }
-    // }
+     public function update(Request $request, Deadline $deadline)
+     {
+         if ($deadline->update($request->all())) {
+             return response()->json(['status' => 200]);
+         } else {
+             return response()->json(['status' => 405]);
+         }
+     }
 
 
-    // public function destroy(Request $request)
-    // {
-    //     $deadlines = Deadline::where('id', $request->id)->firstOrFail();
-    //     $deadlines->delete();
-    //     return response(['message' => 'تم الحذف بنجاح', 'status' => 200], 200);
-    // }
+     public function destroy(Request $request)
+     {
+         $deadlines = Deadline::where('id', $request->id)->firstOrFail();
+         $deadlines->delete();
+         return response(['message' => 'تم الحذف بنجاح', 'status' => 200], 200);
+     }
+     **/
 }
