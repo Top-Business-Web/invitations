@@ -709,15 +709,25 @@
     // start guest template
     // ----------------------------------------------------------------
     $(document).on('submit', 'Form#guestForm', function (e) {
-        var formData = new FormData(this);
+        e.preventDefault();
+        var formData = new FormData(document.getElementById("guestForm"));
         var url = $('#guestForm').attr('action');
         $.ajax({
             url: url,
-            type: 'get',
+            type: 'post',
             data: formData,
             success: function (data){
-                console.log(data);
-            }
+                if(data.status === 200){
+                    toastr.success('تم  ارسال الدعوه بنجاح');
+                } else if(data.status === 501){
+                    toastr.error('لم يتم ارسال القالب قم بمراجعه البيانات وحاول في وقت لاحق');
+                } else if(data.status === 500){
+                    toastr.error('تم تجربة ارسال القالب المجاني من قبل');
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
         })
     });
 
