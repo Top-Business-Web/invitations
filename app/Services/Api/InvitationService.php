@@ -9,6 +9,7 @@ use App\Models\Invitee;
 use App\Models\Message;
 use App\Models\Scanned;
 use App\Traits\PhotoTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,19 @@ class InvitationService
 {
     use PhotoTrait;
 
+    /**
+     * @return JsonResponse
+     */
     public function index()
     {
         $providers = User::where(['role_id' => 1])->get();
         return helperJson(ProvidersResource::collection($providers), '', 200);
     }
 
+    /**
+     * @param $request
+     * @return JsonResponse
+     */
     public function store($request)
     {
         try {
@@ -91,13 +99,15 @@ class InvitationService
         }
     }
 
+    /**
+     * @param $request
+     * @return void
+     */
     public function replywats($request)
     {
         $one_invitation = Invitation::find(1);
         $invitees = ['phone' => '01003210436', 'name' => "ddddd"];
-//        if($request->body == "yes"){
         $this->sendInviteByWhatsapp($invitees, $one_invitation);
-//        }
     }
 
     /**
@@ -183,7 +193,11 @@ class InvitationService
 
     }
 
-
+    /**
+     * @param $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function update($request, $id)
     {
         try {
@@ -224,6 +238,10 @@ class InvitationService
         }
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function destroy($id)
     {
         try {
@@ -242,6 +260,10 @@ class InvitationService
         }
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function allInvitees($id)
     {
 
@@ -249,6 +271,10 @@ class InvitationService
         return helperJson($invitees, '', 200);
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function scannedInvitees($id)
     {
 
@@ -257,7 +283,10 @@ class InvitationService
         return helperJson($invitees, '', 200);
     }
 
-
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function messages($id)
     {
         $invitees = Invitee::where(['invitation_id' => $id])->get();
@@ -271,11 +300,15 @@ class InvitationService
         return helperJson($messages, '', 200);
     }
 
+    /**
+     * @param $request
+     * @return JsonResponse
+     */
     public function sendReminder($request)
     {
         try {
             $invitation = Invitation::findOrFail($request->invitation_id);
-            $phones = Invitee::whereIn('id',$request->invitees)->pluck('phone')->toArray();
+            $phones = Invitee::whereIn('id', $request->invitees)->pluck('phone')->toArray();
             $response_data = [];
 
             for ($phone = 0; $phone < count($phones); $phone++) {
@@ -325,6 +358,10 @@ class InvitationService
         }
     }
 
+    /**
+     * @param $request
+     * @return JsonResponse
+     */
     public function addInvitees($request)
     {
         try {
@@ -360,6 +397,5 @@ class InvitationService
             return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
 
 }

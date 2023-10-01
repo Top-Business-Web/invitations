@@ -2,7 +2,7 @@
     <div class="p-2">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="link-header">
-                <a class="text-decoration-none" href="index.html">
+                <a class="text-decoration-none" href="{{ url('/') }}">
                     @if (app()->getLocale() == 'ar')
                         <img src="{{ asset('assets/front') }}/photo/logo2.png" class="image-logo">
                     @else

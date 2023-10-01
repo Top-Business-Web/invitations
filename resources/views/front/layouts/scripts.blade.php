@@ -38,25 +38,25 @@
 <!-- start script of date picker -->
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+
+{{-- datepicker--}}
 <script>
     $(function () {
         $("#datepicker").datepicker();
     });
 </script>
 
+{{-- Find the closest <tr> element relative to the clicked delete button and remove it--}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Add a click event handler for the delete button with the class "delete-table"
-        $(".delete-table").click(function() {
+        $(".delete-table").click(function () {
             // Find the closest <tr> element relative to the clicked delete button and remove it
             $(this).closest('tr').remove();
         });
     });
 </script>
 
-<script>
-
-</script>
 
 {{-- map js--}}
 <script>
@@ -123,7 +123,9 @@
         });
     }
 </script>
-{{-- map js--}}
+
+
+{{-- localStorage.clear();--}}
 <script>
     $(document).on('click', '.createBtnInivite', function () {
         localStorage.clear();
@@ -131,10 +133,7 @@
 </script>
 
 
-<script>
-
-</script>
-
+{{-- all methods js oprations --}}
 <script>
     // validate input
     $(document).ready(function () {
@@ -172,6 +171,7 @@
         });
     });
 
+    // declare vars
     var datePicker = localStorage.getItem('datePicker');
     var title = localStorage.getItem('title');
     var sur_name = localStorage.getItem('sur_name');
@@ -180,6 +180,7 @@
     var longitude = localStorage.getItem('longitude');
     var has_qrcode = localStorage.getItem('has_qrcode');
 
+    // take vars token values
     $("#datepicker").val(datePicker);
     $("#title").val(title);
     $("#sur_name").val(sur_name);
@@ -189,13 +190,15 @@
     $("#flexRadioDefault1").prop('checked', has_qrcode); // Assuming this is a checkbox input
     $("#invition_title").text(title);
     $(".titlePreview").text(title);
-if (datePicker != null  && title != null && sur_name != null && address != null && latitude!= null && longitude != null && has_qrcode != null){
-    @if(app()->getLocale() == 'ar')
-    $("#div1").css('margin-right','-25%');
-    @else
-    $("#div1").css('margin-left','-25%');
-    @endif
-}
+    if (datePicker != null && title != null && sur_name != null &&
+        address != null && latitude != null && longitude != null &&
+        has_qrcode != null) {
+        @if(app()->getLocale() == 'ar')
+        $("#div1").css('margin-right', '-25%');
+        @else
+        $("#div1").css('margin-left', '-25%');
+        @endif
+    }
 
 
     // ----------------------------------------------------------------
@@ -220,7 +223,7 @@ if (datePicker != null  && title != null && sur_name != null && address != null 
         // first step value declare
         localStorage.setItem('datePicker', datePicker);
         localStorage.setItem('title', title);
-        localStorage.setItem('image',image);
+        localStorage.setItem('image', image);
         localStorage.setItem('sur_name', sur_name);
         localStorage.setItem('address', address);
         localStorage.setItem('latitude', latitude);
@@ -356,7 +359,7 @@ if (datePicker != null  && title != null && sur_name != null && address != null 
 
                     toastr.success('تم انشاء الدعوة بنجاح');
                 }
-                setTimeout(function() {
+                setTimeout(function () {
                     location.href = '{{ route('invites') }}';
                 })
             },
@@ -697,6 +700,31 @@ if (datePicker != null  && title != null && sur_name != null && address != null 
             }
         })
     })
+    // ----------------------------------------------------------------
+    // end reminder
+    // ----------------------------------------------------------------
+
+
+    // ----------------------------------------------------------------
+    // start guest template
+    // ----------------------------------------------------------------
+    $(document).on('submit', 'Form#guestForm', function (e) {
+        var formData = new FormData(this);
+        var url = $('#guestForm').attr('action');
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: formData,
+            success: function (data){
+                console.log(data);
+            }
+        })
+    });
+
+    // ----------------------------------------------------------------
+    // end guest template
+    // ----------------------------------------------------------------
+
 
 
 </script>
