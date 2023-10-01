@@ -179,13 +179,6 @@ class WhatsAppTemplateController extends Controller
      */
     public function sendReminder(Request $request)
     {
-        $check = DB::table('message_log')
-            ->where('invitation_id', $request->id)
-            ->whereIn('phone', $request->phone)
-            ->where('type', '=', 4)
-            ->where('status', '=', 1)
-            ->latest()->first();
-
         $invitation = Invitation::findOrFail($request->id);
         $response_data = [];
         $phones = $request->phone;

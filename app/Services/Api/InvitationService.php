@@ -274,16 +274,54 @@ class InvitationService
     public function sendReminder($request)
     {
         try {
-            $inputs = $request->all();
+            $invitation = Invitation::findOrFail($request->invitation_id);
+            $phones = Invitee::whereIn('id',$request->invitees)->pluck('phone')->toArray();
+            $response_data = [];
 
-//                $invitees =  Invitee::where(['invitation_id'=>$inputs->invitation_id]);
-            foreach ($inputs['invitees'] as $invitee) {
-                //add code for watts app logic to send message
+            for ($phone = 0; $phone < count($phones); $phone++) {
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'),
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array(
+                        'phone' => $phones[$phone],
+                        'image' => asset($invitation->image),
+                        'caption' => 'تذكير : ' . $invitation->title,
+                        'footer' => $invitation->address,
+                        'buttons[0][id]' => '1',
+                        'buttons[0][title]' => 'تاكيد',
+                        'buttons[0][type]' => '1',
+                        'buttons[0][extra_data]' => route('parcode', [$invitation->id, $phones[$phone]]),
+                        'buttons[1][id]' => '2',
+                        'buttons[1][title]' => 'اعتذار',
+                        'buttons[1][type]' => '3',
+                        'buttons[1][extra_data]' => '2',
+                        'buttons[2][id]' => '3',
+                        'buttons[2][title]' => 'موقع المناسبة',
+                        'buttons[2][type]' => '1',
+                        'buttons[2][extra_data]' => route('sendLocation', [$invitation->id, $phones[$phone]])
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                        'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                    ),
+                ));
+                $response = curl_exec($curl);
+                curl_close($curl);
+                $response_data [] = json_decode($response, true);
             }
 
-            return helperJson('', 'Sent Successfully', Response::HTTP_OK);
+            return helperJson($response_data, 'Sent Successfully', Response::HTTP_OK);
+
         } catch (Exception $e) {
-            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson(null, 'Sent Failed', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
