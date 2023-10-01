@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\Api;
+
 use App\Http\Resources\InvitationResource;
 use App\Models\Contact;
 use App\Models\Invitation;
@@ -9,6 +10,7 @@ use App\Models\Message;
 use App\Models\Scanned;
 use App\Traits\PhotoTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use Twilio\Rest\Client;
 
@@ -16,176 +18,174 @@ class InvitationService
 {
     use PhotoTrait;
 
-    public function index(){
-        $providers = User::where(['role_id'=>1])->get();
-        return helperJson(ProvidersResource::collection($providers), '',200);
+    public function index()
+    {
+        $providers = User::where(['role_id' => 1])->get();
+        return helperJson(ProvidersResource::collection($providers), '', 200);
     }
 
-    public function store($request){
+    public function store($request)
+    {
         try {
             $inputs = $request->all();
             $inputs['user_id'] = auth()->id();
-            $inputs['status'] = ($inputs['as_draft']) ? 0 :1;
-            $inputs['password'] = mt_rand(11111111,99999999);
+            $inputs['status'] = ($inputs['as_draft']) ? 0 : 1;
+            $inputs['password'] = mt_rand(11111111, 99999999);
             $inputs['qrcode'] = \Ramsey\Uuid\Uuid::uuid4()->toString();
             $inputs['lang'] = $request->lang;
             if ($request->has('image') && $request->image != null) {
                 $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'dddd', '100');
             }
             $invitation = Invitation::create($inputs);
-            if($request->step > 1){
-                foreach ($inputs['invitees'] as $invitee){
-                    if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
+            if ($request->step > 1) {
+                foreach ($inputs['invitees'] as $invitee) {
+                    if (Contact::where(['phone' => $invitee['phone'], 'user_id' => Auth()->id()])->count() < 1) {
                         Contact::create(
                             [
-                                'user_id'=> Auth()->id(),
-                                'name'=>$invitee['name'],
-                                'phone'=>$invitee['phone'],
+                                'user_id' => Auth()->id(),
+                                'name' => $invitee['name'],
+                                'phone' => $invitee['phone'],
                             ]
                         );
                     }
                     Invitee::create(
-                            [
-                            'invitation_id'=> $invitation->id,
-                            'name'=>$invitee['name'],
-                            'phone'=>$invitee['phone'],
-                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
-                            'status' => 1,
-                            ]
-                        );
-                }
-            }
-            if($request->step > 2){
-               $invitees =  Invitee::where(['invitation_id'=>$invitation->id]);
-                foreach ($invitees as $invitee){
-                    Invitee::where(['phone' => $invitee->phone,'invitation_id' => $invitation->id])->update(
                         [
-                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                            'invitation_id' => $invitation->id,
+                            'name' => $invitee['name'],
+                            'phone' => $invitee['phone'],
+                            'invitees_number' => $invitee['invitees_number'] ?? 1,
+                            'status' => 1,
                         ]
                     );
                 }
             }
-            $one_invitation =  Invitation::find($invitation->id);
+            if ($request->step > 2) {
+                $invitees = Invitee::where(['invitation_id' => $invitation->id]);
+                foreach ($invitees as $invitee) {
+                    Invitee::where(['phone' => $invitee->phone, 'invitation_id' => $invitation->id])->update(
+                        [
+                            'invitees_number' => $invitee['invitees_number'] ?? 1,
+                        ]
+                    );
+                }
+            }
+            $one_invitation = Invitation::find($invitation->id);
 
-            if($request->step > 3){
+            if ($request->step > 3) {
                 $one_invitation->lang = $request->lang;
                 $one_invitation->save();
             }
-            if($request->step > 4){
-                $this->sendInviteByWhatsapp($inputs['invitees'],$one_invitation);
+            if ($request->step > 4) {
+                $sendInviteByWhatsapp = $this->sendInviteByWhatsapp($inputs['invitees'], $one_invitation);
+                foreach ($inputs['invitees'] as $key => $invitee) {
+                    $sendInviteByWhatsapp[$key]['phone'] = $invitee['phone'];
+                }
+                $invitation ['send_log'] = $sendInviteByWhatsapp;
                 $one_invitation->status = "1";
 
                 $one_invitation->save();
             }
-            return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
-        }catch(Exception $e){
-            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson($invitation, 'Sent Successfully', Response::HTTP_OK);
+        } catch (Exception $e) {
+            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     public function replywats($request)
     {
-        $one_invitation =  Invitation::find(1);
-        $invitees = ['phone'=>'01003210436','name'=>"ddddd"];
+        $one_invitation = Invitation::find(1);
+        $invitees = ['phone' => '01003210436', 'name' => "ddddd"];
 //        if($request->body == "yes"){
-            $this->sendInviteByWhatsapp($invitees,$one_invitation);
+        $this->sendInviteByWhatsapp($invitees, $one_invitation);
 //        }
     }
-    public function sendInviteByWhatsapp_abdo( $contactArray)
+
+    /**
+     * @param $contactArray
+     * @param $one_invitation
+     * @return array|void
+     * @note 1 => primary template ,
+     * 2 => send qrcode ,
+     * 3 => send location ,
+     * 4 => send reminder ,
+     * 5 => send reject
+     *
+     */
+    public function sendInviteByWhatsapp($contactArray, $one_invitation)
     {
-
+        // declare params
         $phones = [];
-        if($contactArray){
-            for ($contact = 0; $contact < count($contactArray); $contact++) {
-                $contact = $contactArray[$contact]['phone'];
+        foreach ($contactArray as $value) {
+            $phones [] = $value['phone'];
+        }
+        $title = $one_invitation->title;
+        $invition_id = $one_invitation->id;
+        $address = $one_invitation->address;
+        $image = asset($one_invitation->image);
 
-                $data = [
-                    'appkey' => 'c0fd2111-1c65-41f5-90c1-794ffa752a6e',
-                    'authkey' => 'Ac3TcLaOIbRpvaZD0qdcPKGuxD3GjSZY35TAGVI4KuHdgiPvfF',
-                    'to' => $contact,
-                    'template_id' => '43b7b891-4e3c-4c93-bb28-714479525c81',
+        // Send Template
+        $response_data = [];
 
-                ];
+        if (count($phones) > 0) {
 
+            for ($p = 0; $p < count($phones); $p++) {
                 $curl = curl_init();
-
-                $headers = [
-                    'Content-Type: application/x-www-form-urlencoded', // Adjust based on API requirements
-                ];
-
-                curl_setopt_array($curl, [
-                    CURLOPT_URL => 'https://wasender.amcoders.com/api/create-message',
-                    CURLOPT_CAINFO => storage_path('cacert.pem'), //in local only
-                    CURLOPT_HTTPHEADER => $headers,
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
+                    CURLOPT_CAINFO => storage_path('cacert.pem'),
                     CURLOPT_MAXREDIRS => 10,
                     CURLOPT_TIMEOUT => 0,
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => http_build_query($data),
-
-                ]);
-
+                    CURLOPT_POSTFIELDS => array(
+                        'phone' => $phones[$p],
+                        'image' => $image,
+                        'caption' => $title,
+                        'footer' => $address,
+                        'buttons[0][id]' => '1',
+                        'buttons[0][title]' => 'تاكيد',
+                        'buttons[0][type]' => '1',
+                        'buttons[0][extra_data]' => route('parcode', [$invition_id, $phones[$p]]),
+                        'buttons[1][id]' => '2',
+                        'buttons[1][title]' => 'اعتذار',
+                        'buttons[1][type]' => '1',
+                        'buttons[1][extra_data]' => route('sendReject', [$invition_id, $phones[$p]]),
+                        'buttons[2][id]' => '3',
+                        'buttons[2][title]' => 'موقع المناسبة',
+                        'buttons[2][type]' => '1',
+                        'buttons[2][extra_data]' => route('sendLocation', [$invition_id, $phones[$p]])
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                        'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                    ),
+                ));
                 $response = curl_exec($curl);
-                if ($response === false) {
-                    $error = curl_error($curl);
-                    $errorNumber = curl_errno($curl);
-                    dd("cURL Error: {$error} (Error Code: {$errorNumber})");
-                }
-
                 curl_close($curl);
+                $response_data [] = json_decode($response, true);
 
-                dd($response);
+                DB::table('message_log')
+                    ->insert([
+                        'type' => 1,
+                        'invitation_id' => $invition_id,
+                        'phone' => $phones[$p],
+                        'status' => $response_data[$p]['success'],
+                    ]);
 
             }
+
+            return $response_data;
         }
 
 
     }
 
-  public function sendInviteByWhatsapp( $contactArray,$one_invitation)
+
+    public function update($request, $id)
     {
-
-        $phones = [];
-        if($contactArray){
-            for ($contact = 0; $contact < count($contactArray); $contact++) {
-                $phone = $contactArray[$contact]['phone'];
-
-                $phoneNumber = "+2".$phone;
-                $message = 'المكرم: '.$contactArray[$contact]['name'].'  نتشرف بدعوتكم لحضور '.$one_invitation->title." بتاريخ ".$one_invitation->date;
-
-                $accountSid = 'ACd06621e52f6b8aec6e4e31607ccf1c56';
-                $authToken = '31d7e6f2ad06e07ba88b173f580fdd30';
-                $twilioPhoneNumber = '+14155238886';
-//        $response = new MessagingResponse();
-                $twilioClient = new Client($accountSid, $authToken);
-                // Cart details
-                $webpageUrl = "https://daawat.topbusiness.io/share/6/7/1";
-                $twilioClient->messages->create(
-                    "whatsapp:$phoneNumber",
-                    [
-                        'from' => "whatsapp:$twilioPhoneNumber",
-//                        "mediaUrl" => ["https://daawat.topbusiness.io/share/6/7/1"],
-                        'body' => $message,
-//                        'mediaUrl' => ["$webpageUrl"], // Optional: Include media (link)
-
-//                        'Content-Type' => 'text/html'
-                    ]
-                );
-
-
-
-
-            }
-        }
-
-
-    }
-
-
-    public function update($request,$id){
         try {
             $inputs = $request->all();
             $invitation = Invitation::find($id);
@@ -194,126 +194,132 @@ class InvitationService
                 $inputs['image'] = $this->saveImage($request->image, 'assets/uploads/users', 'image', '100');
             }
             $invitation_updated = $invitation->update($inputs);
-            if($request->step > 1){
-                Invitee::where(['invitation_id'=>$id])->delete();
-                foreach ($inputs['invitees'] as $invitee){
+            if ($request->step > 1) {
+                Invitee::where(['invitation_id' => $id])->delete();
+                foreach ($inputs['invitees'] as $invitee) {
                     Invitee::create(
                         [
-                            'invitation_id'=> $invitation->id,
-                            'name'=>$invitee['name'],
-                            'phone'=>$invitee['phone'],
-                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                            'invitation_id' => $invitation->id,
+                            'name' => $invitee['name'],
+                            'phone' => $invitee['phone'],
+                            'invitees_number' => $invitee['invitees_number'] ?? 1,
                             'status' => 1,
                         ]
                     );
                 }
             }
-            if($request->step > 2){
-                $invitees =  Invitee::where(['invitation_id'=>$invitation->id]);
-                foreach ($invitees as $invitee){
-                    Invitee::where(['phone' => $invitee->phone,'invitation_id' => $invitation->id])->update(
+            if ($request->step > 2) {
+                $invitees = Invitee::where(['invitation_id' => $invitation->id]);
+                foreach ($invitees as $invitee) {
+                    Invitee::where(['phone' => $invitee->phone, 'invitation_id' => $invitation->id])->update(
                         [
-                            'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                            'invitees_number' => $invitee['invitees_number'] ?? 1,
                         ]
                     );
                 }
             }
-            return helperJson($invitation, 'Sent Successfully',  Response::HTTP_OK);
-        }catch(Exception $e){
-            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson($invitation, 'Sent Successfully', Response::HTTP_OK);
+        } catch (Exception $e) {
+            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
-            Invitee::where(['invitation_id'=>$id])->delete();
+            Invitee::where(['invitation_id' => $id])->delete();
 
             $invitation = Invitation::find($id);
-            if(!$invitation){
-                return helperJson([], 'invitation not found',  402);
+            if (!$invitation) {
+                return helperJson([], 'invitation not found', 402);
             }
             $invitation->delete();
 
 
-            return helperJson([], 'deleted Successfully',  Response::HTTP_OK);
-        }catch(Exception $e){
-            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson([], 'deleted Successfully', Response::HTTP_OK);
+        } catch (Exception $e) {
+            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function allInvitees($id){
+    public function allInvitees($id)
+    {
 
-        $invitees = Invitee::where(['invitation_id'=> $id])->get();
-        return helperJson($invitees, '',200);
+        $invitees = Invitee::where(['invitation_id' => $id])->get();
+        return helperJson($invitees, '', 200);
     }
 
-    public function scannedInvitees($id){
+    public function scannedInvitees($id)
+    {
 
-        $scanned = Scanned::where(['invitation_id'=> $id])->pluck('invitee_id');
-        $invitees = Scanned::where(['invitation_id'=> $id])->whereIn('invitee_id',$scanned)->get();
-        return helperJson($invitees, '',200);
+        $scanned = Scanned::where(['invitation_id' => $id])->pluck('invitee_id');
+        $invitees = Scanned::where(['invitation_id' => $id])->whereIn('invitee_id', $scanned)->get();
+        return helperJson($invitees, '', 200);
     }
 
 
-    public function messages($id){
-        $invitees = Invitee::where(['invitation_id'=> $id])->get();
+    public function messages($id)
+    {
+        $invitees = Invitee::where(['invitation_id' => $id])->get();
 
         $messages = $invitees->map(function ($item) use ($id) {
-            $item->messages = Message::where(['invitation_id'=> $id,'invitee_id' => $item->id])->get();
+            $item->messages = Message::where(['invitation_id' => $id, 'invitee_id' => $item->id])->get();
 
             return $item;
         });
 
-        return helperJson($messages, '',200);
+        return helperJson($messages, '', 200);
     }
 
-    public function sendReminder($request){
+    public function sendReminder($request)
+    {
         try {
-                $inputs = $request->all();
+            $inputs = $request->all();
 
 //                $invitees =  Invitee::where(['invitation_id'=>$inputs->invitation_id]);
-                foreach ($inputs['invitees'] as $invitee){
-                  //add code for watts app logic to send message
-                }
+            foreach ($inputs['invitees'] as $invitee) {
+                //add code for watts app logic to send message
+            }
 
-            return helperJson('', 'Sent Successfully',  Response::HTTP_OK);
-        }catch(Exception $e){
-            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson('', 'Sent Successfully', Response::HTTP_OK);
+        } catch (Exception $e) {
+            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function addInvitees($request){
+    public function addInvitees($request)
+    {
         try {
             $inputs = $request->all();
 
 
             $invitation = Invitation::find($inputs['invitation_id']);
 
-            foreach ($inputs['invitees'] as $invitee){
-                if(Contact::where(['phone'=>$invitee['phone'],'user_id'=>Auth()->id()])->count() < 1){
+            foreach ($inputs['invitees'] as $invitee) {
+                if (Contact::where(['phone' => $invitee['phone'], 'user_id' => Auth()->id()])->count() < 1) {
                     Contact::create(
                         [
-                            'user_id'=> Auth()->id(),
-                            'name'=>$invitee['name'],
-                            'phone'=>$invitee['phone'],
+                            'user_id' => Auth()->id(),
+                            'name' => $invitee['name'],
+                            'phone' => $invitee['phone'],
                         ]
                     );
                 }
 
                 Invitee::create(
                     [
-                        'invitation_id'=> $invitation->id,
-                        'name'=>$invitee['name'],
-                        'phone'=>$invitee['phone'],
-                        'invitees_number'=> $invitee['invitees_number'] ?? 1,
+                        'invitation_id' => $invitation->id,
+                        'name' => $invitee['name'],
+                        'phone' => $invitee['phone'],
+                        'invitees_number' => $invitee['invitees_number'] ?? 1,
                         'status' => 1,
                     ]
                 );
             }
 
-            return helperJson(new InvitationResource($invitation), 'Sent Successfully',  Response::HTTP_OK);
-        }catch(Exception $e){
-            return helperJson(null, 'Sent Failed ',  Response::HTTP_INTERNAL_SERVER_ERROR);
+            return helperJson(new InvitationResource($invitation), 'Sent Successfully', Response::HTTP_OK);
+        } catch (Exception $e) {
+            return helperJson(null, 'Sent Failed ', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
