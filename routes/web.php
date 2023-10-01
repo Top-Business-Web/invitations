@@ -149,7 +149,7 @@ Route::get('/sendQrAccept/{id}/{phone}', [WhatsAppTemplateController::class, 'se
 Route::get('/sendLocation/{id}/{phone}', [WhatsAppTemplateController::class, 'sendLocation'])->name('sendLocation');
 Route::post('/sendReminder', [WhatsAppTemplateController::class, 'sendReminder'])->name('sendReminder');
 Route::get('/sendReject/{id}/{phone}', [WhatsAppTemplateController::class, 'sendReject'])->name('sendReject');
-Route::get('/guestTemplate', [WhatsAppTemplateController::class, 'guestTemplate'])->name('guestTemplate');
+Route::post('/guestTemplate', [WhatsAppTemplateController::class, 'guestTemplate'])->name('guestTemplate');
 //--------------------------------------------------------------------------------------------------------------------------
 //------------------------------------- whatsapp template sender -----------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------

@@ -207,8 +207,8 @@ class WhatsAppTemplateController extends Controller
                     'buttons[0][extra_data]' => route('parcode', [$invitation->id, $phones[$phone]]),
                     'buttons[1][id]' => '2',
                     'buttons[1][title]' => 'اعتذار',
-                    'buttons[1][type]' => '3',
-                    'buttons[1][extra_data]' => '2',
+                    'buttons[1][type]' => '1',
+                    'buttons[1][extra_data]' => route('sendReject', [$invition_id, $phones[$p]]),
                     'buttons[2][id]' => '3',
                     'buttons[2][title]' => 'موقع المناسبة',
                     'buttons[2][type]' => '1',
@@ -253,6 +253,70 @@ class WhatsAppTemplateController extends Controller
 
     public function guestTemplate(Request $request)
     {
-        return $request->ip();
+        $clientIp = $request->ip();
+        $phone = $request->area_code .''. $request->phone;
+        $surname = $request->surname;
+        $name = $request->name;
+
+        $checkIp = DB::table('request_guest')->where('ip',$clientIp)
+            ->first();
+
+        if (!$checkIp){
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://go-wloop.net/api/v1/button/image/template',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_CAINFO => storage_path('cacert.pem'),
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'phone' => $phone,
+                    'image' => 'https://daawat.topbusiness.io/assets/front/photo/blog.jpg',
+                    'caption' => 'تجربه مجانيه لشكل القالب اسم المناسبة',
+                    'footer' => 'موقع المناسبه القالب',
+                    'buttons[0][id]' => '1',
+                    'buttons[0][title]' => 'تاكيد',
+                    'buttons[0][type]' => '1',
+                    'buttons[0][extra_data]' => '',
+                    'buttons[1][id]' => '2',
+                    'buttons[1][title]' => 'اعتذار',
+                    'buttons[1][type]' => '1',
+                    'buttons[1][extra_data]' => '',
+                    'buttons[2][id]' => '3',
+                    'buttons[2][title]' => 'موقع المناسبة',
+                    'buttons[2][type]' => '1',
+                    'buttons[2][extra_data]' => ''
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer 503a35883a5b88104e46d1d7bed974fb_x1TqrHkFvBnS9d3NajSDrysId2WE5AWLSwrzjylZ',
+                    'Cookie: oats_loob_go_session=vAdw9SL9IfN7twvtXnTjj0XdkVWiazxNlHbAZBZg',
+                ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+
+            $response = json_decode($response, true);
+
+            if ($response['success']){
+                DB::table('request_guest')->insert([
+                    'ip' => $clientIp
+                ]);
+                return response()->json(['status' => 200]);
+            } else {
+                return response()->json(['status' => 501]);
+            }
+
+
+
+        } else {
+            return response()->json(['status' => 500]);
+        }
+
+
+
     }
 }
