@@ -44,7 +44,21 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        // Add a click event handler for the delete button with the class "delete-table"
+        $(".delete-table").click(function() {
+            // Find the closest <tr> element relative to the clicked delete button and remove it
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
 
+<script>
+
+</script>
+
+{{-- map js--}}
 <script>
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -109,6 +123,17 @@
         });
     }
 </script>
+{{-- map js--}}
+<script>
+    $(document).on('click', '.createBtnInivite', function () {
+        localStorage.clear();
+    });
+</script>
+
+
+<script>
+
+</script>
 
 <script>
     // validate input
@@ -147,6 +172,31 @@
         });
     });
 
+    var datePicker = localStorage.getItem('datePicker');
+    var title = localStorage.getItem('title');
+    var sur_name = localStorage.getItem('sur_name');
+    var address = localStorage.getItem('address');
+    var latitude = localStorage.getItem('latitude');
+    var longitude = localStorage.getItem('longitude');
+    var has_qrcode = localStorage.getItem('has_qrcode');
+
+    $("#datepicker").val(datePicker);
+    $("#title").val(title);
+    $("#sur_name").val(sur_name);
+    $("#searchMapInput").val(address);
+    $("#lat-span").val(latitude); // Assuming these are not input elements, use .text() instead of .val()
+    $("#lng-span").val(longitude); // Assuming these are not input elements, use .text() instead of .val()
+    $("#flexRadioDefault1").prop('checked', has_qrcode); // Assuming this is a checkbox input
+    $("#invition_title").text(title);
+    $(".titlePreview").text(title);
+if (datePicker != null  && title != null && sur_name != null && address != null && latitude!= null && longitude != null && has_qrcode != null){
+    @if(app()->getLocale() == 'ar')
+    $("#div1").css('margin-right','-25%');
+    @else
+    $("#div1").css('margin-left','-25%');
+    @endif
+}
+
 
     // ----------------------------------------------------------------
     // start add
@@ -168,10 +218,9 @@
         $("#invition_title").text(title);
         $(".titlePreview").text(title);
         // first step value declare
-
         localStorage.setItem('datePicker', datePicker);
         localStorage.setItem('title', title);
-        localStorage.setItem('image', image);
+        localStorage.setItem('image',image);
         localStorage.setItem('sur_name', sur_name);
         localStorage.setItem('address', address);
         localStorage.setItem('latitude', latitude);
@@ -179,6 +228,7 @@
         localStorage.setItem('has_qrcode', has_qrcode);
 
         $('.titlePreview').val(title);
+
 
     });
     // ----------------------
@@ -306,11 +356,9 @@
 
                     toastr.success('تم انشاء الدعوة بنجاح');
                 }
-
-
-                {{--setTimeout(function() {--}}
-                {{--    location.href = '{{ route('invites') }}';--}}
-                {{--})--}}
+                setTimeout(function() {
+                    location.href = '{{ route('invites') }}';
+                })
             },
             error: function (error) {
                 // Handle errors in the request

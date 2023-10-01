@@ -5,7 +5,7 @@
             <h3>{{ __('site.my_invitations') }}</h3>
 
             <a href="{{ route('addInvites') }}"
-               class="text-decoration-none main-btn1">{{ __('site.create_an_invitation') }}</a>
+               class="text-decoration-none main-btn1 createBtnInivite">{{ __('site.create_an_invitation') }}</a>
 
         </div>
         <form action="{{ route('searchInvitations')}}">
