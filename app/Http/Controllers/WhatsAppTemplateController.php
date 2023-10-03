@@ -253,22 +253,25 @@ class WhatsAppTemplateController extends Controller
 
     public function guestTemplate(Request $request)
     {
-        $clientIp = null;
-
-        $getip = HelperController::get_ip();
-        $getbrowser = HelperController::get_browsers();
-        $getdevice = HelperController::get_device();
-        $getos = HelperController::get_os();
-
-        return "$getip || $getdevice || $getbrowser || $getos";
-
+        // DECLARE REQUEST
         $phone = $request->area_code .''. $request->phone;
         $surname = $request->surname;
         $name = $request->name;
 
-        $checkIp = DB::table('request_guest')->where('ip',$clientIp)
+        // GET CLIENT IP & BROWSER & DEVICE & OS
+        $getip = HelperController::get_ip();
+        $getbrowser = HelperController::get_browsers();
+        $getdevice = HelperController::get_device();
+        $getos = HelperController::get_os();
+        // CHECK CLIENT IP
+        $checkIp = DB::table('request_guest')
+            ->where('ip',$getip)
+            ->where('device',$getdevice)
+            ->where('browser',$getbrowser)
+            ->where('os',$getos)
             ->first();
 
+        // IF METHOD TO TRY SEND TEMPLATE -- GUEST
         if (!$checkIp){
             $curl = curl_init();
             curl_setopt_array($curl, array(
@@ -311,7 +314,10 @@ class WhatsAppTemplateController extends Controller
 
             if ($response['success']){
                 DB::table('request_guest')->insert([
-                    'ip' => $clientIp
+                    'ip' => $getip,
+                    'device' => $getdevice,
+                    'browser' => $getbrowser,
+                    'os' => $getos
                 ]);
                 return response()->json(['status' => 200]);
             } else {
