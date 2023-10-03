@@ -253,10 +253,15 @@ class WhatsAppTemplateController extends Controller
 
     public function guestTemplate(Request $request)
     {
-//        $clientIp = $request->getClientIp(true);
-        $clientIp = substr(exec('getmac'), 0, 17);
+        $clientIp = null;
 
-//        dd($clientIp);
+        $getip = HelperController::get_ip();
+        $getbrowser = HelperController::get_browsers();
+        $getdevice = HelperController::get_device();
+        $getos = HelperController::get_os();
+
+        return "$getip || $getdevice || $getbrowser || $getos";
+
         $phone = $request->area_code .''. $request->phone;
         $surname = $request->surname;
         $name = $request->name;
