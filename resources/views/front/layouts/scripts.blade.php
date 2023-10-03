@@ -717,7 +717,8 @@
             type: 'post',
             data: formData,
             success: function (data){
-                if(data.status === 200){
+                if(data){
+                    alert(data);
                     toastr.success('تم  ارسال الدعوه بنجاح');
                 } else if(data.status === 501){
                     toastr.error('لم يتم ارسال القالب قم بمراجعه البيانات وحاول في وقت لاحق');
