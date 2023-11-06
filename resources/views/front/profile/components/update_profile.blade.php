@@ -42,10 +42,7 @@
                     <div class="col-12 mt-4">
                         <div class="d-flex justify-content-between mb-3">
                             <a href="{{ route('invites') }}" class="text-decoration-none btn-login bg-hover"> {{ __('site.back') }}</a>
-                            <button type="button" class="main-btn2 bg-hover">
-                                {{ __('site.points') }}: <span style="margin-right: 8px;">{{ $profile->points }}</span>
-                            </button>
-                            {{-- <button type="button" class="main-btn1 bg-hover" id="updateProfile"> حفظ</button> --}}
+                            
                         </div>
                     </div>
                 </div>

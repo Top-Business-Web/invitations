@@ -37,8 +37,9 @@ class ContactsController extends Controller
                             </button>
                        ';
                 })
-
-
+                ->editColumn('email', function($languages) {
+                    return $languages->email ?? '--';
+                })
                 ->escapeColumns([])
                 ->make(true);
         }else{

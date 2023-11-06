@@ -76,7 +76,6 @@ class InvitationController extends Controller
 
                     $user->update(['points' => $user->points - $total_invitations_count]);
                     return response()->json(['status' => 200]);
-
                 } else {
 
                     DB::table('invitations')->where('id', '=', $addInvitation->id)->delete();
@@ -84,16 +83,27 @@ class InvitationController extends Controller
 
                     return response()->json(['status' => 409]);
                 }
-
             } else {
                 return response()->json(['status' => 405]);
             }
-
         } catch (\Exception $exception) {
 
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
         }
     } // end add invitation
+
+    public function deleteInvitation(Request $request, $invitationId)
+    {
+        try {
+            // Find the invitation by its ID
+            $invitation = Invitation::findOrFail($invitationId);
+
+            $invitation->delete();
+            return response()->json(['message' => __('site.deleted_successfully')], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to delete invitation. Please try again.'], 500);
+        }
+    }
 
     public function addDraft(Request $request)
     {
@@ -151,8 +161,6 @@ class InvitationController extends Controller
                     return response()->json(['status' => 405]);
                 }
             }
-
-
         } catch (\Exception $exception) {
 
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
@@ -217,7 +225,6 @@ class InvitationController extends Controller
             } else {
                 return response()->json(['status' => 405]);
             }
-
         } catch (\Exception $exception) {
 
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
@@ -236,18 +243,19 @@ class InvitationController extends Controller
             $user->status = 3;
             $user->save();
             return response()->json(['status' => 200]);
-        } else if($user->status == 3) {
-            return redirect()->route('parcode',[$userId,$token]);
+        } else if ($user->status == 3) {
+            return redirect()->route('parcode', [$userId, $token]);
         }
     } // end change status
 
 
-    public function parcode($id,$cId){
+    public function parcode($id, $cId)
+    {
         $data['invitation'] = Invitation::findOrFail($id);
         $qrcodes = $data['invitation']->qrcode;
         $data['invitess'] = Invitee::query()
-        ->where('invitation_id',$id)
-        ->where('phone',$cId)->firstOrFail();
+            ->where('invitation_id', $id)
+            ->where('phone', $cId)->firstOrFail();
 
         return view('front.parcode.parcode')->with($data);
     } // end parcode
