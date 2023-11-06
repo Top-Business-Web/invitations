@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class InviteController extends Controller
 {
@@ -20,18 +21,19 @@ class InviteController extends Controller
      */
     public function index()
     {
+        $point = User::where('id', auth()->user()->id)->value('points');
         $invitations = Invitation::query()->where('user_id', auth()->user()->id)->get();
         $scanneds = Scanned::get()->count();
         $manualSend =
-        $statuses = [
-            1 => 'انتظار',
-            2 => 'مأكد',
-            3 => 'تم الاعتذار',
-            4 => 'لم يتم الارسال',
-            5 => 'فشل'
-        ];
+            $statuses = [
+                1 => 'انتظار',
+                2 => 'مأكد',
+                3 => 'تم الاعتذار',
+                4 => 'لم يتم الارسال',
+                5 => 'فشل'
+            ];
 
-        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses'));
+        return view('front.invites.invite', compact('invitations', 'scanneds', 'statuses', 'point'));
     }
 
     /**
@@ -144,7 +146,7 @@ class InviteController extends Controller
                 ));
                 $response = curl_exec($curl);
                 curl_close($curl);
-                $response_data [] = json_decode($response, true);
+                $response_data[] = json_decode($response, true);
             }
 
             return $response_data;

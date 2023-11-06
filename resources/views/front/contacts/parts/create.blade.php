@@ -4,7 +4,12 @@
         <div class="row g-3">
             <div class="col-12">
                 <label class="form-label">{{ __('site.surname') }}</label>
-                <input type="text" name="surname" class="form-control" required>
+                <select name="surname" class="form-control">
+                    <option value="doctor">الدكتور/ة</option>
+                    <option value="engineer">المهندس/ة</option>
+                    <option value="sheikh">الشيخ/ة</option>
+                    <option value="honorable_one">المكرم/ة</option>
+                </select>
             </div>
             <div class="col-12">
                 <label class="form-label">{{ __('site.the_name') }}</label>
@@ -12,7 +17,7 @@
             </div>
             <div class="col-12">
                 <label class="form-label">{{ __('site.email') }}</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control">
             </div>
             <div class="col-12">
                 <label class="form-label">{{ __('site.phone') }}</label>
