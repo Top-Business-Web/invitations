@@ -109,7 +109,7 @@
         // Add Using Ajax
         showAddModal('{{route('contact.create')}}');
         addScript();
-        {{--// Add Using Ajax--}}
+        // Add Using Ajax
         showEditModal('{{route('contact.edit',':id')}}');
         editScript();
     </script>

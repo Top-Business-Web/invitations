@@ -15,8 +15,8 @@ class ContactsController extends Controller
 
     public function index(request $request)
     {
-        toastr(__('site.contacts_added_successfully'));
-        toastr()->success('Data saved successfully!', 'Success');
+        // toastr(__('site.contacts_added_successfully'));
+        // toastr()->success('Data saved successfully!', 'Success');
 
         $data['contacts'] = Contact::where(['user_id' =>auth()->id()])->get();
 
