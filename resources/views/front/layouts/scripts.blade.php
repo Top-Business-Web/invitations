@@ -540,11 +540,13 @@
 
         var url = '{{ route('editInvitationByClient') }}';
         var invitees_phone = $('.invitees_phone');
+        var invitees_id = $('.invitees_id');
         var invitees_name = $('.invitees_name');
         var invitees_email = $('.invitees_email');
         var invitees_number = $('.invitees_number');
 
         let phone_list = [];
+        let id_list = [];
         let name_list = [];
         let email_list = [];
         let number_list = [];
@@ -552,15 +554,21 @@
         invitees_phone.each(function () {
             phone_list.push($(this).val());
         });
+
+        invitees_id.each(function () {
+            id_list.push($(this).val());
+        });
         invitees_name.each(function () {
             name_list.push($(this).val());
         });
+
         invitees_email.each(function () {
             email_list.push($(this).val());
         });
         invitees_number.each(function () {
             number_list.push($(this).val());
         });
+
         // first step value declare
         var datePicker = localStorage.getItem('datePicker');
         var title = localStorage.getItem('title');
@@ -574,6 +582,7 @@
 
         var contactArray = name_list.map((value, index) => {
             return {
+                'id' : id_list[index],
                 'name': value,
                 'email': email_list[index],
                 'phone': phone_list[index],
@@ -594,6 +603,10 @@
             'contactArray': contactArray
         })
 
+        var serviceValue = [];
+        $('.services:checked').each(function () {
+            serviceValue.push($(this).val());
+        })
         var imageFile = $('#image')[0].files[0];
 
         var formData = new FormData();
@@ -607,8 +620,12 @@
         formData.append('has_qrcode', has_qrcode);
         formData.append('status', 1);
         formData.append('id', id);
+        formData.append('check_contact', serviceValue);
+
+
 
         for (var i = 0; i < contactArray.length; i++) {
+            formData.append('contactArray[' + i + '][id]', contactArray[i]['id']);
             formData.append('contactArray[' + i + '][name]', contactArray[i]['name']);
             formData.append('contactArray[' + i + '][email]', contactArray[i]['email']);
             formData.append('contactArray[' + i + '][phone]', contactArray[i]['phone']);

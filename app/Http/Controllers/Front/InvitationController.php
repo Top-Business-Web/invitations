@@ -166,13 +166,13 @@ class InvitationController extends Controller
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
         }
     } // end add draft
+
     public function editInvitation($id)
     {
         $invite = Invitation::query()
             ->where('id', $id)
             ->with('invitees')
             ->first();
-            // return $invite['invitees'];
 
         $contacts = Contact::where('user_id', Auth::user()->id)->get();
 
@@ -183,12 +183,11 @@ class InvitationController extends Controller
     {
         $invite = Invitation::findOrFail($request->id);
         try {
-            $image = $request->image;
+            $image = $invite->image; // Assign current image
+
             if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $image = $this->saveImage($image, 'assets/uploads/invitations', 'photo');
-            } else {
-                $request->except('image');
+                $newImage = $request->file('image');
+                $image = $this->saveImage($newImage, 'assets/uploads/invitations', 'photo');
             }
 
             $invite->date = Carbon::parse($request->datePicker)->format('Y-m-d');
@@ -203,17 +202,21 @@ class InvitationController extends Controller
             $invite->status = $request->status;
             $invite->password = mt_rand(11111111, 99999999);
             $invite->user_id = Auth::id();
-
+            $user = Auth::user();
+            $invites_number = 0;
+            $total_invites = 0;
             $invite->save();
 
-            if ($invite->save()) {
 
-                for ($i = 0; $i < count($request->contactArray); $i++) {
+            $array = explode(',', $request->check_contact);
 
-                    Invitee::updateOrCreate([
-                        'invitation_id' => $invite->id,
-                        'phone' => $request->contactArray[$i]['phone'],
-                    ], [
+
+            Invitee::where('invitation_id', $invite->id)->delete();
+            for ($i = 0; $i < count($request->contactArray); $i++) {
+
+                if (in_array($request->contactArray[$i]['id'], $array)) {
+
+                    Invitee::create([
                         'invitation_id' => $invite->id,
                         'name' => $request->contactArray[$i]['name'],
                         'email' => $request->contactArray[$i]['email'],
@@ -221,15 +224,14 @@ class InvitationController extends Controller
                         'invitees_number' => $request->contactArray[$i]['number'],
                     ]);
                 }
-
-                return response()->json(['status' => 200]);
-            } else {
-                return response()->json(['status' => 405]);
             }
-        } catch (\Exception $exception) {
 
+            return response()->json(['status' => 200]);
+
+        } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage(), 'code' => 500]);
         }
+
     } // end edit invitation
 
     public function changeStatus(Request $request)
