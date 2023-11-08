@@ -172,6 +172,7 @@ class InvitationController extends Controller
             ->where('id', $id)
             ->with('invitees')
             ->first();
+            // return $invite['invitees'];
 
         $contacts = Contact::where('user_id', Auth::user()->id)->get();
 
